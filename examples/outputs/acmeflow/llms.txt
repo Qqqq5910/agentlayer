@@ -3,7 +3,7 @@
 > AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.
 
 Root URL: http://localhost:3001/
-Generated: 2026-06-09T18:23:16.219Z
+Generated: 2026-06-09T19:41:49.518Z
 
 ## Key Links
 - [AcmeFlow | Customer workflow automation](http://localhost:3001/): AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.

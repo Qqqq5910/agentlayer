@@ -6,36 +6,152 @@
     <title>AgentLayer Report - AcmeFlow</title>
     <style>
       :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      body { margin: 0; color: #172026; background: #f7f8fa; }
+      * { box-sizing: border-box; }
+      body { margin: 0; color: #172026; background: #f6f8fb; }
       main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 64px; }
       h1, h2 { margin: 0 0 12px; }
+      h1 { max-width: 780px; font-size: clamp(32px, 5vw, 56px); line-height: 1.02; letter-spacing: 0; }
+      h2 { font-size: 22px; }
+      h3 { margin: 12px 0 8px; font-size: 16px; }
+      p { color: #53606b; line-height: 1.65; }
       section { margin-top: 28px; }
-      .panel { background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; }
-      .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-      .score { background: #102a43; color: white; border-radius: 8px; padding: 18px; }
-      .score strong { display: block; font-size: 30px; }
+      .eyebrow { color: #0e7490; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+      .hero { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 280px; align-items: end; }
+      .hero-card { border: 1px solid #bae6fd; border-radius: 8px; background: #ecfeff; padding: 20px; }
+      .hero-card span { color: #155e75; font-size: 13px; font-weight: 700; }
+      .hero-card strong { display: block; margin-top: 8px; font-size: 56px; line-height: 1; }
+      .panel { background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; box-shadow: 0 14px 42px rgba(17, 24, 39, .06); }
+      .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+      .score { border-radius: 8px; border: 1px solid #dfe3e8; background: white; padding: 16px; }
+      .score span { color: #53606b; font-size: 13px; font-weight: 700; }
+      .score strong { display: block; margin-top: 10px; font-size: 34px; }
+      .score.strong { border-color: #bbf7d0; background: #f0fdf4; color: #166534; }
+      .score.mixed { border-color: #fde68a; background: #fffbeb; color: #92400e; }
+      .score.weak { border-color: #fecdd3; background: #fff1f2; color: #9f1239; }
+      .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+      .metric { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
+      .metric span { display: block; color: #667085; font-size: 12px; text-transform: uppercase; }
+      .metric strong { display: block; margin-top: 6px; font-size: 24px; color: #172026; }
+      .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+      .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
+      code { border-radius: 6px; background: #eef2f7; padding: 2px 6px; color: #0f172a; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 12px; }
+      .file-list span, small { display: block; margin-top: 6px; color: #667085; line-height: 1.45; }
+      .recommendations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+      .recommendation { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
+      .recommendation p { margin: 0; font-size: 14px; }
+      .empty-state { border: 1px dashed #cbd5e1; border-radius: 8px; padding: 18px; color: #53606b; background: #fbfcfd; }
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { border-bottom: 1px solid #e5e8ec; padding: 10px; text-align: left; vertical-align: top; }
       th { color: #53606b; font-weight: 600; }
       a { color: #0b66c3; }
-      .badge { border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+      .badge { display: inline-block; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
       .pass { background: #d8f5e5; color: #17633a; }
       .partial { background: #fff0c2; color: #7a5300; }
       .fail { background: #ffe0de; color: #9a271f; }
+      .severity-high, .sensitivity-high { background: #ffe0de; color: #9a271f; }
+      .severity-medium, .sensitivity-medium { background: #fff0c2; color: #7a5300; }
+      .severity-low, .sensitivity-low { background: #dff8ff; color: #075c6e; }
+      @media (max-width: 760px) {
+        main { padding-top: 28px; }
+        .hero { grid-template-columns: 1fr; }
+        .hero-card strong { font-size: 48px; }
+      }
     </style>
   </head>
   <body>
     <main>
-      <h1>AgentLayer Report: AcmeFlow</h1>
-      <p>AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.</p>
-      <p><a href="http://localhost:3001/">http://localhost:3001/</a></p>
+      <div class="hero">
+        <header>
+          <p class="eyebrow">AgentLayer operability report</p>
+          <h1>AcmeFlow can be read, trusted, and operated by agents.</h1>
+          <p>AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.</p>
+          <p><a href="http://localhost:3001/">http://localhost:3001/</a></p>
+        </header>
+        <aside class="hero-card">
+          <span>Agent Operability Score</span>
+          <strong>92</strong>
+          <p>9 pass, 0 partial, 0 fail across 9 task checks.</p>
+        </aside>
+      </div>
 
       <section class="score-grid">
-        <div class="score"><span>Overall</span><strong>92</strong></div>
-        <div class="score"><span>Readable</span><strong>100</strong></div>
-        <div class="score"><span>Trustable</span><strong>96</strong></div>
-        <div class="score"><span>Actionable</span><strong>85</strong></div>
-        <div class="score"><span>Tasks</span><strong>86</strong></div>
+        <div class="score strong"><span>Readability</span><strong>100</strong></div>
+        <div class="score strong"><span>Trustability</span><strong>96</strong></div>
+        <div class="score strong"><span>Actionability</span><strong>85</strong></div>
+        <div class="score strong"><span>Task success</span><strong>86</strong></div>
+      </section>
+
+      <section class="panel">
+        <h2>Scan summary</h2>
+        <div class="summary-grid">
+          <div class="metric"><span>Pages scanned</span><strong>13</strong></div>
+          <div class="metric"><span>Facts extracted</span><strong>24</strong></div>
+          <div class="metric"><span>Detected actions</span><strong>12</strong></div>
+          <div class="metric"><span>Generated files</span><strong>14</strong></div>
+          <div class="metric"><span>Crawl issues</span><strong>8</strong></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Generated files</h2>
+        <p>These files are generated by <code>agentlayer generate</code> and can be reviewed before publishing.</p>
+        <ul class="file-list">
+        <li>
+          <code>llms.txt</code>
+          <span>Concise site guide for agents.</span>
+        </li>
+        <li>
+          <code>llms-full.txt</code>
+          <span>Full page context with source URLs.</span>
+        </li>
+        <li>
+          <code>site-profile.json</code>
+          <span>Site identity, summary, and key pages.</span>
+        </li>
+        <li>
+          <code>facts.json</code>
+          <span>24 extracted facts with source evidence.</span>
+        </li>
+        <li>
+          <code>actions.json</code>
+          <span>12 detected actions and confirmation rules.</span>
+        </li>
+        <li>
+          <code>tasks-report.json</code>
+          <span>9 deterministic task checks.</span>
+        </li>
+        <li>
+          <code>recommendations.json</code>
+          <span>1 prioritized remediation items.</span>
+        </li>
+        <li>
+          <code>report.html</code>
+          <span>Standalone shareable operability report.</span>
+        </li>
+        <li>
+          <code>.well-known/agents.json</code>
+          <span>Draft public action manifest.</span>
+        </li>
+        <li>
+          <code>.well-known/mcp.json</code>
+          <span>Draft MCP metadata.</span>
+        </li>
+        <li>
+          <code>.well-known/agent-skills/index.json</code>
+          <span>Draft agent skill index.</span>
+        </li>
+        <li>
+          <code>webmcp/suggested-webmcp-tools.json</code>
+          <span>Suggested WebMCP tool definitions.</span>
+        </li>
+        <li>
+          <code>webmcp/suggested-form-annotations.md</code>
+          <span>Suggested form annotations for agent UX.</span>
+        </li>
+        <li>
+          <code>markdown/*.md</code>
+          <span>13 page snapshots when markdown is available.</span>
+        </li></ul>
       </section>
 
       <section class="panel">
@@ -96,6 +212,147 @@
           <td><span class="badge pass">pass</span></td>
           <td>90</td>
           <td>A relevant form-based action path was found.</td>
+        </tr></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Top recommendations</h2>
+        <div class="recommendations-grid">
+              <article class="recommendation">
+                <div>
+                  <span class="badge severity-medium">medium</span>
+                  <code>.well-known/agents.json</code>
+                </div>
+                <h3>Review and publish the agent action manifest</h3>
+                <p>Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest.</p>
+              </article></div>
+      </section>
+
+      <section class="panel">
+        <h2>Detected actions</h2>
+        <table>
+          <thead><tr><th>Action</th><th>Type</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th></tr></thead>
+          <tbody>
+        <tr>
+          <td>
+            <strong>open_api_docs</strong>
+            <small>I want to read API documentation.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-low">low</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>contact_sales</strong>
+            <small>I want to contact sales.</small>
+          </td>
+          <td>form</td>
+          <td>4</td>
+          <td>Required</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>contact_sales</strong>
+            <small>I want to contact sales.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>book_demo</strong>
+            <small>I want to book a product demo.</small>
+          </td>
+          <td>form</td>
+          <td>5</td>
+          <td>Required</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>book_demo</strong>
+            <small>I want to book a product demo.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>search_docs</strong>
+            <small>I want to find documentation.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-low">low</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>view_pricing</strong>
+            <small>I want to understand pricing.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-low">low</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>read_privacy_policy</strong>
+            <small>I want to read the privacy policy.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-low">low</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>open_security_page</strong>
+            <small>I want to inspect security and trust details.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-low">low</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>request_support</strong>
+            <small>I need support or help.</small>
+          </td>
+          <td>form</td>
+          <td>3</td>
+          <td>Required</td>
+          <td><span class="badge sensitivity-high">high</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>request_support</strong>
+            <small>I need support or help.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>read_terms</strong>
+            <small>I want to read terms and legal policies.</small>
+          </td>
+          <td>navigation</td>
+          <td>0</td>
+          <td>No</td>
+          <td><span class="badge sensitivity-low">low</span></td>
         </tr></tbody>
         </table>
       </section>

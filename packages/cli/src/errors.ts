@@ -19,3 +19,11 @@ export function formatError(error: unknown): string {
 
   return `Error: ${String(error)}`;
 }
+
+export function formatErrorMessage(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return String(error);
+}

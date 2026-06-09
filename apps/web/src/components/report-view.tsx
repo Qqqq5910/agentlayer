@@ -1,16 +1,18 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   AlertTriangle,
   ArrowUpRight,
   CheckCircle2,
   Download,
+  FileCode,
   FileText,
   Gauge,
   ListChecks,
   Route,
   ShieldCheck,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 import type {
   AgentAction,
@@ -18,7 +20,7 @@ import type {
   AgentTaskResult,
   ExtractedFact,
   GeneratedArtifact,
-  Recommendation
+  Recommendation,
 } from "@/lib/report-types";
 import {
   actionSensitivityClasses,
@@ -27,10 +29,20 @@ import {
   fileLabel,
   formatArtifactSize,
   formatConfidence,
+  isDraftManifest,
   progressFillClasses,
   scoreToneClasses,
+  scoreToneLabel,
   severityClasses,
-  taskStatusClasses
+  summarizeArtifacts,
+  summarizeRecommendations,
+  summarizeTasks,
+  taskStatusClasses,
+} from "@/lib/report-utils";
+import type {
+  ArtifactSummary,
+  RecommendationSummary,
+  TaskSummary,
 } from "@/lib/report-utils";
 
 type ReportViewProps = {
@@ -40,14 +52,60 @@ type ReportViewProps = {
   eyebrow?: string;
 };
 
-const scoreLabels: Array<[keyof AgentOperabilityReport["scores"], string]> = [
-  ["readability", "Readable"],
-  ["trustability", "Trust"],
-  ["actionability", "Action"],
-  ["taskSuccess", "Task success"]
-];
+type ScoreBreakdownKey = Exclude<
+  keyof AgentOperabilityReport["scores"],
+  "overall"
+>;
 
-export function ReportView({ report, artifacts, title, eyebrow }: ReportViewProps) {
+const scoreCards = [
+  {
+    key: "readability",
+    label: "Readable files",
+    description: "Can agents find concise site context?",
+    icon: FileText,
+  },
+  {
+    key: "trustability",
+    label: "Evidence quality",
+    description: "Do facts cite sources and confidence?",
+    icon: ShieldCheck,
+  },
+  {
+    key: "actionability",
+    label: "Operable actions",
+    description: "Are actions and confirmations clear?",
+    icon: Route,
+  },
+  {
+    key: "taskSuccess",
+    label: "Task success",
+    description: "Can common agent journeys succeed?",
+    icon: ListChecks,
+  },
+] satisfies Array<{
+  key: ScoreBreakdownKey;
+  label: string;
+  description: string;
+  icon: LucideIcon;
+}>;
+
+export function ReportView({
+  report,
+  artifacts,
+  title,
+  eyebrow,
+}: ReportViewProps) {
+  const taskSummary = summarizeTasks(report.tasks);
+  const recommendationSummary = summarizeRecommendations(
+    report.recommendations,
+  );
+  const artifactSummary = summarizeArtifacts(artifacts);
+  const formCount = report.scan.pages.reduce(
+    (sum, page) => sum + page.forms.length,
+    0,
+  );
+  const generatedAt = new Date(report.generatedAt).toLocaleString();
+
   return (
     <main>
       <section className="border-b border-slate-200 bg-white">
@@ -60,7 +118,9 @@ export function ReportView({ report, artifacts, title, eyebrow }: ReportViewProp
               <h1 className="mt-3 text-3xl font-semibold text-slate-950 md:text-5xl">
                 {title ?? report.site.name}
               </h1>
-              <p className="mt-4 text-base leading-7 text-slate-600">{report.site.summary}</p>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                {report.site.summary}
+              </p>
               <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-600">
                 <a
                   className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 hover:bg-white"
@@ -75,56 +135,147 @@ export function ReportView({ report, artifacts, title, eyebrow }: ReportViewProp
                   {report.scan.pages.length} pages scanned
                 </span>
                 <span className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
-                  {new Date(report.generatedAt).toLocaleString()}
+                  {generatedAt}
                 </span>
               </div>
             </div>
-            <div className={`w-full rounded-lg border p-5 lg:w-64 ${scoreToneClasses(report.scores.overall)}`}>
+            <div
+              className={`w-full rounded-lg border p-5 lg:w-64 ${scoreToneClasses(report.scores.overall)}`}
+            >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Overall score</span>
+                <span className="text-sm font-medium">
+                  Agent Operability Score
+                </span>
                 <Gauge size={20} aria-hidden="true" />
               </div>
               <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-semibold">{clampScore(report.scores.overall)}</span>
+                <span className="text-5xl font-semibold">
+                  {clampScore(report.scores.overall)}
+                </span>
                 <span className="pb-2 text-sm">/100</span>
               </div>
               <ProgressBar score={report.scores.overall} />
+              <p className="mt-3 text-xs font-medium">
+                {scoreToneLabel(report.scores.overall)} across{" "}
+                {taskSummary.total} task checks.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <div className="container-shell space-y-8 py-8">
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <OverviewCard
+            detail={`${scoreToneLabel(report.scores.overall)} result from ${report.scan.pages.length} scanned pages`}
+            icon={<Gauge size={18} aria-hidden="true" />}
+            label="Agent Operability Score"
+            value={`${clampScore(report.scores.overall)}/100`}
+          />
+          <OverviewCard
+            detail={`${taskSummary.pass} pass, ${taskSummary.partial} partial, ${taskSummary.fail} fail`}
+            icon={<ListChecks size={18} aria-hidden="true" />}
+            label="Task success results"
+            value={`${taskSummary.pass}/${taskSummary.total} pass`}
+          />
+          <OverviewCard
+            detail={`${artifactSummary.json} JSON, ${artifactSummary.text} text, ${artifactSummary.markdown} markdown`}
+            icon={<FileCode size={18} aria-hidden="true" />}
+            label="Generated files"
+            value={`${artifactSummary.total} outputs`}
+          />
+          <OverviewCard
+            detail={`${recommendationSummary.high} high, ${recommendationSummary.medium} medium, ${recommendationSummary.low} low`}
+            icon={<Sparkles size={18} aria-hidden="true" />}
+            label="Recommendations"
+            value={`${recommendationSummary.total} fixes`}
+          />
+        </section>
+
         <section className="grid gap-4 md:grid-cols-4">
-          {scoreLabels.map(([key, label]) => (
-            <ScoreCard key={key} label={label} score={report.scores[key]} />
+          {scoreCards.map((card) => (
+            <ScoreCard
+              description={card.description}
+              icon={card.icon}
+              key={card.key}
+              label={card.label}
+              score={report.scores[card.key]}
+            />
           ))}
         </section>
 
-        <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <GeneratedFiles artifacts={artifacts} />
-          <Recommendations recommendations={report.recommendations} />
+        <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+          <TaskResults summary={taskSummary} tasks={report.tasks} />
+          <Recommendations
+            recommendations={report.recommendations}
+            summary={recommendationSummary}
+          />
         </section>
 
+        <GeneratedFiles artifacts={artifacts} summary={artifactSummary} />
         <FactsTable facts={report.facts} />
         <ActionsTable actions={report.actions} />
-        <TaskResults tasks={report.tasks} />
-        <ScannedPages report={report} />
+        <ScannedPages formCount={formCount} report={report} />
       </div>
     </main>
   );
 }
 
-function ScoreCard({ label, score }: { label: string; score: number }) {
+function OverviewCard({
+  detail,
+  icon,
+  label,
+  value,
+}: {
+  detail: string;
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <article className="panel p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+            {label}
+          </p>
+          <p className="mt-2 text-2xl font-semibold text-slate-950">{value}</p>
+        </div>
+        <div className="grid size-9 shrink-0 place-items-center rounded-md bg-slate-950 text-white">
+          {icon}
+        </div>
+      </div>
+      <p className="mt-3 text-sm leading-6 text-slate-600">{detail}</p>
+    </article>
+  );
+}
+
+function ScoreCard({
+  description,
+  icon: Icon,
+  label,
+  score,
+}: {
+  description: string;
+  icon: LucideIcon;
+  label: string;
+  score: number;
+}) {
   return (
     <article className="panel p-5">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-sm font-medium text-slate-600">{label}</h2>
-        <span className={`rounded-md border px-2 py-1 text-xs font-semibold ${scoreToneClasses(score)}`}>
+        <div className="flex items-center gap-2">
+          <Icon className="text-cyan-700" size={17} aria-hidden="true" />
+          <h2 className="text-sm font-medium text-slate-700">{label}</h2>
+        </div>
+        <span
+          className={`rounded-md border px-2 py-1 text-xs font-semibold ${scoreToneClasses(score)}`}
+        >
           {clampScore(score)}
         </span>
       </div>
       <ProgressBar score={score} />
+      <p className="mt-3 text-xs leading-5 text-slate-500">{description}</p>
     </article>
   );
 }
@@ -143,7 +294,7 @@ function ProgressBar({ score }: { score: number }) {
 function SectionHeader({
   icon,
   title,
-  description
+  description,
 }: {
   icon: ReactNode;
   title: string;
@@ -151,7 +302,9 @@ function SectionHeader({
 }) {
   return (
     <div className="mb-4 flex items-start gap-3">
-      <div className="grid size-9 shrink-0 place-items-center rounded-md bg-slate-950 text-white">{icon}</div>
+      <div className="grid size-9 shrink-0 place-items-center rounded-md bg-slate-950 text-white">
+        {icon}
+      </div>
       <div>
         <h2 className="text-lg font-semibold text-slate-950">{title}</h2>
         <p className="text-sm leading-6 text-slate-600">{description}</p>
@@ -160,14 +313,29 @@ function SectionHeader({
   );
 }
 
-function GeneratedFiles({ artifacts }: { artifacts: GeneratedArtifact[] }) {
+function GeneratedFiles({
+  artifacts,
+  summary,
+}: {
+  artifacts: GeneratedArtifact[];
+  summary: ArtifactSummary;
+}) {
   return (
     <section className="panel p-5">
       <SectionHeader
         icon={<FileText size={18} aria-hidden="true" />}
         title="Generated files"
-        description="Agent-readable files, manifests, markdown snapshots, and reports ready to publish."
+        description="Agent-readable draft files, structured data, markdown snapshots, and reports from this scan."
       />
+      <div className="mb-4 grid gap-3 text-sm sm:grid-cols-4">
+        <Metric label="Total outputs" value={String(summary.total)} />
+        <Metric label="JSON" value={String(summary.json)} />
+        <Metric label="Text files" value={String(summary.text)} />
+        <Metric
+          label="Draft manifests"
+          value={String(summary.draftManifests)}
+        />
+      </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {artifacts.map((artifact) => (
           <a
@@ -178,12 +346,24 @@ function GeneratedFiles({ artifacts }: { artifacts: GeneratedArtifact[] }) {
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="font-medium text-slate-950">{artifact.path}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="font-medium text-slate-950">{artifact.path}</p>
+                  {isDraftManifest(artifact.path) ? (
+                    <span className="rounded-md border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800">
+                      Draft
+                    </span>
+                  ) : null}
+                </div>
                 <p className="mt-1 text-xs text-slate-500">
-                  {artifactLanguage(artifact.mediaType, artifact.path)} · {formatArtifactSize(artifact)}
+                  {artifactLanguage(artifact.mediaType, artifact.path)} /{" "}
+                  {formatArtifactSize(artifact)}
                 </p>
               </div>
-              <Download className="text-slate-400 group-hover:text-cyan-700" size={17} aria-hidden="true" />
+              <Download
+                className="text-slate-400 group-hover:text-cyan-700"
+                size={17}
+                aria-hidden="true"
+              />
             </div>
           </a>
         ))}
@@ -192,7 +372,13 @@ function GeneratedFiles({ artifacts }: { artifacts: GeneratedArtifact[] }) {
   );
 }
 
-function Recommendations({ recommendations }: { recommendations: Recommendation[] }) {
+function Recommendations({
+  recommendations,
+  summary,
+}: {
+  recommendations: Recommendation[];
+  summary: RecommendationSummary;
+}) {
   return (
     <section className="panel p-5">
       <SectionHeader
@@ -200,11 +386,27 @@ function Recommendations({ recommendations }: { recommendations: Recommendation[
         title="Top recommendations"
         description="Fixes that make the site easier for agents to understand, verify, and operate."
       />
+      <div className="mb-4 flex flex-wrap gap-2 text-xs font-semibold">
+        <span className="rounded-md border border-rose-200 bg-rose-50 px-2 py-1 text-rose-800">
+          {summary.high} high
+        </span>
+        <span className="rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-amber-800">
+          {summary.medium} medium
+        </span>
+        <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-slate-700">
+          {summary.low} low
+        </span>
+      </div>
       <div className="space-y-3">
         {recommendations.slice(0, 4).map((item) => (
-          <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={item.title}>
+          <article
+            className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+            key={item.title}
+          >
             <div className="flex flex-wrap items-center gap-2">
-              <span className={`rounded-md border px-2 py-1 text-xs font-semibold ${severityClasses(item.severity)}`}>
+              <span
+                className={`rounded-md border px-2 py-1 text-xs font-semibold ${severityClasses(item.severity)}`}
+              >
                 {item.severity}
               </span>
               {item.suggestedArtifact ? (
@@ -214,7 +416,18 @@ function Recommendations({ recommendations }: { recommendations: Recommendation[
               ) : null}
             </div>
             <h3 className="mt-3 font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{item.howToFix}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              {item.whyItMatters}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-slate-700">
+              <span className="font-medium text-slate-950">Action:</span>{" "}
+              {item.howToFix}
+            </p>
+            {item.affectedTasks.length > 0 ? (
+              <p className="mt-2 text-xs text-slate-500">
+                Affects: {item.affectedTasks.join(", ")}
+              </p>
+            ) : null}
           </article>
         ))}
       </div>
@@ -233,13 +446,14 @@ function FactsTable({ facts }: { facts: ExtractedFact[] }) {
         />
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[840px] text-left text-sm">
+        <table className="w-full min-w-[1040px] text-left text-sm">
           <thead className="border-y border-slate-200 bg-slate-50 text-xs uppercase text-slate-500">
             <tr>
               <th className="px-5 py-3">Type</th>
               <th className="px-5 py-3">Label</th>
               <th className="px-5 py-3">Value</th>
               <th className="px-5 py-3">Confidence</th>
+              <th className="px-5 py-3">Evidence</th>
               <th className="px-5 py-3">Source</th>
             </tr>
           </thead>
@@ -251,9 +465,18 @@ function FactsTable({ facts }: { facts: ExtractedFact[] }) {
                     {fact.type}
                   </span>
                 </td>
-                <td className="px-5 py-4 font-medium text-slate-950">{fact.label}</td>
-                <td className="truncate-cell px-5 py-4 text-slate-600">{fact.value}</td>
-                <td className="px-5 py-4 text-slate-600">{formatConfidence(fact.confidence)}</td>
+                <td className="px-5 py-4 font-medium text-slate-950">
+                  {fact.label}
+                </td>
+                <td className="truncate-cell px-5 py-4 text-slate-600">
+                  {fact.value}
+                </td>
+                <td className="px-5 py-4 text-slate-600">
+                  {formatConfidence(fact.confidence)}
+                </td>
+                <td className="truncate-cell px-5 py-4 text-slate-600">
+                  {fact.sourceText ?? "Source text unavailable"}
+                </td>
                 <td className="truncate-cell px-5 py-4 text-cyan-700">
                   <a href={fact.sourceUrl} rel="noreferrer" target="_blank">
                     {fact.sourceUrl}
@@ -295,13 +518,23 @@ function ActionsTable({ actions }: { actions: AgentAction[] }) {
               <tr key={action.id}>
                 <td className="px-5 py-4">
                   <p className="font-medium text-slate-950">{action.name}</p>
-                  <p className="mt-1 text-xs text-slate-500">{action.userIntent}</p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    {action.userIntent}
+                  </p>
                 </td>
-                <td className="px-5 py-4 text-slate-600">{action.actionType}</td>
-                <td className="px-5 py-4 text-slate-600">{action.requiredFields?.length ?? 0}</td>
-                <td className="px-5 py-4 text-slate-600">{action.requiresHumanConfirmation ? "Required" : "No"}</td>
+                <td className="px-5 py-4 text-slate-600">
+                  {action.actionType}
+                </td>
+                <td className="px-5 py-4 text-slate-600">
+                  {action.requiredFields?.length ?? 0}
+                </td>
+                <td className="px-5 py-4 text-slate-600">
+                  {action.requiresHumanConfirmation ? "Required" : "No"}
+                </td>
                 <td className="px-5 py-4">
-                  <span className={`rounded-md border px-2 py-1 text-xs font-semibold ${actionSensitivityClasses(action.sensitivity)}`}>
+                  <span
+                    className={`rounded-md border px-2 py-1 text-xs font-semibold ${actionSensitivityClasses(action.sensitivity)}`}
+                  >
                     {action.sensitivity}
                   </span>
                 </td>
@@ -319,7 +552,13 @@ function ActionsTable({ actions }: { actions: AgentAction[] }) {
   );
 }
 
-function TaskResults({ tasks }: { tasks: AgentTaskResult[] }) {
+function TaskResults({
+  summary,
+  tasks,
+}: {
+  summary: TaskSummary;
+  tasks: AgentTaskResult[];
+}) {
   return (
     <section className="panel p-5">
       <SectionHeader
@@ -327,24 +566,49 @@ function TaskResults({ tasks }: { tasks: AgentTaskResult[] }) {
         title="Agent task checks"
         description="Readiness is scored by whether common buyer and operator journeys can actually succeed."
       />
+      <div className="mb-4 grid gap-3 text-sm sm:grid-cols-4">
+        <Metric label="Average" value={`${summary.averageScore}/100`} />
+        <Metric label="Pass" value={String(summary.pass)} />
+        <Metric label="Partial" value={String(summary.partial)} />
+        <Metric label="Fail" value={String(summary.fail)} />
+      </div>
       <div className="grid gap-3 md:grid-cols-2">
         {tasks.map((task) => (
-          <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={task.taskId}>
+          <article
+            className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+            key={task.taskId}
+          >
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-semibold text-slate-950">{task.title}</h3>
-              <span className={`shrink-0 rounded-md border px-2 py-1 text-xs font-semibold ${taskStatusClasses(task.status)}`}>
+              <span
+                className={`shrink-0 rounded-md border px-2 py-1 text-xs font-semibold ${taskStatusClasses(task.status)}`}
+              >
                 {task.status}
               </span>
             </div>
             <div className="mt-3 flex items-center gap-3">
-              <span className="text-sm font-medium text-slate-700">{task.score}/100</span>
+              <span className="text-sm font-medium text-slate-700">
+                {task.score}/100
+              </span>
               <div className="h-2 flex-1 rounded-full bg-slate-200">
-                <div className={`h-2 rounded-full ${progressFillClasses(task.score)}`} style={{ width: `${task.score}%` }} />
+                <div
+                  className={`h-2 rounded-full ${progressFillClasses(task.score)}`}
+                  style={{ width: `${task.score}%` }}
+                />
               </div>
             </div>
-            <p className="mt-3 text-sm leading-6 text-slate-600">{task.explanation}</p>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              {task.explanation}
+            </p>
             {task.missingInformation.length > 0 ? (
-              <p className="mt-3 text-xs text-slate-500">Missing: {task.missingInformation.join(", ")}</p>
+              <p className="mt-3 text-xs text-slate-500">
+                Missing: {task.missingInformation.join(", ")}
+              </p>
+            ) : null}
+            {task.recommendations.length > 0 ? (
+              <p className="mt-2 text-xs text-slate-500">
+                Next: {task.recommendations[0]}
+              </p>
             ) : null}
           </article>
         ))}
@@ -353,7 +617,13 @@ function TaskResults({ tasks }: { tasks: AgentTaskResult[] }) {
   );
 }
 
-function ScannedPages({ report }: { report: AgentOperabilityReport }) {
+function ScannedPages({
+  formCount,
+  report,
+}: {
+  formCount: number;
+  report: AgentOperabilityReport;
+}) {
   return (
     <section className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
       <div className="panel p-5">
@@ -364,15 +634,22 @@ function ScannedPages({ report }: { report: AgentOperabilityReport }) {
         />
         <dl className="grid grid-cols-2 gap-3 text-sm">
           <Metric label="Pages" value={String(report.scan.pages.length)} />
-          <Metric label="Forms" value={String(report.scan.pages.reduce((sum, page) => sum + page.forms.length, 0))} />
-          <Metric label="Robots" value={report.scan.robotsTxt?.found ? "Found" : "Missing"} />
-          <Metric label="Sitemap" value={report.scan.sitemap?.found ? "Found" : "Missing"} />
+          <Metric label="Forms" value={String(formCount)} />
+          <Metric
+            label="Robots"
+            value={report.scan.robotsTxt?.found ? "Found" : "Missing"}
+          />
+          <Metric
+            label="Sitemap"
+            value={report.scan.sitemap?.found ? "Found" : "Missing"}
+          />
         </dl>
         {report.scan.errors.length > 0 ? (
           <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
             <div className="flex items-center gap-2 font-medium">
               <AlertTriangle size={16} aria-hidden="true" />
-              {report.scan.errors.length} crawl issue{report.scan.errors.length === 1 ? "" : "s"}
+              {report.scan.errors.length} crawl issue
+              {report.scan.errors.length === 1 ? "" : "s"}
             </div>
           </div>
         ) : null}
@@ -389,12 +666,17 @@ function ScannedPages({ report }: { report: AgentOperabilityReport }) {
               target="_blank"
             >
               <span className="font-medium text-slate-950">{label}</span>
-              <span className="mt-1 block truncate text-xs text-cyan-700">{url}</span>
+              <span className="mt-1 block truncate text-xs text-cyan-700">
+                {url}
+              </span>
             </a>
           ))}
         </div>
         <div className="mt-5">
-          <Link className="inline-flex items-center gap-2 rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white" href="/scan">
+          <Link
+            className="inline-flex items-center gap-2 rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white"
+            href="/scan"
+          >
             Scan another site
             <ArrowUpRight size={14} aria-hidden="true" />
           </Link>

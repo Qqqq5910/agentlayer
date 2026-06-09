@@ -4,7 +4,9 @@ export function parsePositiveInteger(value: string): number {
   const parsed = Number(value);
 
   if (!Number.isInteger(parsed) || parsed <= 0) {
-    throw new InvalidArgumentError("Expected a positive integer.");
+    throw new InvalidArgumentError(
+      `Invalid number "${value}". Use a whole number greater than 0.`,
+    );
   }
 
   return parsed;
@@ -16,11 +18,15 @@ export function parseHttpUrl(value: string): string {
   try {
     parsed = new URL(value);
   } catch {
-    throw new InvalidArgumentError("Expected a valid absolute URL.");
+    throw new InvalidArgumentError(
+      `Invalid URL "${value}". Use an absolute http(s) URL, for example https://example.com.`,
+    );
   }
 
   if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
-    throw new InvalidArgumentError("Expected an http or https URL.");
+    throw new InvalidArgumentError(
+      `Unsupported URL protocol "${parsed.protocol}". Use an absolute http(s) URL.`,
+    );
   }
 
   parsed.hash = "";

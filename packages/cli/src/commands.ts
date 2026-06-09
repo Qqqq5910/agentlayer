@@ -5,11 +5,11 @@ import {
   callEvaluateTasks,
   callGenerateArtifacts,
   callScanSite,
-  loadCoreApi
+  loadCoreApi,
 } from "./coreApi.js";
 import { getEmbeddedDefaultTasks } from "./defaultTasks.js";
 import { buildDoctorDiagnosis, formatDoctorDiagnosis } from "./doctor.js";
-import { CliError } from "./errors.js";
+import { CliError, formatErrorMessage } from "./errors.js";
 import type { CliIo } from "./io.js";
 import {
   fileExists,
@@ -17,7 +17,7 @@ import {
   resolveOutputDirectory,
   resolveTaskSuiteOutputPath,
   writeArtifacts,
-  writeJsonFile
+  writeJsonFile,
 } from "./io.js";
 import type { CrawlCommandOptions, InitFixtureOptions } from "./options.js";
 import { loadTasks } from "./tasks.js";
@@ -25,16 +25,23 @@ import { loadTasks } from "./tasks.js";
 export async function runScanCommand(
   rootUrl: string,
   options: CrawlCommandOptions,
-  io: CliIo
+  io: CliIo,
 ): Promise<void> {
   const core = await loadCoreApi(["scanSite"]);
-  const scan = await callScanSite(core.scanSite!, {
-    rootUrl,
-    maxPages: options.maxPages,
-    timeoutMs: options.timeoutMs,
-    respectRobotsTxt: true
-  });
-  const outputPath = resolveJsonOutputPath(io.cwd(), options.out, "agentlayer-output", "scan.json");
+  const scan = await runCliStep(`Scan failed for ${rootUrl}`, () =>
+    callScanSite(core.scanSite, {
+      rootUrl,
+      maxPages: options.maxPages,
+      timeoutMs: options.timeoutMs,
+      respectRobotsTxt: true,
+    }),
+  );
+  const outputPath = resolveJsonOutputPath(
+    io.cwd(),
+    options.out,
+    "agentlayer-output",
+    "scan.json",
+  );
 
   await writeJsonFile(outputPath, scan);
 
@@ -48,28 +55,46 @@ export async function runScanCommand(
       `Scan complete for ${scan.rootUrl}`,
       `Pages scanned: ${scan.pages.length}`,
       `Errors: ${scan.errors.length}`,
-      `Wrote: ${outputPath}`
-    ].join("\n")
+      `Wrote: ${outputPath}`,
+    ].join("\n"),
   );
 }
 
 export async function runGenerateCommand(
   rootUrl: string,
   options: CrawlCommandOptions,
-  io: CliIo
+  io: CliIo,
 ): Promise<void> {
-  const core = await loadCoreApi(["scanSite", "buildAgentLayerReport", "generateArtifacts"]);
+  const core = await loadCoreApi([
+    "scanSite",
+    "buildAgentLayerReport",
+    "generateArtifacts",
+  ]);
   const tasks = await loadTasks(core, options.tasks, io.cwd());
-  const scan = await callScanSite(core.scanSite!, {
-    rootUrl,
-    maxPages: options.maxPages,
-    timeoutMs: options.timeoutMs,
-    respectRobotsTxt: true
-  });
-  const report = await callBuildAgentLayerReport(core.buildAgentLayerReport!, scan, tasks);
-  const coreArtifacts = await callGenerateArtifacts(core.generateArtifacts!, report);
+  const scan = await runCliStep(
+    `Generate failed while scanning ${rootUrl}`,
+    () =>
+      callScanSite(core.scanSite, {
+        rootUrl,
+        maxPages: options.maxPages,
+        timeoutMs: options.timeoutMs,
+        respectRobotsTxt: true,
+      }),
+  );
+  const report = await runCliStep(
+    "Generate failed while building the AgentLayer report",
+    () => callBuildAgentLayerReport(core.buildAgentLayerReport, scan, tasks),
+  );
+  const coreArtifacts = await runCliStep(
+    "Generate failed while creating artifact contents",
+    () => callGenerateArtifacts(core.generateArtifacts, report),
+  );
   const artifacts = withRequiredJsonArtifacts(coreArtifacts, report);
-  const outDir = resolveOutputDirectory(io.cwd(), options.out, "agentlayer-output");
+  const outDir = resolveOutputDirectory(
+    io.cwd(),
+    options.out,
+    "agentlayer-output",
+  );
   const written = await writeArtifacts(outDir, artifacts);
 
   if (options.json) {
@@ -79,11 +104,11 @@ export async function runGenerateCommand(
           outDir,
           artifactCount: written.length,
           artifacts: written,
-          scores: report.scores
+          scores: report.scores,
         },
         null,
-        2
-      )
+        2,
+      ),
     );
     return;
   }
@@ -92,39 +117,55 @@ export async function runGenerateCommand(
     [
       `Generated ${written.length} AgentLayer artifacts in ${outDir}`,
       `Overall score: ${Math.round(report.scores.overall)}/100`,
-      `Tasks evaluated: ${report.tasks.length}`
-    ].join("\n")
+      `Tasks evaluated: ${report.tasks.length}`,
+    ].join("\n"),
   );
 }
 
 export async function runTestCommand(
   rootUrl: string,
   options: CrawlCommandOptions,
-  io: CliIo
+  io: CliIo,
 ): Promise<void> {
-  const core = await loadCoreApi(["scanSite", "buildAgentLayerReport", "evaluateTasks"]);
+  const core = await loadCoreApi([
+    "scanSite",
+    "buildAgentLayerReport",
+    "evaluateTasks",
+  ]);
   const tasks = await loadTasks(core, options.tasks, io.cwd());
-  const scan = await callScanSite(core.scanSite!, {
-    rootUrl,
-    maxPages: options.maxPages,
-    timeoutMs: options.timeoutMs,
-    respectRobotsTxt: true
-  });
-  const fullReport = await callBuildAgentLayerReport(core.buildAgentLayerReport!, scan, tasks);
-  const results = await callEvaluateTasks(
-    core.evaluateTasks!,
-    scan,
-    tasks,
-    fullReport.facts,
-    fullReport.actions
+  const scan = await runCliStep(`Test failed while scanning ${rootUrl}`, () =>
+    callScanSite(core.scanSite, {
+      rootUrl,
+      maxPages: options.maxPages,
+      timeoutMs: options.timeoutMs,
+      respectRobotsTxt: true,
+    }),
+  );
+  const fullReport = await runCliStep(
+    "Test failed while building the AgentLayer report",
+    () => callBuildAgentLayerReport(core.buildAgentLayerReport, scan, tasks),
+  );
+  const results = await runCliStep("Test failed while evaluating tasks", () =>
+    callEvaluateTasks(
+      core.evaluateTasks,
+      scan,
+      tasks,
+      fullReport.facts,
+      fullReport.actions,
+    ),
   );
   const report = {
     rootUrl: scan.rootUrl,
     generatedAt: new Date().toISOString(),
     taskSuccessScore: averageTaskScore(results),
-    tasks: results
+    tasks: results,
   };
-  const outputPath = resolveJsonOutputPath(io.cwd(), options.out, ".", "agentlayer-report.json");
+  const outputPath = resolveJsonOutputPath(
+    io.cwd(),
+    options.out,
+    ".",
+    "agentlayer-report.json",
+  );
 
   await writeJsonFile(outputPath, report);
 
@@ -138,29 +179,39 @@ export async function runTestCommand(
       `Task checks complete for ${scan.rootUrl}`,
       `Task success score: ${Math.round(report.taskSuccessScore)}/100`,
       `Tasks evaluated: ${results.length}`,
-      `Wrote: ${outputPath}`
-    ].join("\n")
+      `Wrote: ${outputPath}`,
+    ].join("\n"),
   );
 }
 
 export async function runDoctorCommand(
   rootUrl: string,
   options: CrawlCommandOptions,
-  io: CliIo
+  io: CliIo,
 ): Promise<void> {
   const core = await loadCoreApi(["scanSite", "buildAgentLayerReport"]);
   const tasks = await loadTasks(core, options.tasks, io.cwd());
-  const scan = await callScanSite(core.scanSite!, {
-    rootUrl,
-    maxPages: options.maxPages,
-    timeoutMs: options.timeoutMs,
-    respectRobotsTxt: true
-  });
-  const report = await callBuildAgentLayerReport(core.buildAgentLayerReport!, scan, tasks);
+  const scan = await runCliStep(`Doctor failed while scanning ${rootUrl}`, () =>
+    callScanSite(core.scanSite, {
+      rootUrl,
+      maxPages: options.maxPages,
+      timeoutMs: options.timeoutMs,
+      respectRobotsTxt: true,
+    }),
+  );
+  const report = await runCliStep(
+    "Doctor failed while building the AgentLayer report",
+    () => callBuildAgentLayerReport(core.buildAgentLayerReport, scan, tasks),
+  );
   const diagnosis = buildDoctorDiagnosis(report);
 
   if (options.out) {
-    const outputPath = resolveJsonOutputPath(io.cwd(), options.out, ".", "doctor-report.json");
+    const outputPath = resolveJsonOutputPath(
+      io.cwd(),
+      options.out,
+      ".",
+      "doctor-report.json",
+    );
     await writeJsonFile(outputPath, diagnosis);
   }
 
@@ -174,12 +225,14 @@ export async function runDoctorCommand(
 
 export async function runInitFixtureCommand(
   options: InitFixtureOptions,
-  io: CliIo
+  io: CliIo,
 ): Promise<void> {
   const outputPath = resolveTaskSuiteOutputPath(io.cwd(), options.out);
 
   if (!options.force && (await fileExists(outputPath))) {
-    throw new CliError(`Refusing to overwrite existing task suite: ${outputPath}. Use --force to replace it.`);
+    throw new CliError(
+      `Refusing to overwrite existing task suite: ${outputPath}. Use --force to replace it.`,
+    );
   }
 
   const tasks = getEmbeddedDefaultTasks();
@@ -198,5 +251,22 @@ function averageTaskScore(results: AgentTaskResult[]): number {
     return 0;
   }
 
-  return results.reduce((sum, result) => sum + result.score, 0) / results.length;
+  return (
+    results.reduce((sum, result) => sum + result.score, 0) / results.length
+  );
+}
+
+async function runCliStep<T>(
+  failurePrefix: string,
+  action: () => Promise<T>,
+): Promise<T> {
+  try {
+    return await action();
+  } catch (error) {
+    if (error instanceof CliError) {
+      throw error;
+    }
+
+    throw new CliError(`${failurePrefix}: ${formatErrorMessage(error)}`);
+  }
 }

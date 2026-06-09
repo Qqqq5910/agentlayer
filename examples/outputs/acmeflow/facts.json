@@ -7,7 +7,7 @@
     "sourceUrl": "http://localhost:3001/",
     "sourceText": "AcmeFlow",
     "confidence": 0.9,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.514Z"
   },
   {
     "id": "pricing-pricing-information-49",
@@ -17,7 +17,7 @@
     "sourceUrl": "http://localhost:3001/",
     "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tas",
     "confidence": 0.55,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.514Z"
   },
   {
     "id": "product-target-users-customer-success-sales-engineers-operati",
@@ -27,7 +27,7 @@
     "sourceUrl": "http://localhost:3001/",
     "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation ta...",
     "confidence": 0.6,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.514Z"
   },
   {
     "id": "docs-api-documentation-api-docs-acmeflow",
@@ -37,7 +37,7 @@
     "sourceUrl": "http://localhost:3001/docs/api",
     "sourceText": "REST API and webhooks for AcmeFlow workflows.",
     "confidence": 0.85,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.514Z"
   },
   {
     "id": "contact-contact-sales-name-email-company-message",
@@ -47,7 +47,7 @@
     "sourceUrl": "http://localhost:3001/contact",
     "sourceText": "Contact sales",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.514Z"
   },
   {
     "id": "product-target-users-b2b-saas-revenue-and-success-teams",
@@ -57,7 +57,7 @@
     "sourceUrl": "http://localhost:3001/customers",
     "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineering, support operations, and impl...",
     "confidence": 0.6,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "contact-book-demo-name-email-company-preferredtime-message",
@@ -67,7 +67,7 @@
     "sourceUrl": "http://localhost:3001/demo",
     "sourceText": "Request demo",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "docs-documentation-documentation-acmeflow",
@@ -77,7 +77,7 @@
     "sourceUrl": "http://localhost:3001/docs",
     "sourceText": "Documentation for building reliable customer workflows.",
     "confidence": 0.85,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-slack",
@@ -87,7 +87,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": "sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.M",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-google",
@@ -97,7 +97,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": "nd HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow a",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-salesforce",
@@ -107,7 +107,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": "analytics, automation, and warehouse integrations for B2B SaaS workflows.SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-hubspot",
@@ -117,7 +117,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": ".SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSyn",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-zapier",
@@ -127,7 +127,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": "TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.SegmentSync customer handoff signals between AcmeFlow and Segment.SnowflakeSync cus",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-google-workspace",
@@ -137,7 +137,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": "nd HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow a",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.217Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "integration-integration-microsoft-teams",
@@ -147,7 +147,7 @@
     "sourceUrl": "http://localhost:3001/integrations",
     "sourceText": "spaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.S",
     "confidence": 0.75,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "pricing-pricing-information-49-149",
@@ -157,7 +157,7 @@
     "sourceUrl": "http://localhost:3001/pricing",
     "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enter",
     "confidence": 0.85,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "plan-plan-name-starter",
@@ -167,7 +167,7 @@
     "sourceUrl": "http://localhost:3001/pricing",
     "sourceText": "to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "plan-plan-name-growth",
@@ -177,7 +177,7 @@
     "sourceUrl": "http://localhost:3001/pricing",
     "sourceText": "e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "plan-plan-name-enterprise",
@@ -187,7 +187,7 @@
     "sourceUrl": "http://localhost:3001/pricing",
     "sourceText": "rsSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a s",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "policy-privacy-policy-privacy-policy-acmeflow",
@@ -197,7 +197,7 @@
     "sourceUrl": "http://localhost:3001/privacy",
     "sourceText": "How the fictional AcmeFlow demo describes privacy.",
     "confidence": 0.85,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "security-security-or-trust-information-security-acmeflow",
@@ -207,7 +207,7 @@
     "sourceUrl": "http://localhost:3001/security",
     "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review pa",
     "confidence": 0.85,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "support-request-support-name-email-message",
@@ -217,7 +217,7 @@
     "sourceUrl": "http://localhost:3001/support",
     "sourceText": "Request support",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "support-support-page-support-acmeflow",
@@ -227,7 +227,7 @@
     "sourceUrl": "http://localhost:3001/support",
     "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSupportGet help with AcmeFlow workflows, integrations, and billing.Find support contact information, help resources, and a support request form.Support cont",
     "confidence": 0.8,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   },
   {
     "id": "policy-terms-or-legal-policy-terms-acmeflow",
@@ -237,6 +237,6 @@
     "sourceUrl": "http://localhost:3001/terms",
     "sourceText": "Terms, cancellation, and refund information.",
     "confidence": 0.85,
-    "updatedAt": "2026-06-09T18:23:16.218Z"
+    "updatedAt": "2026-06-09T19:41:49.515Z"
   }
 ]

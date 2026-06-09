@@ -6,11 +6,13 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
 ![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
-AgentLayer is an open-source developer tool for checking whether a website can be read, trusted, and operated by AI agents. Paste a URL, scan the public site, generate agent-readable artifacts, and see whether common user journeys can succeed.
+AgentLayer is an open-source, deterministic toolkit for checking whether a public website can be read, trusted, and operated by AI agents. It scans public pages, extracts sourced facts, identifies action paths, runs task checks, and generates draft artifacts you can review before publishing.
+
+For developers, AgentLayer provides a TypeScript core package, a repo-local CLI, and a Next.js demo app. For founders and site owners, it turns "will agents understand my site?" into a concrete report: missing facts, unclear policies, weak action paths, and task failures.
 
 ## What It Does
 
-AgentLayer scans public website pages, extracts agent-relevant structure, generates conservative machine-readable files, detects possible actions, and evaluates deterministic B2B SaaS tasks such as finding pricing, docs, security information, integrations, support, and demo/contact paths.
+AgentLayer scans public pages within same-host, max-page, timeout, and robots.txt bounds. It extracts agent-relevant structure, generates conservative machine-readable files, detects possible actions, and evaluates deterministic B2B SaaS tasks such as finding pricing, docs, security information, integrations, support, and demo/contact paths.
 
 This is not an AI SEO dashboard and not only an `llms.txt` generator. It is closer to Lighthouse for the agentic web: standards matter, but AgentLayer also asks whether agents can complete useful tasks.
 
@@ -43,20 +45,22 @@ Generated MCP/WebMCP/action files are conservative suggestions. They are not off
 
 ## Quickstart
 
+Start the example SaaS site:
+
 ```bash
 pnpm install
 pnpm build
 pnpm dev:example
 ```
 
-In another terminal:
+In another terminal, scan the fixture and generate artifacts:
 
 ```bash
 pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20
-pnpm agentlayer doctor http://localhost:3001
+pnpm agentlayer doctor http://localhost:3001 --max-pages 20
 ```
 
-Run the web app:
+Optionally run the local web app:
 
 ```bash
 pnpm dev
@@ -66,25 +70,28 @@ The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at `http:
 
 ## CLI Usage
 
+Use `pnpm agentlayer` when running from a repository checkout:
+
 ```bash
-agentlayer scan <url> --out ./agentlayer-output --max-pages 20
-agentlayer generate <url> --out ./agentlayer-output
-agentlayer test <url> --tasks ./examples/tasks/b2b-saas.default.json --out ./agentlayer-report.json
-agentlayer doctor <url>
-agentlayer init-fixture --out ./examples/tasks/b2b-saas.default.json
+pnpm agentlayer scan <url> --out ./agentlayer-output --max-pages 20
+pnpm agentlayer generate <url> --out ./agentlayer-output --max-pages 20
+pnpm agentlayer test <url> --tasks ./examples/tasks/b2b-saas.default.json --out ./agentlayer-report.json
+pnpm agentlayer doctor <url> --max-pages 20
+pnpm agentlayer init-fixture --out ./agentlayer-output/tasks
 ```
 
-During development, run the CLI from the repository root:
+`init-fixture` writes `b2b-saas.default.json` into the output directory unless you pass a `.json` file path. It refuses to overwrite an existing task suite unless you add `--force`.
+
+When the CLI is installed or linked as the `agentlayer` binary, use the same commands without `pnpm`:
 
 ```bash
-pnpm agentlayer scan https://example.com --out ./agentlayer-output
+agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
 ```
 
 ## Web App
 
 The Next.js app includes:
 
-- Landing page
 - URL scanner page
 - Internal scan API route
 - Stored report route
@@ -130,6 +137,7 @@ The evaluator is deterministic. It uses discovered pages, headings, links, forms
 - Extraction is heuristic and conservative.
 - AgentLayer does not guarantee compliance with MCP, WebMCP, or any future standard.
 - Generated manifests are suggestions that must be reviewed before production use.
+- Crawls are bounded by same-host links, `maxPages`, request timeouts, and robots.txt guidance.
 - The scanner does not submit forms.
 - The scanner does not crawl authenticated or private areas.
 - The scanner does not perform destructive actions.

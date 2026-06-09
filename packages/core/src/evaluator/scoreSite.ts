@@ -109,6 +109,20 @@ export function generateRecommendations(
     });
   }
 
+  if (actions.length > 0 && !hasPublicPath(scan, "/.well-known/agents.json")) {
+    add({
+      title: "Review and publish the agent action manifest",
+      severity: "medium",
+      whyItMatters: "The scan found operable actions, but agents still need a stable public manifest instead of re-inferring forms from HTML.",
+      howToFix:
+        "Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest.",
+      affectedTasks: taskResults
+        .filter((task) => task.status === "pass" && task.taskId.includes("demo"))
+        .map((task) => task.taskId),
+      suggestedArtifact: ".well-known/agents.json"
+    });
+  }
+
   return recommendations.slice(0, 12);
 }
 
@@ -186,4 +200,14 @@ function scoreActionability(actions: readonly AgentAction[]): number {
 
 function hasLlmsTxt(scan: SiteScan): boolean {
   return scan.pages.some((page) => page.pageType === "llms" || includesAny(page.finalUrl, ["/llms.txt"]));
+}
+
+function hasPublicPath(scan: SiteScan, pathname: string): boolean {
+  return scan.pages.some((page) => {
+    try {
+      return new URL(page.finalUrl).pathname === pathname;
+    } catch {
+      return false;
+    }
+  });
 }

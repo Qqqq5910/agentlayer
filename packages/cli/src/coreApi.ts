@@ -3,21 +3,28 @@ import type {
   AgentTask,
   AgentTaskResult,
   GeneratedArtifact,
-  SiteScan
+  SiteScan,
 } from "./coreTypes.js";
-import { CliError } from "./errors.js";
+import { CliError, formatErrorMessage } from "./errors.js";
 
-type CoreFunctionName = "scanSite" | "buildAgentLayerReport" | "generateArtifacts" | "evaluateTasks";
+type CoreFunctionName =
+  | "scanSite"
+  | "buildAgentLayerReport"
+  | "generateArtifacts"
+  | "evaluateTasks";
+type CoreFunctionApi = Record<
+  CoreFunctionName,
+  (...args: unknown[]) => unknown
+>;
+type CoreApiWithRequired<T extends CoreFunctionName> = CoreApi &
+  Required<Pick<CoreFunctionApi, T>>;
 
 type UnknownCoreModule = Record<string, unknown>;
 const CORE_PACKAGE_NAME = "@agentlayer/core";
-const CORE_SOURCE_URL = new URL("../../core/src/index.ts", import.meta.url).href;
+const CORE_SOURCE_URL = new URL("../../core/src/index.ts", import.meta.url)
+  .href;
 
-export type CoreApi = {
-  scanSite?: (...args: unknown[]) => unknown;
-  buildAgentLayerReport?: (...args: unknown[]) => unknown;
-  generateArtifacts?: (...args: unknown[]) => unknown;
-  evaluateTasks?: (...args: unknown[]) => unknown;
+export type CoreApi = Partial<CoreFunctionApi> & {
   defaultTasks?: unknown;
 };
 
@@ -28,18 +35,20 @@ export type ScanSiteOptions = {
   respectRobotsTxt: boolean;
 };
 
-export async function loadCoreApi(requiredFunctions: CoreFunctionName[]): Promise<CoreApi> {
+export async function loadCoreApi<const T extends readonly CoreFunctionName[]>(
+  requiredFunctions: T,
+): Promise<CoreApiWithRequired<T[number]>> {
   const core = await importCoreModule();
 
   for (const functionName of requiredFunctions) {
     if (typeof core[functionName] !== "function") {
       throw new CliError(
-        `@agentlayer/core does not export ${functionName} yet. The CLI expects the core public API: scanSite, buildAgentLayerReport, generateArtifacts, evaluateTasks, and defaultTasks.`
+        `Installed @agentlayer/core is incompatible: missing export "${functionName}". Rebuild or reinstall @agentlayer/core, then retry.`,
       );
     }
   }
 
-  return core as CoreApi;
+  return core as CoreApiWithRequired<T[number]>;
 }
 
 async function importCoreModule(): Promise<UnknownCoreModule> {
@@ -52,21 +61,26 @@ async function importCoreModule(): Promise<UnknownCoreModule> {
       throw new CliError(
         [
           "Could not load @agentlayer/core.",
-          `Package import error: ${formatCoreError(packageError)}`,
-          `Source fallback error: ${formatCoreError(sourceError)}`
-        ].join(" ")
+          "Run pnpm install from the repo root or rebuild @agentlayer/core, then retry.",
+          `Package import failed: ${formatCoreError(packageError)}.`,
+          `Source fallback failed: ${formatCoreError(sourceError)}.`,
+        ].join(" "),
       );
     }
   }
 }
 
-export async function getCoreDefaultTasks(core: CoreApi): Promise<AgentTask[] | undefined> {
+export async function getCoreDefaultTasks(
+  core: CoreApi,
+): Promise<AgentTask[] | undefined> {
   if (Array.isArray(core.defaultTasks)) {
     return cloneTasks(core.defaultTasks as AgentTask[]);
   }
 
   if (typeof core.defaultTasks === "function") {
-    const tasks = await (core.defaultTasks as () => AgentTask[] | Promise<AgentTask[]>)();
+    const tasks = await (
+      core.defaultTasks as () => AgentTask[] | Promise<AgentTask[]>
+    )();
     return cloneTasks(tasks);
   }
 
@@ -75,7 +89,7 @@ export async function getCoreDefaultTasks(core: CoreApi): Promise<AgentTask[] | 
 
 export async function callScanSite(
   scanSite: NonNullable<CoreApi["scanSite"]>,
-  options: ScanSiteOptions
+  options: ScanSiteOptions,
 ): Promise<SiteScan> {
   try {
     return (await scanSite(options)) as SiteScan;
@@ -91,22 +105,30 @@ export async function callScanSite(
 export async function callBuildAgentLayerReport(
   buildAgentLayerReport: NonNullable<CoreApi["buildAgentLayerReport"]>,
   scan: SiteScan,
-  tasks: AgentTask[]
+  tasks: AgentTask[],
 ): Promise<AgentOperabilityReport> {
   const attempts: unknown[][] = [
     [scan, tasks],
     [scan, { tasks }],
-    [{ scan, tasks }]
+    [{ scan, tasks }],
   ];
 
-  return invokePureWithAttempts(buildAgentLayerReport, attempts, "buildAgentLayerReport");
+  return invokePureWithAttempts(
+    buildAgentLayerReport,
+    attempts,
+    "buildAgentLayerReport",
+  );
 }
 
 export async function callGenerateArtifacts(
   generateArtifacts: NonNullable<CoreApi["generateArtifacts"]>,
-  report: AgentOperabilityReport
+  report: AgentOperabilityReport,
 ): Promise<GeneratedArtifact[]> {
-  return invokePureWithAttempts(generateArtifacts, [[report], [{ report }]], "generateArtifacts");
+  return invokePureWithAttempts(
+    generateArtifacts,
+    [[report], [{ report }]],
+    "generateArtifacts",
+  );
 }
 
 export async function callEvaluateTasks(
@@ -114,7 +136,7 @@ export async function callEvaluateTasks(
   scan: SiteScan,
   tasks: AgentTask[],
   facts?: AgentOperabilityReport["facts"],
-  actions?: AgentOperabilityReport["actions"]
+  actions?: AgentOperabilityReport["actions"],
 ): Promise<AgentTaskResult[]> {
   const attempts: unknown[][] =
     facts && actions
@@ -123,13 +145,9 @@ export async function callEvaluateTasks(
           [scan, facts, actions],
           [scan, tasks],
           [scan, { tasks }],
-          [{ scan, tasks }]
+          [{ scan, tasks }],
         ]
-      : [
-          [scan, tasks],
-          [scan, { tasks }],
-          [{ scan, tasks }]
-        ];
+      : [[scan, tasks], [scan, { tasks }], [{ scan, tasks }]];
 
   return invokePureWithAttempts(evaluateTasks, attempts, "evaluateTasks");
 }
@@ -137,14 +155,14 @@ export async function callEvaluateTasks(
 function cloneTasks(tasks: AgentTask[]): AgentTask[] {
   return tasks.map((task) => ({
     ...task,
-    requiredEvidence: [...task.requiredEvidence]
+    requiredEvidence: [...task.requiredEvidence],
   }));
 }
 
 async function invokePureWithAttempts<T>(
   fn: (...args: unknown[]) => unknown,
   attempts: unknown[][],
-  label: string
+  label: string,
 ): Promise<T> {
   let lastError: unknown;
 
@@ -160,7 +178,7 @@ async function invokePureWithAttempts<T>(
   }
 
   throw new CliError(
-    `Could not call @agentlayer/core ${label}. Last error: ${formatCoreError(lastError)}`
+    `Could not call @agentlayer/core ${label}. This CLI may be paired with an incompatible core build. Last error: ${formatCoreError(lastError)}`,
   );
 }
 
@@ -179,9 +197,5 @@ function looksLikeSignatureMismatch(error: unknown): boolean {
 }
 
 function formatCoreError(error: unknown): string {
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  return String(error);
+  return formatErrorMessage(error);
 }

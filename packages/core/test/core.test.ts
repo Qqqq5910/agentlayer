@@ -70,6 +70,13 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(tasks.find((task) => task.taskId === "book_demo")?.status).toBe("pass");
     expect(tasks.find((task) => task.taskId === "find_security")?.score).toBeGreaterThanOrEqual(80);
     expect(scores.overall).toBeGreaterThan(70);
+    expect(report.recommendations).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          suggestedArtifact: ".well-known/agents.json"
+        })
+      ])
+    );
 
     const llmsTxt = generateLlmsTxt(report);
     const llmsFullTxt = generateLlmsFullTxt(report);
@@ -90,6 +97,18 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
         "report.html",
         "markdown/index.md"
       ])
+    );
+    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
+      expect.stringContaining("Agent Operability Score")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
+      expect.stringContaining("Generated files")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
+      expect.stringContaining("Top recommendations")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
+      expect.stringContaining("Detected actions")
     );
   });
 });
