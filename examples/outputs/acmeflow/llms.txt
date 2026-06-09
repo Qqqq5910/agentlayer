@@ -1,0 +1,67 @@
+# AcmeFlow
+
+> AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.
+
+Root URL: http://localhost:3001/
+Generated: 2026-06-09T18:23:16.219Z
+
+## Key Links
+- [AcmeFlow | Customer workflow automation](http://localhost:3001/): AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.
+- [Pricing | AcmeFlow](http://localhost:3001/pricing): AcmeFlow pricing plans for Starter, Growth, and Enterprise teams.
+- [Documentation | AcmeFlow](http://localhost:3001/docs): AcmeFlow documentation for workflows, roles, API access, and webhooks.
+- [API Docs | AcmeFlow](http://localhost:3001/docs/api): AcmeFlow REST API and webhook documentation.
+- [Security | AcmeFlow](http://localhost:3001/security): AcmeFlow security, privacy, and trust information.
+- [Privacy Policy | AcmeFlow](http://localhost:3001/privacy): AcmeFlow privacy policy for the fictional demo site.
+- [Terms | AcmeFlow](http://localhost:3001/terms): AcmeFlow terms, cancellation, and refund information for the fictional demo site.
+- [Contact Sales | AcmeFlow](http://localhost:3001/contact): Contact AcmeFlow sales for pricing, security, and workflow questions.
+- [Book Demo | AcmeFlow](http://localhost:3001/demo): Book an AcmeFlow demo for onboarding, renewal, or implementation workflows.
+- [Support | AcmeFlow](http://localhost:3001/support): AcmeFlow customer support and help resources.
+
+## Product
+- Company name: AcmeFlow (source: http://localhost:3001/, confidence: 0.90)
+- Target users: customer success, sales engineers, operations teams (source: http://localhost:3001/, confidence: 0.60)
+- Target users: B2B SaaS revenue and success teams (source: http://localhost:3001/customers, confidence: 0.60)
+
+## Pricing
+- Pricing information: $49 (source: http://localhost:3001/, confidence: 0.55)
+- Pricing information: $49, $149 (source: http://localhost:3001/pricing, confidence: 0.85)
+- Plan name: Starter (source: http://localhost:3001/pricing, confidence: 0.80)
+- Plan name: Growth (source: http://localhost:3001/pricing, confidence: 0.80)
+- Plan name: Enterprise (source: http://localhost:3001/pricing, confidence: 0.80)
+
+## Documentation
+- API documentation: API Docs | AcmeFlow (source: http://localhost:3001/docs/api, confidence: 0.85)
+- Documentation: Documentation | AcmeFlow (source: http://localhost:3001/docs, confidence: 0.85)
+
+## Security
+- Security or trust information: Security | AcmeFlow (source: http://localhost:3001/security, confidence: 0.85)
+
+## Policies
+- Privacy policy: Privacy Policy | AcmeFlow (source: http://localhost:3001/privacy, confidence: 0.85)
+- Terms or legal policy: Terms | AcmeFlow (source: http://localhost:3001/terms, confidence: 0.85)
+
+## Contact
+- contact sales: name, email, company, message (source: http://localhost:3001/contact, confidence: 0.80)
+- book demo: name, email, company, preferredTime, message (source: http://localhost:3001/demo, confidence: 0.80)
+- request support: name, email, message (source: http://localhost:3001/support, confidence: 0.80)
+- Support page: Support | AcmeFlow (source: http://localhost:3001/support, confidence: 0.80)
+
+## Agent Actions
+- open_api_docs: Open API documentation. (navigation, low sensitivity). No human confirmation flag. Source: http://localhost:3001/docs/api
+- contact_sales: Find the path for contacting sales. (form, medium sensitivity). Requires human confirmation. Source: http://localhost:3001/contact
+- contact_sales: Find the path for contacting sales. (navigation, medium sensitivity). No human confirmation flag. Source: http://localhost:3001/contact
+- book_demo: Find the path for booking a product demo. (form, medium sensitivity). Requires human confirmation. Source: http://localhost:3001/demo
+- book_demo: Find the path for booking a product demo. (navigation, medium sensitivity). No human confirmation flag. Source: http://localhost:3001/demo
+- search_docs: Find or search documentation. (navigation, low sensitivity). No human confirmation flag. Source: http://localhost:3001/docs
+- view_pricing: View pricing information. (navigation, low sensitivity). No human confirmation flag. Source: http://localhost:3001/pricing
+- read_privacy_policy: Read the privacy policy. (navigation, low sensitivity). No human confirmation flag. Source: http://localhost:3001/privacy
+- open_security_page: Open security or trust information. (navigation, low sensitivity). No human confirmation flag. Source: http://localhost:3001/security
+- request_support: Find the support request path. (form, high sensitivity). Requires human confirmation. Source: http://localhost:3001/support
+- request_support: Find the support request path. (navigation, medium sensitivity). No human confirmation flag. Source: http://localhost:3001/support
+- read_terms: Read terms or legal policies. (navigation, low sensitivity). No human confirmation flag. Source: http://localhost:3001/terms
+
+## Notes for AI Agents
+- Treat generated action manifests as suggestions, not authorization to submit forms.
+- Do not submit forms or perform sensitive actions without explicit user confirmation.
+- Verify factual claims against the listed source URLs.
+- If information is missing, say it was not found instead of guessing.

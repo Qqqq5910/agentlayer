@@ -1,0 +1,23 @@
+{
+  "name": "agentlayer",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.4.0",
+  "scripts": {
+    "build": "pnpm -r --if-present build",
+    "agentlayer": "tsx packages/cli/src/index.ts",
+    "dev": "pnpm --filter @agentlayer/web dev",
+    "dev:example": "pnpm --filter @agentlayer/example-saas-site dev",
+    "lint": "pnpm -r --if-present lint",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "eslint": "^9.29.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

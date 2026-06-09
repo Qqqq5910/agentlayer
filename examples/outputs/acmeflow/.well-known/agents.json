@@ -1,0 +1,105 @@
+{
+  "version": "0.1",
+  "generatedBy": "AgentLayer",
+  "generatedAt": "2026-06-09T18:23:16.219Z",
+  "site": {
+    "name": "AcmeFlow",
+    "rootUrl": "http://localhost:3001/",
+    "summary": "AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support."
+  },
+  "urls": {
+    "llmsTxt": "http://localhost:3001/llms.txt",
+    "llmsFullTxt": "http://localhost:3001/llms-full.txt",
+    "siteProfile": "http://localhost:3001/site-profile.json",
+    "facts": "http://localhost:3001/facts.json",
+    "actions": "http://localhost:3001/actions.json",
+    "policies": "http://localhost:3001/privacy",
+    "contact": "http://localhost:3001/contact"
+  },
+  "actions": [
+    {
+      "name": "open_api_docs",
+      "url": "http://localhost:3001/docs/api",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low"
+    },
+    {
+      "name": "contact_sales",
+      "url": "http://localhost:3001/contact",
+      "actionType": "form",
+      "requiresHumanConfirmation": true,
+      "sensitivity": "medium"
+    },
+    {
+      "name": "contact_sales",
+      "url": "http://localhost:3001/contact",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "medium"
+    },
+    {
+      "name": "book_demo",
+      "url": "http://localhost:3001/demo",
+      "actionType": "form",
+      "requiresHumanConfirmation": true,
+      "sensitivity": "medium"
+    },
+    {
+      "name": "book_demo",
+      "url": "http://localhost:3001/demo",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "medium"
+    },
+    {
+      "name": "search_docs",
+      "url": "http://localhost:3001/docs",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low"
+    },
+    {
+      "name": "view_pricing",
+      "url": "http://localhost:3001/pricing",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low"
+    },
+    {
+      "name": "read_privacy_policy",
+      "url": "http://localhost:3001/privacy",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low"
+    },
+    {
+      "name": "open_security_page",
+      "url": "http://localhost:3001/security",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low"
+    },
+    {
+      "name": "request_support",
+      "url": "http://localhost:3001/support",
+      "actionType": "form",
+      "requiresHumanConfirmation": true,
+      "sensitivity": "high"
+    },
+    {
+      "name": "request_support",
+      "url": "http://localhost:3001/support",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "medium"
+    },
+    {
+      "name": "read_terms",
+      "url": "http://localhost:3001/terms",
+      "actionType": "navigation",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low"
+    }
+  ]
+}

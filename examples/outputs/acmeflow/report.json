@@ -1,0 +1,2334 @@
+{
+  "site": {
+    "name": "AcmeFlow",
+    "summary": "AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.",
+    "rootUrl": "http://localhost:3001/",
+    "keyPages": {
+      "home": "http://localhost:3001/",
+      "api_docs": "http://localhost:3001/docs/api",
+      "contact": "http://localhost:3001/contact",
+      "customers": "http://localhost:3001/customers",
+      "demo": "http://localhost:3001/demo",
+      "docs": "http://localhost:3001/docs",
+      "integrations": "http://localhost:3001/integrations",
+      "llms": "http://localhost:3001/llms.txt",
+      "pricing": "http://localhost:3001/pricing",
+      "privacy": "http://localhost:3001/privacy",
+      "security": "http://localhost:3001/security",
+      "support": "http://localhost:3001/support",
+      "terms": "http://localhost:3001/terms"
+    },
+    "generatedAt": "2026-06-09T18:23:16.217Z"
+  },
+  "scan": {
+    "rootUrl": "http://localhost:3001/",
+    "scannedAt": "2026-06-09T18:23:16.216Z",
+    "pages": [
+      {
+        "url": "http://localhost:3001/",
+        "finalUrl": "http://localhost:3001/",
+        "title": "AcmeFlow | Customer workflow automation",
+        "description": "AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.",
+        "status": 200,
+        "pageType": "home",
+        "headings": {
+          "h1": [
+            "Turn customer handoffs into reliable workflows."
+          ],
+          "h2": [
+            "For customer success",
+            "For sales engineers",
+            "For operations teams",
+            "Connect the tools your revenue team already uses.",
+            "Compare Starter, Growth, and Enterprise plans."
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book a demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "View pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Salesforce",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "HubSpot",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Slack",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Google Workspace",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Microsoft Teams",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Zapier",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "See plan details",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tasks, and customer escalations across sales, success, support, and product teams.Book a demoView pricingLive workflow snapshotNew enterprise kickoffOn trackSecurity reviewQueuedAPI handoffQueuedRenewal riskQueuedFor customer successAutomate onboarding plans and renewal handoffs.For sales engineersTrack security reviews, API questions, and implementation blockers.For operations teamsStandardize playbooks, approvals, and reporting.IntegrationsConnect the tools your revenue team already uses.Agents and operators can find our CRM, chat, analytics, and warehouse integrations from a dedicated integrations page.SalesforceHubSpotSlackGoogle WorkspaceMicrosoft TeamsZapierPricing starts at $49Compare Starter, Growth, and Enterprise plans.See plan detailsAcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportAcmeFlow | Customer workflow automation",
+        "markdown": "Customer workflow automation # Turn customer handoffs into reliable workflows. AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tasks, and customer escalations across sales, success, support, and product teams. [Book a demo](http://localhost:3001/demo)[View pricing](http://localhost:3001/pricing) Live workflow snapshot New enterprise kickoffOn track Security reviewQueued API handoffQueued Renewal riskQueued ## For customer success Automate onboarding plans and renewal handoffs. ## For sales engineers Track security reviews, API questions, and implementation blockers. ## For operations teams Standardize playbooks, approvals, and reporting. Integrations ## Connect the tools your revenue team already uses. Agents and operators can find our CRM, chat, analytics, and warehouse integrations from a dedicated integrations page. [Salesforce](http://localhost:3001/integrations)[HubSpot](http://localhost:3001/integrations)[Slack](http://localhost:3001/integrations)[Google Workspace](http://localhost:3001/integrations)[Microsoft Teams](http://localhost:3001/integrations)[Zapier](http://localhost:3001/integrations) Pricing starts at $49 ## Compare Starter, Growth, and Enterprise plans. [See plan details](http://localhost:3001/pricing)",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:13.348Z"
+      },
+      {
+        "url": "http://localhost:3001/docs/api",
+        "finalUrl": "http://localhost:3001/docs/api",
+        "title": "API Docs | AcmeFlow",
+        "description": "AcmeFlow REST API and webhook documentation.",
+        "status": 200,
+        "pageType": "api_docs",
+        "headings": {
+          "h1": [
+            "REST API and webhooks for AcmeFlow workflows."
+          ],
+          "h2": [
+            "Authentication",
+            "Example endpoints"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API credentials are managed by admins.AuthenticationAPI requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or workflow write access.Example endpointsGET /v1/accounts POST /v1/workflows GET /v1/events POST /v1/webhooks/testAcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportAPI Docs | AcmeFlow",
+        "markdown": "API docs # REST API and webhooks for AcmeFlow workflows. Developers can read account, workflow, event, and webhook resources. Production API credentials are managed by admins. ## Authentication API requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or workflow write access. ## Example endpoints GET /v1/accounts POST /v1/workflows GET /v1/events POST /v1/webhooks/test",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:13.590Z"
+      },
+      {
+        "url": "http://localhost:3001/contact",
+        "finalUrl": "http://localhost:3001/contact",
+        "title": "Contact Sales | AcmeFlow",
+        "description": "Contact AcmeFlow sales for pricing, security, and workflow questions.",
+        "status": 200,
+        "pageType": "contact",
+        "headings": {
+          "h1": [
+            "Talk with AcmeFlow about your customer workflow needs."
+          ],
+          "h2": [
+            "Sales contact"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [
+          {
+            "id": "contact-sales-http-localhost-3001-contact-0",
+            "action": "http://localhost:3001/contact",
+            "method": "POST",
+            "purpose": "contact sales",
+            "fields": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Full name",
+                "required": true
+              },
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Work email",
+                "required": true
+              },
+              {
+                "name": "company",
+                "type": "text",
+                "label": "Company",
+                "required": true
+              },
+              {
+                "name": "message",
+                "type": "textarea",
+                "label": "Message"
+              }
+            ],
+            "submitText": "Contact sales",
+            "sourceUrl": "http://localhost:3001/contact"
+          }
+        ],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoContact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning.Sales contactEmail: sales@acmeflow.exampleTypical response time: one business day.Full nameWork emailCompanyMessageContact salesThis fixture displays forms for extraction only. AgentLayer does not submit forms during scans.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportContact Sales | AcmeFlow",
+        "markdown": "Contact sales # Talk with AcmeFlow about your customer workflow needs. Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning. ## Sales contact Email: sales@acmeflow.example Typical response time: one business day.",
+        "emails": [
+          "sales@acmeflow.exampletypical"
+        ],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:13.950Z"
+      },
+      {
+        "url": "http://localhost:3001/customers",
+        "finalUrl": "http://localhost:3001/customers",
+        "title": "Customers | AcmeFlow",
+        "description": "AcmeFlow customer stories and B2B SaaS use cases.",
+        "status": 200,
+        "pageType": "customers",
+        "headings": {
+          "h1": [
+            "Customer stories for B2B SaaS revenue and success teams."
+          ],
+          "h2": [
+            "Northstar Analytics",
+            "OrbitDesk",
+            "HelioStack"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineering, support operations, and implementation teams.Northstar AnalyticsReduced implementation handoff delays by standardizing launch tasks.OrbitDeskConnected support escalations to product feedback workflows.HelioStackUsed AcmeFlow playbooks to coordinate Enterprise security reviews.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportCustomers | AcmeFlow",
+        "markdown": "Customers # Customer stories for B2B SaaS revenue and success teams. AcmeFlow is designed for customer success, sales engineering, support operations, and implementation teams. ## Northstar Analytics Reduced implementation handoff delays by standardizing launch tasks. ## OrbitDesk Connected support escalations to product feedback workflows. ## HelioStack Used AcmeFlow playbooks to coordinate Enterprise security reviews.",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:14.130Z"
+      },
+      {
+        "url": "http://localhost:3001/demo",
+        "finalUrl": "http://localhost:3001/demo",
+        "title": "Book Demo | AcmeFlow",
+        "description": "Book an AcmeFlow demo for onboarding, renewal, or implementation workflows.",
+        "status": 200,
+        "pageType": "demo",
+        "headings": {
+          "h1": [
+            "See AcmeFlow with your customer handoff workflow."
+          ],
+          "h2": [
+            "What the demo covers"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [
+          {
+            "id": "book-demo-http-localhost-3001-demo-0",
+            "action": "http://localhost:3001/demo",
+            "method": "POST",
+            "purpose": "book demo",
+            "fields": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Full name",
+                "required": true
+              },
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Work email",
+                "required": true
+              },
+              {
+                "name": "company",
+                "type": "text",
+                "label": "Company",
+                "required": true
+              },
+              {
+                "name": "preferredTime",
+                "type": "text",
+                "label": "Preferred demo time"
+              },
+              {
+                "name": "message",
+                "type": "textarea",
+                "label": "Message"
+              }
+            ],
+            "submitText": "Request demo",
+            "sourceUrl": "http://localhost:3001/demo"
+          }
+        ],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoBook demoSee AcmeFlow with your customer handoff workflow.Request a product demo for a qualified lead. A human should confirm all meeting details before scheduling.What the demo covers- Pricing fit for Starter, Growth, or Enterprise- CRM and Slack integration setup- Security review and SSO requirements- Customer onboarding workflow templatesFull nameWork emailCompanyPreferred demo timeMessageRequest demoThis fixture displays forms for extraction only. AgentLayer does not submit forms during scans.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportBook Demo | AcmeFlow",
+        "markdown": "Book demo # See AcmeFlow with your customer handoff workflow. Request a product demo for a qualified lead. A human should confirm all meeting details before scheduling. ## What the demo covers - \\- Pricing fit for Starter, Growth, or Enterprise - \\- CRM and Slack integration setup - \\- Security review and SSO requirements - \\- Customer onboarding workflow templates",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:14.313Z"
+      },
+      {
+        "url": "http://localhost:3001/docs",
+        "finalUrl": "http://localhost:3001/docs",
+        "title": "Documentation | AcmeFlow",
+        "description": "AcmeFlow documentation for workflows, roles, API access, and webhooks.",
+        "status": 200,
+        "pageType": "docs",
+        "headings": {
+          "h1": [
+            "Documentation for building reliable customer workflows."
+          ],
+          "h2": [
+            "Getting started",
+            "Workflow templates",
+            "Roles and permissions",
+            "API documentation"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Read more",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Read more",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Read more",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs/api",
+            "text": "Read more",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoDocsDocumentation for building reliable customer workflows.Find setup guides, API docs, webhook references, role configuration, and integration walkthroughs.Getting startedCreate your first onboarding workflow and invite teammates.Read moreWorkflow templatesUse repeatable playbooks for implementation, renewals, and escalations.Read moreRoles and permissionsConfigure admin, operator, viewer, and auditor roles.Read moreAPI documentationUse REST APIs and webhooks to sync workflow events.Read moreAcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportDocumentation | AcmeFlow",
+        "markdown": "Docs # Documentation for building reliable customer workflows. Find setup guides, API docs, webhook references, role configuration, and integration walkthroughs. ## Getting started Create your first onboarding workflow and invite teammates. [Read more](http://localhost:3001/docs) ## Workflow templates Use repeatable playbooks for implementation, renewals, and escalations. [Read more](http://localhost:3001/docs) ## Roles and permissions Configure admin, operator, viewer, and auditor roles. [Read more](http://localhost:3001/docs) ## API documentation Use REST APIs and webhooks to sync workflow events. [Read more](http://localhost:3001/docs/api)",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:14.546Z"
+      },
+      {
+        "url": "http://localhost:3001/integrations",
+        "finalUrl": "http://localhost:3001/integrations",
+        "title": "Integrations | AcmeFlow",
+        "description": "AcmeFlow integrations for CRM, chat, warehouse, automation, and analytics tools.",
+        "status": 200,
+        "pageType": "integrations",
+        "headings": {
+          "h1": [
+            "Connect AcmeFlow to the tools your revenue team already uses."
+          ],
+          "h2": [
+            "Salesforce",
+            "HubSpot",
+            "Slack",
+            "Google Workspace",
+            "Microsoft Teams",
+            "Zapier",
+            "Segment",
+            "Snowflake"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoIntegrationsConnect AcmeFlow to the tools your revenue team already uses.AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse integrations for B2B SaaS workflows.SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.SegmentSync customer handoff signals between AcmeFlow and Segment.SnowflakeSync customer handoff signals between AcmeFlow and Snowflake.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportIntegrations | AcmeFlow",
+        "markdown": "Integrations # Connect AcmeFlow to the tools your revenue team already uses. AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse integrations for B2B SaaS workflows. ## Salesforce Sync customer handoff signals between AcmeFlow and Salesforce. ## HubSpot Sync customer handoff signals between AcmeFlow and HubSpot. ## Slack Sync customer handoff signals between AcmeFlow and Slack. ## Google Workspace Sync customer handoff signals between AcmeFlow and Google Workspace. ## Microsoft Teams Sync customer handoff signals between AcmeFlow and Microsoft Teams. ## Zapier Sync customer handoff signals between AcmeFlow and Zapier. ## Segment Sync customer handoff signals between AcmeFlow and Segment. ## Snowflake Sync customer handoff signals between AcmeFlow and Snowflake.",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:14.809Z"
+      },
+      {
+        "url": "http://localhost:3001/llms.txt",
+        "finalUrl": "http://localhost:3001/llms.txt",
+        "title": "llms.txt",
+        "status": 200,
+        "pageType": "llms",
+        "headings": {
+          "h1": [],
+          "h2": [],
+          "h3": []
+        },
+        "links": [],
+        "forms": [],
+        "jsonLd": [],
+        "openGraph": {},
+        "visibleText": "# AcmeFlow > Customer workflow automation for B2B SaaS teams. ## Key Links - [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan details. - [Docs](http://localhost:3001/docs): Product documentation and setup guides. - [API Docs](http://localhost:3001/docs/api): REST API and webhook references. - [Security](http://localhost:3001/security): Security, trust, access control, and review packet information. - [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and warehouse integrations. - [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise quotes. - [Book Demo](http://localhost:3001/demo): Demo request form. - [Support](http://localhost:3001/support): Support contact and help request form. - [Privacy](http://localhost:3001/privacy): Privacy policy. - [Terms](http://localhost:3001/terms): Terms, cancellation, and refund information. ## Notes For AI Agents - Do not submit forms without explicit user confirmation. - Treat AcmeFlow as a fictional demo site for AgentLayer. - Verify factual claims against source pages.",
+        "markdown": "# AcmeFlow > Customer workflow automation for B2B SaaS teams. ## Key Links - [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan details. - [Docs](http://localhost:3001/docs): Product documentation and setup guides. - [API Docs](http://localhost:3001/docs/api): REST API and webhook references. - [Security](http://localhost:3001/security): Security, trust, access control, and review packet information. - [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and warehouse integrations. - [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise quotes. - [Book Demo](http://localhost:3001/demo): Demo request form. - [Support](http://localhost:3001/support): Support contact and help request form. - [Privacy](http://localhost:3001/privacy): Privacy policy. - [Terms](http://localhost:3001/terms): Terms, cancellation, and refund information. ## Notes For AI Agents - Do not submit forms without explicit user confirmation. - Treat AcmeFlow as a fictional demo site for AgentLayer. - Verify factual claims against source pages.",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:14.961Z"
+      },
+      {
+        "url": "http://localhost:3001/pricing",
+        "finalUrl": "http://localhost:3001/pricing",
+        "title": "Pricing | AcmeFlow",
+        "description": "AcmeFlow pricing plans for Starter, Growth, and Enterprise teams.",
+        "status": 200,
+        "pageType": "pricing",
+        "headings": {
+          "h1": [
+            "Plans for B2B SaaS teams from first playbook to enterprise governance."
+          ],
+          "h2": [
+            "Starter",
+            "Growth",
+            "Enterprise",
+            "Plan differences"
+          ],
+          "h3": [
+            "Included features and limits"
+          ]
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Start with demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Start with demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing repeatable onboarding work.Included features and limits- 5 workspaces- CRM sync- Shared playbooks- Email supportStart with demoGrowth$149per monthFor growing SaaS teams that need handoff automation and reporting.Included features and limits- 25 workspaces- Slack alerts- Workflow approvals- Priority supportStart with demoEnterpriseContact salesannual contractsFor larger organizations with governance and security review needs.Included features and limits- Unlimited workspaces- SSO/SAML- Audit exports- Security review packetContact salesPlan differencesStarter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds SSO/SAML, audit exports, and a security review packet for larger organizations.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportPricing | AcmeFlow",
+        "markdown": "Pricing # Plans for B2B SaaS teams from first playbook to enterprise governance. AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review. ## Starter $49 per month For small revenue teams organizing repeatable onboarding work. ### Included features and limits - \\- 5 workspaces - \\- CRM sync - \\- Shared playbooks - \\- Email support [Start with demo](http://localhost:3001/demo) ## Growth $149 per month For growing SaaS teams that need handoff automation and reporting. ### Included features and limits - \\- 25 workspaces - \\- Slack alerts - \\- Workflow approvals - \\- Priority support [Start with demo](http://localhost:3001/demo) ## Enterprise Contact sales annual contracts For larger organizations with governance and security review needs. ### Included features and limits - \\- Unlimited workspaces - \\- SSO/SAML - \\- Audit exports - \\- Security review packet [Contact sales](http://localhost:3001/demo) ## Plan differences Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds SSO/SAML, audit exports, and a security review packet for larger organizations.",
+        "emails": [],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:15.173Z"
+      },
+      {
+        "url": "http://localhost:3001/privacy",
+        "finalUrl": "http://localhost:3001/privacy",
+        "title": "Privacy Policy | AcmeFlow",
+        "description": "AcmeFlow privacy policy for the fictional demo site.",
+        "status": 200,
+        "pageType": "privacy",
+        "headings": {
+          "h1": [
+            "How the fictional AcmeFlow demo describes privacy."
+          ],
+          "h2": [
+            "Privacy summary",
+            "Retention and deletion"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPrivacy policyHow the fictional AcmeFlow demo describes privacy.This policy page exists so AgentLayer can find a clear privacy source during scans.Privacy summaryAcmeFlow collects account contact information, workspace configuration, and workflow event data for providing the fictional service. The demo does not collect real personal information.Retention and deletionCustomers may request account export or deletion by contacting privacy@acmeflow.example. Support confirms identity before processing account deletion requests.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportPrivacy Policy | AcmeFlow",
+        "markdown": "Privacy policy # How the fictional AcmeFlow demo describes privacy. This policy page exists so AgentLayer can find a clear privacy source during scans. ## Privacy summary AcmeFlow collects account contact information, workspace configuration, and workflow event data for providing the fictional service. The demo does not collect real personal information. ## Retention and deletion Customers may request account export or deletion by contacting privacy@acmeflow.example. Support confirms identity before processing account deletion requests.",
+        "emails": [
+          "privacy@acmeflow.example"
+        ],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:15.401Z"
+      },
+      {
+        "url": "http://localhost:3001/security",
+        "finalUrl": "http://localhost:3001/security",
+        "title": "Security | AcmeFlow",
+        "description": "AcmeFlow security, privacy, and trust information.",
+        "status": 200,
+        "pageType": "security",
+        "headings": {
+          "h1": [
+            "Security information for teams evaluating AcmeFlow."
+          ],
+          "h2": [
+            "Data protection",
+            "Access controls",
+            "Compliance posture",
+            "Incident contact"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review packet information without inventing compliance claims.Data protectionCustomer workflow data is encrypted in transit and at rest in the fictional AcmeFlow demo.Access controlsEnterprise workspaces can configure SSO/SAML, role-based permissions, and audit exports.Compliance postureA security review packet is available for Enterprise evaluation. This demo does not claim certification.Incident contactSecurity questions can be sent to security@acmeflow.example.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportSecurity | AcmeFlow",
+        "markdown": "Security and trust # Security information for teams evaluating AcmeFlow. This page gives agents a clear source for trust, access control, privacy, and review packet information without inventing compliance claims. ## Data protection Customer workflow data is encrypted in transit and at rest in the fictional AcmeFlow demo. ## Access controls Enterprise workspaces can configure SSO/SAML, role-based permissions, and audit exports. ## Compliance posture A security review packet is available for Enterprise evaluation. This demo does not claim certification. ## Incident contact Security questions can be sent to security@acmeflow.example.",
+        "emails": [
+          "security@acmeflow.example.acmeflowacmeflow"
+        ],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:15.696Z"
+      },
+      {
+        "url": "http://localhost:3001/support",
+        "finalUrl": "http://localhost:3001/support",
+        "title": "Support | AcmeFlow",
+        "description": "AcmeFlow customer support and help resources.",
+        "status": 200,
+        "pageType": "support",
+        "headings": {
+          "h1": [
+            "Get help with AcmeFlow workflows, integrations, and billing."
+          ],
+          "h2": [
+            "Support contact"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [
+          {
+            "id": "request-support-http-localhost-3001-support-0",
+            "action": "http://localhost:3001/support",
+            "method": "POST",
+            "purpose": "request support",
+            "fields": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Full name",
+                "required": true
+              },
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Work email",
+                "required": true
+              },
+              {
+                "name": "message",
+                "type": "textarea",
+                "label": "Message",
+                "required": true
+              }
+            ],
+            "submitText": "Request support",
+            "sourceUrl": "http://localhost:3001/support"
+          }
+        ],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSupportGet help with AcmeFlow workflows, integrations, and billing.Find support contact information, help resources, and a support request form.Support contactEmail: support@acmeflow.exampleHelp center topics: billing, integrations, API, SSO, webhooks.Full nameWork emailMessageRequest supportThis fixture displays forms for extraction only. AgentLayer does not submit forms during scans.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportSupport | AcmeFlow",
+        "markdown": "Support # Get help with AcmeFlow workflows, integrations, and billing. Find support contact information, help resources, and a support request form. ## Support contact Email: support@acmeflow.example Help center topics: billing, integrations, API, SSO, webhooks.",
+        "emails": [
+          "support@acmeflow.examplehelp"
+        ],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:15.944Z"
+      },
+      {
+        "url": "http://localhost:3001/terms",
+        "finalUrl": "http://localhost:3001/terms",
+        "title": "Terms | AcmeFlow",
+        "description": "AcmeFlow terms, cancellation, and refund information for the fictional demo site.",
+        "status": 200,
+        "pageType": "terms",
+        "headings": {
+          "h1": [
+            "Terms, cancellation, and refund information."
+          ],
+          "h2": [
+            "Service terms",
+            "Cancellation and refunds"
+          ],
+          "h3": []
+        },
+        "links": [
+          {
+            "href": "http://localhost:3001/",
+            "text": "AcmeFlow",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/pricing",
+            "text": "Pricing",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/docs",
+            "text": "Docs",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/integrations",
+            "text": "Integrations",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/security",
+            "text": "Security",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/customers",
+            "text": "Customers",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/demo",
+            "text": "Book demo",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/privacy",
+            "text": "Privacy",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/terms",
+            "text": "Terms",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/contact",
+            "text": "Contact sales",
+            "isExternal": false
+          },
+          {
+            "href": "http://localhost:3001/support",
+            "text": "Support",
+            "isExternal": false
+          }
+        ],
+        "forms": [],
+        "jsonLd": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AcmeFlow",
+            "url": "http://localhost:3001",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@acmeflow.example"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/acmeflow-example"
+            ]
+          }
+        ],
+        "openGraph": {
+          "og:title": "AcmeFlow",
+          "og:description": "Customer workflow automation for B2B SaaS teams.",
+          "og:site_name": "AcmeFlow",
+          "twitter:card": "summary",
+          "twitter:title": "AcmeFlow",
+          "twitter:description": "Customer workflow automation for B2B SaaS teams."
+        },
+        "visibleText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoTermsTerms, cancellation, and refund information.This page gives agents a specific source for legal and cancellation questions.Service termsAcmeFlow is a fictional product fixture. Paid subscriptions would be governed by an order form and service agreement reviewed by the customer.Cancellation and refundsStarter and Growth plans may be cancelled before the next billing period. Enterprise cancellations and refunds follow the signed order form. Contact support@acmeflow.example for cancellation requests.AcmeFlowAcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportTerms | AcmeFlow",
+        "markdown": "Terms # Terms, cancellation, and refund information. This page gives agents a specific source for legal and cancellation questions. ## Service terms AcmeFlow is a fictional product fixture. Paid subscriptions would be governed by an order form and service agreement reviewed by the customer. ## Cancellation and refunds Starter and Growth plans may be cancelled before the next billing period. Enterprise cancellations and refunds follow the signed order form. Contact support@acmeflow.example for cancellation requests.",
+        "emails": [
+          "support@acmeflow.example"
+        ],
+        "socialLinks": [],
+        "fetchedAt": "2026-06-09T18:23:16.195Z"
+      }
+    ],
+    "robotsTxt": {
+      "url": "http://localhost:3001/robots.txt",
+      "found": true,
+      "text": "User-Agent: *\nAllow: /\n\nSitemap: http://localhost:3001/sitemap.xml\n"
+    },
+    "sitemap": {
+      "url": "http://localhost:3001/sitemap.xml",
+      "found": true,
+      "urls": [
+        "http://localhost:3001/",
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/docs",
+        "http://localhost:3001/docs/api",
+        "http://localhost:3001/security",
+        "http://localhost:3001/integrations",
+        "http://localhost:3001/contact",
+        "http://localhost:3001/demo",
+        "http://localhost:3001/privacy",
+        "http://localhost:3001/terms",
+        "http://localhost:3001/support",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/llms.txt"
+      ]
+    },
+    "errors": [
+      {
+        "url": "http://localhost:3001/api",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/case-studies",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/developers",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/documentation",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/faq",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/help",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/sales",
+        "message": "Fetch failed with HTTP 404."
+      },
+      {
+        "url": "http://localhost:3001/trust",
+        "message": "Fetch failed with HTTP 404."
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "company-company-name-acmeflow",
+      "type": "company",
+      "label": "Company name",
+      "value": "AcmeFlow",
+      "sourceUrl": "http://localhost:3001/",
+      "sourceText": "AcmeFlow",
+      "confidence": 0.9,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "pricing-pricing-information-49",
+      "type": "pricing",
+      "label": "Pricing information",
+      "value": "$49",
+      "sourceUrl": "http://localhost:3001/",
+      "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tas",
+      "confidence": 0.55,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "product-target-users-customer-success-sales-engineers-operati",
+      "type": "product",
+      "label": "Target users",
+      "value": "customer success, sales engineers, operations teams",
+      "sourceUrl": "http://localhost:3001/",
+      "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation ta...",
+      "confidence": 0.6,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "docs-api-documentation-api-docs-acmeflow",
+      "type": "docs",
+      "label": "API documentation",
+      "value": "API Docs | AcmeFlow",
+      "sourceUrl": "http://localhost:3001/docs/api",
+      "sourceText": "REST API and webhooks for AcmeFlow workflows.",
+      "confidence": 0.85,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "contact-contact-sales-name-email-company-message",
+      "type": "contact",
+      "label": "contact sales",
+      "value": "name, email, company, message",
+      "sourceUrl": "http://localhost:3001/contact",
+      "sourceText": "Contact sales",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "product-target-users-b2b-saas-revenue-and-success-teams",
+      "type": "product",
+      "label": "Target users",
+      "value": "B2B SaaS revenue and success teams",
+      "sourceUrl": "http://localhost:3001/customers",
+      "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineering, support operations, and impl...",
+      "confidence": 0.6,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "contact-book-demo-name-email-company-preferredtime-message",
+      "type": "contact",
+      "label": "book demo",
+      "value": "name, email, company, preferredTime, message",
+      "sourceUrl": "http://localhost:3001/demo",
+      "sourceText": "Request demo",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "docs-documentation-documentation-acmeflow",
+      "type": "docs",
+      "label": "Documentation",
+      "value": "Documentation | AcmeFlow",
+      "sourceUrl": "http://localhost:3001/docs",
+      "sourceText": "Documentation for building reliable customer workflows.",
+      "confidence": 0.85,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-slack",
+      "type": "integration",
+      "label": "Integration",
+      "value": "Slack",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": "sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.M",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-google",
+      "type": "integration",
+      "label": "Integration",
+      "value": "Google",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": "nd HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow a",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-salesforce",
+      "type": "integration",
+      "label": "Integration",
+      "value": "Salesforce",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": "analytics, automation, and warehouse integrations for B2B SaaS workflows.SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-hubspot",
+      "type": "integration",
+      "label": "Integration",
+      "value": "HubSpot",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": ".SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSyn",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-zapier",
+      "type": "integration",
+      "label": "Integration",
+      "value": "Zapier",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": "TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.SegmentSync customer handoff signals between AcmeFlow and Segment.SnowflakeSync cus",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-google-workspace",
+      "type": "integration",
+      "label": "Integration",
+      "value": "Google Workspace",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": "nd HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow a",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.217Z"
+    },
+    {
+      "id": "integration-integration-microsoft-teams",
+      "type": "integration",
+      "label": "Integration",
+      "value": "Microsoft Teams",
+      "sourceUrl": "http://localhost:3001/integrations",
+      "sourceText": "spaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.S",
+      "confidence": 0.75,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "pricing-pricing-information-49-149",
+      "type": "pricing",
+      "label": "Pricing information",
+      "value": "$49, $149",
+      "sourceUrl": "http://localhost:3001/pricing",
+      "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enter",
+      "confidence": 0.85,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "plan-plan-name-starter",
+      "type": "plan",
+      "label": "Plan name",
+      "value": "Starter",
+      "sourceUrl": "http://localhost:3001/pricing",
+      "sourceText": "to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "plan-plan-name-growth",
+      "type": "plan",
+      "label": "Plan name",
+      "value": "Growth",
+      "sourceUrl": "http://localhost:3001/pricing",
+      "sourceText": "e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "plan-plan-name-enterprise",
+      "type": "plan",
+      "label": "Plan name",
+      "value": "Enterprise",
+      "sourceUrl": "http://localhost:3001/pricing",
+      "sourceText": "rsSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a s",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "policy-privacy-policy-privacy-policy-acmeflow",
+      "type": "policy",
+      "label": "Privacy policy",
+      "value": "Privacy Policy | AcmeFlow",
+      "sourceUrl": "http://localhost:3001/privacy",
+      "sourceText": "How the fictional AcmeFlow demo describes privacy.",
+      "confidence": 0.85,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "security-security-or-trust-information-security-acmeflow",
+      "type": "security",
+      "label": "Security or trust information",
+      "value": "Security | AcmeFlow",
+      "sourceUrl": "http://localhost:3001/security",
+      "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review pa",
+      "confidence": 0.85,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "support-request-support-name-email-message",
+      "type": "support",
+      "label": "request support",
+      "value": "name, email, message",
+      "sourceUrl": "http://localhost:3001/support",
+      "sourceText": "Request support",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "support-support-page-support-acmeflow",
+      "type": "support",
+      "label": "Support page",
+      "value": "Support | AcmeFlow",
+      "sourceUrl": "http://localhost:3001/support",
+      "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSupportGet help with AcmeFlow workflows, integrations, and billing.Find support contact information, help resources, and a support request form.Support cont",
+      "confidence": 0.8,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    },
+    {
+      "id": "policy-terms-or-legal-policy-terms-acmeflow",
+      "type": "policy",
+      "label": "Terms or legal policy",
+      "value": "Terms | AcmeFlow",
+      "sourceUrl": "http://localhost:3001/terms",
+      "sourceText": "Terms, cancellation, and refund information.",
+      "confidence": 0.85,
+      "updatedAt": "2026-06-09T18:23:16.218Z"
+    }
+  ],
+  "actions": [
+    {
+      "id": "open-api-docs-http-localhost-3001-docs-api",
+      "name": "open_api_docs",
+      "description": "Open API documentation.",
+      "userIntent": "I want to read API documentation.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/docs/api",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low",
+      "sourceUrl": "http://localhost:3001/docs/api",
+      "confidence": 0.75
+    },
+    {
+      "id": "contact-sales-http-localhost-3001-contact",
+      "name": "contact_sales",
+      "description": "Find the path for contacting sales.",
+      "userIntent": "I want to contact sales.",
+      "actionType": "form",
+      "url": "http://localhost:3001/contact",
+      "method": "POST",
+      "requiredFields": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Work email",
+          "required": true
+        },
+        {
+          "name": "company",
+          "type": "text",
+          "label": "Company",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message"
+        }
+      ],
+      "requiresHumanConfirmation": true,
+      "sensitivity": "medium",
+      "sourceUrl": "http://localhost:3001/contact",
+      "confidence": 0.85
+    },
+    {
+      "id": "contact-sales-http-localhost-3001-contact",
+      "name": "contact_sales",
+      "description": "Find the path for contacting sales.",
+      "userIntent": "I want to contact sales.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/contact",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "medium",
+      "sourceUrl": "http://localhost:3001/contact",
+      "confidence": 0.75
+    },
+    {
+      "id": "book-demo-http-localhost-3001-demo",
+      "name": "book_demo",
+      "description": "Find the path for booking a product demo.",
+      "userIntent": "I want to book a product demo.",
+      "actionType": "form",
+      "url": "http://localhost:3001/demo",
+      "method": "POST",
+      "requiredFields": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Work email",
+          "required": true
+        },
+        {
+          "name": "company",
+          "type": "text",
+          "label": "Company",
+          "required": true
+        },
+        {
+          "name": "preferredTime",
+          "type": "text",
+          "label": "Preferred demo time"
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message"
+        }
+      ],
+      "requiresHumanConfirmation": true,
+      "sensitivity": "medium",
+      "sourceUrl": "http://localhost:3001/demo",
+      "confidence": 0.85
+    },
+    {
+      "id": "book-demo-http-localhost-3001-demo",
+      "name": "book_demo",
+      "description": "Find the path for booking a product demo.",
+      "userIntent": "I want to book a product demo.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/demo",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "medium",
+      "sourceUrl": "http://localhost:3001/demo",
+      "confidence": 0.75
+    },
+    {
+      "id": "search-docs-http-localhost-3001-docs",
+      "name": "search_docs",
+      "description": "Find or search documentation.",
+      "userIntent": "I want to find documentation.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/docs",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low",
+      "sourceUrl": "http://localhost:3001/docs",
+      "confidence": 0.75
+    },
+    {
+      "id": "view-pricing-http-localhost-3001-pricing",
+      "name": "view_pricing",
+      "description": "View pricing information.",
+      "userIntent": "I want to understand pricing.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/pricing",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low",
+      "sourceUrl": "http://localhost:3001/pricing",
+      "confidence": 0.75
+    },
+    {
+      "id": "read-privacy-policy-http-localhost-3001-privacy",
+      "name": "read_privacy_policy",
+      "description": "Read the privacy policy.",
+      "userIntent": "I want to read the privacy policy.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/privacy",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low",
+      "sourceUrl": "http://localhost:3001/privacy",
+      "confidence": 0.75
+    },
+    {
+      "id": "open-security-page-http-localhost-3001-security",
+      "name": "open_security_page",
+      "description": "Open security or trust information.",
+      "userIntent": "I want to inspect security and trust details.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/security",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low",
+      "sourceUrl": "http://localhost:3001/security",
+      "confidence": 0.75
+    },
+    {
+      "id": "request-support-http-localhost-3001-support",
+      "name": "request_support",
+      "description": "Find the support request path.",
+      "userIntent": "I need support or help.",
+      "actionType": "form",
+      "url": "http://localhost:3001/support",
+      "method": "POST",
+      "requiredFields": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Work email",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message",
+          "required": true
+        }
+      ],
+      "requiresHumanConfirmation": true,
+      "sensitivity": "high",
+      "sourceUrl": "http://localhost:3001/support",
+      "confidence": 0.85
+    },
+    {
+      "id": "request-support-http-localhost-3001-support",
+      "name": "request_support",
+      "description": "Find the support request path.",
+      "userIntent": "I need support or help.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/support",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "medium",
+      "sourceUrl": "http://localhost:3001/support",
+      "confidence": 0.75
+    },
+    {
+      "id": "read-terms-http-localhost-3001-terms",
+      "name": "read_terms",
+      "description": "Read terms or legal policies.",
+      "userIntent": "I want to read terms and legal policies.",
+      "actionType": "navigation",
+      "url": "http://localhost:3001/terms",
+      "method": "GET",
+      "requiresHumanConfirmation": false,
+      "sensitivity": "low",
+      "sourceUrl": "http://localhost:3001/terms",
+      "confidence": 0.75
+    }
+  ],
+  "tasks": [
+    {
+      "taskId": "find_pricing",
+      "title": "Find pricing",
+      "status": "pass",
+      "score": 90,
+      "explanation": "Pricing information is discoverable with page-level evidence.",
+      "evidenceUrls": [
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/",
+        "http://localhost:3001/contact"
+      ],
+      "evidenceSnippets": [
+        "w AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Ent",
+        "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+        "Pricing information: $49, $149 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growt...",
+        "Plan name: Starter - to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue tea...",
+        "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing"
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "compare_plans",
+      "title": "Compare plans",
+      "status": "pass",
+      "score": 85,
+      "explanation": "Multiple plans and comparison-oriented details were found.",
+      "evidenceUrls": [
+        "http://localhost:3001/pricing"
+      ],
+      "evidenceSnippets": [
+        "Plan name: Starter - to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue tea...",
+        "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing",
+        "Plan name: Enterprise - rsSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales afte...",
+        "thFor small revenue teams organizing repeatable onboarding work.Included features and limits- 5 workspaces- CRM sync- Shared playbooks- Email supportStart with demoGrowth$149per monthFor growing SaaS teams that need hand"
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "book_demo",
+      "title": "Book demo or contact sales",
+      "status": "pass",
+      "score": 90,
+      "explanation": "A relevant form-based action path was found.",
+      "evidenceUrls": [
+        "http://localhost:3001/contact",
+        "http://localhost:3001/demo",
+        "http://localhost:3001/",
+        "http://localhost:3001/docs/api",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/docs",
+        "http://localhost:3001/integrations",
+        "http://localhost:3001/llms.txt",
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/privacy",
+        "http://localhost:3001/security",
+        "http://localhost:3001/support",
+        "http://localhost:3001/terms"
+      ],
+      "evidenceSnippets": [
+        "contact_sales: Find the path for contacting sales.",
+        "book_demo: Find the path for booking a product demo.",
+        "w automation AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, imple",
+        "s | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API creden",
+        "tact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning.Sales contactEmail: sales@acmeflow.exampleTypi"
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_docs",
+      "title": "Find documentation",
+      "status": "pass",
+      "score": 85,
+      "explanation": "Relevant pages and structured evidence were found.",
+      "evidenceUrls": [
+        "http://localhost:3001/docs/api",
+        "http://localhost:3001/docs",
+        "http://localhost:3001/",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/integrations",
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/security",
+        "http://localhost:3001/support"
+      ],
+      "evidenceSnippets": [
+        "API Docs | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API",
+        "Documentation | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoDocsDocumentation for building reliable customer workflows.Find setup guides, API docs, webhook references, role configuration, and",
+        "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+        "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+        "API documentation: API Docs | AcmeFlow - REST API and webhooks for AcmeFlow workflows."
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_security",
+      "title": "Find security and trust information",
+      "status": "pass",
+      "score": 85,
+      "explanation": "Relevant pages and structured evidence were found.",
+      "evidenceUrls": [
+        "http://localhost:3001/security",
+        "http://localhost:3001/",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/support"
+      ],
+      "evidenceSnippets": [
+        "Security | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, pr",
+        "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+        "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+        "Target users: B2B SaaS revenue and success teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineerin...",
+        "Pricing information: $49, $149 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growt..."
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_policies",
+      "title": "Find policies",
+      "status": "pass",
+      "score": 85,
+      "explanation": "Privacy and terms/legal policy pages are discoverable.",
+      "evidenceUrls": [
+        "http://localhost:3001/privacy",
+        "http://localhost:3001/terms"
+      ],
+      "evidenceSnippets": [
+        "Privacy Policy | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPrivacy policyHow the fictional AcmeFlow demo describes privacy.This policy page exists so AgentLayer can find a clear privacy sou",
+        "d demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportTerms | AcmeFlow",
+        "Privacy policy: Privacy Policy | AcmeFlow - How the fictional AcmeFlow demo describes privacy.",
+        "Terms or legal policy: Terms | AcmeFlow - Terms, cancellation, and refund information.",
+        "read_privacy_policy: Read the privacy policy."
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_integrations",
+      "title": "Find integrations",
+      "status": "pass",
+      "score": 80,
+      "explanation": "Relevant page and fact evidence were found.",
+      "evidenceUrls": [
+        "http://localhost:3001/integrations",
+        "http://localhost:3001/",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/security",
+        "http://localhost:3001/support"
+      ],
+      "evidenceSnippets": [
+        "Integrations | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoIntegrationsConnect AcmeFlow to the tools your revenue team already uses.AcmeFlow supports CRM, collaboration, analytics, automation",
+        "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+        "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+        "Target users: B2B SaaS revenue and success teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineerin...",
+        "Integration: Slack - sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace..."
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "identify_target_customer",
+      "title": "Identify target customer",
+      "status": "pass",
+      "score": 80,
+      "explanation": "Target user evidence was found.",
+      "evidenceUrls": [
+        "http://localhost:3001/",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/security"
+      ],
+      "evidenceSnippets": [
+        "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+        "Target users: B2B SaaS revenue and success teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineerin...",
+        "sSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review packet information without inven"
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_support",
+      "title": "Find support",
+      "status": "pass",
+      "score": 90,
+      "explanation": "A relevant form-based action path was found.",
+      "evidenceUrls": [
+        "http://localhost:3001/contact",
+        "http://localhost:3001/support",
+        "http://localhost:3001/",
+        "http://localhost:3001/docs/api",
+        "http://localhost:3001/customers",
+        "http://localhost:3001/demo",
+        "http://localhost:3001/docs",
+        "http://localhost:3001/integrations",
+        "http://localhost:3001/llms.txt",
+        "http://localhost:3001/pricing",
+        "http://localhost:3001/privacy",
+        "http://localhost:3001/security",
+        "http://localhost:3001/terms"
+      ],
+      "evidenceSnippets": [
+        "contact_sales: Find the path for contacting sales.",
+        "request_support: Find the support request path.",
+        "omer workflow automation AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, ren",
+        "API Docs | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API",
+        "Contact Sales | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoContact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security"
+      ],
+      "missingInformation": [],
+      "recommendations": []
+    }
+  ],
+  "scores": {
+    "readability": 100,
+    "trustability": 96,
+    "actionability": 85,
+    "taskSuccess": 86,
+    "overall": 92
+  },
+  "recommendations": [],
+  "generatedAt": "2026-06-09T18:23:16.219Z"
+}

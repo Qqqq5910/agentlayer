@@ -1,0 +1,233 @@
+[
+  {
+    "id": "open-api-docs-http-localhost-3001-docs-api",
+    "name": "open_api_docs",
+    "description": "Open API documentation.",
+    "userIntent": "I want to read API documentation.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/docs/api",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "low",
+    "sourceUrl": "http://localhost:3001/docs/api",
+    "confidence": 0.75
+  },
+  {
+    "id": "contact-sales-http-localhost-3001-contact",
+    "name": "contact_sales",
+    "description": "Find the path for contacting sales.",
+    "userIntent": "I want to contact sales.",
+    "actionType": "form",
+    "url": "http://localhost:3001/contact",
+    "method": "POST",
+    "requiredFields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Full name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Work email",
+        "required": true
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company",
+        "required": true
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Message"
+      }
+    ],
+    "requiresHumanConfirmation": true,
+    "sensitivity": "medium",
+    "sourceUrl": "http://localhost:3001/contact",
+    "confidence": 0.85
+  },
+  {
+    "id": "contact-sales-http-localhost-3001-contact",
+    "name": "contact_sales",
+    "description": "Find the path for contacting sales.",
+    "userIntent": "I want to contact sales.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/contact",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "medium",
+    "sourceUrl": "http://localhost:3001/contact",
+    "confidence": 0.75
+  },
+  {
+    "id": "book-demo-http-localhost-3001-demo",
+    "name": "book_demo",
+    "description": "Find the path for booking a product demo.",
+    "userIntent": "I want to book a product demo.",
+    "actionType": "form",
+    "url": "http://localhost:3001/demo",
+    "method": "POST",
+    "requiredFields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Full name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Work email",
+        "required": true
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company",
+        "required": true
+      },
+      {
+        "name": "preferredTime",
+        "type": "text",
+        "label": "Preferred demo time"
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Message"
+      }
+    ],
+    "requiresHumanConfirmation": true,
+    "sensitivity": "medium",
+    "sourceUrl": "http://localhost:3001/demo",
+    "confidence": 0.85
+  },
+  {
+    "id": "book-demo-http-localhost-3001-demo",
+    "name": "book_demo",
+    "description": "Find the path for booking a product demo.",
+    "userIntent": "I want to book a product demo.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/demo",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "medium",
+    "sourceUrl": "http://localhost:3001/demo",
+    "confidence": 0.75
+  },
+  {
+    "id": "search-docs-http-localhost-3001-docs",
+    "name": "search_docs",
+    "description": "Find or search documentation.",
+    "userIntent": "I want to find documentation.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/docs",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "low",
+    "sourceUrl": "http://localhost:3001/docs",
+    "confidence": 0.75
+  },
+  {
+    "id": "view-pricing-http-localhost-3001-pricing",
+    "name": "view_pricing",
+    "description": "View pricing information.",
+    "userIntent": "I want to understand pricing.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/pricing",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "low",
+    "sourceUrl": "http://localhost:3001/pricing",
+    "confidence": 0.75
+  },
+  {
+    "id": "read-privacy-policy-http-localhost-3001-privacy",
+    "name": "read_privacy_policy",
+    "description": "Read the privacy policy.",
+    "userIntent": "I want to read the privacy policy.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/privacy",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "low",
+    "sourceUrl": "http://localhost:3001/privacy",
+    "confidence": 0.75
+  },
+  {
+    "id": "open-security-page-http-localhost-3001-security",
+    "name": "open_security_page",
+    "description": "Open security or trust information.",
+    "userIntent": "I want to inspect security and trust details.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/security",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "low",
+    "sourceUrl": "http://localhost:3001/security",
+    "confidence": 0.75
+  },
+  {
+    "id": "request-support-http-localhost-3001-support",
+    "name": "request_support",
+    "description": "Find the support request path.",
+    "userIntent": "I need support or help.",
+    "actionType": "form",
+    "url": "http://localhost:3001/support",
+    "method": "POST",
+    "requiredFields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Full name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Work email",
+        "required": true
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Message",
+        "required": true
+      }
+    ],
+    "requiresHumanConfirmation": true,
+    "sensitivity": "high",
+    "sourceUrl": "http://localhost:3001/support",
+    "confidence": 0.85
+  },
+  {
+    "id": "request-support-http-localhost-3001-support",
+    "name": "request_support",
+    "description": "Find the support request path.",
+    "userIntent": "I need support or help.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/support",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "medium",
+    "sourceUrl": "http://localhost:3001/support",
+    "confidence": 0.75
+  },
+  {
+    "id": "read-terms-http-localhost-3001-terms",
+    "name": "read_terms",
+    "description": "Read terms or legal policies.",
+    "userIntent": "I want to read terms and legal policies.",
+    "actionType": "navigation",
+    "url": "http://localhost:3001/terms",
+    "method": "GET",
+    "requiresHumanConfirmation": false,
+    "sensitivity": "low",
+    "sourceUrl": "http://localhost:3001/terms",
+    "confidence": 0.75
+  }
+]

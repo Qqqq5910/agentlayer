@@ -1,0 +1,91 @@
+{
+  "generatedBy": "AgentLayer",
+  "generatedAt": "2026-06-09T18:23:16.219Z",
+  "experimental": true,
+  "skills": [
+    {
+      "name": "read_api_docs",
+      "description": "Open API documentation.",
+      "url": "http://localhost:3001/docs/api",
+      "sourceUrl": "http://localhost:3001/docs/api",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "contact_sales",
+      "description": "Find the path for contacting sales.",
+      "url": "http://localhost:3001/contact",
+      "sourceUrl": "http://localhost:3001/contact",
+      "requiresHumanConfirmation": true
+    },
+    {
+      "name": "contact_sales",
+      "description": "Find the path for contacting sales.",
+      "url": "http://localhost:3001/contact",
+      "sourceUrl": "http://localhost:3001/contact",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "book_demo",
+      "description": "Find the path for booking a product demo.",
+      "url": "http://localhost:3001/demo",
+      "sourceUrl": "http://localhost:3001/demo",
+      "requiresHumanConfirmation": true
+    },
+    {
+      "name": "book_demo",
+      "description": "Find the path for booking a product demo.",
+      "url": "http://localhost:3001/demo",
+      "sourceUrl": "http://localhost:3001/demo",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "search_docs",
+      "description": "Find or search documentation.",
+      "url": "http://localhost:3001/docs",
+      "sourceUrl": "http://localhost:3001/docs",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "find_pricing",
+      "description": "View pricing information.",
+      "url": "http://localhost:3001/pricing",
+      "sourceUrl": "http://localhost:3001/pricing",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "read_privacy_policy",
+      "description": "Read the privacy policy.",
+      "url": "http://localhost:3001/privacy",
+      "sourceUrl": "http://localhost:3001/privacy",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "read_security_docs",
+      "description": "Open security or trust information.",
+      "url": "http://localhost:3001/security",
+      "sourceUrl": "http://localhost:3001/security",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "request_support",
+      "description": "Find the support request path.",
+      "url": "http://localhost:3001/support",
+      "sourceUrl": "http://localhost:3001/support",
+      "requiresHumanConfirmation": true
+    },
+    {
+      "name": "request_support",
+      "description": "Find the support request path.",
+      "url": "http://localhost:3001/support",
+      "sourceUrl": "http://localhost:3001/support",
+      "requiresHumanConfirmation": false
+    },
+    {
+      "name": "read_terms",
+      "description": "Read terms or legal policies.",
+      "url": "http://localhost:3001/terms",
+      "sourceUrl": "http://localhost:3001/terms",
+      "requiresHumanConfirmation": false
+    }
+  ]
+}

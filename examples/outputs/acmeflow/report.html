@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentLayer Report - AcmeFlow</title>
+    <style>
+      :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      body { margin: 0; color: #172026; background: #f7f8fa; }
+      main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 64px; }
+      h1, h2 { margin: 0 0 12px; }
+      section { margin-top: 28px; }
+      .panel { background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; }
+      .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+      .score { background: #102a43; color: white; border-radius: 8px; padding: 18px; }
+      .score strong { display: block; font-size: 30px; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { border-bottom: 1px solid #e5e8ec; padding: 10px; text-align: left; vertical-align: top; }
+      th { color: #53606b; font-weight: 600; }
+      a { color: #0b66c3; }
+      .badge { border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+      .pass { background: #d8f5e5; color: #17633a; }
+      .partial { background: #fff0c2; color: #7a5300; }
+      .fail { background: #ffe0de; color: #9a271f; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>AgentLayer Report: AcmeFlow</h1>
+      <p>AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.</p>
+      <p><a href="http://localhost:3001/">http://localhost:3001/</a></p>
+
+      <section class="score-grid">
+        <div class="score"><span>Overall</span><strong>92</strong></div>
+        <div class="score"><span>Readable</span><strong>100</strong></div>
+        <div class="score"><span>Trustable</span><strong>96</strong></div>
+        <div class="score"><span>Actionable</span><strong>85</strong></div>
+        <div class="score"><span>Tasks</span><strong>86</strong></div>
+      </section>
+
+      <section class="panel">
+        <h2>Task Results</h2>
+        <table>
+          <thead><tr><th>Task</th><th>Status</th><th>Score</th><th>Explanation</th></tr></thead>
+          <tbody>
+        <tr>
+          <td>Find pricing</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>90</td>
+          <td>Pricing information is discoverable with page-level evidence.</td>
+        </tr>
+        <tr>
+          <td>Compare plans</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>85</td>
+          <td>Multiple plans and comparison-oriented details were found.</td>
+        </tr>
+        <tr>
+          <td>Book demo or contact sales</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>90</td>
+          <td>A relevant form-based action path was found.</td>
+        </tr>
+        <tr>
+          <td>Find documentation</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>85</td>
+          <td>Relevant pages and structured evidence were found.</td>
+        </tr>
+        <tr>
+          <td>Find security and trust information</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>85</td>
+          <td>Relevant pages and structured evidence were found.</td>
+        </tr>
+        <tr>
+          <td>Find policies</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>85</td>
+          <td>Privacy and terms/legal policy pages are discoverable.</td>
+        </tr>
+        <tr>
+          <td>Find integrations</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>80</td>
+          <td>Relevant page and fact evidence were found.</td>
+        </tr>
+        <tr>
+          <td>Identify target customer</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>80</td>
+          <td>Target user evidence was found.</td>
+        </tr>
+        <tr>
+          <td>Find support</td>
+          <td><span class="badge pass">pass</span></td>
+          <td>90</td>
+          <td>A relevant form-based action path was found.</td>
+        </tr></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Extracted Facts</h2>
+        <table>
+          <thead><tr><th>Type</th><th>Label</th><th>Value</th><th>Source</th></tr></thead>
+          <tbody>
+        <tr>
+          <td>company</td>
+          <td>Company name</td>
+          <td>AcmeFlow</td>
+          <td><a href="http://localhost:3001/">/</a></td>
+        </tr>
+        <tr>
+          <td>pricing</td>
+          <td>Pricing information</td>
+          <td>$49</td>
+          <td><a href="http://localhost:3001/">/</a></td>
+        </tr>
+        <tr>
+          <td>product</td>
+          <td>Target users</td>
+          <td>customer success, sales engineers, operations teams</td>
+          <td><a href="http://localhost:3001/">/</a></td>
+        </tr>
+        <tr>
+          <td>docs</td>
+          <td>API documentation</td>
+          <td>API Docs | AcmeFlow</td>
+          <td><a href="http://localhost:3001/docs/api">/docs/api</a></td>
+        </tr>
+        <tr>
+          <td>contact</td>
+          <td>contact sales</td>
+          <td>name, email, company, message</td>
+          <td><a href="http://localhost:3001/contact">/contact</a></td>
+        </tr>
+        <tr>
+          <td>product</td>
+          <td>Target users</td>
+          <td>B2B SaaS revenue and success teams</td>
+          <td><a href="http://localhost:3001/customers">/customers</a></td>
+        </tr>
+        <tr>
+          <td>contact</td>
+          <td>book demo</td>
+          <td>name, email, company, preferredTime, message</td>
+          <td><a href="http://localhost:3001/demo">/demo</a></td>
+        </tr>
+        <tr>
+          <td>docs</td>
+          <td>Documentation</td>
+          <td>Documentation | AcmeFlow</td>
+          <td><a href="http://localhost:3001/docs">/docs</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>Slack</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>Google</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>Salesforce</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>HubSpot</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>Zapier</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>Google Workspace</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>integration</td>
+          <td>Integration</td>
+          <td>Microsoft Teams</td>
+          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+        </tr>
+        <tr>
+          <td>pricing</td>
+          <td>Pricing information</td>
+          <td>$49, $149</td>
+          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+        </tr>
+        <tr>
+          <td>plan</td>
+          <td>Plan name</td>
+          <td>Starter</td>
+          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+        </tr>
+        <tr>
+          <td>plan</td>
+          <td>Plan name</td>
+          <td>Growth</td>
+          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+        </tr>
+        <tr>
+          <td>plan</td>
+          <td>Plan name</td>
+          <td>Enterprise</td>
+          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+        </tr>
+        <tr>
+          <td>policy</td>
+          <td>Privacy policy</td>
+          <td>Privacy Policy | AcmeFlow</td>
+          <td><a href="http://localhost:3001/privacy">/privacy</a></td>
+        </tr>
+        <tr>
+          <td>security</td>
+          <td>Security or trust information</td>
+          <td>Security | AcmeFlow</td>
+          <td><a href="http://localhost:3001/security">/security</a></td>
+        </tr>
+        <tr>
+          <td>support</td>
+          <td>request support</td>
+          <td>name, email, message</td>
+          <td><a href="http://localhost:3001/support">/support</a></td>
+        </tr>
+        <tr>
+          <td>support</td>
+          <td>Support page</td>
+          <td>Support | AcmeFlow</td>
+          <td><a href="http://localhost:3001/support">/support</a></td>
+        </tr>
+        <tr>
+          <td>policy</td>
+          <td>Terms or legal policy</td>
+          <td>Terms | AcmeFlow</td>
+          <td><a href="http://localhost:3001/terms">/terms</a></td>
+        </tr></tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

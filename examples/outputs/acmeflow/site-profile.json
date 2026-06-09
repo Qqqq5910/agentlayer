@@ -1,0 +1,21 @@
+{
+  "name": "AcmeFlow",
+  "summary": "AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.",
+  "rootUrl": "http://localhost:3001/",
+  "keyPages": {
+    "home": "http://localhost:3001/",
+    "api_docs": "http://localhost:3001/docs/api",
+    "contact": "http://localhost:3001/contact",
+    "customers": "http://localhost:3001/customers",
+    "demo": "http://localhost:3001/demo",
+    "docs": "http://localhost:3001/docs",
+    "integrations": "http://localhost:3001/integrations",
+    "llms": "http://localhost:3001/llms.txt",
+    "pricing": "http://localhost:3001/pricing",
+    "privacy": "http://localhost:3001/privacy",
+    "security": "http://localhost:3001/security",
+    "support": "http://localhost:3001/support",
+    "terms": "http://localhost:3001/terms"
+  },
+  "generatedAt": "2026-06-09T18:23:16.217Z"
+}

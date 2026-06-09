@@ -1,0 +1,215 @@
+[
+  {
+    "taskId": "find_pricing",
+    "title": "Find pricing",
+    "status": "pass",
+    "score": 90,
+    "explanation": "Pricing information is discoverable with page-level evidence.",
+    "evidenceUrls": [
+      "http://localhost:3001/pricing",
+      "http://localhost:3001/",
+      "http://localhost:3001/contact"
+    ],
+    "evidenceSnippets": [
+      "w AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Ent",
+      "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+      "Pricing information: $49, $149 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growt...",
+      "Plan name: Starter - to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue tea...",
+      "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing"
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "compare_plans",
+    "title": "Compare plans",
+    "status": "pass",
+    "score": 85,
+    "explanation": "Multiple plans and comparison-oriented details were found.",
+    "evidenceUrls": [
+      "http://localhost:3001/pricing"
+    ],
+    "evidenceSnippets": [
+      "Plan name: Starter - to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue tea...",
+      "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing",
+      "Plan name: Enterprise - rsSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales afte...",
+      "thFor small revenue teams organizing repeatable onboarding work.Included features and limits- 5 workspaces- CRM sync- Shared playbooks- Email supportStart with demoGrowth$149per monthFor growing SaaS teams that need hand"
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "book_demo",
+    "title": "Book demo or contact sales",
+    "status": "pass",
+    "score": 90,
+    "explanation": "A relevant form-based action path was found.",
+    "evidenceUrls": [
+      "http://localhost:3001/contact",
+      "http://localhost:3001/demo",
+      "http://localhost:3001/",
+      "http://localhost:3001/docs/api",
+      "http://localhost:3001/customers",
+      "http://localhost:3001/docs",
+      "http://localhost:3001/integrations",
+      "http://localhost:3001/llms.txt",
+      "http://localhost:3001/pricing",
+      "http://localhost:3001/privacy",
+      "http://localhost:3001/security",
+      "http://localhost:3001/support",
+      "http://localhost:3001/terms"
+    ],
+    "evidenceSnippets": [
+      "contact_sales: Find the path for contacting sales.",
+      "book_demo: Find the path for booking a product demo.",
+      "w automation AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, imple",
+      "s | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API creden",
+      "tact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning.Sales contactEmail: sales@acmeflow.exampleTypi"
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "find_docs",
+    "title": "Find documentation",
+    "status": "pass",
+    "score": 85,
+    "explanation": "Relevant pages and structured evidence were found.",
+    "evidenceUrls": [
+      "http://localhost:3001/docs/api",
+      "http://localhost:3001/docs",
+      "http://localhost:3001/",
+      "http://localhost:3001/customers",
+      "http://localhost:3001/integrations",
+      "http://localhost:3001/pricing",
+      "http://localhost:3001/security",
+      "http://localhost:3001/support"
+    ],
+    "evidenceSnippets": [
+      "API Docs | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API",
+      "Documentation | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoDocsDocumentation for building reliable customer workflows.Find setup guides, API docs, webhook references, role configuration, and",
+      "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+      "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+      "API documentation: API Docs | AcmeFlow - REST API and webhooks for AcmeFlow workflows."
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "find_security",
+    "title": "Find security and trust information",
+    "status": "pass",
+    "score": 85,
+    "explanation": "Relevant pages and structured evidence were found.",
+    "evidenceUrls": [
+      "http://localhost:3001/security",
+      "http://localhost:3001/",
+      "http://localhost:3001/customers",
+      "http://localhost:3001/pricing",
+      "http://localhost:3001/support"
+    ],
+    "evidenceSnippets": [
+      "Security | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, pr",
+      "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+      "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+      "Target users: B2B SaaS revenue and success teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineerin...",
+      "Pricing information: $49, $149 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growt..."
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "find_policies",
+    "title": "Find policies",
+    "status": "pass",
+    "score": 85,
+    "explanation": "Privacy and terms/legal policy pages are discoverable.",
+    "evidenceUrls": [
+      "http://localhost:3001/privacy",
+      "http://localhost:3001/terms"
+    ],
+    "evidenceSnippets": [
+      "Privacy Policy | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPrivacy policyHow the fictional AcmeFlow demo describes privacy.This policy page exists so AgentLayer can find a clear privacy sou",
+      "d demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportTerms | AcmeFlow",
+      "Privacy policy: Privacy Policy | AcmeFlow - How the fictional AcmeFlow demo describes privacy.",
+      "Terms or legal policy: Terms | AcmeFlow - Terms, cancellation, and refund information.",
+      "read_privacy_policy: Read the privacy policy."
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "find_integrations",
+    "title": "Find integrations",
+    "status": "pass",
+    "score": 80,
+    "explanation": "Relevant page and fact evidence were found.",
+    "evidenceUrls": [
+      "http://localhost:3001/integrations",
+      "http://localhost:3001/",
+      "http://localhost:3001/customers",
+      "http://localhost:3001/pricing",
+      "http://localhost:3001/security",
+      "http://localhost:3001/support"
+    ],
+    "evidenceSnippets": [
+      "Integrations | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoIntegrationsConnect AcmeFlow to the tools your revenue team already uses.AcmeFlow supports CRM, collaboration, analytics, automation",
+      "Pricing information: $49 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementa...",
+      "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+      "Target users: B2B SaaS revenue and success teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineerin...",
+      "Integration: Slack - sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace..."
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "identify_target_customer",
+    "title": "Identify target customer",
+    "status": "pass",
+    "score": 80,
+    "explanation": "Target user evidence was found.",
+    "evidenceUrls": [
+      "http://localhost:3001/",
+      "http://localhost:3001/customers",
+      "http://localhost:3001/security"
+    ],
+    "evidenceSnippets": [
+      "Target users: customer success, sales engineers, operations teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams co...",
+      "Target users: B2B SaaS revenue and success teams - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineerin...",
+      "sSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review packet information without inven"
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  },
+  {
+    "taskId": "find_support",
+    "title": "Find support",
+    "status": "pass",
+    "score": 90,
+    "explanation": "A relevant form-based action path was found.",
+    "evidenceUrls": [
+      "http://localhost:3001/contact",
+      "http://localhost:3001/support",
+      "http://localhost:3001/",
+      "http://localhost:3001/docs/api",
+      "http://localhost:3001/customers",
+      "http://localhost:3001/demo",
+      "http://localhost:3001/docs",
+      "http://localhost:3001/integrations",
+      "http://localhost:3001/llms.txt",
+      "http://localhost:3001/pricing",
+      "http://localhost:3001/privacy",
+      "http://localhost:3001/security",
+      "http://localhost:3001/terms"
+    ],
+    "evidenceSnippets": [
+      "contact_sales: Find the path for contacting sales.",
+      "request_support: Find the support request path.",
+      "omer workflow automation AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, ren",
+      "API Docs | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read account, workflow, event, and webhook resources. Production API",
+      "Contact Sales | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoContact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security"
+    ],
+    "missingInformation": [],
+    "recommendations": []
+  }
+]
