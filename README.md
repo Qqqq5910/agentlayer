@@ -4,7 +4,7 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
-![CI](https://img.shields.io/badge/CI-template-lightgrey)
+![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
 AgentLayer is an open-source developer tool for checking whether a website can be read, trusted, and operated by AI agents. Paste a URL, scan the public site, generate agent-readable artifacts, and see whether common user journeys can succeed.
 
@@ -158,7 +158,7 @@ pnpm test
 pnpm build
 ```
 
-The GitHub Actions CI template lives at `docs/ci/github-actions-ci.yml`. Move it to `.github/workflows/ci.yml` to enable Actions in a repository token or app installation with `workflow` permission.
+GitHub Actions runs the same lint, typecheck, test, and build commands on pushes and pull requests.
 
 ## Contributing
 
