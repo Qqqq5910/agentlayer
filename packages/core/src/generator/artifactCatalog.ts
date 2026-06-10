@@ -7,13 +7,31 @@ export type GeneratedArtifactCatalogItem = {
   description: string;
 };
 
-export function describeGeneratedArtifacts(report: AgentOperabilityReport): GeneratedArtifactCatalogItem[] {
+export function describeGeneratedArtifacts(
+  report: AgentOperabilityReport
+): GeneratedArtifactCatalogItem[] {
   return [
     { path: "llms.txt", mediaType: "text/plain", description: "Concise site guide for agents." },
-    { path: "llms-full.txt", mediaType: "text/plain", description: "Full page context with source URLs." },
-    { path: "site-profile.json", mediaType: "application/json", description: "Site identity, summary, and key pages." },
-    { path: "facts.json", mediaType: "application/json", description: `${report.facts.length} extracted facts with source evidence.` },
-    { path: "actions.json", mediaType: "application/json", description: `${report.actions.length} detected actions and confirmation rules.` },
+    {
+      path: "llms-full.txt",
+      mediaType: "text/plain",
+      description: "Full page context with source URLs."
+    },
+    {
+      path: "site-profile.json",
+      mediaType: "application/json",
+      description: "Site identity, summary, and key pages."
+    },
+    {
+      path: "facts.json",
+      mediaType: "application/json",
+      description: `${report.facts.length} extracted facts with source evidence.`
+    },
+    {
+      path: "actions.json",
+      mediaType: "application/json",
+      description: `${report.actions.length} detected actions and confirmation rules.`
+    },
     {
       path: "form-operability.json",
       mediaType: "application/json",
@@ -34,10 +52,26 @@ export function describeGeneratedArtifacts(report: AgentOperabilityReport): Gene
       mediaType: "application/json",
       description: "Machine-readable AgentLayer report with long page text truncated for review."
     },
-    { path: "report.html", mediaType: "text/html", description: "Standalone shareable operability report." },
-    { path: ".well-known/agents.json", mediaType: "application/json", description: "Draft public action manifest." },
-    { path: ".well-known/mcp.json", mediaType: "application/json", description: "Draft MCP metadata." },
-    { path: ".well-known/mcp/server-card.json", mediaType: "application/json", description: "Draft MCP server card." },
+    {
+      path: "report.html",
+      mediaType: "text/html",
+      description: "Standalone shareable operability report."
+    },
+    {
+      path: ".well-known/agents.json",
+      mediaType: "application/json",
+      description: "Draft public action manifest."
+    },
+    {
+      path: ".well-known/mcp.json",
+      mediaType: "application/json",
+      description: "Draft MCP metadata."
+    },
+    {
+      path: ".well-known/mcp/server-card.json",
+      mediaType: "application/json",
+      description: "Draft MCP server card."
+    },
     {
       path: ".well-known/api-catalog",
       mediaType: "application/json",
@@ -65,7 +99,11 @@ export function describeGeneratedArtifacts(report: AgentOperabilityReport): Gene
         mediaType: "text/markdown",
         description: `Markdown snapshot from ${sourceLabel(page.finalUrl)}.`
       })),
-    { path: "artifacts.json", mediaType: "application/json", description: "Machine-readable index of generated artifacts." }
+    {
+      path: "artifacts.json",
+      mediaType: "application/json",
+      description: "Machine-readable index of generated artifacts."
+    }
   ];
 }
 

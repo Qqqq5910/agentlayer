@@ -6,8 +6,8 @@ Contact sales
 
 # Talk with AcmeFlow about your customer workflow needs.
 
-Use this form for pricing questions, Enterprise quotes, security review
-requests, and implementation planning.
+Use this form for pricing questions, Enterprise quotes, security review requests, and implementation
+planning.
 
 ## Sales contact
 

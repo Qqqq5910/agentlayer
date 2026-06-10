@@ -6,8 +6,8 @@ Integrations
 
 # Connect AcmeFlow to the tools your revenue team already uses.
 
-AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse
-integrations for B2B SaaS workflows.
+AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse integrations for B2B SaaS
+workflows.
 
 ## Salesforce
 

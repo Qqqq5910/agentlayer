@@ -13,4 +13,3 @@ export function PageHero({ eyebrow, title, description }: PageHeroProps) {
     </section>
   );
 }
-

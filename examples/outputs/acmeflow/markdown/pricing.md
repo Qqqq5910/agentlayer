@@ -6,8 +6,8 @@ Pricing
 
 # Plans for B2B SaaS teams from first playbook to enterprise governance.
 
-AcmeFlow offers transparent monthly pricing for Starter and Growth teams.
-Enterprise plans are quoted through sales after a security and workflow review.
+AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are
+quoted through sales after a security and workflow review.
 
 ## Starter
 
@@ -62,6 +62,5 @@ For larger organizations with governance and security review needs.
 
 ## Plan differences
 
-Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and
-Enterprise adds SSO/SAML, audit exports, and a security review packet for larger
-organizations.
+Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds
+SSO/SAML, audit exports, and a security review packet for larger organizations.

@@ -92,7 +92,10 @@ export function normalizeUrl(input: string, baseUrl?: string): string | null {
   url.protocol = url.protocol.toLowerCase();
   url.hostname = url.hostname.toLowerCase();
 
-  if ((url.protocol === "https:" && url.port === "443") || (url.protocol === "http:" && url.port === "80")) {
+  if (
+    (url.protocol === "https:" && url.port === "443") ||
+    (url.protocol === "http:" && url.port === "80")
+  ) {
     url.port = "";
   }
 
@@ -143,7 +146,13 @@ export function importantSeedUrls(rootUrl: string): string[] {
 
 export function sortUrlsByPriority(urls: Iterable<string>, rootUrl: string): string[] {
   const root = new URL(rootUrl);
-  const unique = Array.from(new Set(Array.from(urls).map((url) => normalizeUrl(url)).filter(Boolean) as string[]));
+  const unique = Array.from(
+    new Set(
+      Array.from(urls)
+        .map((url) => normalizeUrl(url))
+        .filter(Boolean) as string[]
+    )
+  );
 
   return unique.sort((left, right) => {
     const leftScore = urlPriority(left, root);

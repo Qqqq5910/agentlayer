@@ -6,8 +6,8 @@ Book demo
 
 # See AcmeFlow with your customer handoff workflow.
 
-Request a product demo for a qualified lead. A human should confirm all meeting
-details before scheduling.
+Request a product demo for a qualified lead. A human should confirm all meeting details before
+scheduling.
 
 ## What the demo covers
 

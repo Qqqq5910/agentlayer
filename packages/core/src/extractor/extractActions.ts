@@ -20,9 +20,13 @@ export function extractActions(scan: SiteScan): AgentAction[] {
 
 function actionFromForm(page: PageSnapshot, form: ExtractedForm): AgentAction {
   const name = actionNameFromPurpose(form.purpose, page);
-  const sensitivity = sensitivityFor(`${form.purpose} ${form.submitText ?? ""} ${page.visibleText}`);
+  const sensitivity = sensitivityFor(
+    `${form.purpose} ${form.submitText ?? ""} ${page.visibleText}`
+  );
   const requiresHumanConfirmation =
-    sensitivity !== "low" || form.method === "POST" || includesAny(form.purpose, ["contact", "demo", "quote", "support"]);
+    sensitivity !== "low" ||
+    form.method === "POST" ||
+    includesAny(form.purpose, ["contact", "demo", "quote", "support"]);
 
   return {
     id: slugify(`${name}-${page.finalUrl}`),
@@ -108,7 +112,17 @@ function actionNameForPageType(page: PageSnapshot): string | null {
 }
 
 function sensitivityFor(context: string): "low" | "medium" | "high" {
-  if (includesAny(context, ["payment", "purchase", "delete", "cancel", "refund", "billing", "checkout"])) {
+  if (
+    includesAny(context, [
+      "payment",
+      "purchase",
+      "delete",
+      "cancel",
+      "refund",
+      "billing",
+      "checkout"
+    ])
+  ) {
     return "high";
   }
 

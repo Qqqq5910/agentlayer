@@ -109,7 +109,13 @@ function extractFormFields($: CheerioAPI, element: CheerioElement): ExtractedFor
 function findFieldLabel($: CheerioAPI, element: CheerioElement): string {
   const field = $(element);
   const id = field.attr("id");
-  const explicit = id ? cleanText($(`label[for="${cssEscape(id)}"]`).first().text()) : "";
+  const explicit = id
+    ? cleanText(
+        $(`label[for="${cssEscape(id)}"]`)
+          .first()
+          .text()
+      )
+    : "";
   if (explicit) {
     return explicit;
   }

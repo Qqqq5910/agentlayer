@@ -28,7 +28,11 @@ export function extractPageSnapshot(input: SnapshotInput): PageSnapshot {
       description: undefined,
       canonicalUrl: undefined,
       status: input.status,
-      pageType: classifyPage({ url: input.finalUrl, title: titleFromTextUrl(input.finalUrl), text }),
+      pageType: classifyPage({
+        url: input.finalUrl,
+        title: titleFromTextUrl(input.finalUrl),
+        text
+      }),
       headings: { h1: [], h2: [], h3: [] },
       links: [],
       forms: [],
@@ -45,9 +49,12 @@ export function extractPageSnapshot(input: SnapshotInput): PageSnapshot {
   const $ = cheerio.load(input.html);
   const title = cleanText($("title").first().text()) || undefined;
   const description =
-    cleanText($('meta[name="description"]').attr("content") ?? $('meta[property="og:description"]').attr("content")) ||
-    undefined;
-  const canonical = normalizeUrl($('link[rel="canonical"]').attr("href") ?? "", input.finalUrl) ?? undefined;
+    cleanText(
+      $('meta[name="description"]').attr("content") ??
+        $('meta[property="og:description"]').attr("content")
+    ) || undefined;
+  const canonical =
+    normalizeUrl($('link[rel="canonical"]').attr("href") ?? "", input.finalUrl) ?? undefined;
   const headings = {
     h1: extractHeadings($, "h1"),
     h2: extractHeadings($, "h2"),
@@ -60,7 +67,9 @@ export function extractPageSnapshot(input: SnapshotInput): PageSnapshot {
   const jsonLd = extractJsonLd($);
   const socialLinks = links
     .map((link) => link.href)
-    .filter((href) => /(?:linkedin|twitter|x\.com|github|youtube|facebook|instagram)\.com/i.test(href));
+    .filter((href) =>
+      /(?:linkedin|twitter|x\.com|github|youtube|facebook|instagram)\.com/i.test(href)
+    );
 
   return {
     url: input.requestedUrl,
@@ -150,7 +159,9 @@ function extractVisibleText($: cheerio.CheerioAPI): string {
 }
 
 function looksLikePlainText(content: string, url: string): boolean {
-  return !/<html|<!doctype|<body|<main|<div/i.test(content) || new URL(url).pathname.endsWith(".txt");
+  return (
+    !/<html|<!doctype|<body|<main|<div/i.test(content) || new URL(url).pathname.endsWith(".txt")
+  );
 }
 
 function titleFromTextUrl(url: string): string {

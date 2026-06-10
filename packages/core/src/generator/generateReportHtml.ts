@@ -44,7 +44,7 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
           <td>
             ${escapeHtml(task.explanation)}${journeyMarkup ? `\n            ${journeyMarkup}` : ""}
           </td>
-        </tr>`
+        </tr>`;
     })
     .join("");
 
@@ -307,7 +307,9 @@ function metric(label: string, value: string | number): string {
   return `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
 }
 
-function summarizeTasks(report: AgentOperabilityReport): Record<"pass" | "partial" | "fail", number> {
+function summarizeTasks(
+  report: AgentOperabilityReport
+): Record<"pass" | "partial" | "fail", number> {
   return report.tasks.reduce(
     (summary, task) => {
       summary[task.status] += 1;
@@ -333,23 +335,43 @@ function classifyCrawlIssues(errors: AgentOperabilityReport["scan"]["errors"]): 
     const httpStatus = lowerMessage.match(/http\s+(\d{3})/)?.[1];
 
     if (lowerMessage.includes("robots.txt")) {
-      return warningIssue(error, "Skipped by robots.txt", "The crawler respected robots.txt. This is a non-blocking warning unless it prevented evidence collection for a required task.");
+      return warningIssue(
+        error,
+        "Skipped by robots.txt",
+        "The crawler respected robots.txt. This is a non-blocking warning unless it prevented evidence collection for a required task."
+      );
     }
 
     if (lowerMessage.includes("redirect")) {
-      return warningIssue(error, "Redirect skipped", "The redirect target was outside the allowed crawl scope. This is a non-blocking warning unless the skipped target held unique task evidence.");
+      return warningIssue(
+        error,
+        "Redirect skipped",
+        "The redirect target was outside the allowed crawl scope. This is a non-blocking warning unless the skipped target held unique task evidence."
+      );
     }
 
     if (httpStatus === "404") {
-      return warningIssue(error, "HTTP 404", "The URL was missing during crawl. This is a non-blocking warning unless the missing page was needed to verify facts, actions, or task success.");
+      return warningIssue(
+        error,
+        "HTTP 404",
+        "The URL was missing during crawl. This is a non-blocking warning unless the missing page was needed to verify facts, actions, or task success."
+      );
     }
 
     if (lowerMessage.includes("skipped")) {
-      return warningIssue(error, "Skipped URL", "The URL was skipped by crawl policy. This is a non-blocking warning unless it removed evidence needed by the scoring checks.");
+      return warningIssue(
+        error,
+        "Skipped URL",
+        "The URL was skipped by crawl policy. This is a non-blocking warning unless it removed evidence needed by the scoring checks."
+      );
     }
 
     if (httpStatus?.startsWith("4")) {
-      return warningIssue(error, `HTTP ${httpStatus}`, "Client-side fetch failures are warnings unless they block access to pages needed for facts, actions, or task checks.");
+      return warningIssue(
+        error,
+        `HTTP ${httpStatus}`,
+        "Client-side fetch failures are warnings unless they block access to pages needed for facts, actions, or task checks."
+      );
     }
 
     return {

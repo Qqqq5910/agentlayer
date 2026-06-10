@@ -35,7 +35,11 @@ export async function fetchSitemap(options: ScanOptions): Promise<SiteScan["site
   }
 }
 
-export function extractSitemapUrls(xml: string, rootUrl: string, options: Pick<ScanOptions, "allowLocal"> = { allowLocal: false }): string[] {
+export function extractSitemapUrls(
+  xml: string,
+  rootUrl: string,
+  options: Pick<ScanOptions, "allowLocal"> = { allowLocal: false }
+): string[] {
   const $ = cheerio.load(xml, { xmlMode: true });
   const urls = $("loc")
     .map((_, element) => normalizeUrl($(element).text()))

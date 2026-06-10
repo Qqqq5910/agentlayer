@@ -42,7 +42,11 @@ body:
     attributes:
       label: Boundaries
       options:
-        - label: This request does not require submitting forms, bypassing auth, or performing destructive actions.
+        - label:
+            This request does not require submitting forms, bypassing auth, or performing
+            destructive actions.
           required: true
-        - label: I understand generated standards artifacts should not make unsupported compliance claims.
+        - label:
+            I understand generated standards artifacts should not make unsupported compliance
+            claims.
           required: true

@@ -50,7 +50,9 @@ describe("public URL safety", () => {
   });
 
   it("keeps localhost fixture scans behind allowLocal", async () => {
-    await expect(scanSite({ rootUrl: "http://localhost:3000/" })).rejects.toThrow("Blocked unsafe URL");
+    await expect(scanSite({ rootUrl: "http://localhost:3000/" })).rejects.toThrow(
+      "Blocked unsafe URL"
+    );
 
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response("", {

@@ -1,0 +1,13 @@
+.gitignore
+.prettierignore
+node_modules
+dist
+.next
+out
+coverage
+.env
+.env.*
+agentlayer-output
+playwright-report
+test-results
+.DS_Store

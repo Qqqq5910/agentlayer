@@ -14,8 +14,8 @@ export function SiteFooter() {
         <div>
           <p className="font-semibold text-[#17201d]">AcmeFlow</p>
           <p className="mt-2 max-w-xl">
-            AcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on this site is
-            intentionally public and non-sensitive.
+            AcmeFlow is a fictional B2B SaaS fixture used by AgentLayer tests and demos. The data on
+            this site is intentionally public and non-sensitive.
           </p>
         </div>
         <nav className="flex flex-wrap gap-4" aria-label="Footer">
@@ -29,4 +29,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-

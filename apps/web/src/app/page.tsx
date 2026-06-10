@@ -10,7 +10,7 @@ import {
   Route,
   ShieldCheck,
   Sparkles,
-  SquareTerminal,
+  SquareTerminal
 } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { demoArtifacts, demoReport } from "@/lib/demo-report";
@@ -21,44 +21,40 @@ import {
   scoreToneLabel,
   summarizeArtifacts,
   summarizeRecommendations,
-  summarizeTasks,
+  summarizeTasks
 } from "@/lib/report-utils";
 
 const cards = [
   {
     title: "Readable",
     text: "Generate llms.txt, llms-full.txt, markdown snapshots, and structured profile data.",
-    icon: FileCode,
+    icon: FileCode
   },
   {
     title: "Verifiable",
     text: "Extract facts with source URLs, evidence snippets, and confidence scores.",
-    icon: ShieldCheck,
+    icon: ShieldCheck
   },
   {
     title: "Operable",
     text: "Detect actions, forms, confirmation rules, and task success gaps.",
-    icon: SquareTerminal,
-  },
+    icon: SquareTerminal
+  }
 ] satisfies Array<{ title: string; text: string; icon: LucideIcon }>;
 
 const taskSummary = summarizeTasks(demoReport.tasks);
 const artifactSummary = summarizeArtifacts(demoArtifacts);
-const recommendationSummary = summarizeRecommendations(
-  demoReport.recommendations,
-);
+const recommendationSummary = summarizeRecommendations(demoReport.recommendations);
 const previewFiles = [
   ...demoArtifacts.slice(0, 3),
-  ...demoArtifacts
-    .filter((artifact) => artifact.path === ".well-known/agents.json")
-    .slice(0, 1),
+  ...demoArtifacts.filter((artifact) => artifact.path === ".well-known/agents.json").slice(0, 1)
 ];
 
 const previewScores = [
   ["Readable", demoReport.scores.readability],
   ["Evidence", demoReport.scores.trustability],
   ["Actions", demoReport.scores.actionability],
-  ["Tasks", demoReport.scores.taskSuccess],
+  ["Tasks", demoReport.scores.taskSuccess]
 ] satisfies Array<[string, number]>;
 
 export default function HomePage() {
@@ -76,9 +72,8 @@ export default function HomePage() {
                 AgentLayer for agent-ready websites.
               </h1>
               <p className="mt-5 text-lg leading-8 text-slate-100">
-                Scan a public site, generate agent-readable draft files, and see
-                whether common AI-agent journeys have enough evidence and
-                confirmation detail to succeed.
+                Scan a public site, generate agent-readable draft files, and see whether common
+                AI-agent journeys have enough evidence and confirmation detail to succeed.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
@@ -96,18 +91,12 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
-                <HeroStat
-                  label="Score"
-                  value={`${demoReport.scores.overall}/100`}
-                />
+                <HeroStat label="Score" value={`${demoReport.scores.overall}/100`} />
                 <HeroStat
                   label="Task checks"
                   value={`${taskSummary.pass}/${taskSummary.total} pass`}
                 />
-                <HeroStat
-                  label="Generated files"
-                  value={String(artifactSummary.total)}
-                />
+                <HeroStat label="Generated files" value={String(artifactSummary.total)} />
               </div>
             </div>
 
@@ -118,12 +107,10 @@ export default function HomePage() {
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
                       Demo report preview
                     </p>
-                    <h2 className="mt-2 text-2xl font-semibold">
-                      {demoReport.site.name}
-                    </h2>
+                    <h2 className="mt-2 text-2xl font-semibold">{demoReport.site.name}</h2>
                     <p className="mt-2 max-w-md text-sm leading-6 text-slate-300">
-                      Fictional fixture showing score, task results, generated
-                      files, and recommendations.
+                      Fictional fixture showing score, task results, generated files, and
+                      recommendations.
                     </p>
                   </div>
                   <div className="shrink-0 rounded-md bg-cyan-300 px-3 py-2 text-right text-slate-950">
@@ -144,7 +131,7 @@ export default function HomePage() {
                     <div
                       className={`h-2 rounded-full ${progressFillClasses(demoReport.scores.overall)}`}
                       style={{
-                        width: `${clampScore(demoReport.scores.overall)}%`,
+                        width: `${clampScore(demoReport.scores.overall)}%`
                       }}
                     />
                   </div>
@@ -153,10 +140,7 @@ export default function HomePage() {
 
               <div className="grid border-b border-white/10 sm:grid-cols-4">
                 {previewScores.map(([label, score]) => (
-                  <div
-                    className="border-white/10 p-4 sm:border-r sm:last:border-r-0"
-                    key={label}
-                  >
+                  <div className="border-white/10 p-4 sm:border-r sm:last:border-r-0" key={label}>
                     <p className="text-xs text-slate-400">{label}</p>
                     <p className="mt-1 text-xl font-semibold">{score}</p>
                   </div>
@@ -167,18 +151,12 @@ export default function HomePage() {
                 <div className="p-4">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2">
-                      <ListChecks
-                        className="text-cyan-200"
-                        size={17}
-                        aria-hidden="true"
-                      />
-                      <h3 className="text-sm font-semibold">
-                        Task success results
-                      </h3>
+                      <ListChecks className="text-cyan-200" size={17} aria-hidden="true" />
+                      <h3 className="text-sm font-semibold">Task success results</h3>
                     </div>
                     <span className="text-xs text-slate-300">
-                      {taskSummary.pass} pass / {taskSummary.partial} partial /{" "}
-                      {taskSummary.fail} fail
+                      {taskSummary.pass} pass / {taskSummary.partial} partial / {taskSummary.fail}{" "}
+                      fail
                     </span>
                   </div>
                   <div className="mt-4 space-y-3">
@@ -195,11 +173,7 @@ export default function HomePage() {
 
                 <div className="border-t border-white/10 p-4 lg:border-l lg:border-t-0">
                   <div className="flex items-center gap-2">
-                    <FileText
-                      className="text-cyan-200"
-                      size={17}
-                      aria-hidden="true"
-                    />
+                    <FileText className="text-cyan-200" size={17} aria-hidden="true" />
                     <h3 className="text-sm font-semibold">Generated files</h3>
                   </div>
                   <div className="mt-4 space-y-2">
@@ -213,17 +187,12 @@ export default function HomePage() {
                   </div>
                   <div className="mt-5 border-t border-white/10 pt-4">
                     <div className="flex items-center gap-2">
-                      <Sparkles
-                        className="text-cyan-200"
-                        size={17}
-                        aria-hidden="true"
-                      />
+                      <Sparkles className="text-cyan-200" size={17} aria-hidden="true" />
                       <h3 className="text-sm font-semibold">Recommendations</h3>
                     </div>
                     <p className="mt-2 text-sm leading-6 text-slate-300">
-                      {recommendationSummary.high} high-priority and{" "}
-                      {recommendationSummary.medium} medium-priority fixes in
-                      the fixture report.
+                      {recommendationSummary.high} high-priority and {recommendationSummary.medium}{" "}
+                      medium-priority fixes in the fixture report.
                     </p>
                   </div>
                 </div>
@@ -241,30 +210,20 @@ export default function HomePage() {
                   <div className="grid size-10 place-items-center rounded-md bg-slate-950 text-white">
                     <Icon size={19} aria-hidden="true" />
                   </div>
-                  <h2 className="mt-4 text-lg font-semibold text-slate-950">
-                    {card.title}
-                  </h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {card.text}
-                  </p>
+                  <h2 className="mt-4 text-lg font-semibold text-slate-950">{card.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{card.text}</p>
                 </article>
               );
             })}
           </div>
           <div className="mt-8 panel flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
             <div className="flex items-start gap-3">
-              <Gauge
-                className="mt-1 text-cyan-700"
-                size={22}
-                aria-hidden="true"
-              />
+              <Gauge className="mt-1 text-cyan-700" size={22} aria-hidden="true" />
               <div>
-                <h2 className="font-semibold text-slate-950">
-                  Not an AI SEO dashboard.
-                </h2>
+                <h2 className="font-semibold text-slate-950">Not an AI SEO dashboard.</h2>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
-                  AgentLayer checks whether agents can complete useful tasks on
-                  the site, not just whether standards exist.
+                  AgentLayer checks whether agents can complete useful tasks on the site, not just
+                  whether standards exist.
                 </p>
               </div>
             </div>
@@ -291,7 +250,7 @@ function HeroStat({ label, value }: { label: string; value: string }) {
 function PreviewTaskRow({
   score,
   status,
-  title,
+  title
 }: {
   score: number;
   status: "pass" | "partial" | "fail";
@@ -315,26 +274,14 @@ function PreviewTaskRow({
   );
 }
 
-function PreviewFileRow({
-  mediaType,
-  path,
-}: {
-  mediaType: string;
-  path: string;
-}) {
+function PreviewFileRow({ mediaType, path }: { mediaType: string; path: string }) {
   return (
     <div className="flex items-center justify-between gap-3 text-sm">
       <div className="flex min-w-0 items-center gap-2">
-        <Route
-          className="shrink-0 text-slate-400"
-          size={14}
-          aria-hidden="true"
-        />
+        <Route className="shrink-0 text-slate-400" size={14} aria-hidden="true" />
         <span className="truncate text-slate-200">{path}</span>
       </div>
-      <span className="shrink-0 text-xs text-slate-400">
-        {artifactLanguage(mediaType, path)}
-      </span>
+      <span className="shrink-0 text-xs text-slate-400">{artifactLanguage(mediaType, path)}</span>
     </div>
   );
 }

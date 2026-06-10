@@ -54,11 +54,17 @@ export function assertPublicHttpUrl(candidate: string, options: UrlSafetyOptions
   }
 }
 
-export async function isPublicHttpUrlResolved(candidate: string, options: UrlSafetyOptions = {}): Promise<boolean> {
+export async function isPublicHttpUrlResolved(
+  candidate: string,
+  options: UrlSafetyOptions = {}
+): Promise<boolean> {
   return (await getUnsafeUrlReasonResolved(candidate, options)) === null;
 }
 
-export async function assertPublicHttpUrlResolved(candidate: string, options: UrlSafetyOptions = {}): Promise<void> {
+export async function assertPublicHttpUrlResolved(
+  candidate: string,
+  options: UrlSafetyOptions = {}
+): Promise<void> {
   const reason = await getUnsafeUrlReasonResolved(candidate, options);
   if (reason) {
     throw new Error(`Blocked unsafe URL "${candidate}": ${reason}`);
@@ -102,7 +108,10 @@ export async function getUnsafeUrlReasonResolved(
   return null;
 }
 
-export function getUnsafeUrlReason(candidate: string, options: UrlSafetyOptions = {}): string | null {
+export function getUnsafeUrlReason(
+  candidate: string,
+  options: UrlSafetyOptions = {}
+): string | null {
   let url: URL;
   try {
     url = new URL(candidate);
@@ -130,9 +139,17 @@ export function getUnsafeUrlReason(candidate: string, options: UrlSafetyOptions 
   return null;
 }
 
-export function isSafeCrawlUrl(candidate: string, rootUrl: string, options: UrlSafetyOptions = {}): boolean {
+export function isSafeCrawlUrl(
+  candidate: string,
+  rootUrl: string,
+  options: UrlSafetyOptions = {}
+): boolean {
   const normalized = normalizeUrl(candidate);
-  if (!normalized || !isPublicHttpUrl(normalized, options) || !isSameHostname(normalized, rootUrl)) {
+  if (
+    !normalized ||
+    !isPublicHttpUrl(normalized, options) ||
+    !isSameHostname(normalized, rootUrl)
+  ) {
     return false;
   }
 
@@ -143,7 +160,9 @@ export function isSafeCrawlUrl(candidate: string, rootUrl: string, options: UrlS
   }
 
   const lastSegment = path.split("/").pop() ?? "";
-  const extension = lastSegment.includes(".") ? `.${lastSegment.split(".").pop() ?? ""}`.toLowerCase() : "";
+  const extension = lastSegment.includes(".")
+    ? `.${lastSegment.split(".").pop() ?? ""}`.toLowerCase()
+    : "";
   return !SKIPPED_EXTENSIONS.has(extension);
 }
 
@@ -168,7 +187,9 @@ export async function isSafeCrawlUrlResolved(
   }
 
   const lastSegment = path.split("/").pop() ?? "";
-  const extension = lastSegment.includes(".") ? `.${lastSegment.split(".").pop() ?? ""}`.toLowerCase() : "";
+  const extension = lastSegment.includes(".")
+    ? `.${lastSegment.split(".").pop() ?? ""}`.toLowerCase()
+    : "";
   return !SKIPPED_EXTENSIONS.has(extension);
 }
 
@@ -241,7 +262,10 @@ function isUnsafeIPv4Octets(octets: number[]): boolean {
 
 function isMetadataHost(hostname: string): boolean {
   const mappedIPv4Octets = parseMappedIPv4Octets(hostname);
-  return hostname === "169.254.169.254" || Boolean(mappedIPv4Octets && isMetadataIPv4Octets(mappedIPv4Octets));
+  return (
+    hostname === "169.254.169.254" ||
+    Boolean(mappedIPv4Octets && isMetadataIPv4Octets(mappedIPv4Octets))
+  );
 }
 
 function isMetadataIPv4Octets(octets: number[]): boolean {
@@ -341,7 +365,10 @@ export function parseRobotsTxt(text: string, userAgent = "AgentLayerBot"): Robot
     const value = withoutComment.slice(separatorIndex + 1).trim();
 
     if (field === "user-agent") {
-      if (currentAgents.length > 0 && (currentRules.allow.length > 0 || currentRules.disallow.length > 0)) {
+      if (
+        currentAgents.length > 0 &&
+        (currentRules.allow.length > 0 || currentRules.disallow.length > 0)
+      ) {
         flush();
         currentAgents = [];
         currentRules = { allow: [], disallow: [] };
@@ -370,7 +397,11 @@ export function parseRobotsTxt(text: string, userAgent = "AgentLayerBot"): Robot
   );
 }
 
-export function isAllowedByRobots(candidate: string, robotsText: string | undefined, userAgent?: string): boolean {
+export function isAllowedByRobots(
+  candidate: string,
+  robotsText: string | undefined,
+  userAgent?: string
+): boolean {
   if (!robotsText) {
     return true;
   }

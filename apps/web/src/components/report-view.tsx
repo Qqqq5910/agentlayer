@@ -12,7 +12,7 @@ import {
   ListChecks,
   Route,
   ShieldCheck,
-  Sparkles,
+  Sparkles
 } from "lucide-react";
 import type {
   AgentAction,
@@ -21,7 +21,7 @@ import type {
   ExtractedFact,
   FormOperabilityResult,
   GeneratedArtifact,
-  Recommendation,
+  Recommendation
 } from "@/lib/report-types";
 import {
   actionSensitivityClasses,
@@ -38,51 +38,45 @@ import {
   summarizeArtifacts,
   summarizeRecommendations,
   summarizeTasks,
-  taskStatusClasses,
+  taskStatusClasses
 } from "@/lib/report-utils";
-import type {
-  ArtifactSummary,
-  RecommendationSummary,
-  TaskSummary,
-} from "@/lib/report-utils";
+import type { ArtifactSummary, RecommendationSummary, TaskSummary } from "@/lib/report-utils";
 
 type ReportViewProps = {
   report: AgentOperabilityReport;
   artifacts: GeneratedArtifact[];
   title?: string;
   eyebrow?: string;
+  demoNotice?: string;
 };
 
-type ScoreBreakdownKey = Exclude<
-  keyof AgentOperabilityReport["scores"],
-  "overall"
->;
+type ScoreBreakdownKey = Exclude<keyof AgentOperabilityReport["scores"], "overall">;
 
 const scoreCards = [
   {
     key: "readability",
     label: "Readable files",
     description: "Can agents find concise site context?",
-    icon: FileText,
+    icon: FileText
   },
   {
     key: "trustability",
     label: "Evidence quality",
     description: "Do facts cite sources and confidence?",
-    icon: ShieldCheck,
+    icon: ShieldCheck
   },
   {
     key: "actionability",
     label: "Operable actions",
     description: "Are actions and confirmations clear?",
-    icon: Route,
+    icon: Route
   },
   {
     key: "taskSuccess",
     label: "Task success",
     description: "Can common agent journeys succeed?",
-    icon: ListChecks,
-  },
+    icon: ListChecks
+  }
 ] satisfies Array<{
   key: ScoreBreakdownKey;
   label: string;
@@ -90,28 +84,32 @@ const scoreCards = [
   icon: LucideIcon;
 }>;
 
-export function ReportView({
-  report,
-  artifacts,
-  title,
-  eyebrow,
-}: ReportViewProps) {
+export function ReportView({ report, artifacts, title, eyebrow, demoNotice }: ReportViewProps) {
   const taskSummary = summarizeTasks(report.tasks);
-  const recommendationSummary = summarizeRecommendations(
-    report.recommendations,
-  );
+  const recommendationSummary = summarizeRecommendations(report.recommendations);
   const artifactSummary = summarizeArtifacts(artifacts);
   const formResults = report.forms ?? [];
-  const formCount = report.scan.pages.reduce(
-    (sum, page) => sum + page.forms.length,
-    0,
-  );
+  const formCount = report.scan.pages.reduce((sum, page) => sum + page.forms.length, 0);
   const generatedAt = new Date(report.generatedAt).toLocaleString();
 
   return (
     <main>
       <section className="border-b border-slate-200 bg-white">
         <div className="container-shell py-10">
+          {demoNotice ? (
+            <div className="mb-6 flex flex-col gap-3 rounded-lg border border-cyan-200 bg-cyan-50 p-4 text-sm text-cyan-950 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <Sparkles className="mt-0.5 shrink-0 text-cyan-700" size={18} aria-hidden="true" />
+                <p className="leading-6">{demoNotice}</p>
+              </div>
+              <Link
+                className="focus-ring inline-flex h-9 shrink-0 items-center justify-center rounded-md bg-slate-950 px-3 font-medium text-white hover:bg-slate-800"
+                href="/scan"
+              >
+                Scan locally
+              </Link>
+            </div>
+          ) : null}
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">
@@ -120,9 +118,7 @@ export function ReportView({
               <h1 className="mt-3 text-3xl font-semibold text-slate-950 md:text-5xl">
                 {title ?? report.site.name}
               </h1>
-              <p className="mt-4 text-base leading-7 text-slate-600">
-                {report.site.summary}
-              </p>
+              <p className="mt-4 text-base leading-7 text-slate-600">{report.site.summary}</p>
               <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-600">
                 <a
                   className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 hover:bg-white"
@@ -145,21 +141,16 @@ export function ReportView({
               className={`w-full rounded-lg border p-5 lg:w-64 ${scoreToneClasses(report.scores.overall)}`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">
-                  Agent Operability Score
-                </span>
+                <span className="text-sm font-medium">Agent Operability Score</span>
                 <Gauge size={20} aria-hidden="true" />
               </div>
               <div className="mt-3 flex items-end gap-2">
-                <span className="text-5xl font-semibold">
-                  {clampScore(report.scores.overall)}
-                </span>
+                <span className="text-5xl font-semibold">{clampScore(report.scores.overall)}</span>
                 <span className="pb-2 text-sm">/100</span>
               </div>
               <ProgressBar score={report.scores.overall} />
               <p className="mt-3 text-xs font-medium">
-                {scoreToneLabel(report.scores.overall)} across{" "}
-                {taskSummary.total} task checks.
+                {scoreToneLabel(report.scores.overall)} across {taskSummary.total} task checks.
               </p>
             </div>
           </div>
@@ -228,7 +219,7 @@ function OverviewCard({
   detail,
   icon,
   label,
-  value,
+  value
 }: {
   detail: string;
   icon: ReactNode;
@@ -257,7 +248,7 @@ function ScoreCard({
   description,
   icon: Icon,
   label,
-  score,
+  score
 }: {
   description: string;
   icon: LucideIcon;
@@ -297,7 +288,7 @@ function ProgressBar({ score }: { score: number }) {
 function SectionHeader({
   icon,
   title,
-  description,
+  description
 }: {
   icon: ReactNode;
   title: string;
@@ -318,7 +309,7 @@ function SectionHeader({
 
 function GeneratedFiles({
   artifacts,
-  summary,
+  summary
 }: {
   artifacts: GeneratedArtifact[];
   summary: ArtifactSummary;
@@ -334,10 +325,7 @@ function GeneratedFiles({
         <Metric label="Total outputs" value={String(summary.total)} />
         <Metric label="JSON" value={String(summary.json)} />
         <Metric label="Text files" value={String(summary.text)} />
-        <Metric
-          label="Draft manifests"
-          value={String(summary.draftManifests)}
-        />
+        <Metric label="Draft manifests" value={String(summary.draftManifests)} />
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {artifacts.map((artifact) => (
@@ -377,7 +365,7 @@ function GeneratedFiles({
 
 function Recommendations({
   recommendations,
-  summary,
+  summary
 }: {
   recommendations: Recommendation[];
   summary: RecommendationSummary;
@@ -402,10 +390,7 @@ function Recommendations({
       </div>
       <div className="space-y-3">
         {recommendations.slice(0, 4).map((item) => (
-          <article
-            className="rounded-lg border border-slate-200 bg-slate-50 p-4"
-            key={item.title}
-          >
+          <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={item.title}>
             <div className="flex flex-wrap items-center gap-2">
               <span
                 className={`rounded-md border px-2 py-1 text-xs font-semibold ${severityClasses(item.severity)}`}
@@ -419,12 +404,9 @@ function Recommendations({
               ) : null}
             </div>
             <h3 className="mt-3 font-semibold text-slate-950">{item.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              {item.whyItMatters}
-            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{item.whyItMatters}</p>
             <p className="mt-3 text-sm leading-6 text-slate-700">
-              <span className="font-medium text-slate-950">Action:</span>{" "}
-              {item.howToFix}
+              <span className="font-medium text-slate-950">Action:</span> {item.howToFix}
             </p>
             {item.affectedTasks.length > 0 ? (
               <p className="mt-2 text-xs text-slate-500">
@@ -468,15 +450,9 @@ function FactsTable({ facts }: { facts: ExtractedFact[] }) {
                     {fact.type}
                   </span>
                 </td>
-                <td className="px-5 py-4 font-medium text-slate-950">
-                  {fact.label}
-                </td>
-                <td className="truncate-cell px-5 py-4 text-slate-600">
-                  {fact.value}
-                </td>
-                <td className="px-5 py-4 text-slate-600">
-                  {formatConfidence(fact.confidence)}
-                </td>
+                <td className="px-5 py-4 font-medium text-slate-950">{fact.label}</td>
+                <td className="truncate-cell px-5 py-4 text-slate-600">{fact.value}</td>
+                <td className="px-5 py-4 text-slate-600">{formatConfidence(fact.confidence)}</td>
                 <td className="truncate-cell px-5 py-4 text-slate-600">
                   {fact.sourceText ?? "Source text unavailable"}
                 </td>
@@ -521,16 +497,10 @@ function ActionsTable({ actions }: { actions: AgentAction[] }) {
               <tr key={action.id}>
                 <td className="px-5 py-4">
                   <p className="font-medium text-slate-950">{action.name}</p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    {action.userIntent}
-                  </p>
+                  <p className="mt-1 text-xs text-slate-500">{action.userIntent}</p>
                 </td>
-                <td className="px-5 py-4 text-slate-600">
-                  {action.actionType}
-                </td>
-                <td className="px-5 py-4 text-slate-600">
-                  {action.requiredFields?.length ?? 0}
-                </td>
+                <td className="px-5 py-4 text-slate-600">{action.actionType}</td>
+                <td className="px-5 py-4 text-slate-600">{action.requiredFields?.length ?? 0}</td>
                 <td className="px-5 py-4 text-slate-600">
                   {action.requiresHumanConfirmation ? "Required" : "No"}
                 </td>
@@ -555,13 +525,7 @@ function ActionsTable({ actions }: { actions: AgentAction[] }) {
   );
 }
 
-function TaskResults({
-  summary,
-  tasks,
-}: {
-  summary: TaskSummary;
-  tasks: AgentTaskResult[];
-}) {
+function TaskResults({ summary, tasks }: { summary: TaskSummary; tasks: AgentTaskResult[] }) {
   return (
     <section className="panel p-5">
       <SectionHeader
@@ -577,10 +541,7 @@ function TaskResults({
       </div>
       <div className="grid gap-3 md:grid-cols-2">
         {tasks.map((task) => (
-          <article
-            className="rounded-lg border border-slate-200 bg-slate-50 p-4"
-            key={task.taskId}
-          >
+          <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={task.taskId}>
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-semibold text-slate-950">{task.title}</h3>
               <span
@@ -590,9 +551,7 @@ function TaskResults({
               </span>
             </div>
             <div className="mt-3 flex items-center gap-3">
-              <span className="text-sm font-medium text-slate-700">
-                {task.score}/100
-              </span>
+              <span className="text-sm font-medium text-slate-700">{task.score}/100</span>
               <div className="h-2 flex-1 rounded-full bg-slate-200">
                 <div
                   className={`h-2 rounded-full ${progressFillClasses(task.score)}`}
@@ -600,18 +559,14 @@ function TaskResults({
                 />
               </div>
             </div>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              {task.explanation}
-            </p>
+            <p className="mt-3 text-sm leading-6 text-slate-600">{task.explanation}</p>
             {task.missingInformation.length > 0 ? (
               <p className="mt-3 text-xs text-slate-500">
                 Missing: {task.missingInformation.join(", ")}
               </p>
             ) : null}
             {task.recommendations.length > 0 ? (
-              <p className="mt-2 text-xs text-slate-500">
-                Next: {task.recommendations[0]}
-              </p>
+              <p className="mt-2 text-xs text-slate-500">Next: {task.recommendations[0]}</p>
             ) : null}
             {task.journeySteps && task.journeySteps.length > 0 ? (
               <div className="mt-4 space-y-2">
@@ -621,18 +576,14 @@ function TaskResults({
                     key={`${task.taskId}-${step.id}`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <p className="text-xs font-semibold uppercase text-slate-500">
-                        {step.title}
-                      </p>
+                      <p className="text-xs font-semibold uppercase text-slate-500">{step.title}</p>
                       <span
                         className={`shrink-0 rounded-md border px-2 py-0.5 text-[11px] font-semibold ${taskStatusClasses(step.status)}`}
                       >
                         {step.status}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs leading-5 text-slate-600">
-                      {step.explanation}
-                    </p>
+                    <p className="mt-1 text-xs leading-5 text-slate-600">{step.explanation}</p>
                   </div>
                 ))}
               </div>
@@ -649,9 +600,7 @@ function FormOperability({ forms }: { forms: FormOperabilityResult[] }) {
     return null;
   }
 
-  const average = Math.round(
-    forms.reduce((sum, form) => sum + form.score, 0) / forms.length,
-  );
+  const average = Math.round(forms.reduce((sum, form) => sum + form.score, 0) / forms.length);
 
   return (
     <section className="panel p-5">
@@ -665,22 +614,15 @@ function FormOperability({ forms }: { forms: FormOperabilityResult[] }) {
         <Metric label="Average score" value={`${average}/100`} />
         <Metric
           label="Human confirmation"
-          value={String(
-            forms.filter((form) => form.requiresHumanConfirmation).length,
-          )}
+          value={String(forms.filter((form) => form.requiresHumanConfirmation).length)}
         />
       </div>
       <div className="grid gap-3 md:grid-cols-2">
         {forms.map((form) => (
-          <article
-            className="rounded-lg border border-slate-200 bg-slate-50 p-4"
-            key={form.formId}
-          >
+          <article className="rounded-lg border border-slate-200 bg-slate-50 p-4" key={form.formId}>
             <div className="flex items-start justify-between gap-3">
               <div>
-                <h3 className="font-semibold text-slate-950">
-                  {form.purpose}
-                </h3>
+                <h3 className="font-semibold text-slate-950">{form.purpose}</h3>
                 <p className="mt-1 truncate text-xs text-cyan-700">
                   {form.actionUrl ?? form.sourceUrl}
                 </p>
@@ -714,7 +656,7 @@ function FormOperability({ forms }: { forms: FormOperabilityResult[] }) {
 
 function ScannedPages({
   formCount,
-  report,
+  report
 }: {
   formCount: number;
   report: AgentOperabilityReport;
@@ -730,14 +672,8 @@ function ScannedPages({
         <dl className="grid grid-cols-2 gap-3 text-sm">
           <Metric label="Pages" value={String(report.scan.pages.length)} />
           <Metric label="Forms" value={String(formCount)} />
-          <Metric
-            label="Robots"
-            value={report.scan.robotsTxt?.found ? "Found" : "Missing"}
-          />
-          <Metric
-            label="Sitemap"
-            value={report.scan.sitemap?.found ? "Found" : "Missing"}
-          />
+          <Metric label="Robots" value={report.scan.robotsTxt?.found ? "Found" : "Missing"} />
+          <Metric label="Sitemap" value={report.scan.sitemap?.found ? "Found" : "Missing"} />
         </dl>
         {report.scan.errors.length > 0 ? (
           <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
@@ -761,9 +697,7 @@ function ScannedPages({
               target="_blank"
             >
               <span className="font-medium text-slate-950">{label}</span>
-              <span className="mt-1 block truncate text-xs text-cyan-700">
-                {url}
-              </span>
+              <span className="mt-1 block truncate text-xs text-cyan-700">{url}</span>
             </a>
           ))}
         </div>

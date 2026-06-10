@@ -8,7 +8,7 @@ import { readJsonFile, resolvePath } from "./io.js";
 export async function loadTasks(
   core: CoreApi,
   tasksPath: string | undefined,
-  cwd: string,
+  cwd: string
 ): Promise<AgentTask[]> {
   if (tasksPath) {
     const resolvedPath = resolvePath(cwd, tasksPath);
@@ -22,22 +22,16 @@ export async function loadTasks(
 
 export function validateTasks(value: unknown, sourceName: string): AgentTask[] {
   if (!Array.isArray(value)) {
-    throw new CliError(
-      `Invalid task suite ${sourceName}: expected a JSON array of task objects.`,
-    );
+    throw new CliError(`Invalid task suite ${sourceName}: expected a JSON array of task objects.`);
   }
 
   return value.map((task, index) => validateTask(task, index, sourceName));
 }
 
-function validateTask(
-  value: unknown,
-  index: number,
-  sourceName: string,
-): AgentTask {
+function validateTask(value: unknown, index: number, sourceName: string): AgentTask {
   if (!isRecord(value)) {
     throw new CliError(
-      `Invalid task suite ${sourceName}: task at index ${index} must be an object.`,
+      `Invalid task suite ${sourceName}: task at index ${index} must be an object.`
     );
   }
 
@@ -45,30 +39,28 @@ function validateTask(
 
   if (typeof id !== "string" || id.trim() === "") {
     throw new CliError(
-      `Invalid task suite ${sourceName}: task at index ${index} is missing a non-empty string id.`,
+      `Invalid task suite ${sourceName}: task at index ${index} is missing a non-empty string id.`
     );
   }
 
   if (typeof title !== "string" || title.trim() === "") {
     throw new CliError(
-      `Invalid task suite ${sourceName}: task "${id}" is missing a non-empty string title.`,
+      `Invalid task suite ${sourceName}: task "${id}" is missing a non-empty string title.`
     );
   }
 
   if (typeof description !== "string" || description.trim() === "") {
     throw new CliError(
-      `Invalid task suite ${sourceName}: task "${id}" is missing a non-empty string description.`,
+      `Invalid task suite ${sourceName}: task "${id}" is missing a non-empty string description.`
     );
   }
 
   if (
     !Array.isArray(requiredEvidence) ||
-    requiredEvidence.some(
-      (entry) => typeof entry !== "string" || entry.trim() === "",
-    )
+    requiredEvidence.some((entry) => typeof entry !== "string" || entry.trim() === "")
   ) {
     throw new CliError(
-      `Invalid task suite ${sourceName}: task "${id}" must include requiredEvidence as a string array.`,
+      `Invalid task suite ${sourceName}: task "${id}" must include requiredEvidence as a string array.`
     );
   }
 
@@ -76,7 +68,7 @@ function validateTask(
     id,
     title,
     description,
-    requiredEvidence: [...requiredEvidence],
+    requiredEvidence: [...requiredEvidence]
   };
 }
 

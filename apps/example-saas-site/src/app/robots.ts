@@ -9,4 +9,3 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: "http://localhost:3001/sitemap.xml"
   };
 }
-

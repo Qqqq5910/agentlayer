@@ -1,4 +1,9 @@
-import type { AgentAction, AgentOperabilityReport, FormOperabilityResult, GeneratedArtifact } from "../schemas.js";
+import type {
+  AgentAction,
+  AgentOperabilityReport,
+  FormOperabilityResult,
+  GeneratedArtifact
+} from "../schemas.js";
 
 export function generateWebMcpSuggestions(report: AgentOperabilityReport): GeneratedArtifact[] {
   return [
@@ -15,9 +20,15 @@ export function generateWebMcpSuggestions(report: AgentOperabilityReport): Gener
   ];
 }
 
-function toolForAction(action: AgentAction, forms: readonly FormOperabilityResult[]): Record<string, unknown> {
+function toolForAction(
+  action: AgentAction,
+  forms: readonly FormOperabilityResult[]
+): Record<string, unknown> {
   const matchingForm = forms.find(
-    (form) => action.actionType === "form" && form.sourceUrl === action.sourceUrl && form.actionUrl === action.url
+    (form) =>
+      action.actionType === "form" &&
+      form.sourceUrl === action.sourceUrl &&
+      form.actionUrl === action.url
   );
   const fields = matchingForm?.fields ?? action.requiredFields ?? [];
 
@@ -77,7 +88,9 @@ function generateFormAnnotations(report: AgentOperabilityReport): string {
     lines.push(`Source: ${action.sourceUrl}`);
     lines.push(`Suggested purpose: ${action.description}`);
     lines.push(`Requires human confirmation: ${String(action.requiresHumanConfirmation)}`);
-    const matchingForm = report.forms.find((form) => form.sourceUrl === action.sourceUrl && form.actionUrl === action.url);
+    const matchingForm = report.forms.find(
+      (form) => form.sourceUrl === action.sourceUrl && form.actionUrl === action.url
+    );
     if (matchingForm) {
       lines.push(`Form operability score: ${matchingForm.score}`);
       lines.push(`Sensitivity: ${matchingForm.sensitivity}`);

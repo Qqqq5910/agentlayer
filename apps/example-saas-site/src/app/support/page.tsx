@@ -18,11 +18,12 @@ export default function SupportPage() {
         <div className="card p-5">
           <h2 className="text-2xl font-semibold">Support contact</h2>
           <p className="mt-3 leading-7 text-[#5e6b66]">Email: support@acmeflow.example</p>
-          <p className="mt-2 leading-7 text-[#5e6b66]">Help center topics: billing, integrations, API, SSO, webhooks.</p>
+          <p className="mt-2 leading-7 text-[#5e6b66]">
+            Help center topics: billing, integrations, API, SSO, webhooks.
+          </p>
         </div>
         <LeadForm purpose="support" />
       </section>
     </main>
   );
 }
-

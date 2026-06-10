@@ -12,9 +12,10 @@ export default function DemoReportPage() {
       <Navigation />
       <ReportView
         artifacts={demoArtifacts}
-        eyebrow="Local fixture report"
+        demoNotice="This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites."
+        eyebrow="Hosted demo fixture"
         report={demoReport}
-        title="AcmeFlow agent operability report"
+        title="AcmeFlow hosted demo report"
       />
     </>
   );

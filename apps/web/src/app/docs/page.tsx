@@ -14,7 +14,11 @@ const files: Array<[string, string, LucideIcon]> = [
   ["facts.json", "Evidence-backed facts with source URLs and confidence scores.", FileJson],
   ["actions.json", "Agent actions, form fields, confirmation rules, and sensitivity.", FileJson],
   ["tasks-report.json", "Pass, partial, or fail results for common AI-agent journeys.", FileJson],
-  [".well-known/agents.json", "Public machine-readable action manifest for browser agents.", FolderTree]
+  [
+    ".well-known/agents.json",
+    "Public machine-readable action manifest for browser agents.",
+    FolderTree
+  ]
 ];
 
 export default function DocsPage() {
@@ -23,18 +27,28 @@ export default function DocsPage() {
       <Navigation />
       <main className="container-shell py-10">
         <section className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">Generated files</p>
-          <h1 className="mt-3 text-4xl font-semibold text-slate-950">Publish artifacts agents can read and trust.</h1>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">
+            Generated files
+          </p>
+          <h1 className="mt-3 text-4xl font-semibold text-slate-950">
+            Publish artifacts agents can read and trust.
+          </h1>
           <p className="mt-4 text-base leading-7 text-slate-600">
-            AgentLayer turns a website scan into files that describe content, facts, actions, and task readiness. The MVP
-            works without auth, payments, teams, or an LLM API key.
+            AgentLayer turns a website scan into files that describe content, facts, actions, and
+            task readiness. The MVP works without auth, payments, teams, or an LLM API key.
           </p>
           <div className="mt-6 flex gap-3">
-            <Link className="inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 font-medium text-white" href="/scan">
+            <Link
+              className="inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 font-medium text-white"
+              href="/scan"
+            >
               Scan a site
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <Link className="inline-flex rounded-md border border-slate-200 bg-white px-4 py-2 font-medium" href="/demo">
+            <Link
+              className="inline-flex rounded-md border border-slate-200 bg-white px-4 py-2 font-medium"
+              href="/demo"
+            >
               View demo
             </Link>
           </div>

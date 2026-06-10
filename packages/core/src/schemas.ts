@@ -7,9 +7,7 @@ export const ScanOptionsSchema = z.object({
   respectRobotsTxt: z.boolean().default(true),
   allowLocal: z.boolean().default(false),
   crawler: z.enum(["local", "firecrawl"]).default("local"),
-  userAgent: z
-    .string()
-    .default("AgentLayerBot/0.1 (+https://github.com/Qqqq5910/agentlayer)")
+  userAgent: z.string().default("AgentLayerBot/0.1 (+https://github.com/Qqqq5910/agentlayer)")
 });
 
 export type ScanOptions = z.infer<typeof ScanOptionsSchema>;

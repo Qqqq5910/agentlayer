@@ -6,13 +6,13 @@ API docs
 
 # REST API and webhooks for AcmeFlow workflows.
 
-Developers can read account, workflow, event, and webhook resources. Production
-API credentials are managed by admins.
+Developers can read account, workflow, event, and webhook resources. Production API credentials are
+managed by admins.
 
 ## Authentication
 
-API requests use bearer tokens created by an account admin. Tokens can be scoped
-to read-only or workflow write access.
+API requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or
+workflow write access.
 
 ## Example endpoints
 

@@ -28,8 +28,7 @@ body {
   margin: 0;
   background:
     linear-gradient(rgba(17, 24, 39, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px),
-    var(--background);
+    linear-gradient(90deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px), var(--background);
   background-size: 36px 36px;
   color: var(--foreground);
   font-family:
@@ -77,11 +76,7 @@ textarea {
 .panel-dark {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  background: linear-gradient(
-    180deg,
-    rgba(17, 24, 39, 0.98),
-    rgba(15, 23, 42, 0.94)
-  );
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.98), rgba(15, 23, 42, 0.94));
   box-shadow: 0 22px 60px rgba(17, 24, 39, 0.22);
 }
 
@@ -102,18 +97,8 @@ textarea {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(
-      120deg,
-      rgba(20, 184, 166, 0.18) 0%,
-      rgba(20, 184, 166, 0) 42%
-    ),
-    linear-gradient(
-      135deg,
-      #101827 0%,
-      #142033 68%,
-      #edf4f7 68.2%,
-      #ffffff 100%
-    );
+    linear-gradient(120deg, rgba(20, 184, 166, 0.18) 0%, rgba(20, 184, 166, 0) 42%),
+    linear-gradient(135deg, #101827 0%, #142033 68%, #edf4f7 68.2%, #ffffff 100%);
   background-size:
     28px 28px,
     28px 28px,

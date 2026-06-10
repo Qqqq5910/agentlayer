@@ -20,18 +20,31 @@ export default function ScanPage() {
           <div className="panel p-5">
             <h2 className="font-semibold text-slate-950">What the scan returns</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <Row icon={<FileText size={16} />} text="Generated llms.txt, facts, actions, and task report files." />
-              <Row icon={<ShieldCheck size={16} />} text="Evidence-backed facts with confidence scores." />
-              <Row icon={<Route size={16} />} text="Detected actions and user journey success checks." />
+              <Row
+                icon={<FileText size={16} />}
+                text="Generated llms.txt, facts, actions, and task report files."
+              />
+              <Row
+                icon={<ShieldCheck size={16} />}
+                text="Evidence-backed facts with confidence scores."
+              />
+              <Row
+                icon={<Route size={16} />}
+                text="Detected actions and user journey success checks."
+              />
             </div>
           </div>
           <div className="panel p-5">
             <h2 className="font-semibold text-slate-950">Need a guaranteed report?</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              The AcmeFlow demo report uses fixture data and is always available. Hosted deployments should only enable
-              arbitrary remote scans after reviewing SSRF protections.
+              This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites.
+              Hosted deployments should only enable arbitrary remote scans after reviewing SSRF
+              protections.
             </p>
-            <Link className="mt-4 inline-flex rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white" href="/demo">
+            <Link
+              className="mt-4 inline-flex rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white"
+              href="/demo"
+            >
               Open demo report
             </Link>
           </div>

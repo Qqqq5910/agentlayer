@@ -1,4 +1,9 @@
-import type { ExtractedForm, FormOperabilityFinding, FormOperabilityResult, SiteScan } from "../schemas.js";
+import type {
+  ExtractedForm,
+  FormOperabilityFinding,
+  FormOperabilityResult,
+  SiteScan
+} from "../schemas.js";
 import { clamp, includesAny } from "../utils/text.js";
 
 type FindingStatus = FormOperabilityFinding["status"];
@@ -12,7 +17,9 @@ function evaluateForm(form: ExtractedForm): FormOperabilityResult {
   const effectiveActionUrl = declaredActionUrl ?? form.sourceUrl;
   const sensitivity = sensitivityFor(form);
   const requiresHumanConfirmation =
-    sensitivity !== "low" || form.method === "POST" || includesAny(form.purpose, ["contact", "demo", "quote", "support"]);
+    sensitivity !== "low" ||
+    form.method === "POST" ||
+    includesAny(form.purpose, ["contact", "demo", "quote", "support"]);
   const labels = labelStatus(form);
   const requiredFields = requiredFieldStatus(form);
   const findings: FormOperabilityFinding[] = [
@@ -28,11 +35,15 @@ function evaluateForm(form: ExtractedForm): FormOperabilityResult {
     finding(
       "method",
       form.method ? "pass" : "fail",
-      form.method ? `Form declares ${form.method} as its method.` : "Form does not declare a supported method."
+      form.method
+        ? `Form declares ${form.method} as its method.`
+        : "Form does not declare a supported method."
     ),
     finding(
       "field_names",
-      form.fields.length > 0 && form.fields.every((field) => field.name.trim().length > 0) ? "pass" : "fail",
+      form.fields.length > 0 && form.fields.every((field) => field.name.trim().length > 0)
+        ? "pass"
+        : "fail",
       form.fields.length > 0
         ? "Fields expose deterministic names."
         : "No named fields were extracted from the form."
@@ -58,7 +69,9 @@ function evaluateForm(form: ExtractedForm): FormOperabilityResult {
     finding(
       "submit_text",
       form.submitText ? "pass" : "fail",
-      form.submitText ? `Submit control text is "${form.submitText}".` : "No submit control text was extracted."
+      form.submitText
+        ? `Submit control text is "${form.submitText}".`
+        : "No submit control text was extracted."
     ),
     finding(
       "inferred_purpose",
@@ -140,11 +153,33 @@ function sensitivityFor(form: ExtractedForm): FormOperabilityResult["sensitivity
     form.fields.map((field) => `${field.name} ${field.type} ${field.label ?? ""}`).join(" ")
   ].join(" ");
 
-  if (includesAny(context, ["payment", "purchase", "delete", "cancel", "refund", "billing", "checkout", "password"])) {
+  if (
+    includesAny(context, [
+      "payment",
+      "purchase",
+      "delete",
+      "cancel",
+      "refund",
+      "billing",
+      "checkout",
+      "password"
+    ])
+  ) {
     return "high";
   }
 
-  if (includesAny(context, ["demo", "sales", "quote", "contact", "support", "submit", "email", "phone"])) {
+  if (
+    includesAny(context, [
+      "demo",
+      "sales",
+      "quote",
+      "contact",
+      "support",
+      "submit",
+      "email",
+      "phone"
+    ])
+  ) {
     return "medium";
   }
 

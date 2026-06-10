@@ -1,40 +1,36 @@
 import type { AgentOperabilityReport, GeneratedArtifact } from "../schemas.js";
 
-export function generateWellKnownArtifacts(
-  report: AgentOperabilityReport,
-): GeneratedArtifact[] {
+export function generateWellKnownArtifacts(report: AgentOperabilityReport): GeneratedArtifact[] {
   return [
     {
       path: ".well-known/agents.json",
       mediaType: "application/json",
-      content: `${JSON.stringify(generateAgentsManifest(report), null, 2)}\n`,
+      content: `${JSON.stringify(generateAgentsManifest(report), null, 2)}\n`
     },
     {
       path: ".well-known/mcp.json",
       mediaType: "application/json",
-      content: `${JSON.stringify(generateMcpDraft(report), null, 2)}\n`,
+      content: `${JSON.stringify(generateMcpDraft(report), null, 2)}\n`
     },
     {
       path: ".well-known/mcp/server-card.json",
       mediaType: "application/json",
-      content: `${JSON.stringify(generateMcpServerCardDraft(report), null, 2)}\n`,
+      content: `${JSON.stringify(generateMcpServerCardDraft(report), null, 2)}\n`
     },
     {
       path: ".well-known/api-catalog",
       mediaType: "application/json",
-      content: `${JSON.stringify(generateApiCatalogDraft(report), null, 2)}\n`,
+      content: `${JSON.stringify(generateApiCatalogDraft(report), null, 2)}\n`
     },
     {
       path: ".well-known/agent-skills/index.json",
       mediaType: "application/json",
-      content: `${JSON.stringify(generateAgentSkillsIndex(report), null, 2)}\n`,
-    },
+      content: `${JSON.stringify(generateAgentSkillsIndex(report), null, 2)}\n`
+    }
   ];
 }
 
-export function generateAgentsManifest(
-  report: AgentOperabilityReport,
-): Record<string, unknown> {
+export function generateAgentsManifest(report: AgentOperabilityReport): Record<string, unknown> {
   const root = report.site.rootUrl.replace(/\/$/, "");
 
   return {
@@ -48,7 +44,7 @@ export function generateAgentsManifest(
     site: {
       name: report.site.name,
       rootUrl: report.site.rootUrl,
-      summary: report.site.summary,
+      summary: report.site.summary
     },
     urls: {
       llmsTxt: `${root}/llms.txt`,
@@ -60,21 +56,19 @@ export function generateAgentsManifest(
       mcpServerCard: `${root}/.well-known/mcp/server-card.json`,
       agentSkills: `${root}/.well-known/agent-skills/index.json`,
       policies: firstPageUrl(report, ["privacy", "terms"]),
-      contact: firstPageUrl(report, ["contact", "demo", "support"]),
+      contact: firstPageUrl(report, ["contact", "demo", "support"])
     },
     actions: report.actions.map((action) => ({
       name: action.name,
       url: action.url,
       actionType: action.actionType,
       requiresHumanConfirmation: action.requiresHumanConfirmation,
-      sensitivity: action.sensitivity,
-    })),
+      sensitivity: action.sensitivity
+    }))
   };
 }
 
-export function generateMcpDraft(
-  report: AgentOperabilityReport,
-): Record<string, unknown> {
+export function generateMcpDraft(report: AgentOperabilityReport): Record<string, unknown> {
   const root = report.site.rootUrl.replace(/\/$/, "");
 
   return {
@@ -94,22 +88,22 @@ export function generateMcpDraft(
     suggestedResources: [
       {
         name: "llms.txt",
-        url: new URL("/llms.txt", report.site.rootUrl).toString(),
+        url: new URL("/llms.txt", report.site.rootUrl).toString()
       },
       {
         name: "facts.json",
-        url: new URL("/facts.json", report.site.rootUrl).toString(),
+        url: new URL("/facts.json", report.site.rootUrl).toString()
       },
       {
         name: "actions.json",
-        url: new URL("/actions.json", report.site.rootUrl).toString(),
-      },
-    ],
+        url: new URL("/actions.json", report.site.rootUrl).toString()
+      }
+    ]
   };
 }
 
 export function generateMcpServerCardDraft(
-  report: AgentOperabilityReport,
+  report: AgentOperabilityReport
 ): Record<string, unknown> {
   const root = report.site.rootUrl.replace(/\/$/, "");
 
@@ -125,28 +119,28 @@ export function generateMcpServerCardDraft(
     server: {
       name: report.site.name,
       url: report.site.rootUrl,
-      description: report.site.summary,
+      description: report.site.summary
     },
     discovery: {
       agentsJson: `${root}/.well-known/agents.json`,
       llmsTxt: `${root}/llms.txt`,
       llmsFullTxt: `${root}/llms-full.txt`,
       apiCatalog: `${root}/.well-known/api-catalog`,
-      agentSkills: `${root}/.well-known/agent-skills/index.json`,
+      agentSkills: `${root}/.well-known/agent-skills/index.json`
     },
     resources: [
       {
         name: "site-profile",
         type: "application/json",
-        url: `${root}/site-profile.json`,
+        url: `${root}/site-profile.json`
       },
       { name: "facts", type: "application/json", url: `${root}/facts.json` },
       {
         name: "actions",
         type: "application/json",
-        url: `${root}/actions.json`,
+        url: `${root}/actions.json`
       },
-      { name: "report", type: "text/html", url: `${root}/report.html` },
+      { name: "report", type: "text/html", url: `${root}/report.html` }
     ],
     capabilities: {
       tools: report.actions.map((action) => ({
@@ -154,17 +148,15 @@ export function generateMcpServerCardDraft(
         description: action.description,
         sourceUrl: action.sourceUrl,
         requiresHumanConfirmation: action.requiresHumanConfirmation,
-        sensitivity: action.sensitivity,
-      })),
-    },
+        sensitivity: action.sensitivity
+      }))
+    }
   };
 }
 
-export function generateApiCatalogDraft(
-  report: AgentOperabilityReport,
-): Record<string, unknown> {
+export function generateApiCatalogDraft(report: AgentOperabilityReport): Record<string, unknown> {
   const apiPages = report.scan.pages.filter(
-    (page) => page.pageType === "api_docs" || /api/i.test(page.finalUrl),
+    (page) => page.pageType === "api_docs" || /api/i.test(page.finalUrl)
   );
 
   return {
@@ -178,30 +170,26 @@ export function generateApiCatalogDraft(
       "Generated by AgentLayer from public pages. Review, complete, and validate this catalog before treating it as an authoritative API description.",
     site: {
       name: report.site.name,
-      rootUrl: report.site.rootUrl,
+      rootUrl: report.site.rootUrl
     },
     apis: apiPages.map((page) => ({
       title: page.title ?? page.headings.h1[0] ?? "API documentation",
       url: page.finalUrl,
-      description: page.description ?? firstTextSnippet(page.visibleText),
+      description: page.description ?? firstTextSnippet(page.visibleText)
     })),
     relatedActions: report.actions
       .filter((action) =>
-        /api|docs|developer/i.test(
-          `${action.name} ${action.description} ${action.url}`,
-        ),
+        /api|docs|developer/i.test(`${action.name} ${action.description} ${action.url}`)
       )
       .map((action) => ({
         name: action.name,
         url: action.url,
-        sourceUrl: action.sourceUrl,
-      })),
+        sourceUrl: action.sourceUrl
+      }))
   };
 }
 
-export function generateAgentSkillsIndex(
-  report: AgentOperabilityReport,
-): Record<string, unknown> {
+export function generateAgentSkillsIndex(report: AgentOperabilityReport): Record<string, unknown> {
   return {
     schema: "agent-skills-index-draft",
     generatedBy: "AgentLayer",
@@ -217,8 +205,8 @@ export function generateAgentSkillsIndex(
       url: action.url,
       sourceUrl: action.sourceUrl,
       requiresHumanConfirmation: action.requiresHumanConfirmation,
-      sensitivity: action.sensitivity,
-    })),
+      sensitivity: action.sensitivity
+    }))
   };
 }
 
@@ -232,20 +220,14 @@ function skillNameForAction(actionName: string): string {
     read_terms: "read_terms",
     request_support: "request_support",
     search_docs: "search_docs",
-    view_pricing: "find_pricing",
+    view_pricing: "find_pricing"
   };
 
   return names[actionName] ?? actionName;
 }
 
-function firstPageUrl(
-  report: AgentOperabilityReport,
-  pageTypes: readonly string[],
-): string | null {
-  return (
-    report.scan.pages.find((page) => pageTypes.includes(page.pageType))
-      ?.finalUrl ?? null
-  );
+function firstPageUrl(report: AgentOperabilityReport, pageTypes: readonly string[]): string | null {
+  return report.scan.pages.find((page) => pageTypes.includes(page.pageType))?.finalUrl ?? null;
 }
 
 function firstTextSnippet(text: string): string | null {

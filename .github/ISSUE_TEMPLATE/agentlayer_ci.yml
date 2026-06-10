@@ -1,0 +1,66 @@
+name: AgentLayer CI roadmap item
+description: Track planned v0.2 CI foundation work without claiming implementation.
+title: "[AgentLayer CI]: "
+labels: ["agentlayer-ci", "roadmap", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for future AgentLayer CI foundation work. This should describe planned baseline, comparison, GitHub Action, score diff, or blocking task failure behavior, not a completed feature claim.
+  - type: dropdown
+    id: ci_area
+    attributes:
+      label: CI area
+      options:
+        - Baseline report
+        - PR regression check
+        - GitHub Action
+        - Score diff
+        - Blocking task failures
+        - Documentation
+        - Fixtures
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What v0.2 CI foundation behavior should this issue define or prepare?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_scope
+    attributes:
+      label: Proposed scope
+      description:
+        Keep this limited to docs, templates, schemas, fixtures, or thin wrappers unless
+        implementation is explicitly planned.
+      placeholder: |
+        - Define ...
+        - Document ...
+        - Add placeholder ...
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description:
+        List product claims, hosted service behavior, or broad automation that this issue should not
+        cover.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance notes
+      description: What should be true when this roadmap item is complete?
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundaries
+      options:
+        - label:
+            This issue is scoped as roadmap or foundation work, not a claim that AgentLayer CI is
+            implemented.
+          required: true
+        - label: This issue does not require private URLs, credentials, secrets, or customer data.
+          required: true

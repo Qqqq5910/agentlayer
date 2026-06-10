@@ -1,5 +1,12 @@
 import type { ExtractedFact, PageSnapshot, SiteProfile, SiteScan } from "../schemas.js";
-import { dedupeBy, includesAny, normalizeWhitespace, slugify, snippetAround, truncateText } from "../utils/text.js";
+import {
+  dedupeBy,
+  includesAny,
+  normalizeWhitespace,
+  slugify,
+  snippetAround,
+  truncateText
+} from "../utils/text.js";
 
 const FACT_UPDATED_NOW = () => new Date().toISOString();
 
@@ -8,7 +15,11 @@ export function buildSiteProfile(scan: SiteScan): SiteProfile {
   const companyName = findCompanyName(scan) ?? new URL(scan.rootUrl).hostname;
   const summary =
     homepage?.description ??
-    snippetAround(homepage?.visibleText ?? "", ["platform", "software", "product", "service"], 240) ??
+    snippetAround(
+      homepage?.visibleText ?? "",
+      ["platform", "software", "product", "service"],
+      240
+    ) ??
     `AgentLayer profile for ${companyName}.`;
 
   return {
@@ -107,7 +118,11 @@ function extractPageFacts(
     });
   }
 
-  if (page.pageType === "privacy" || page.pageType === "terms" || includesAny(page.finalUrl, ["privacy", "terms"])) {
+  if (
+    page.pageType === "privacy" ||
+    page.pageType === "terms" ||
+    includesAny(page.finalUrl, ["privacy", "terms"])
+  ) {
     add({
       type: "policy",
       label: page.pageType === "privacy" ? "Privacy policy" : "Terms or legal policy",
@@ -125,7 +140,10 @@ function extractPageFacts(
         label: form.purpose,
         value: form.fields.map((field) => field.name).join(", ") || form.submitText || form.purpose,
         sourceUrl: page.finalUrl,
-        sourceText: form.submitText ?? page.headings.h1[0] ?? sourceText(["contact", "demo", "sales", "support"]),
+        sourceText:
+          form.submitText ??
+          page.headings.h1[0] ??
+          sourceText(["contact", "demo", "sales", "support"]),
         confidence: 0.8
       });
     }
@@ -144,7 +162,9 @@ function extractPageFacts(
 
   if (page.pageType === "integrations") {
     const integrations = extractIntegrationNames(page);
-    for (const integration of integrations.length > 0 ? integrations : [page.title ?? "Integrations"]) {
+    for (const integration of integrations.length > 0
+      ? integrations
+      : [page.title ?? "Integrations"]) {
       add({
         type: "integration",
         label: "Integration",
@@ -164,7 +184,13 @@ function extractPageFacts(
         label: "Target users",
         value: target,
         sourceUrl: page.finalUrl,
-        sourceText: sourceText(["for teams", "for developers", "for enterprises", "use cases", "built for"]),
+        sourceText: sourceText([
+          "for teams",
+          "for developers",
+          "for enterprises",
+          "use cases",
+          "built for"
+        ]),
         confidence: 0.6
       });
     }
@@ -205,7 +231,10 @@ function findOrganizationName(jsonLd: readonly unknown[]): string | null {
     const type = record["@type"];
     const types = Array.isArray(type) ? type.map(String) : [String(type ?? "")];
     const name = typeof record.name === "string" ? normalizeWhitespace(record.name) : "";
-    if (name && types.some((item) => /Organization|LocalBusiness|Corporation|SoftwareApplication/i.test(item))) {
+    if (
+      name &&
+      types.some((item) => /Organization|LocalBusiness|Corporation|SoftwareApplication/i.test(item))
+    ) {
       return name;
     }
 
@@ -232,7 +261,9 @@ function buildKeyPages(pages: readonly PageSnapshot[]): Record<string, string> {
 }
 
 function pricingValue(page: PageSnapshot): string {
-  const priceMatches = page.visibleText.match(/(?:\$|USD\s*)\d+(?:[,.]\d+)?(?:\s*\/\s*(?:mo|month|user|seat|year))?/gi);
+  const priceMatches = page.visibleText.match(
+    /(?:\$|USD\s*)\d+(?:[,.]\d+)?(?:\s*\/\s*(?:mo|month|user|seat|year))?/gi
+  );
   if (priceMatches && priceMatches.length > 0) {
     return priceMatches.slice(0, 5).join(", ");
   }
@@ -250,16 +281,38 @@ function extractPlanNames(page: PageSnapshot): string[] {
     if (clean.length > 48) {
       return false;
     }
-    return !includesAny(clean, ["pricing", "frequently", "faq", "compare", "feature", "differences", "included"]);
+    return !includesAny(clean, [
+      "pricing",
+      "frequently",
+      "faq",
+      "compare",
+      "feature",
+      "differences",
+      "included"
+    ]);
   });
 
   return dedupeBy(candidates.slice(0, 8), (value) => value);
 }
 
 function extractIntegrationNames(page: PageSnapshot): string[] {
-  const known = ["Slack", "Google", "Salesforce", "HubSpot", "Zapier", "GitHub", "Notion", "Jira", "Stripe"];
-  const fromKnown = known.filter((name) => page.visibleText.toLowerCase().includes(name.toLowerCase()));
-  const fromHeadings = [...page.headings.h2, ...page.headings.h3].filter((heading) => heading.length <= 40);
+  const known = [
+    "Slack",
+    "Google",
+    "Salesforce",
+    "HubSpot",
+    "Zapier",
+    "GitHub",
+    "Notion",
+    "Jira",
+    "Stripe"
+  ];
+  const fromKnown = known.filter((name) =>
+    page.visibleText.toLowerCase().includes(name.toLowerCase())
+  );
+  const fromHeadings = [...page.headings.h2, ...page.headings.h3].filter(
+    (heading) => heading.length <= 40
+  );
   return dedupeBy([...fromKnown, ...fromHeadings].slice(0, 10), (value) => value);
 }
 

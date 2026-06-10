@@ -9,7 +9,10 @@ export const metadata = {
 export default function DocsPage() {
   const docs = [
     ["Getting started", "Create your first onboarding workflow and invite teammates."],
-    ["Workflow templates", "Use repeatable playbooks for implementation, renewals, and escalations."],
+    [
+      "Workflow templates",
+      "Use repeatable playbooks for implementation, renewals, and escalations."
+    ],
     ["Roles and permissions", "Configure admin, operator, viewer, and auditor roles."],
     ["API documentation", "Use REST APIs and webhooks to sync workflow events."]
   ];
@@ -26,7 +29,10 @@ export default function DocsPage() {
           <article className="card p-5" key={title}>
             <h2 className="text-xl font-semibold">{title}</h2>
             <p className="mt-3 leading-7 text-[#5e6b66]">{text}</p>
-            <Link className="mt-4 inline-block font-semibold text-[#176b53]" href={title === "API documentation" ? "/docs/api" : "/docs"}>
+            <Link
+              className="mt-4 inline-block font-semibold text-[#176b53]"
+              href={title === "API documentation" ? "/docs/api" : "/docs"}
+            >
               Read more
             </Link>
           </article>
@@ -35,4 +41,3 @@ export default function DocsPage() {
     </main>
   );
 }
-

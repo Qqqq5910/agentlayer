@@ -27,4 +27,3 @@ pnpm build
 2. Add or update tests for behavioral changes.
 3. Run `pnpm typecheck`, `pnpm test`, and `pnpm build`.
 4. Document known limitations clearly.
-

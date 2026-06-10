@@ -12,10 +12,16 @@ export function Navigation() {
           AgentLayer
         </Link>
         <nav className="flex items-center gap-1 text-sm text-slate-600">
-          <Link className="rounded-md px-3 py-2 hover:bg-slate-100 hover:text-slate-950" href="/docs">
+          <Link
+            className="rounded-md px-3 py-2 hover:bg-slate-100 hover:text-slate-950"
+            href="/docs"
+          >
             Docs
           </Link>
-          <Link className="rounded-md px-3 py-2 hover:bg-slate-100 hover:text-slate-950" href="/demo">
+          <Link
+            className="rounded-md px-3 py-2 hover:bg-slate-100 hover:text-slate-950"
+            href="/demo"
+          >
             Demo
           </Link>
           <Link

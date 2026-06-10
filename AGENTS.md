@@ -12,4 +12,3 @@ Guidance for future coding agents working on AgentLayer.
 - Prefer clear Zod schemas and source evidence over fuzzy free text.
 - Run tests before finalizing changes.
 - Keep scanner, extractor, generator, evaluator, CLI, and web app boundaries clear.
-

@@ -9,7 +9,9 @@ export function generateLlmsFullTxt(report: AgentOperabilityReport): string {
   lines.push(`Generated: ${report.generatedAt}`);
   lines.push(`Root URL: ${report.site.rootUrl}`);
   lines.push("");
-  lines.push("This file contains source-linked Markdown snapshots of important public pages discovered by AgentLayer.");
+  lines.push(
+    "This file contains source-linked Markdown snapshots of important public pages discovered by AgentLayer."
+  );
   lines.push("");
 
   for (const page of orderedPages(report.scan.pages)) {
@@ -26,7 +28,18 @@ export function generateLlmsFullTxt(report: AgentOperabilityReport): string {
 }
 
 function orderedPages(pages: readonly PageSnapshot[]): PageSnapshot[] {
-  const priority = ["home", "pricing", "docs", "api_docs", "security", "integrations", "privacy", "terms", "contact", "demo"];
+  const priority = [
+    "home",
+    "pricing",
+    "docs",
+    "api_docs",
+    "security",
+    "integrations",
+    "privacy",
+    "terms",
+    "contact",
+    "demo"
+  ];
   return [...pages]
     .filter((page) => page.markdown.trim().length > 0 || page.visibleText.trim().length > 0)
     .sort((left, right) => {

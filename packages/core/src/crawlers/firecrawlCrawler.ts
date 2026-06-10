@@ -57,12 +57,17 @@ export async function scanWithFirecrawlCrawler(options: ScanOptions): Promise<Si
       document.metadata?.sourceURL ?? document.sourceURL ?? document.url ?? options.rootUrl,
       options.rootUrl
     );
-    const finalUrl = normalizeUrl(document.url ?? document.metadata?.url ?? requestedUrl ?? options.rootUrl, options.rootUrl);
+    const finalUrl = normalizeUrl(
+      document.url ?? document.metadata?.url ?? requestedUrl ?? options.rootUrl,
+      options.rootUrl
+    );
 
     if (
       !requestedUrl ||
       !finalUrl ||
-      !(await isSafeCrawlUrlResolved(requestedUrl, options.rootUrl, { allowLocal: options.allowLocal })) ||
+      !(await isSafeCrawlUrlResolved(requestedUrl, options.rootUrl, {
+        allowLocal: options.allowLocal
+      })) ||
       !(await isSafeCrawlUrlResolved(finalUrl, options.rootUrl, { allowLocal: options.allowLocal }))
     ) {
       errors.push({
@@ -100,7 +105,10 @@ export async function scanWithFirecrawlCrawler(options: ScanOptions): Promise<Si
   });
 }
 
-async function startFirecrawlCrawl(options: ScanOptions, apiKey: string): Promise<FirecrawlResponse> {
+async function startFirecrawlCrawl(
+  options: ScanOptions,
+  apiKey: string
+): Promise<FirecrawlResponse> {
   const response = await fetch(FIRECRAWL_API_URL, {
     method: "POST",
     headers: {
@@ -120,7 +128,10 @@ async function startFirecrawlCrawl(options: ScanOptions, apiKey: string): Promis
   return parseFirecrawlResponse(response);
 }
 
-async function resolveFirecrawlDocuments(response: FirecrawlResponse, apiKey: string): Promise<FirecrawlDocument[]> {
+async function resolveFirecrawlDocuments(
+  response: FirecrawlResponse,
+  apiKey: string
+): Promise<FirecrawlDocument[]> {
   const immediate = getFirecrawlDocuments(response);
   if (immediate.length > 0) {
     return immediate;

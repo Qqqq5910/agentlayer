@@ -18,8 +18,8 @@ export default function ApiDocsPage() {
         <div className="card p-5">
           <h2 className="text-2xl font-semibold">Authentication</h2>
           <p className="mt-3 leading-7 text-[#5e6b66]">
-            API requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or workflow
-            write access.
+            API requests use bearer tokens created by an account admin. Tokens can be scoped to
+            read-only or workflow write access.
           </p>
         </div>
         <div className="card p-5">
@@ -32,4 +32,3 @@ export default function ApiDocsPage() {
     </main>
   );
 }
-

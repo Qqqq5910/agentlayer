@@ -25,7 +25,9 @@ export function scoreSite(
     taskResults.length > 0
       ? Math.round(taskResults.reduce((total, task) => total + task.score, 0) / taskResults.length)
       : 0;
-  const overall = Math.round(readability * 0.25 + trustability * 0.25 + actionability * 0.3 + taskSuccess * 0.2);
+  const overall = Math.round(
+    readability * 0.25 + trustability * 0.25 + actionability * 0.3 + taskSuccess * 0.2
+  );
 
   return {
     readability,
@@ -62,7 +64,9 @@ export function generateRecommendations(
       title: `Improve task: ${task.title}`,
       severity: task.status === "fail" ? "high" : "medium",
       whyItMatters: task.explanation,
-      howToFix: task.recommendations[0] ?? "Add clearer page structure, headings, and source-backed content.",
+      howToFix:
+        task.recommendations[0] ??
+        "Add clearer page structure, headings, and source-backed content.",
       affectedTasks: [task.taskId],
       suggestedArtifact: task.taskId.includes("docs") ? "llms-full.txt" : undefined
     });
@@ -73,7 +77,8 @@ export function generateRecommendations(
       title: "Expose sitemap.xml",
       severity: "medium",
       whyItMatters: "Sitemaps help deterministic crawlers discover important pages quickly.",
-      howToFix: "Publish a sitemap.xml that includes key product, pricing, docs, trust, and policy pages.",
+      howToFix:
+        "Publish a sitemap.xml that includes key product, pricing, docs, trust, and policy pages.",
       affectedTasks: [],
       suggestedArtifact: "sitemap.xml"
     });
@@ -83,7 +88,8 @@ export function generateRecommendations(
     add({
       title: "Publish robots.txt",
       severity: "low",
-      whyItMatters: "robots.txt communicates crawl boundaries for agents and other automated clients.",
+      whyItMatters:
+        "robots.txt communicates crawl boundaries for agents and other automated clients.",
       howToFix: "Add a robots.txt file that permits safe public pages and references your sitemap.",
       affectedTasks: [],
       suggestedArtifact: "robots.txt"
@@ -94,8 +100,10 @@ export function generateRecommendations(
     add({
       title: "Add source-backed facts",
       severity: "high",
-      whyItMatters: "Agents need verifiable claims with source URLs instead of inferred marketing copy.",
-      howToFix: "Publish facts.json and ensure important claims are visible on stable public pages.",
+      whyItMatters:
+        "Agents need verifiable claims with source URLs instead of inferred marketing copy.",
+      howToFix:
+        "Publish facts.json and ensure important claims are visible on stable public pages.",
       affectedTasks: [],
       suggestedArtifact: "facts.json"
     });
@@ -116,7 +124,8 @@ export function generateRecommendations(
     add({
       title: "Review and publish the agent action manifest",
       severity: "medium",
-      whyItMatters: "The scan found operable actions, but agents still need a stable public manifest instead of re-inferring forms from HTML.",
+      whyItMatters:
+        "The scan found operable actions, but agents still need a stable public manifest instead of re-inferring forms from HTML.",
       howToFix:
         "Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest.",
       affectedTasks: taskResults
@@ -131,10 +140,17 @@ export function generateRecommendations(
     add({
       title: "Improve form operability",
       severity: weakForms.some((form) => form.score < 50) ? "high" : "medium",
-      whyItMatters: "Agents need stable form actions, labeled fields, required-field markers, and confirmation rules before they can safely prepare submissions.",
-      howToFix: weakForms[0]?.recommendations[0] ?? "Review form-operability.json and add missing labels, names, required markers, and submit text.",
+      whyItMatters:
+        "Agents need stable form actions, labeled fields, required-field markers, and confirmation rules before they can safely prepare submissions.",
+      howToFix:
+        weakForms[0]?.recommendations[0] ??
+        "Review form-operability.json and add missing labels, names, required markers, and submit text.",
       affectedTasks: taskResults
-        .filter((task) => task.journeySteps.some((step) => step.id === "understand_required_fields" && step.status !== "pass"))
+        .filter((task) =>
+          task.journeySteps.some(
+            (step) => step.id === "understand_required_fields" && step.status !== "pass"
+          )
+        )
         .map((task) => task.taskId),
       suggestedArtifact: "form-operability.json"
     });
@@ -145,7 +161,17 @@ export function generateRecommendations(
 
 function scoreReadability(scan: SiteScan): number {
   const pageTypes = new Set(scan.pages.map((page) => page.pageType));
-  const importantTypes = ["home", "pricing", "docs", "api_docs", "security", "privacy", "terms", "contact", "support"];
+  const importantTypes = [
+    "home",
+    "pricing",
+    "docs",
+    "api_docs",
+    "security",
+    "privacy",
+    "terms",
+    "contact",
+    "support"
+  ];
   const importantFound = importantTypes.filter((type) => pageTypes.has(type)).length;
   const pagesWithMarkdown = scan.pages.filter((page) => page.markdown.trim().length > 0).length;
   const pagesWithTitles = scan.pages.filter(
@@ -173,9 +199,13 @@ function scoreTrustability(scan: SiteScan, facts: readonly ExtractedFact[]): num
   const sourcedFacts = facts.filter((fact) => fact.sourceUrl && fact.confidence > 0).length;
   const averageConfidence =
     facts.length > 0 ? facts.reduce((total, fact) => total + fact.confidence, 0) / facts.length : 0;
-  const hasPolicies = factTypes.has("policy") || scan.pages.some((page) => ["privacy", "terms"].includes(page.pageType));
-  const hasSecurity = factTypes.has("security") || scan.pages.some((page) => page.pageType === "security");
-  const hasPricing = factTypes.has("pricing") || scan.pages.some((page) => page.pageType === "pricing");
+  const hasPolicies =
+    factTypes.has("policy") ||
+    scan.pages.some((page) => ["privacy", "terms"].includes(page.pageType));
+  const hasSecurity =
+    factTypes.has("security") || scan.pages.some((page) => page.pageType === "security");
+  const hasPricing =
+    factTypes.has("pricing") || scan.pages.some((page) => page.pageType === "pricing");
 
   return clamp(
     Math.round(
@@ -192,10 +222,15 @@ function scoreTrustability(scan: SiteScan, facts: readonly ExtractedFact[]): num
   );
 }
 
-function scoreActionability(actions: readonly AgentAction[], forms: readonly FormOperabilityResult[]): number {
+function scoreActionability(
+  actions: readonly AgentAction[],
+  forms: readonly FormOperabilityResult[]
+): number {
   const names = new Set(actions.map((action) => action.name));
   const formActions = actions.filter((action) => action.actionType === "form");
-  const fieldsExtractable = formActions.length === 0 || formActions.every((action) => (action.requiredFields?.length ?? 0) > 0);
+  const fieldsExtractable =
+    formActions.length === 0 ||
+    formActions.every((action) => (action.requiredFields?.length ?? 0) > 0);
   const sensitivityLabeled = actions.every((action) => Boolean(action.sensitivity));
   const humanConfirmation = actions
     .filter((action) => action.sensitivity !== "low" || action.actionType === "form")
@@ -219,7 +254,9 @@ function scoreActionability(actions: readonly AgentAction[], forms: readonly For
 }
 
 function hasLlmsTxt(scan: SiteScan): boolean {
-  return scan.pages.some((page) => page.pageType === "llms" || includesAny(page.finalUrl, ["/llms.txt"]));
+  return scan.pages.some(
+    (page) => page.pageType === "llms" || includesAny(page.finalUrl, ["/llms.txt"])
+  );
 }
 
 function hasPublicPath(scan: SiteScan, pathname: string): boolean {

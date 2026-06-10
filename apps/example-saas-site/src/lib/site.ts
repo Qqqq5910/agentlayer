@@ -48,4 +48,3 @@ export const apiExamples = [
   "GET /v1/events",
   "POST /v1/webhooks/test"
 ];
-

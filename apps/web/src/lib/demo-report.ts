@@ -6,18 +6,13 @@ import type {
   FormOperabilityResult,
   GeneratedArtifact,
   PageSnapshot,
-  Recommendation,
+  Recommendation
 } from "@/lib/report-types";
 
 const scannedAt = "2026-06-10T09:20:00.000Z";
 const rootUrl = "https://acmeflow.example";
 
-function page(
-  path: string,
-  pageType: string,
-  title: string,
-  h1: string,
-): PageSnapshot {
+function page(path: string, pageType: string, title: string, h1: string): PageSnapshot {
   const url = `${rootUrl}${path}`;
 
   return {
@@ -31,13 +26,13 @@ function page(
     headings: {
       h1: [h1],
       h2: ["Agent-readable overview", "Customer evidence", "Next actions"],
-      h3: [],
+      h3: []
     },
     links: [
       { href: `${rootUrl}/pricing`, text: "Pricing", isExternal: false },
       { href: `${rootUrl}/docs`, text: "Docs", isExternal: false },
       { href: `${rootUrl}/security`, text: "Security", isExternal: false },
-      { href: `${rootUrl}/contact`, text: "Contact sales", isExternal: false },
+      { href: `${rootUrl}/contact`, text: "Contact sales", isExternal: false }
     ],
     forms:
       path === "/contact"
@@ -52,36 +47,36 @@ function page(
                   name: "email",
                   type: "email",
                   label: "Work email",
-                  required: true,
+                  required: true
                 },
                 {
                   name: "company",
                   type: "text",
                   label: "Company",
-                  required: true,
+                  required: true
                 },
                 {
                   name: "team_size",
                   type: "select",
                   label: "Team size",
-                  required: false,
-                },
+                  required: false
+                }
               ],
               submitText: "Request demo",
-              sourceUrl: url,
-            },
+              sourceUrl: url
+            }
           ]
         : [],
     jsonLd: [],
     openGraph: {
       "og:site_name": "AcmeFlow",
-      "og:title": title,
+      "og:title": title
     },
     visibleText: `${h1}. AcmeFlow helps revenue teams qualify accounts, compare plan information, read docs, and contact support.`,
     markdown: `# ${h1}\n\nAcmeFlow helps revenue teams qualify accounts and operate customer journeys.`,
     emails: path === "/support" ? ["support@acmeflow.example"] : [],
     socialLinks: ["https://www.linkedin.com/company/acmeflow"],
-    fetchedAt: scannedAt,
+    fetchedAt: scannedAt
   };
 }
 
@@ -94,7 +89,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: rootUrl,
     sourceText: "AcmeFlow revenue workspace",
     confidence: 0.92,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-product",
@@ -104,18 +99,17 @@ const facts: ExtractedFact[] = [
     sourceUrl: rootUrl,
     sourceText: "Qualify accounts, route leads, and sync customer data.",
     confidence: 0.82,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-pricing-growth",
     type: "plan",
     label: "Growth plan",
-    value:
-      "Growth plan appears on the pricing page, but exact rates are not machine-readable",
+    value: "Growth plan appears on the pricing page, but exact rates are not machine-readable",
     sourceUrl: `${rootUrl}/pricing`,
     sourceText: "Growth plan card found on the pricing page.",
     confidence: 0.78,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-pricing-enterprise",
@@ -125,7 +119,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/pricing`,
     sourceText: "Enterprise customers can request a quote through sales.",
     confidence: 0.76,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-integration-categories",
@@ -135,7 +129,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/integrations`,
     sourceText: "CRM, chat, and analytics integration categories are listed.",
     confidence: 0.77,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-docs",
@@ -145,7 +139,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/docs`,
     sourceText: "API reference, webhooks, and getting started.",
     confidence: 0.8,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-security",
@@ -155,7 +149,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/security`,
     sourceText: "Security overview page found.",
     confidence: 0.69,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-contact",
@@ -165,7 +159,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/contact`,
     sourceText: "Request demo form",
     confidence: 0.9,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-privacy",
@@ -175,7 +169,7 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/privacy`,
     sourceText: "Privacy Policy",
     confidence: 0.86,
-    updatedAt: scannedAt,
+    updatedAt: scannedAt
   },
   {
     id: "fact-support",
@@ -185,8 +179,8 @@ const facts: ExtractedFact[] = [
     sourceUrl: `${rootUrl}/support`,
     sourceText: "Email support@acmeflow.example for support.",
     confidence: 0.83,
-    updatedAt: scannedAt,
-  },
+    updatedAt: scannedAt
+  }
 ];
 
 const actions: AgentAction[] = [
@@ -200,7 +194,7 @@ const actions: AgentAction[] = [
     requiresHumanConfirmation: false,
     sensitivity: "low",
     sourceUrl: rootUrl,
-    confidence: 0.92,
+    confidence: 0.92
   },
   {
     id: "action-contact-sales",
@@ -212,12 +206,12 @@ const actions: AgentAction[] = [
     method: "POST",
     requiredFields: [
       { name: "email", type: "email", label: "Work email", required: true },
-      { name: "company", type: "text", label: "Company", required: true },
+      { name: "company", type: "text", label: "Company", required: true }
     ],
     requiresHumanConfirmation: true,
     sensitivity: "medium",
     sourceUrl: `${rootUrl}/contact`,
-    confidence: 0.86,
+    confidence: 0.86
   },
   {
     id: "action-book-demo",
@@ -229,12 +223,12 @@ const actions: AgentAction[] = [
     method: "POST",
     requiredFields: [
       { name: "email", type: "email", label: "Work email", required: true },
-      { name: "date", type: "date", label: "Preferred date", required: false },
+      { name: "date", type: "date", label: "Preferred date", required: false }
     ],
     requiresHumanConfirmation: true,
     sensitivity: "medium",
     sourceUrl: `${rootUrl}/demo`,
-    confidence: 0.74,
+    confidence: 0.74
   },
   {
     id: "action-search-docs",
@@ -246,7 +240,7 @@ const actions: AgentAction[] = [
     requiresHumanConfirmation: false,
     sensitivity: "low",
     sourceUrl: `${rootUrl}/docs`,
-    confidence: 0.78,
+    confidence: 0.78
   },
   {
     id: "action-open-security",
@@ -258,7 +252,7 @@ const actions: AgentAction[] = [
     requiresHumanConfirmation: false,
     sensitivity: "low",
     sourceUrl: `${rootUrl}/security`,
-    confidence: 0.81,
+    confidence: 0.81
   },
   {
     id: "action-read-terms",
@@ -270,8 +264,8 @@ const actions: AgentAction[] = [
     requiresHumanConfirmation: false,
     sensitivity: "low",
     sourceUrl: `${rootUrl}/terms`,
-    confidence: 0.79,
-  },
+    confidence: 0.79
+  }
 ];
 
 const forms: FormOperabilityResult[] = [
@@ -287,28 +281,28 @@ const forms: FormOperabilityResult[] = [
     fields: [
       { name: "email", type: "email", label: "Work email", required: true },
       { name: "company", type: "text", label: "Company", required: true },
-      { name: "team_size", type: "select", label: "Team size" },
+      { name: "team_size", type: "select", label: "Team size" }
     ],
     submitText: "Request demo",
     findings: [
       {
         id: "stable_action_url",
         status: "pass",
-        message: "Form declares a stable action URL.",
+        message: "Form declares a stable action URL."
       },
       {
         id: "field_names",
         status: "pass",
-        message: "Fields expose deterministic names.",
+        message: "Fields expose deterministic names."
       },
       {
         id: "human_confirmation",
         status: "pass",
-        message: "Human confirmation is required before submission.",
-      },
+        message: "Human confirmation is required before submission."
+      }
     ],
-    recommendations: [],
-  },
+    recommendations: []
+  }
 ];
 
 const tasks: AgentTaskResult[] = [
@@ -317,16 +311,11 @@ const tasks: AgentTaskResult[] = [
     title: "Can an agent find pricing?",
     status: "pass",
     score: 92,
-    explanation:
-      "Pricing is linked in the primary navigation and plan names are visible.",
+    explanation: "Pricing is linked in the primary navigation and plan names are visible.",
     evidenceUrls: [`${rootUrl}/pricing`],
-    evidenceSnippets: [
-      "Growth and Enterprise plan cards were found on the pricing page.",
-    ],
+    evidenceSnippets: ["Growth and Enterprise plan cards were found on the pricing page."],
     missingInformation: [],
-    recommendations: [
-      "Publish pricing-page facts in facts.json with source evidence.",
-    ],
+    recommendations: ["Publish pricing-page facts in facts.json with source evidence."]
   },
   {
     taskId: "understand-plan-differences",
@@ -336,25 +325,16 @@ const tasks: AgentTaskResult[] = [
     explanation:
       "Plan names and package summaries are visible, but exact rates and overage rules are not machine-readable.",
     evidenceUrls: [`${rootUrl}/pricing`],
-    evidenceSnippets: [
-      "Growth, Business, and Enterprise plan cards were found.",
-    ],
-    missingInformation: [
-      "Exact public rates",
-      "Usage limits",
-      "Billing overage rules",
-    ],
-    recommendations: [
-      "Add structured plan comparison rows to site-profile.json.",
-    ],
+    evidenceSnippets: ["Growth, Business, and Enterprise plan cards were found."],
+    missingInformation: ["Exact public rates", "Usage limits", "Billing overage rules"],
+    recommendations: ["Add structured plan comparison rows to site-profile.json."]
   },
   {
     taskId: "contact-sales",
     title: "Can an agent contact sales or book a demo?",
     status: "pass",
     score: 84,
-    explanation:
-      "Contact and demo forms are discoverable with required fields detected.",
+    explanation: "Contact and demo forms are discoverable with required fields detected.",
     evidenceUrls: [`${rootUrl}/contact`, `${rootUrl}/demo`],
     evidenceSnippets: ["Request demo form includes email and company fields."],
     missingInformation: [],
@@ -364,27 +344,27 @@ const tasks: AgentTaskResult[] = [
         id: "discover_action",
         title: "Discover action",
         status: "pass",
-        explanation: "Contact and demo actions are visible from public pages.",
+        explanation: "Contact and demo actions are visible from public pages."
       },
       {
         id: "understand_required_fields",
         title: "Understand required fields",
         status: "pass",
-        explanation: "The form exposes email and company fields as required.",
+        explanation: "The form exposes email and company fields as required."
       },
       {
         id: "confirm_sensitive_action",
         title: "Confirm sensitive action",
         status: "pass",
-        explanation: "Lead-submission forms require human confirmation.",
+        explanation: "Lead-submission forms require human confirmation."
       },
       {
         id: "submit_safely_not_performed",
         title: "Submit safely not performed",
         status: "pass",
-        explanation: "AgentLayer records the path without submitting the form.",
-      },
-    ],
+        explanation: "AgentLayer records the path without submitting the form."
+      }
+    ]
   },
   {
     taskId: "find-docs",
@@ -395,7 +375,7 @@ const tasks: AgentTaskResult[] = [
     evidenceUrls: [`${rootUrl}/docs`, `${rootUrl}/docs/api`],
     evidenceSnippets: ["API reference, webhooks, and getting started."],
     missingInformation: [],
-    recommendations: ["Add markdown snapshots for high-value docs."],
+    recommendations: ["Add markdown snapshots for high-value docs."]
   },
   {
     taskId: "verify-security",
@@ -407,21 +387,18 @@ const tasks: AgentTaskResult[] = [
     evidenceUrls: [`${rootUrl}/security`],
     evidenceSnippets: ["Security overview page found."],
     missingInformation: ["Public trust metadata", "Evidence freshness date"],
-    recommendations: [
-      "Publish non-sensitive trust metadata with source timestamps.",
-    ],
+    recommendations: ["Publish non-sensitive trust metadata with source timestamps."]
   },
   {
     taskId: "find-policies",
     title: "Can an agent find cancellation and legal policies?",
     status: "partial",
     score: 58,
-    explanation:
-      "Privacy and terms are linked, but cancellation policy is not explicit.",
+    explanation: "Privacy and terms are linked, but cancellation policy is not explicit.",
     evidenceUrls: [`${rootUrl}/privacy`, `${rootUrl}/terms`],
     evidenceSnippets: ["Terms of Service", "Privacy Policy"],
     missingInformation: ["Cancellation policy", "Refund policy"],
-    recommendations: ["Add cancellation and refund links to policy metadata."],
+    recommendations: ["Add cancellation and refund links to policy metadata."]
   },
   {
     taskId: "identify-integrations",
@@ -430,13 +407,9 @@ const tasks: AgentTaskResult[] = [
     score: 78,
     explanation: "Integration categories are listed on a dedicated page.",
     evidenceUrls: [`${rootUrl}/integrations`],
-    evidenceSnippets: [
-      "CRM, chat, and analytics integration categories are listed.",
-    ],
+    evidenceSnippets: ["CRM, chat, and analytics integration categories are listed."],
     missingInformation: [],
-    recommendations: [
-      "Represent specific integrations as facts only when source URLs name them.",
-    ],
+    recommendations: ["Represent specific integrations as facts only when source URLs name them."]
   },
   {
     taskId: "determine-audience",
@@ -447,20 +420,19 @@ const tasks: AgentTaskResult[] = [
     evidenceUrls: [rootUrl, `${rootUrl}/customers`],
     evidenceSnippets: ["Built for B2B SaaS revenue teams."],
     missingInformation: [],
-    recommendations: ["Add target_user facts to the profile."],
+    recommendations: ["Add target_user facts to the profile."]
   },
   {
     taskId: "find-support",
     title: "Can an agent find support information?",
     status: "partial",
     score: 65,
-    explanation:
-      "Support email is present, but support hours and escalation path are absent.",
+    explanation: "Support email is present, but support hours and escalation path are absent.",
     evidenceUrls: [`${rootUrl}/support`],
     evidenceSnippets: ["Email support@acmeflow.example for support."],
     missingInformation: ["Support hours", "Escalation policy"],
-    recommendations: ["Expose support expectations in facts.json."],
-  },
+    recommendations: ["Expose support expectations in facts.json."]
+  }
 ];
 
 const recommendations: Recommendation[] = [
@@ -472,27 +444,25 @@ const recommendations: Recommendation[] = [
     howToFix:
       "Ship generated llms.txt files at the site root and link important pages with short descriptions.",
     affectedTasks: ["find-docs", "determine-audience"],
-    suggestedArtifact: "llms.txt",
+    suggestedArtifact: "llms.txt"
   },
   {
     title: "Add a machine-readable action manifest",
     severity: "high",
     whyItMatters:
       "Agents can identify the demo form, but they need field requirements and confirmation rules before acting.",
-    howToFix:
-      "Publish .well-known/agents.json with contact_sales and book_demo schemas.",
+    howToFix: "Publish .well-known/agents.json with contact_sales and book_demo schemas.",
     affectedTasks: ["contact-sales"],
-    suggestedArtifact: ".well-known/agents.json",
+    suggestedArtifact: ".well-known/agents.json"
   },
   {
     title: "Clarify cancellation and refund policy",
     severity: "medium",
     whyItMatters:
       "A buyer agent cannot answer common procurement questions without explicit policy evidence.",
-    howToFix:
-      "Add policy links to the footer and include a cancellation fact with source text.",
+    howToFix: "Add policy links to the footer and include a cancellation fact with source text.",
     affectedTasks: ["find-policies"],
-    suggestedArtifact: "facts.json",
+    suggestedArtifact: "facts.json"
   },
   {
     title: "Expose public trust metadata",
@@ -502,8 +472,8 @@ const recommendations: Recommendation[] = [
     howToFix:
       "Add last-reviewed dates and public summaries for security posture, subprocessors, and data retention.",
     affectedTasks: ["verify-security"],
-    suggestedArtifact: "site-profile.json",
-  },
+    suggestedArtifact: "site-profile.json"
+  }
 ];
 
 export const demoReport: AgentOperabilityReport = {
@@ -519,48 +489,28 @@ export const demoReport: AgentOperabilityReport = {
       security: `${rootUrl}/security`,
       contact: `${rootUrl}/contact`,
       terms: `${rootUrl}/terms`,
-      privacy: `${rootUrl}/privacy`,
+      privacy: `${rootUrl}/privacy`
     },
-    generatedAt: scannedAt,
+    generatedAt: scannedAt
   },
   scan: {
     rootUrl,
     scannedAt,
     pages: [
-      page(
-        "",
-        "homepage",
-        "AcmeFlow revenue workspace",
-        "Revenue operations for B2B SaaS",
-      ),
-      page(
-        "/pricing",
-        "pricing",
-        "AcmeFlow pricing",
-        "Simple pricing for growing revenue teams",
-      ),
+      page("", "homepage", "AcmeFlow revenue workspace", "Revenue operations for B2B SaaS"),
+      page("/pricing", "pricing", "AcmeFlow pricing", "Simple pricing for growing revenue teams"),
       page("/docs", "docs", "AcmeFlow docs", "Build with the AcmeFlow API"),
       page("/security", "security", "AcmeFlow security", "Security overview"),
-      page(
-        "/integrations",
-        "integrations",
-        "AcmeFlow integrations",
-        "Connect your revenue stack",
-      ),
-      page(
-        "/contact",
-        "contact",
-        "Contact AcmeFlow sales",
-        "Request an AcmeFlow demo",
-      ),
+      page("/integrations", "integrations", "AcmeFlow integrations", "Connect your revenue stack"),
+      page("/contact", "contact", "Contact AcmeFlow sales", "Request an AcmeFlow demo"),
       page("/terms", "policy", "AcmeFlow terms", "Terms of service"),
       page("/privacy", "policy", "AcmeFlow privacy", "Privacy policy"),
-      page("/support", "support", "AcmeFlow support", "Customer support"),
+      page("/support", "support", "AcmeFlow support", "Customer support")
     ],
     robotsTxt: {
       url: `${rootUrl}/robots.txt`,
       found: true,
-      text: "User-agent: *\nAllow: /",
+      text: "User-agent: *\nAllow: /"
     },
     sitemap: {
       url: `${rootUrl}/sitemap.xml`,
@@ -570,10 +520,10 @@ export const demoReport: AgentOperabilityReport = {
         `${rootUrl}/pricing`,
         `${rootUrl}/docs`,
         `${rootUrl}/security`,
-        `${rootUrl}/contact`,
-      ],
+        `${rootUrl}/contact`
+      ]
     },
-    errors: [],
+    errors: []
   },
   facts,
   actions,
@@ -584,10 +534,10 @@ export const demoReport: AgentOperabilityReport = {
     trustability: 68,
     actionability: 72,
     taskSuccess: 74,
-    overall: 73,
+    overall: 73
   },
   recommendations,
-  generatedAt: scannedAt,
+  generatedAt: scannedAt
 };
 
 export const demoArtifacts: GeneratedArtifact[] = [
@@ -595,43 +545,43 @@ export const demoArtifacts: GeneratedArtifact[] = [
     path: "llms.txt",
     mediaType: "text/plain",
     content:
-      "# AcmeFlow\n\nAcmeFlow is a B2B SaaS revenue workspace.\n\nImportant pages:\n- Pricing: https://acmeflow.example/pricing\n- Docs: https://acmeflow.example/docs\n- Security: https://acmeflow.example/security\n- Contact: https://acmeflow.example/contact\n",
+      "# AcmeFlow\n\nAcmeFlow is a B2B SaaS revenue workspace.\n\nImportant pages:\n- Pricing: https://acmeflow.example/pricing\n- Docs: https://acmeflow.example/docs\n- Security: https://acmeflow.example/security\n- Contact: https://acmeflow.example/contact\n"
   },
   {
     path: "llms-full.txt",
     mediaType: "text/plain",
     content:
-      "# AcmeFlow full agent context\n\nPricing, docs, integrations, support, security, and policies were scanned. Some cancellation/refund details were not found.\n",
+      "# AcmeFlow full agent context\n\nPricing, docs, integrations, support, security, and policies were scanned. Some cancellation/refund details were not found.\n"
   },
   {
     path: "site-profile.json",
     mediaType: "application/json",
-    content: JSON.stringify(demoReport.site, null, 2),
+    content: JSON.stringify(demoReport.site, null, 2)
   },
   {
     path: "facts.json",
     mediaType: "application/json",
-    content: JSON.stringify(facts, null, 2),
+    content: JSON.stringify(facts, null, 2)
   },
   {
     path: "actions.json",
     mediaType: "application/json",
-    content: JSON.stringify(actions, null, 2),
+    content: JSON.stringify(actions, null, 2)
   },
   {
     path: "form-operability.json",
     mediaType: "application/json",
-    content: JSON.stringify(forms, null, 2),
+    content: JSON.stringify(forms, null, 2)
   },
   {
     path: "tasks-report.json",
     mediaType: "application/json",
-    content: JSON.stringify(tasks, null, 2),
+    content: JSON.stringify(tasks, null, 2)
   },
   {
     path: "recommendations.json",
     mediaType: "application/json",
-    content: JSON.stringify(recommendations, null, 2),
+    content: JSON.stringify(recommendations, null, 2)
   },
   {
     path: ".well-known/agents.json",
@@ -647,12 +597,12 @@ export const demoArtifacts: GeneratedArtifact[] = [
           type: action.actionType,
           url: action.url,
           requiresHumanConfirmation: action.requiresHumanConfirmation,
-          sensitivity: action.sensitivity,
-        })),
+          sensitivity: action.sensitivity
+        }))
       },
       null,
-      2,
-    ),
+      2
+    )
   },
   {
     path: ".well-known/mcp.json",
@@ -662,11 +612,11 @@ export const demoArtifacts: GeneratedArtifact[] = [
         name: "AcmeFlow MCP metadata draft",
         status: "draft",
         reviewRequired: true,
-        suggestedTools: ["view_pricing", "contact_sales", "open_security_page"],
+        suggestedTools: ["view_pricing", "contact_sales", "open_security_page"]
       },
       null,
-      2,
-    ),
+      2
+    )
   },
   {
     path: ".well-known/mcp/server-card.json",
@@ -677,11 +627,11 @@ export const demoArtifacts: GeneratedArtifact[] = [
         draft: true,
         nonComplianceDisclaimer:
           "Generated demo metadata. Validate against the latest MCP Server Card draft before production use.",
-        resources: ["llms.txt", "facts.json", "actions.json"],
+        resources: ["llms.txt", "facts.json", "actions.json"]
       },
       null,
-      2,
-    ),
+      2
+    )
   },
   {
     path: ".well-known/api-catalog",
@@ -690,11 +640,11 @@ export const demoArtifacts: GeneratedArtifact[] = [
       {
         name: "AcmeFlow API catalog draft",
         draft: true,
-        apis: [{ title: "AcmeFlow API docs", url: `${rootUrl}/docs/api` }],
+        apis: [{ title: "AcmeFlow API docs", url: `${rootUrl}/docs/api` }]
       },
       null,
-      2,
-    ),
+      2
+    )
   },
   {
     path: ".well-known/agent-skills/index.json",
@@ -707,13 +657,13 @@ export const demoArtifacts: GeneratedArtifact[] = [
           {
             id: "acmeflow-buyer-research",
             title: "Research AcmeFlow buyer information",
-            sourceUrl: rootUrl,
-          },
-        ],
+            sourceUrl: rootUrl
+          }
+        ]
       },
       null,
-      2,
-    ),
+      2
+    )
   },
   {
     path: "webmcp/suggested-webmcp-tools.json",
@@ -725,35 +675,35 @@ export const demoArtifacts: GeneratedArtifact[] = [
           name: action.name,
           description: action.description,
           url: action.url,
-          requiresHumanConfirmation: action.requiresHumanConfirmation,
-        })),
+          requiresHumanConfirmation: action.requiresHumanConfirmation
+        }))
       },
       null,
-      2,
-    ),
+      2
+    )
   },
   {
     path: "webmcp/suggested-form-annotations.md",
     mediaType: "text/markdown",
     content:
-      "# Suggested form annotations\n\n- Mark contact_sales and book_demo as human-confirmed actions.\n- Keep required fields explicit before any agent submits a form.\n",
+      "# Suggested form annotations\n\n- Mark contact_sales and book_demo as human-confirmed actions.\n- Keep required fields explicit before any agent submits a form.\n"
   },
   {
     path: "report.html",
     mediaType: "text/html",
     content:
-      "<!doctype html><html><body><h1>AgentLayer report for AcmeFlow</h1><p>Standalone demo report preview.</p></body></html>\n",
+      "<!doctype html><html><body><h1>AgentLayer report for AcmeFlow</h1><p>Standalone demo report preview.</p></body></html>\n"
   },
   {
     path: "markdown/index.md",
     mediaType: "text/markdown",
     content:
-      "# AcmeFlow revenue workspace\n\nSource: https://acmeflow.example\n\nAcmeFlow helps revenue teams qualify accounts and operate customer journeys.\n",
+      "# AcmeFlow revenue workspace\n\nSource: https://acmeflow.example\n\nAcmeFlow helps revenue teams qualify accounts and operate customer journeys.\n"
   },
   {
     path: "markdown/pricing.md",
     mediaType: "text/markdown",
     content:
-      "# AcmeFlow pricing\n\nGrowth and Enterprise plan information was found. Exact rates and overage rules were not machine-readable in this fixture.\n",
-  },
+      "# AcmeFlow pricing\n\nGrowth and Enterprise plan information was found. Exact rates and overage rules were not machine-readable in this fixture.\n"
+  }
 ];

@@ -6,8 +6,7 @@ Docs
 
 # Documentation for building reliable customer workflows.
 
-Find setup guides, API docs, webhook references, role configuration, and
-integration walkthroughs.
+Find setup guides, API docs, webhook references, role configuration, and integration walkthroughs.
 
 ## Getting started
 

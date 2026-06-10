@@ -23,11 +23,7 @@ export function classifyPage(input: ClassifierInput): string {
   ]
     .join(" ")
     .toLowerCase();
-  const context = [
-    path,
-    titleAndHeadings,
-    input.text?.slice(0, 1200) ?? ""
-  ]
+  const context = [path, titleAndHeadings, input.text?.slice(0, 1200) ?? ""]
     .join(" ")
     .toLowerCase();
 
@@ -52,22 +48,40 @@ export function classifyPage(input: ClassifierInput): string {
   if (includesAny(path, ["/privacy"]) || includesAny(context, ["privacy policy"])) {
     return "privacy";
   }
-  if (includesAny(path, ["/terms", "/legal"]) || includesAny(context, ["terms of service", "terms and conditions"])) {
+  if (
+    includesAny(path, ["/terms", "/legal"]) ||
+    includesAny(context, ["terms of service", "terms and conditions"])
+  ) {
     return "terms";
   }
-  if (includesAny(path, ["/demo", "/book-demo"]) || includesAny(titleAndHeadings, ["book a demo", "schedule a demo", "request demo"])) {
+  if (
+    includesAny(path, ["/demo", "/book-demo"]) ||
+    includesAny(titleAndHeadings, ["book a demo", "schedule a demo", "request demo"])
+  ) {
     return "demo";
   }
-  if (includesAny(path, ["/contact", "/sales"]) || includesAny(titleAndHeadings, ["contact sales", "talk to sales", "contact us"])) {
+  if (
+    includesAny(path, ["/contact", "/sales"]) ||
+    includesAny(titleAndHeadings, ["contact sales", "talk to sales", "contact us"])
+  ) {
     return "contact";
   }
-  if (includesAny(path, ["/support", "/help"]) || includesAny(titleAndHeadings, ["support", "help center", "customer help"])) {
+  if (
+    includesAny(path, ["/support", "/help"]) ||
+    includesAny(titleAndHeadings, ["support", "help center", "customer help"])
+  ) {
     return "support";
   }
-  if (includesAny(path, ["/integrations", "/connectors"]) || includesAny(titleAndHeadings, ["integration", "integrations", "connectors", "apps marketplace"])) {
+  if (
+    includesAny(path, ["/integrations", "/connectors"]) ||
+    includesAny(titleAndHeadings, ["integration", "integrations", "connectors", "apps marketplace"])
+  ) {
     return "integrations";
   }
-  if (includesAny(path, ["/customers", "/case-studies"]) || includesAny(titleAndHeadings, ["customers", "case studies", "case study"])) {
+  if (
+    includesAny(path, ["/customers", "/case-studies"]) ||
+    includesAny(titleAndHeadings, ["customers", "case studies", "case study"])
+  ) {
     return "customers";
   }
   if (includesAny(titleAndHeadings, ["api reference", "developer docs"])) {

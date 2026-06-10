@@ -9,12 +9,9 @@ describe("core API adapters", () => {
     };
 
     await expect(
-      callGenerateArtifacts(
-        incompatibleGenerateArtifacts,
-        {} as AgentOperabilityReport,
-      ),
+      callGenerateArtifacts(incompatibleGenerateArtifacts, {} as AgentOperabilityReport)
     ).rejects.toThrow(
-      "Could not call @agentlayer/core generateArtifacts. This CLI may be paired with an incompatible core build.",
+      "Could not call @agentlayer/core generateArtifacts. This CLI may be paired with an incompatible core build."
     );
   });
 });

@@ -1,4 +1,9 @@
-import type { AgentAction, AgentOperabilityReport, AgentTaskResult, ExtractedFact } from "./coreTypes.js";
+import type {
+  AgentAction,
+  AgentOperabilityReport,
+  AgentTaskResult,
+  ExtractedFact
+} from "./coreTypes.js";
 
 type CheckState = "found" | "partial" | "missing" | "none detected" | "pass" | "fail";
 
@@ -38,7 +43,9 @@ export function buildDoctorDiagnosis(report: AgentOperabilityReport): DoctorDiag
     readable: {
       llmsTxt: hasPagePath(pages, ["/llms.txt"]) ? "found" : "missing",
       sitemapXml: report.scan.sitemap?.found ? "found" : "missing",
-      markdownAlternatives: pages.some((page) => page.markdown.trim().length > 0) ? "found" : "missing"
+      markdownAlternatives: pages.some((page) => page.markdown.trim().length > 0)
+        ? "found"
+        : "missing"
     },
     trustable: {
       pricingFacts: factState(facts, ["pricing", "plan"], taskById(tasks, "find_pricing")),
@@ -49,7 +56,11 @@ export function buildDoctorDiagnosis(report: AgentOperabilityReport): DoctorDiag
       contactSales: actionState(actions, ["contact_sales"], taskById(tasks, "book_demo")),
       bookDemo: actionState(actions, ["book_demo"], taskById(tasks, "book_demo")),
       requestQuote: actionState(actions, ["request_quote"], undefined),
-      docsSearch: actionState(actions, ["search_docs", "open_api_docs"], taskById(tasks, "find_docs"))
+      docsSearch: actionState(
+        actions,
+        ["search_docs", "open_api_docs"],
+        taskById(tasks, "find_docs")
+      )
     },
     topFixes: topFixes.length > 0 ? topFixes : fallbackFixes(report),
     generatedAt: report.generatedAt
@@ -93,7 +104,10 @@ function taskById(tasks: AgentTaskResult[], taskId: string): AgentTaskResult | u
   return tasks.find((task) => task.taskId === taskId);
 }
 
-function hasPagePath(pages: AgentOperabilityReport["scan"]["pages"], expectedPaths: string[]): boolean {
+function hasPagePath(
+  pages: AgentOperabilityReport["scan"]["pages"],
+  expectedPaths: string[]
+): boolean {
   return pages.some((page) => {
     try {
       const pathname = new URL(page.finalUrl || page.url).pathname.toLowerCase();
@@ -155,7 +169,9 @@ function fallbackFixes(report: AgentOperabilityReport): string[] {
     fixes.push("Expose clear pricing or contact-sales evidence");
   }
 
-  if (!report.actions.some((action) => action.name === "contact_sales" || action.name === "book_demo")) {
+  if (
+    !report.actions.some((action) => action.name === "contact_sales" || action.name === "book_demo")
+  ) {
     fixes.push("Add clear contact-sales or book-demo action paths");
   }
 

@@ -799,9 +799,7 @@
         "status": 200,
         "pageType": "integrations",
         "headings": {
-          "h1": [
-            "Connect AcmeFlow to the tools your revenue team already uses."
-          ],
+          "h1": ["Connect AcmeFlow to the tools your revenue team already uses."],
           "h2": [
             "Salesforce",
             "HubSpot",
@@ -934,9 +932,7 @@
         "status": 200,
         "pageType": "pricing",
         "headings": {
-          "h1": [
-            "Plans for B2B SaaS teams from first playbook to enterprise governance."
-          ],
+          "h1": ["Plans for B2B SaaS teams from first playbook to enterprise governance."],
           "h2": ["Starter", "Growth", "Enterprise", "Plan differences"],
           "h3": ["Included features and limits"]
         },
@@ -1158,12 +1154,7 @@
         "pageType": "security",
         "headings": {
           "h1": ["Security information for teams evaluating AcmeFlow."],
-          "h2": [
-            "Data protection",
-            "Access controls",
-            "Compliance posture",
-            "Incident contact"
-          ],
+          "h2": ["Data protection", "Access controls", "Compliance posture", "Incident contact"],
           "h3": []
         },
         "links": [
@@ -1265,9 +1256,7 @@
         "status": 200,
         "pageType": "support",
         "headings": {
-          "h1": [
-            "Get help with AcmeFlow workflows, integrations, and billing."
-          ],
+          "h1": ["Get help with AcmeFlow workflows, integrations, and billing."],
           "h2": ["Support contact"],
           "h3": []
         },
@@ -2326,23 +2315,15 @@
           "title": "Discover action",
           "status": "pass",
           "explanation": "Detected form action \"contact_sales\".",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
-          "evidenceSnippets": [
-            "contact_sales: Find the path for contacting sales."
-          ]
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
+          "evidenceSnippets": ["contact_sales: Find the path for contacting sales."]
         },
         {
           "id": "understand_required_fields",
           "title": "Understand required fields",
           "status": "pass",
           "explanation": "4 of 4 fields expose stable names; 4 expose labels.",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
           "evidenceSnippets": [
             "name (text) required",
             "email (email) required",
@@ -2355,10 +2336,7 @@
           "title": "Confirm sensitive action",
           "status": "pass",
           "explanation": "Human confirmation is required for this medium-sensitivity action.",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
           "evidenceSnippets": []
         },
         {
@@ -2366,10 +2344,7 @@
           "title": "Submit safely not performed",
           "status": "pass",
           "explanation": "The evaluator stopped at deterministic preparation and did not submit the form.",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
           "evidenceSnippets": []
         }
       ]
@@ -2431,10 +2406,7 @@
       "status": "pass",
       "score": 85,
       "explanation": "Privacy and terms/legal policy pages are discoverable.",
-      "evidenceUrls": [
-        "http://localhost:3001/privacy",
-        "http://localhost:3001/terms"
-      ],
+      "evidenceUrls": ["http://localhost:3001/privacy", "http://localhost:3001/terms"],
       "evidenceSnippets": [
         "Privacy Policy | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPrivacy policyHow the fictional AcmeFlow demo describes privacy.This policy page exists so AgentLayer can find a clear privacy sou",
         "d demos. The data on this site is intentionally public and non-sensitive.PrivacyTermsContact salesSupportTerms | AcmeFlow",
@@ -2527,23 +2499,15 @@
           "title": "Discover action",
           "status": "pass",
           "explanation": "Detected form action \"contact_sales\".",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
-          "evidenceSnippets": [
-            "contact_sales: Find the path for contacting sales."
-          ]
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
+          "evidenceSnippets": ["contact_sales: Find the path for contacting sales."]
         },
         {
           "id": "understand_required_fields",
           "title": "Understand required fields",
           "status": "pass",
           "explanation": "4 of 4 fields expose stable names; 4 expose labels.",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
           "evidenceSnippets": [
             "name (text) required",
             "email (email) required",
@@ -2556,10 +2520,7 @@
           "title": "Confirm sensitive action",
           "status": "pass",
           "explanation": "Human confirmation is required for this medium-sensitivity action.",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
           "evidenceSnippets": []
         },
         {
@@ -2567,10 +2528,7 @@
           "title": "Submit safely not performed",
           "status": "pass",
           "explanation": "The evaluator stopped at deterministic preparation and did not submit the form.",
-          "evidenceUrls": [
-            "http://localhost:3001/contact",
-            "http://localhost:3001/"
-          ],
+          "evidenceUrls": ["http://localhost:3001/contact", "http://localhost:3001/"],
           "evidenceSnippets": []
         }
       ]

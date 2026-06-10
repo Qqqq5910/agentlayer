@@ -30,7 +30,10 @@ export default function PricingPage() {
                 <li key={feature}>- {feature}</li>
               ))}
             </ul>
-            <Link className="mt-6 rounded-md bg-[#176b53] px-4 py-3 text-center font-semibold text-white" href="/demo">
+            <Link
+              className="mt-6 rounded-md bg-[#176b53] px-4 py-3 text-center font-semibold text-white"
+              href="/demo"
+            >
               {plan.name === "Enterprise" ? "Contact sales" : "Start with demo"}
             </Link>
           </article>
@@ -40,8 +43,9 @@ export default function PricingPage() {
         <div className="card p-6">
           <h2 className="text-2xl font-semibold">Plan differences</h2>
           <p className="mt-3 leading-7 text-[#5e6b66]">
-            Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds SSO/SAML,
-            audit exports, and a security review packet for larger organizations.
+            Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and
+            Enterprise adds SSO/SAML, audit exports, and a security review packet for larger
+            organizations.
           </p>
         </div>
       </section>

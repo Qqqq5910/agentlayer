@@ -36,7 +36,7 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
     if (!remoteScanEnabled) {
       setState("error");
       setMessage(
-        "Remote scanning is disabled for this hosted demo. Run pnpm agentlayer generate <url> locally, or set ENABLE_REMOTE_SCAN=true for a deployment you control.",
+        "This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites, or set ENABLE_REMOTE_SCAN=true for a deployment you control."
       );
       return;
     }
@@ -88,7 +88,7 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
           <p className="mt-1 text-sm leading-6 text-slate-600">
             {remoteScanEnabled
               ? "No auth required. AgentLayer calls the core package and stores the report in this browser."
-              : "Remote scanning is disabled on this hosted demo. The demo report still works, and local CLI scans stay available."}
+              : "This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites."}
           </p>
         </div>
       </div>
@@ -125,8 +125,12 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
           disabled={!remoteScanEnabled || state === "scanning" || state === "saving"}
           type="submit"
         >
-          {state === "scanning" || state === "saving" ? <Loader2 className="animate-spin" size={17} aria-hidden="true" /> : <ShieldCheck size={17} aria-hidden="true" />}
-          Run AgentLayer scan
+          {state === "scanning" || state === "saving" ? (
+            <Loader2 className="animate-spin" size={17} aria-hidden="true" />
+          ) : (
+            <ShieldCheck size={17} aria-hidden="true" />
+          )}
+          Run scan
           <ArrowRight size={16} aria-hidden="true" />
         </button>
         <span className="text-sm text-slate-500">
@@ -138,10 +142,15 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
 
       <div className="mt-6">
         <div className="h-2 rounded-full bg-slate-200">
-          <div className="h-2 rounded-full bg-cyan-700 transition-all" style={{ width: `${progress}%` }} />
+          <div
+            className="h-2 rounded-full bg-cyan-700 transition-all"
+            style={{ width: `${progress}%` }}
+          />
         </div>
         {message ? (
-          <p className={`mt-3 text-sm ${state === "error" ? "text-rose-700" : "text-slate-600"}`}>{message}</p>
+          <p className={`mt-3 text-sm ${state === "error" ? "text-rose-700" : "text-slate-600"}`}>
+            {message}
+          </p>
         ) : null}
       </div>
     </form>

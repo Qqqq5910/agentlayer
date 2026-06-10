@@ -8,7 +8,11 @@ import { normalizeRootUrl } from "../utils/urls.js";
 
 export async function scanSite(inputOptions: unknown): Promise<SiteScan> {
   const rawOptions =
-    typeof inputOptions === "string" ? { rootUrl: inputOptions } : isRecord(inputOptions) ? inputOptions : {};
+    typeof inputOptions === "string"
+      ? { rootUrl: inputOptions }
+      : isRecord(inputOptions)
+        ? inputOptions
+        : {};
   const parsed = ScanOptionsSchema.parse({
     ...rawOptions,
     rootUrl: normalizeRootUrl(String(rawOptions.rootUrl ?? ""))

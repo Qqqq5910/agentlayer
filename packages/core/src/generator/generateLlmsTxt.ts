@@ -19,17 +19,43 @@ export function generateLlmsTxt(report: AgentOperabilityReport): string {
   }
   lines.push("");
 
-  appendSection(lines, "Product", report.facts.filter((fact) => ["company", "product"].includes(fact.type)));
-  appendSection(lines, "Pricing", report.facts.filter((fact) => ["pricing", "plan"].includes(fact.type)));
-  appendSection(lines, "Documentation", report.facts.filter((fact) => fact.type === "docs"));
-  appendSection(lines, "Security", report.facts.filter((fact) => fact.type === "security"));
-  appendSection(lines, "Policies", report.facts.filter((fact) => fact.type === "policy"));
-  appendSection(lines, "Contact", report.facts.filter((fact) => ["contact", "support"].includes(fact.type)));
+  appendSection(
+    lines,
+    "Product",
+    report.facts.filter((fact) => ["company", "product"].includes(fact.type))
+  );
+  appendSection(
+    lines,
+    "Pricing",
+    report.facts.filter((fact) => ["pricing", "plan"].includes(fact.type))
+  );
+  appendSection(
+    lines,
+    "Documentation",
+    report.facts.filter((fact) => fact.type === "docs")
+  );
+  appendSection(
+    lines,
+    "Security",
+    report.facts.filter((fact) => fact.type === "security")
+  );
+  appendSection(
+    lines,
+    "Policies",
+    report.facts.filter((fact) => fact.type === "policy")
+  );
+  appendSection(
+    lines,
+    "Contact",
+    report.facts.filter((fact) => ["contact", "support"].includes(fact.type))
+  );
 
   if (report.actions.length > 0) {
     lines.push("## Agent Actions");
     for (const action of report.actions) {
-      const confirmation = action.requiresHumanConfirmation ? "Requires human confirmation." : "No human confirmation flag.";
+      const confirmation = action.requiresHumanConfirmation
+        ? "Requires human confirmation."
+        : "No human confirmation flag.";
       lines.push(
         `- ${action.name}: ${action.description} (${action.actionType}, ${action.sensitivity} sensitivity). ${confirmation} Source: ${action.sourceUrl}`
       );
@@ -38,8 +64,12 @@ export function generateLlmsTxt(report: AgentOperabilityReport): string {
   }
 
   lines.push("## Notes for AI Agents");
-  lines.push("- Treat generated action manifests as suggestions, not authorization to submit forms.");
-  lines.push("- Do not submit forms or perform sensitive actions without explicit user confirmation.");
+  lines.push(
+    "- Treat generated action manifests as suggestions, not authorization to submit forms."
+  );
+  lines.push(
+    "- Do not submit forms or perform sensitive actions without explicit user confirmation."
+  );
   lines.push("- Verify factual claims against the listed source URLs.");
   lines.push("- If information is missing, say it was not found instead of guessing.");
   lines.push("");
@@ -47,20 +77,37 @@ export function generateLlmsTxt(report: AgentOperabilityReport): string {
   return `${lines.join("\n").trim()}\n`;
 }
 
-function appendSection(lines: string[], title: string, facts: AgentOperabilityReport["facts"]): void {
+function appendSection(
+  lines: string[],
+  title: string,
+  facts: AgentOperabilityReport["facts"]
+): void {
   if (facts.length === 0) {
     return;
   }
 
   lines.push(`## ${title}`);
   for (const fact of facts.slice(0, 12)) {
-    lines.push(`- ${fact.label}: ${fact.value} (source: ${fact.sourceUrl}, confidence: ${fact.confidence.toFixed(2)})`);
+    lines.push(
+      `- ${fact.label}: ${fact.value} (source: ${fact.sourceUrl}, confidence: ${fact.confidence.toFixed(2)})`
+    );
   }
   lines.push("");
 }
 
 function importantPages(pages: readonly PageSnapshot[]): PageSnapshot[] {
-  const wanted = ["home", "pricing", "docs", "api_docs", "security", "privacy", "terms", "contact", "demo", "support"];
+  const wanted = [
+    "home",
+    "pricing",
+    "docs",
+    "api_docs",
+    "security",
+    "privacy",
+    "terms",
+    "contact",
+    "demo",
+    "support"
+  ];
   const selected = wanted
     .map((type) => pages.find((page) => page.pageType === type))
     .filter((page): page is PageSnapshot => Boolean(page));

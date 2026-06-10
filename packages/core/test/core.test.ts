@@ -33,8 +33,12 @@ describe("urls", () => {
 describe("page classification", () => {
   it("classifies key B2B SaaS pages", () => {
     expect(classifyPage({ url: "https://acme.test/pricing", title: "Pricing" })).toBe("pricing");
-    expect(classifyPage({ url: "https://acme.test/docs/api", title: "API Reference" })).toBe("api_docs");
-    expect(classifyPage({ url: "https://acme.test/security", text: "SOC 2 and GDPR compliance" })).toBe("security");
+    expect(classifyPage({ url: "https://acme.test/docs/api", title: "API Reference" })).toBe(
+      "api_docs"
+    );
+    expect(
+      classifyPage({ url: "https://acme.test/security", text: "SOC 2 and GDPR compliance" })
+    ).toBe("security");
   });
 });
 
@@ -49,7 +53,12 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
       method: "POST",
       purpose: "contact sales"
     });
-    expect(contactPage?.forms[0]?.fields.map((field) => field.name)).toEqual(["name", "email", "company", "message"]);
+    expect(contactPage?.forms[0]?.fields.map((field) => field.name)).toEqual([
+      "name",
+      "email",
+      "company",
+      "message"
+    ]);
 
     const profile = buildSiteProfile(scan);
     const facts = extractFacts(scan);
@@ -67,9 +76,13 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(facts.some((fact) => fact.type === "security")).toBe(true);
     expect(facts.some((fact) => fact.type === "integration" && fact.value === "Slack")).toBe(true);
 
-    expect(actions.some((action) => action.name === "contact_sales" && action.actionType === "form")).toBe(true);
+    expect(
+      actions.some((action) => action.name === "contact_sales" && action.actionType === "form")
+    ).toBe(true);
     expect(actions.some((action) => action.name === "view_pricing")).toBe(true);
-    expect(actions.find((action) => action.name === "contact_sales")?.requiresHumanConfirmation).toBe(true);
+    expect(
+      actions.find((action) => action.name === "contact_sales")?.requiresHumanConfirmation
+    ).toBe(true);
 
     expect(forms[0]).toMatchObject({
       purpose: "contact sales",
@@ -95,7 +108,9 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
 
     expect(tasks.find((task) => task.taskId === "find_pricing")?.status).toBe("pass");
     expect(tasks.find((task) => task.taskId === "book_demo")?.status).toBe("pass");
-    expect(tasks.find((task) => task.taskId === "book_demo")?.journeySteps.map((step) => step.id)).toEqual([
+    expect(
+      tasks.find((task) => task.taskId === "book_demo")?.journeySteps.map((step) => step.id)
+    ).toEqual([
       "discover_action",
       "understand_required_fields",
       "confirm_sensitive_action",
@@ -121,11 +136,16 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     const llmsFullTxt = generateLlmsFullTxt(report);
     const artifacts = generateArtifacts(report);
     const reportHtml = artifacts.find((artifact) => artifact.path === "report.html")?.content ?? "";
-    const artifactManifest = JSON.parse(artifacts.find((artifact) => artifact.path === "artifacts.json")?.content ?? "{}") as {
+    const artifactManifest = JSON.parse(
+      artifacts.find((artifact) => artifact.path === "artifacts.json")?.content ?? "{}"
+    ) as {
       count: number;
       artifacts: Array<{ path: string; mediaType: string }>;
     };
-    const artifactCatalog = describeGeneratedArtifacts(report).map(({ path, mediaType }) => ({ path, mediaType }));
+    const artifactCatalog = describeGeneratedArtifacts(report).map(({ path, mediaType }) => ({
+      path,
+      mediaType
+    }));
 
     expect(llmsTxt).toContain("# AcmeFlow");
     expect(llmsTxt).toContain("## Agent Actions");
@@ -151,9 +171,13 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(reportHtml).toContain("Agent Operability Score");
     expect(reportHtml).toContain("Agent operability report for AcmeFlow");
     expect(reportHtml).toContain("Generated artifacts");
-    expect(reportHtml).toContain(`<span>Generated artifacts</span><strong>${artifactManifest.count}</strong>`);
+    expect(reportHtml).toContain(
+      `<span>Generated artifacts</span><strong>${artifactManifest.count}</strong>`
+    );
     expect(reportHtml).toContain(`${artifactManifest.count} total`);
-    expect(reportHtml).toContain("The count matches the <code>artifacts.json</code> manifest count");
+    expect(reportHtml).toContain(
+      "The count matches the <code>artifacts.json</code> manifest count"
+    );
     expect(reportHtml).toContain(`href="markdown/pricing.md"`);
     expect(reportHtml).toContain("Markdown snapshot from /pricing.");
     expect(reportHtml).toContain("Crawl Issues");
@@ -170,15 +194,15 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(artifacts.find((artifact) => artifact.path === "tasks-report.json")?.content).toEqual(
       expect.stringContaining("submit_safely_not_performed")
     );
-    expect(artifacts.find((artifact) => artifact.path === "form-operability.json")?.content).toEqual(
-      expect.stringContaining("stable_action_url")
-    );
+    expect(
+      artifacts.find((artifact) => artifact.path === "form-operability.json")?.content
+    ).toEqual(expect.stringContaining("stable_action_url"));
     expect(artifacts.find((artifact) => artifact.path === "artifacts.json")?.content).toEqual(
       expect.stringContaining(".well-known/mcp/server-card.json")
     );
-    expect(artifacts.find((artifact) => artifact.path === "webmcp/suggested-webmcp-tools.json")?.content).toEqual(
-      expect.stringContaining("formOperability")
-    );
+    expect(
+      artifacts.find((artifact) => artifact.path === "webmcp/suggested-webmcp-tools.json")?.content
+    ).toEqual(expect.stringContaining("formOperability"));
   });
 });
 
@@ -186,7 +210,11 @@ function sampleScan(): SiteScan {
   return SiteScanSchema.parse({
     rootUrl: ROOT_URL,
     scannedAt: "2026-06-10T00:00:00.000Z",
-    robotsTxt: { url: "https://acme.test/robots.txt", found: true, text: "User-agent: *\nAllow: /\n" },
+    robotsTxt: {
+      url: "https://acme.test/robots.txt",
+      found: true,
+      text: "User-agent: *\nAllow: /\n"
+    },
     sitemap: {
       url: "https://acme.test/sitemap.xml",
       found: true,

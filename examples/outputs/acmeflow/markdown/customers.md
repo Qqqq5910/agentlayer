@@ -6,8 +6,8 @@ Customers
 
 # Customer stories for B2B SaaS revenue and success teams.
 
-AcmeFlow is designed for customer success, sales engineering, support
-operations, and implementation teams.
+AcmeFlow is designed for customer success, sales engineering, support operations, and implementation
+teams.
 
 ## Northstar Analytics
 

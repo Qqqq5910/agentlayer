@@ -25,7 +25,11 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
   const queue: string[] = [];
 
   const enqueue = (url: string | null, source: QueueSource) => {
-    if (!url || visited.has(url) || !isSafeCrawlUrl(url, options.rootUrl, { allowLocal: options.allowLocal })) {
+    if (
+      !url ||
+      visited.has(url) ||
+      !isSafeCrawlUrl(url, options.rootUrl, { allowLocal: options.allowLocal })
+    ) {
       return;
     }
 
@@ -58,7 +62,10 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
     visited.add(current);
     const source = queueSources.get(current) ?? "discovered";
 
-    if (options.respectRobotsTxt && !isAllowedByRobots(current, robotsTxt?.text, options.userAgent)) {
+    if (
+      options.respectRobotsTxt &&
+      !isAllowedByRobots(current, robotsTxt?.text, options.userAgent)
+    ) {
       errors.push({
         url: current,
         message: "Skipped because robots.txt disallows crawling this URL."
@@ -69,7 +76,10 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
     try {
       const response = await fetchWithTimeout(current, options);
       const finalUrl = normalizeUrl(response.url || current);
-      if (!finalUrl || !isSafeCrawlUrl(finalUrl, options.rootUrl, { allowLocal: options.allowLocal })) {
+      if (
+        !finalUrl ||
+        !isSafeCrawlUrl(finalUrl, options.rootUrl, { allowLocal: options.allowLocal })
+      ) {
         errors.push({
           url: current,
           message: `Skipped redirect outside allowed crawl scope: ${response.url || current}`

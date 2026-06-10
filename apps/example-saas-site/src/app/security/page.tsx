@@ -7,9 +7,18 @@ export const metadata = {
 
 export default function SecurityPage() {
   const items = [
-    ["Data protection", "Customer workflow data is encrypted in transit and at rest in the fictional AcmeFlow demo."],
-    ["Access controls", "Enterprise workspaces can configure SSO/SAML, role-based permissions, and audit exports."],
-    ["Compliance posture", "A security review packet is available for Enterprise evaluation. This demo does not claim certification."],
+    [
+      "Data protection",
+      "Customer workflow data is encrypted in transit and at rest in the fictional AcmeFlow demo."
+    ],
+    [
+      "Access controls",
+      "Enterprise workspaces can configure SSO/SAML, role-based permissions, and audit exports."
+    ],
+    [
+      "Compliance posture",
+      "A security review packet is available for Enterprise evaluation. This demo does not claim certification."
+    ],
     ["Incident contact", "Security questions can be sent to security@acmeflow.example."]
   ];
 
@@ -31,4 +40,3 @@ export default function SecurityPage() {
     </main>
   );
 }
-

@@ -1,8 +1,4 @@
-import type {
-  AgentTaskResult,
-  GeneratedArtifact,
-  Recommendation,
-} from "@/lib/report-types";
+import type { AgentTaskResult, GeneratedArtifact, Recommendation } from "@/lib/report-types";
 
 export type ScoreTone = "strong" | "mixed" | "weak";
 
@@ -88,9 +84,7 @@ export function severityClasses(severity: Recommendation["severity"]) {
   return "border-slate-200 bg-slate-50 text-slate-700";
 }
 
-export function actionSensitivityClasses(
-  sensitivity: "low" | "medium" | "high",
-) {
+export function actionSensitivityClasses(sensitivity: "low" | "medium" | "high") {
   if (sensitivity === "high") {
     return "border-rose-200 bg-rose-50 text-rose-800";
   }
@@ -161,14 +155,13 @@ export function summarizeTasks(tasks: AgentTaskResult[]): TaskSummary {
       pass: 0,
       partial: 0,
       fail: 0,
-      averageScore: 0,
-    },
+      averageScore: 0
+    }
   );
 
   return {
     ...summary,
-    averageScore:
-      summary.total > 0 ? Math.round(summary.averageScore / summary.total) : 0,
+    averageScore: summary.total > 0 ? Math.round(summary.averageScore / summary.total) : 0
   };
 }
 
@@ -179,9 +172,7 @@ export type RecommendationSummary = {
   low: number;
 };
 
-export function summarizeRecommendations(
-  recommendations: Recommendation[],
-): RecommendationSummary {
+export function summarizeRecommendations(recommendations: Recommendation[]): RecommendationSummary {
   return recommendations.reduce<RecommendationSummary>(
     (accumulator, recommendation) => {
       accumulator[recommendation.severity] += 1;
@@ -191,8 +182,8 @@ export function summarizeRecommendations(
       total: recommendations.length,
       high: 0,
       medium: 0,
-      low: 0,
-    },
+      low: 0
+    }
   );
 }
 
@@ -208,27 +199,19 @@ export function isDraftManifest(path: string) {
   return path === ".well-known/agents.json" || path.endsWith("/agents.json");
 }
 
-export function summarizeArtifacts(
-  artifacts: GeneratedArtifact[],
-): ArtifactSummary {
+export function summarizeArtifacts(artifacts: GeneratedArtifact[]): ArtifactSummary {
   return artifacts.reduce<ArtifactSummary>(
     (accumulator, artifact) => {
       if (isDraftManifest(artifact.path)) {
         accumulator.draftManifests += 1;
       }
 
-      if (
-        artifact.mediaType.includes("json") ||
-        artifact.path.endsWith(".json")
-      ) {
+      if (artifact.mediaType.includes("json") || artifact.path.endsWith(".json")) {
         accumulator.json += 1;
         return accumulator;
       }
 
-      if (
-        artifact.mediaType.includes("markdown") ||
-        artifact.path.endsWith(".md")
-      ) {
+      if (artifact.mediaType.includes("markdown") || artifact.path.endsWith(".md")) {
         accumulator.markdown += 1;
         return accumulator;
       }
@@ -241,8 +224,8 @@ export function summarizeArtifacts(
       text: 0,
       json: 0,
       markdown: 0,
-      draftManifests: 0,
-    },
+      draftManifests: 0
+    }
   );
 }
 

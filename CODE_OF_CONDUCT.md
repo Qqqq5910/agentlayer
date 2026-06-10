@@ -2,7 +2,11 @@
 
 ## Our Pledge
 
-We want AgentLayer to be a useful, respectful project for people building the agent-operable web. We pledge to make participation in this community harassment-free for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+We want AgentLayer to be a useful, respectful project for people building the agent-operable web. We
+pledge to make participation in this community harassment-free for everyone, regardless of age, body
+size, disability, ethnicity, sex characteristics, gender identity and expression, level of
+experience, education, socio-economic status, nationality, personal appearance, race, caste, color,
+religion, or sexual identity and orientation.
 
 ## Expected Behavior
 
@@ -22,11 +26,14 @@ We want AgentLayer to be a useful, respectful project for people building the ag
 
 ## Enforcement
 
-Maintainers may remove comments, close issues, decline contributions, or restrict participation when behavior harms the project or its community.
+Maintainers may remove comments, close issues, decline contributions, or restrict participation when
+behavior harms the project or its community.
 
 ## Reporting
 
-Report conduct concerns privately to the maintainers using the contact path listed in the repository security or contribution documentation. Please include relevant links, screenshots, and context when possible.
+Report conduct concerns privately to the maintainers using the contact path listed in the repository
+security or contribution documentation. Please include relevant links, screenshots, and context when
+possible.
 
 ## Attribution
 

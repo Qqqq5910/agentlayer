@@ -23,6 +23,8 @@
     "agentlayer": "tsx packages/cli/src/index.ts",
     "dev": "pnpm --filter @agentlayer/web dev",
     "dev:example": "pnpm --filter @agentlayer/example-saas-site dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "pnpm -r --if-present lint",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
