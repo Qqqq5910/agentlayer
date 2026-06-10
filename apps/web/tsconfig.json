@@ -8,9 +8,6 @@
     "jsx": "preserve",
     "noEmit": true,
     "paths": {
-      "@agentlayer/core": [
-        "../../packages/core/src/index.ts"
-      ],
       "@/*": [
         "src/*"
       ]
