@@ -205,30 +205,6 @@ Before publishing generated artifacts on a production site:
   or API docs.
 - Add generated artifacts to normal release review, not only one-time setup.
 
-## GitHub Setup Checklist
-
-Before tagging `v0.1.0`, polish the public repository metadata:
-
-- Description:
-  `Deterministic toolkit for making websites readable, trusted, and operable by AI agents.`
-- Website: `https://github.com/Qqqq5910/agentlayer#readme` until a hosted project site is live.
-- Social preview or demo screenshot: use `docs/assets/agentlayer-preview.svg` or an updated
-  screenshot from `http://localhost:3000/demo`.
-- Release: create `v0.1.0` from the release notes in
-  [release-notes/v0.1.0.md](./release-notes/v0.1.0.md).
-- Demo link: include `http://localhost:3000/demo` as the local demo path and mention that the
-  AcmeFlow fixture runs at `http://localhost:3001`.
-
-Recommended topics:
-
-- `agentlayer`
-- `llms-txt`
-- `mcp`
-- `webmcp`
-- `ai-agents`
-- `agent-operability`
-- `agentic-web`
-
 ## Example Report
 
 `apps/example-saas-site` is a fictional B2B SaaS site called AcmeFlow. It includes pricing, docs,
@@ -307,7 +283,6 @@ GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
 - [Standards](./docs/standards.md)
 - [Security notes](./docs/security.md)
 - [Firecrawl integration notes](./docs/integrations/firecrawl.md)
-- [GitHub launch setup](./docs/launch/github-setup.md)
 - [Next.js deployment](./docs/deployment/nextjs.md)
 - [Cloudflare Workers deployment](./docs/deployment/cloudflare-workers.md)
 - [Vercel deployment](./docs/deployment/vercel.md)
