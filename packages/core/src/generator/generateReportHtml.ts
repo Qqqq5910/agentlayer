@@ -13,13 +13,36 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
     .join("");
 
   const taskRows = report.tasks
-    .map(
-      (task) => `
+    .map((task) => {
+      const journeyMarkup = journeyStepsList(task.journeySteps);
+
+      return `
         <tr>
           <td>${escapeHtml(task.title)}</td>
           <td><span class="badge ${task.status}">${task.status}</span></td>
           <td>${task.score}</td>
-          <td>${escapeHtml(task.explanation)}</td>
+          <td>
+            ${escapeHtml(task.explanation)}${journeyMarkup ? `\n            ${journeyMarkup}` : ""}
+          </td>
+        </tr>`
+    })
+    .join("");
+
+  const formRows = report.forms
+    .slice(0, 20)
+    .map(
+      (form) => `
+        <tr>
+          <td>
+            <strong>${escapeHtml(form.purpose)}</strong>
+            <small><a href="${escapeAttribute(form.sourceUrl)}">${escapeHtml(sourceLabel(form.sourceUrl))}</a></small>
+          </td>
+          <td>${form.score}</td>
+          <td>${escapeHtml(form.method ?? "unknown")}</td>
+          <td>${form.fields.length}</td>
+          <td>${form.requiresHumanConfirmation ? "Required" : "No"}</td>
+          <td><span class="badge sensitivity-${escapeAttribute(form.sensitivity)}">${escapeHtml(form.sensitivity)}</span></td>
+          <td>${escapeHtml(form.recommendations[0] ?? "No immediate fixes.")}</td>
         </tr>`
     )
     .join("");
@@ -114,6 +137,10 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
       code { border-radius: 6px; background: #eef2f7; padding: 2px 6px; color: #0f172a; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 12px; }
       .file-list span, small { display: block; margin-top: 6px; color: #667085; line-height: 1.45; }
+      .journey-list { display: grid; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+      .journey-list li { display: grid; gap: 4px; border-left: 3px solid #dfe3e8; padding-left: 8px; }
+      .journey-list span { color: #172026; font-size: 12px; font-weight: 700; }
+      .journey-list small { margin: 0; }
       .recommendations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
       .recommendation { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
       .recommendation p { margin: 0; font-size: 14px; }
@@ -165,6 +192,7 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
           ${metric("Pages scanned", report.scan.pages.length)}
           ${metric("Facts extracted", report.facts.length)}
           ${metric("Detected actions", report.actions.length)}
+          ${metric("Forms evaluated", report.forms.length)}
           ${metric("Generated files", generatedFiles(report).length)}
           ${metric("Crawl issues", report.scan.errors.length)}
         </div>
@@ -187,6 +215,14 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       <section class="panel">
         <h2>Top recommendations</h2>
         <div class="recommendations-grid">${recommendationCards}</div>
+      </section>
+
+      <section class="panel">
+        <h2>Form operability</h2>
+        <table>
+          <thead><tr><th>Form</th><th>Score</th><th>Method</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th><th>Next fix</th></tr></thead>
+          <tbody>${formRows}</tbody>
+        </table>
       </section>
 
       <section class="panel">
@@ -235,16 +271,35 @@ function generatedFiles(report: AgentOperabilityReport): Array<{ path: string; d
     { path: "site-profile.json", description: "Site identity, summary, and key pages." },
     { path: "facts.json", description: `${report.facts.length} extracted facts with source evidence.` },
     { path: "actions.json", description: `${report.actions.length} detected actions and confirmation rules.` },
+    { path: "form-operability.json", description: `${report.forms.length} deterministic form operability checks.` },
     { path: "tasks-report.json", description: `${report.tasks.length} deterministic task checks.` },
     { path: "recommendations.json", description: `${report.recommendations.length} prioritized remediation items.` },
+    { path: "artifacts.json", description: "Machine-readable index of generated artifacts." },
     { path: "report.html", description: "Standalone shareable operability report." },
     { path: ".well-known/agents.json", description: "Draft public action manifest." },
     { path: ".well-known/mcp.json", description: "Draft MCP metadata." },
+    { path: ".well-known/mcp/server-card.json", description: "Draft MCP server card." },
+    { path: ".well-known/api-catalog", description: "Draft API catalog discovered from public pages." },
     { path: ".well-known/agent-skills/index.json", description: "Draft agent skill index." },
     { path: "webmcp/suggested-webmcp-tools.json", description: "Suggested WebMCP tool definitions." },
     { path: "webmcp/suggested-form-annotations.md", description: "Suggested form annotations for agent UX." },
     { path: "markdown/*.md", description: `${report.scan.pages.length} page snapshots when markdown is available.` }
   ];
+}
+
+function journeyStepsList(steps: AgentOperabilityReport["tasks"][number]["journeySteps"]): string {
+  if (steps.length === 0) {
+    return "";
+  }
+
+  return `<ul class="journey-list">${steps
+    .map(
+      (step) => `<li>
+        <span><span class="badge ${step.status}">${escapeHtml(step.status)}</span> ${escapeHtml(step.title)}</span>
+        <small>${escapeHtml(step.explanation)}</small>
+      </li>`
+    )
+    .join("")}</ul>`;
 }
 
 function scoreTone(score: number): "strong" | "mixed" | "weak" {

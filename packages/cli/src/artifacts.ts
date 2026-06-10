@@ -5,7 +5,9 @@ export function withRequiredJsonArtifacts(
   artifacts: GeneratedArtifact[],
   report: AgentOperabilityReport
 ): GeneratedArtifact[] {
-  const output = [...artifacts];
+  const output = artifacts.filter(
+    (artifact) => normalizeArtifactPath(artifact.path) !== "artifacts.json"
+  );
   const existingPaths = new Set(output.map((artifact) => normalizeArtifactPath(artifact.path)));
 
   addJsonArtifact(output, existingPaths, "site-profile.json", report.site);
@@ -14,8 +16,33 @@ export function withRequiredJsonArtifacts(
   addJsonArtifact(output, existingPaths, "tasks-report.json", report.tasks);
   addJsonArtifact(output, existingPaths, "recommendations.json", report.recommendations);
   addJsonArtifact(output, existingPaths, "report.json", report);
+  addJsonArtifact(output, existingPaths, "artifacts.json", buildArtifactIndex(output, report));
 
   return output;
+}
+
+function buildArtifactIndex(
+  artifacts: GeneratedArtifact[],
+  report: AgentOperabilityReport
+): Record<string, unknown> {
+  const indexEntries = [
+    ...artifacts.map((artifact) => ({
+      path: normalizeArtifactPath(artifact.path),
+      mediaType: artifact.mediaType
+    })),
+    {
+      path: "artifacts.json",
+      mediaType: "application/json"
+    }
+  ];
+
+  return {
+    generatedBy: "AgentLayer",
+    generatedAt: report.generatedAt,
+    rootUrl: report.site.rootUrl,
+    count: indexEntries.length,
+    artifacts: indexEntries
+  };
 }
 
 function addJsonArtifact(

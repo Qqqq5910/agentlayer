@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildAgentLayerReport,
   buildSiteProfile,
+  evaluateFormOperability,
   evaluateTasks,
   extractActions,
   extractFacts,
@@ -50,8 +51,9 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     const profile = buildSiteProfile(scan);
     const facts = extractFacts(scan);
     const actions = extractActions(scan);
+    const forms = evaluateFormOperability(scan);
     const tasks = evaluateTasks(scan, facts, actions);
-    const scores = scoreSite(scan, facts, actions, tasks);
+    const scores = scoreSite(scan, facts, actions, tasks, forms);
     const report = await buildAgentLayerReport(scan);
 
     expect(profile.name).toBe("AcmeFlow");
@@ -66,10 +68,44 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(actions.some((action) => action.name === "view_pricing")).toBe(true);
     expect(actions.find((action) => action.name === "contact_sales")?.requiresHumanConfirmation).toBe(true);
 
+    expect(forms[0]).toMatchObject({
+      purpose: "contact sales",
+      method: "POST",
+      actionUrl: "https://acme.test/contact",
+      sensitivity: "medium",
+      requiresHumanConfirmation: true
+    });
+    expect(forms[0]?.score).toBeGreaterThanOrEqual(90);
+    expect(forms[0]?.findings.map((finding) => finding.id)).toEqual(
+      expect.arrayContaining([
+        "stable_action_url",
+        "method",
+        "field_names",
+        "labels_or_placeholders",
+        "required_fields",
+        "submit_text",
+        "inferred_purpose",
+        "sensitivity",
+        "human_confirmation"
+      ])
+    );
+
     expect(tasks.find((task) => task.taskId === "find_pricing")?.status).toBe("pass");
     expect(tasks.find((task) => task.taskId === "book_demo")?.status).toBe("pass");
+    expect(tasks.find((task) => task.taskId === "book_demo")?.journeySteps.map((step) => step.id)).toEqual([
+      "discover_action",
+      "understand_required_fields",
+      "confirm_sensitive_action",
+      "submit_safely_not_performed"
+    ]);
+    expect(
+      tasks
+        .find((task) => task.taskId === "book_demo")
+        ?.journeySteps.find((step) => step.id === "submit_safely_not_performed")?.status
+    ).toBe("pass");
     expect(tasks.find((task) => task.taskId === "find_security")?.score).toBeGreaterThanOrEqual(80);
     expect(scores.overall).toBeGreaterThan(70);
+    expect(report.forms).toHaveLength(1);
     expect(report.recommendations).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -91,8 +127,12 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
         "llms-full.txt",
         "facts.json",
         "actions.json",
+        "form-operability.json",
+        "artifacts.json",
         ".well-known/agents.json",
         ".well-known/mcp.json",
+        ".well-known/mcp/server-card.json",
+        ".well-known/api-catalog",
         "webmcp/suggested-webmcp-tools.json",
         "report.html",
         "markdown/index.md"
@@ -109,6 +149,21 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     );
     expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
       expect.stringContaining("Detected actions")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
+      expect.stringContaining("Form operability")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "tasks-report.json")?.content).toEqual(
+      expect.stringContaining("submit_safely_not_performed")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "form-operability.json")?.content).toEqual(
+      expect.stringContaining("stable_action_url")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "artifacts.json")?.content).toEqual(
+      expect.stringContaining(".well-known/mcp/server-card.json")
+    );
+    expect(artifacts.find((artifact) => artifact.path === "webmcp/suggested-webmcp-tools.json")?.content).toEqual(
+      expect.stringContaining("formOperability")
     );
   });
 });

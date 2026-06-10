@@ -29,12 +29,7 @@ export async function runScanCommand(
 ): Promise<void> {
   const core = await loadCoreApi(["scanSite"]);
   const scan = await runCliStep(`Scan failed for ${rootUrl}`, () =>
-    callScanSite(core.scanSite, {
-      rootUrl,
-      maxPages: options.maxPages,
-      timeoutMs: options.timeoutMs,
-      respectRobotsTxt: true,
-    }),
+    callScanSite(core.scanSite, buildScanOptions(rootUrl, options)),
   );
   const outputPath = resolveJsonOutputPath(
     io.cwd(),
@@ -74,12 +69,7 @@ export async function runGenerateCommand(
   const scan = await runCliStep(
     `Generate failed while scanning ${rootUrl}`,
     () =>
-      callScanSite(core.scanSite, {
-        rootUrl,
-        maxPages: options.maxPages,
-        timeoutMs: options.timeoutMs,
-        respectRobotsTxt: true,
-      }),
+      callScanSite(core.scanSite, buildScanOptions(rootUrl, options)),
   );
   const report = await runCliStep(
     "Generate failed while building the AgentLayer report",
@@ -134,12 +124,7 @@ export async function runTestCommand(
   ]);
   const tasks = await loadTasks(core, options.tasks, io.cwd());
   const scan = await runCliStep(`Test failed while scanning ${rootUrl}`, () =>
-    callScanSite(core.scanSite, {
-      rootUrl,
-      maxPages: options.maxPages,
-      timeoutMs: options.timeoutMs,
-      respectRobotsTxt: true,
-    }),
+    callScanSite(core.scanSite, buildScanOptions(rootUrl, options)),
   );
   const fullReport = await runCliStep(
     "Test failed while building the AgentLayer report",
@@ -192,12 +177,7 @@ export async function runDoctorCommand(
   const core = await loadCoreApi(["scanSite", "buildAgentLayerReport"]);
   const tasks = await loadTasks(core, options.tasks, io.cwd());
   const scan = await runCliStep(`Doctor failed while scanning ${rootUrl}`, () =>
-    callScanSite(core.scanSite, {
-      rootUrl,
-      maxPages: options.maxPages,
-      timeoutMs: options.timeoutMs,
-      respectRobotsTxt: true,
-    }),
+    callScanSite(core.scanSite, buildScanOptions(rootUrl, options)),
   );
   const report = await runCliStep(
     "Doctor failed while building the AgentLayer report",
@@ -254,6 +234,17 @@ function averageTaskScore(results: AgentTaskResult[]): number {
   return (
     results.reduce((sum, result) => sum + result.score, 0) / results.length
   );
+}
+
+function buildScanOptions(rootUrl: string, options: CrawlCommandOptions) {
+  return {
+    rootUrl,
+    maxPages: options.maxPages,
+    timeoutMs: options.timeoutMs,
+    respectRobotsTxt: true,
+    allowLocal: Boolean(options.allowLocal),
+    crawler: options.crawler,
+  };
 }
 
 async function runCliStep<T>(

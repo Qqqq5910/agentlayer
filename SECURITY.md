@@ -1,25 +1,24 @@
 # Security Policy
 
-AgentLayer is a scanner and generator for public sites that users are authorized to inspect.
+AgentLayer is a deterministic public-site scanner and artifact generator. It is not intended to probe private networks, authenticate into protected systems, submit forms, or execute state-changing actions.
 
-## Safety Boundaries
+## Supported Versions
 
-- AgentLayer does not submit forms.
-- AgentLayer does not send POST requests during crawling.
-- AgentLayer does not bypass authentication.
-- AgentLayer does not crawl private or paywalled areas.
-- AgentLayer stays within the same hostname by default.
-- AgentLayer respects max page limits and request timeouts.
-- AgentLayer does not perform destructive actions.
-- AgentLayer does not require secrets for default deterministic operation.
+AgentLayer is pre-1.0. Security fixes are published on the `main` branch until versioned releases are available.
 
-## Generated Manifests
+## Reporting a Vulnerability
 
-Generated MCP, WebMCP, Agent Skills, and action manifest files are suggestions. Site owners must review them before production use, especially for sensitive actions such as payment, cancellation, refund, deletion, account changes, or lead submission.
+Please do not open public GitHub issues for vulnerabilities.
 
-Sensitive action manifests should require human confirmation.
+Email the maintainer or use a private GitHub security advisory if available. Include:
 
-## Reporting Issues
+- A short description of the issue.
+- Steps to reproduce.
+- The affected command, API route, or generated artifact.
+- Any relevant logs or URLs, with secrets removed.
 
-Please open a GitHub issue for suspected security problems in this MVP. Do not include secrets, private customer data, or credentials in public issues.
+## Scanner Boundary
 
+By default, AgentLayer rejects localhost, loopback, private, link-local, unique-local IPv6, and cloud metadata addresses. Local fixture scans must opt in with `--allow-local`.
+
+Generated standards artifacts are drafts for human review. Do not publish them as compliance claims without validating them against the current specification and your site's current content.

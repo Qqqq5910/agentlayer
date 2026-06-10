@@ -36,9 +36,52 @@ export type RobotsRules = {
   allow: string[];
 };
 
-export function isSafeCrawlUrl(candidate: string, rootUrl: string): boolean {
+export type UrlSafetyOptions = {
+  allowLocal?: boolean;
+};
+
+export function isPublicHttpUrl(candidate: string, options: UrlSafetyOptions = {}): boolean {
+  return getUnsafeUrlReason(candidate, options) === null;
+}
+
+export function assertPublicHttpUrl(candidate: string, options: UrlSafetyOptions = {}): void {
+  const reason = getUnsafeUrlReason(candidate, options);
+  if (reason) {
+    throw new Error(`Blocked unsafe URL "${candidate}": ${reason}`);
+  }
+}
+
+export function getUnsafeUrlReason(candidate: string, options: UrlSafetyOptions = {}): string | null {
+  let url: URL;
+  try {
+    url = new URL(candidate);
+  } catch {
+    return "URL must be absolute.";
+  }
+
+  if (url.protocol !== "http:" && url.protocol !== "https:") {
+    return "only http(s) URLs can be scanned.";
+  }
+
+  const hostname = stripHostnameBrackets(url.hostname.toLowerCase());
+  if (isMetadataHost(hostname)) {
+    return "cloud metadata addresses cannot be scanned.";
+  }
+
+  if (options.allowLocal) {
+    return null;
+  }
+
+  if (isUnsafeHostname(hostname)) {
+    return "host resolves to a local, private, link-local, or internal address.";
+  }
+
+  return null;
+}
+
+export function isSafeCrawlUrl(candidate: string, rootUrl: string, options: UrlSafetyOptions = {}): boolean {
   const normalized = normalizeUrl(candidate);
-  if (!normalized || !isSameHostname(normalized, rootUrl)) {
+  if (!normalized || !isPublicHttpUrl(normalized, options) || !isSameHostname(normalized, rootUrl)) {
     return false;
   }
 
@@ -51,6 +94,103 @@ export function isSafeCrawlUrl(candidate: string, rootUrl: string): boolean {
   const lastSegment = path.split("/").pop() ?? "";
   const extension = lastSegment.includes(".") ? `.${lastSegment.split(".").pop() ?? ""}`.toLowerCase() : "";
   return !SKIPPED_EXTENSIONS.has(extension);
+}
+
+function stripHostnameBrackets(hostname: string): string {
+  return hostname.startsWith("[") && hostname.endsWith("]") ? hostname.slice(1, -1) : hostname;
+}
+
+function isUnsafeHostname(hostname: string): boolean {
+  const looksLikeIPv4 = /^\d+\.\d+\.\d+\.\d+$/.test(hostname);
+  const looksLikeIPv6 = hostname.includes(":");
+
+  if (
+    hostname === "localhost" ||
+    hostname.endsWith(".localhost") ||
+    hostname.endsWith(".local") ||
+    hostname.endsWith(".internal") ||
+    hostname.endsWith(".lan") ||
+    (!looksLikeIPv4 && !looksLikeIPv6 && !hostname.includes("."))
+  ) {
+    return true;
+  }
+
+  if (isUnsafeIPv4(hostname) || isUnsafeIPv6(hostname)) {
+    return true;
+  }
+
+  return false;
+}
+
+function isUnsafeIPv4(hostname: string): boolean {
+  const match = hostname.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+  if (!match) {
+    return false;
+  }
+
+  const octets = match.slice(1).map(Number);
+  if (octets.some((octet) => !Number.isInteger(octet) || octet < 0 || octet > 255)) {
+    return true;
+  }
+
+  return isUnsafeIPv4Octets(octets);
+}
+
+function isUnsafeIPv4Octets(octets: number[]): boolean {
+  const [first = 0, second = 0] = octets;
+  return (
+    first === 10 ||
+    first === 127 ||
+    (first === 172 && second >= 16 && second <= 31) ||
+    (first === 192 && second === 168) ||
+    (first === 169 && second === 254) ||
+    first === 0
+  );
+}
+
+function isMetadataHost(hostname: string): boolean {
+  const mappedIPv4Octets = parseMappedIPv4Octets(hostname);
+  return hostname === "169.254.169.254" || Boolean(mappedIPv4Octets && isMetadataIPv4Octets(mappedIPv4Octets));
+}
+
+function isMetadataIPv4Octets(octets: number[]): boolean {
+  return octets[0] === 169 && octets[1] === 254 && octets[2] === 169 && octets[3] === 254;
+}
+
+function isUnsafeIPv6(hostname: string): boolean {
+  if (!hostname.includes(":")) {
+    return false;
+  }
+
+  const normalized = hostname.toLowerCase();
+  const mappedIPv4Octets = parseMappedIPv4Octets(normalized);
+  return (
+    normalized === "::" ||
+    normalized === "::1" ||
+    normalized === "0:0:0:0:0:0:0:1" ||
+    (mappedIPv4Octets !== null && isUnsafeIPv4Octets(mappedIPv4Octets)) ||
+    normalized.startsWith("fc") ||
+    normalized.startsWith("fd") ||
+    normalized.startsWith("fe8") ||
+    normalized.startsWith("fe9") ||
+    normalized.startsWith("fea") ||
+    normalized.startsWith("feb")
+  );
+}
+
+function parseMappedIPv4Octets(hostname: string): number[] | null {
+  const match = hostname.match(/^(?:::ffff:|0:0:0:0:0:ffff:)([0-9a-f]{1,4}):([0-9a-f]{1,4})$/);
+  if (!match) {
+    return null;
+  }
+
+  const high = Number.parseInt(match[1] ?? "", 16);
+  const low = Number.parseInt(match[2] ?? "", 16);
+  if (!Number.isInteger(high) || !Number.isInteger(low)) {
+    return null;
+  }
+
+  return [(high >> 8) & 255, high & 255, (low >> 8) & 255, low & 255];
 }
 
 export function parseRobotsTxt(text: string, userAgent = "AgentLayerBot"): RobotsRules {

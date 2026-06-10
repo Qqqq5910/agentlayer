@@ -9,7 +9,7 @@ import {
 import type { CliIo } from "./io.js";
 import { defaultIo } from "./io.js";
 import type { CrawlCommandOptions, InitFixtureOptions } from "./options.js";
-import { parseHttpUrl, parsePositiveInteger } from "./options.js";
+import { parseCrawler, parseHttpUrl, parsePositiveInteger } from "./options.js";
 import { packageVersion } from "./version.js";
 
 export function createProgram(io: CliIo = defaultIo): Command {
@@ -56,6 +56,13 @@ Examples:
       parsePositiveInteger,
       10000,
     )
+    .option("--allow-local", "Allow localhost and private-network URLs.")
+    .option(
+      "--crawler <name>",
+      "Crawler backend to use: local or firecrawl.",
+      parseCrawler,
+      "local",
+    )
     .option("--json", "Print machine-readable JSON to stdout.")
     .action((url: string, options: CrawlCommandOptions) =>
       runScanCommand(url, options, io),
@@ -83,6 +90,13 @@ Examples:
       "Per-request timeout in milliseconds.",
       parsePositiveInteger,
       10000,
+    )
+    .option("--allow-local", "Allow localhost and private-network URLs.")
+    .option(
+      "--crawler <name>",
+      "Crawler backend to use: local or firecrawl.",
+      parseCrawler,
+      "local",
     )
     .option(
       "--tasks <path>",
@@ -116,6 +130,13 @@ Examples:
       parsePositiveInteger,
       10000,
     )
+    .option("--allow-local", "Allow localhost and private-network URLs.")
+    .option(
+      "--crawler <name>",
+      "Crawler backend to use: local or firecrawl.",
+      parseCrawler,
+      "local",
+    )
     .option(
       "--tasks <path>",
       "JSON task suite to use instead of the default B2B SaaS suite.",
@@ -144,6 +165,13 @@ Examples:
       "Per-request timeout in milliseconds.",
       parsePositiveInteger,
       10000,
+    )
+    .option("--allow-local", "Allow localhost and private-network URLs.")
+    .option(
+      "--crawler <name>",
+      "Crawler backend to use: local or firecrawl.",
+      parseCrawler,
+      "local",
     )
     .option(
       "--tasks <path>",

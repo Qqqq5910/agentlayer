@@ -4,6 +4,7 @@ export { scanSite } from "./scanner/crawl.js";
 export { buildSiteProfile, extractFacts } from "./extractor/extractFacts.js";
 export { extractActions } from "./extractor/extractActions.js";
 export { defaultTasks } from "./evaluator/defaultTasks.js";
+export { evaluateFormOperability } from "./evaluator/evaluateFormOperability.js";
 export { evaluateTasks } from "./evaluator/evaluateTasks.js";
 export { scoreSite } from "./evaluator/scoreSite.js";
 export { generateArtifacts } from "./generator/generateArtifacts.js";
@@ -13,6 +14,7 @@ export { generateReportHtml } from "./generator/generateReportHtml.js";
 
 import type { AgentOperabilityReport, AgentTask, ScanOptions, SiteScan } from "./schemas.js";
 import { AgentOperabilityReportSchema, SiteScanSchema } from "./schemas.js";
+import { evaluateFormOperability } from "./evaluator/evaluateFormOperability.js";
 import { evaluateTasks } from "./evaluator/evaluateTasks.js";
 import { extractActions } from "./extractor/extractActions.js";
 import { buildSiteProfile, extractFacts } from "./extractor/extractFacts.js";
@@ -29,15 +31,17 @@ export async function buildAgentLayerReport(
   const site = buildSiteProfile(scan);
   const facts = extractFacts(scan);
   const actions = extractActions(scan);
+  const forms = evaluateFormOperability(scan);
   const taskResults = evaluateTasks(scan, facts, actions, tasks);
-  const scores = scoreSite(scan, facts, actions, taskResults);
-  const recommendations = generateRecommendations(scan, facts, actions, taskResults);
+  const scores = scoreSite(scan, facts, actions, taskResults, forms);
+  const recommendations = generateRecommendations(scan, facts, actions, taskResults, forms);
 
   return AgentOperabilityReportSchema.parse({
     site,
     scan,
     facts,
     actions,
+    forms,
     tasks: taskResults,
     scores,
     recommendations,

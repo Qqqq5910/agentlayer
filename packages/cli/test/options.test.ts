@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseHttpUrl, parsePositiveInteger } from "../src/options.js";
+import { parseCrawler, parseHttpUrl, parsePositiveInteger } from "../src/options.js";
 
 describe("CLI option parsers", () => {
   it("rejects non-absolute URLs with an actionable message", () => {
@@ -23,6 +23,17 @@ describe("CLI option parsers", () => {
   it("rejects invalid positive integer values with the provided value", () => {
     expect(() => parsePositiveInteger("0")).toThrow(
       'Invalid number "0". Use a whole number greater than 0.',
+    );
+  });
+
+  it("parses supported crawler backends", () => {
+    expect(parseCrawler("local")).toBe("local");
+    expect(parseCrawler("firecrawl")).toBe("firecrawl");
+  });
+
+  it("rejects unsupported crawler backends", () => {
+    expect(() => parseCrawler("remote")).toThrow(
+      'Invalid crawler "remote". Use "local" or "firecrawl".',
     );
   });
 });

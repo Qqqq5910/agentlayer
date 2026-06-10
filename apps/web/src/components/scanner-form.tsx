@@ -8,7 +8,11 @@ import { reportStorageKey } from "@/lib/report-utils";
 
 type ScanState = "idle" | "scanning" | "saving" | "error";
 
-export function ScannerForm() {
+type ScannerFormProps = {
+  remoteScanEnabled: boolean;
+};
+
+export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
   const router = useRouter();
   const [url, setUrl] = useState("https://example.com");
   const [maxPages, setMaxPages] = useState(12);
@@ -29,6 +33,14 @@ export function ScannerForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!remoteScanEnabled) {
+      setState("error");
+      setMessage(
+        "Remote scanning is disabled for this hosted demo. Run pnpm agentlayer generate <url> locally, or set ENABLE_REMOTE_SCAN=true for a deployment you control.",
+      );
+      return;
+    }
+
     setState("scanning");
     setMessage("Scanning site structure and generating agent artifacts...");
 
@@ -74,7 +86,9 @@ export function ScannerForm() {
         <div>
           <h1 className="text-2xl font-semibold text-slate-950">Scan a site</h1>
           <p className="mt-1 text-sm leading-6 text-slate-600">
-            No auth required. AgentLayer calls the local core package and stores the report in this browser.
+            {remoteScanEnabled
+              ? "No auth required. AgentLayer calls the core package and stores the report in this browser."
+              : "Remote scanning is disabled on this hosted demo. The demo report still works, and local CLI scans stay available."}
           </p>
         </div>
       </div>
@@ -108,14 +122,18 @@ export function ScannerForm() {
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <button
           className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-slate-950 px-4 font-medium text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-          disabled={state === "scanning" || state === "saving"}
+          disabled={!remoteScanEnabled || state === "scanning" || state === "saving"}
           type="submit"
         >
           {state === "scanning" || state === "saving" ? <Loader2 className="animate-spin" size={17} aria-hidden="true" /> : <ShieldCheck size={17} aria-hidden="true" />}
           Run AgentLayer scan
           <ArrowRight size={16} aria-hidden="true" />
         </button>
-        <span className="text-sm text-slate-500">Remote crawling can fail if a site blocks automated fetches.</span>
+        <span className="text-sm text-slate-500">
+          {remoteScanEnabled
+            ? "Remote crawling can fail if a site blocks automated fetches."
+            : "Run locally with pnpm agentlayer generate https://example.com --out ./agentlayer-output"}
+        </span>
       </div>
 
       <div className="mt-6">

@@ -1,6 +1,23 @@
 {
   "name": "@agentlayer/core",
   "version": "0.1.0",
+  "description": "Core scanner, extractor, evaluator, and artifact generator for AgentLayer.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qqqq5910/agentlayer.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/Qqqq5910/agentlayer#readme",
+  "keywords": [
+    "agentlayer",
+    "llms.txt",
+    "mcp",
+    "webmcp",
+    "agent-operability",
+    "site-scanner",
+    "ai-agents"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +27,12 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "tsc -p tsconfig.json --noEmit",
@@ -26,4 +48,3 @@
     "@types/turndown": "^5.0.5"
   }
 }
-

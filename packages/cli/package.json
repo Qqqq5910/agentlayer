@@ -1,6 +1,23 @@
 {
   "name": "@agentlayer/cli",
   "version": "0.1.0",
+  "description": "Command-line interface for scanning websites and generating AgentLayer artifacts.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qqqq5910/agentlayer.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/Qqqq5910/agentlayer#readme",
+  "keywords": [
+    "agentlayer",
+    "llms.txt",
+    "mcp",
+    "webmcp",
+    "agent-operability",
+    "cli",
+    "ai-agents"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,7 +30,12 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/index.ts",

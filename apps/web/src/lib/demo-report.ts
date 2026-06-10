@@ -3,13 +3,14 @@ import type {
   AgentOperabilityReport,
   AgentTaskResult,
   ExtractedFact,
+  FormOperabilityResult,
   GeneratedArtifact,
   PageSnapshot,
   Recommendation,
 } from "@/lib/report-types";
 
 const scannedAt = "2026-06-10T09:20:00.000Z";
-const rootUrl = "https://nimbuscrm.example";
+const rootUrl = "https://acmeflow.example";
 
 function page(
   path: string,
@@ -23,7 +24,7 @@ function page(
     url,
     finalUrl: url,
     title,
-    description: `${title} on the NimbusCRM demo website.`,
+    description: `${title} on the AcmeFlow demo website.`,
     canonicalUrl: url,
     status: 200,
     pageType,
@@ -73,13 +74,13 @@ function page(
         : [],
     jsonLd: [],
     openGraph: {
-      "og:site_name": "NimbusCRM",
+      "og:site_name": "AcmeFlow",
       "og:title": title,
     },
-    visibleText: `${h1}. NimbusCRM helps revenue teams qualify accounts, compare plan information, read docs, and contact support.`,
-    markdown: `# ${h1}\n\nNimbusCRM helps revenue teams qualify accounts and operate customer journeys.`,
-    emails: path === "/support" ? ["support@nimbuscrm.example"] : [],
-    socialLinks: ["https://www.linkedin.com/company/nimbuscrm"],
+    visibleText: `${h1}. AcmeFlow helps revenue teams qualify accounts, compare plan information, read docs, and contact support.`,
+    markdown: `# ${h1}\n\nAcmeFlow helps revenue teams qualify accounts and operate customer journeys.`,
+    emails: path === "/support" ? ["support@acmeflow.example"] : [],
+    socialLinks: ["https://www.linkedin.com/company/acmeflow"],
     fetchedAt: scannedAt,
   };
 }
@@ -89,9 +90,9 @@ const facts: ExtractedFact[] = [
     id: "fact-company-name",
     type: "company",
     label: "Company name",
-    value: "NimbusCRM",
+    value: "AcmeFlow",
     sourceUrl: rootUrl,
-    sourceText: "NimbusCRM revenue workspace",
+    sourceText: "AcmeFlow revenue workspace",
     confidence: 0.92,
     updatedAt: scannedAt,
   },
@@ -180,9 +181,9 @@ const facts: ExtractedFact[] = [
     id: "fact-support",
     type: "support",
     label: "Support channel",
-    value: "support@nimbuscrm.example",
+    value: "support@acmeflow.example",
     sourceUrl: `${rootUrl}/support`,
-    sourceText: "Email support@nimbuscrm.example for support.",
+    sourceText: "Email support@acmeflow.example for support.",
     confidence: 0.83,
     updatedAt: scannedAt,
   },
@@ -273,6 +274,43 @@ const actions: AgentAction[] = [
   },
 ];
 
+const forms: FormOperabilityResult[] = [
+  {
+    formId: "contact-sales",
+    sourceUrl: `${rootUrl}/contact`,
+    actionUrl: `${rootUrl}/contact`,
+    method: "POST",
+    purpose: "contact_sales",
+    score: 92,
+    sensitivity: "medium",
+    requiresHumanConfirmation: true,
+    fields: [
+      { name: "email", type: "email", label: "Work email", required: true },
+      { name: "company", type: "text", label: "Company", required: true },
+      { name: "team_size", type: "select", label: "Team size" },
+    ],
+    submitText: "Request demo",
+    findings: [
+      {
+        id: "stable_action_url",
+        status: "pass",
+        message: "Form declares a stable action URL.",
+      },
+      {
+        id: "field_names",
+        status: "pass",
+        message: "Fields expose deterministic names.",
+      },
+      {
+        id: "human_confirmation",
+        status: "pass",
+        message: "Human confirmation is required before submission.",
+      },
+    ],
+    recommendations: [],
+  },
+];
+
 const tasks: AgentTaskResult[] = [
   {
     taskId: "find-pricing",
@@ -321,6 +359,32 @@ const tasks: AgentTaskResult[] = [
     evidenceSnippets: ["Request demo form includes email and company fields."],
     missingInformation: [],
     recommendations: ["Expose the form schema in .well-known/agents.json."],
+    journeySteps: [
+      {
+        id: "discover_action",
+        title: "Discover action",
+        status: "pass",
+        explanation: "Contact and demo actions are visible from public pages.",
+      },
+      {
+        id: "understand_required_fields",
+        title: "Understand required fields",
+        status: "pass",
+        explanation: "The form exposes email and company fields as required.",
+      },
+      {
+        id: "confirm_sensitive_action",
+        title: "Confirm sensitive action",
+        status: "pass",
+        explanation: "Lead-submission forms require human confirmation.",
+      },
+      {
+        id: "submit_safely_not_performed",
+        title: "Submit safely not performed",
+        status: "pass",
+        explanation: "AgentLayer records the path without submitting the form.",
+      },
+    ],
   },
   {
     taskId: "find-docs",
@@ -393,7 +457,7 @@ const tasks: AgentTaskResult[] = [
     explanation:
       "Support email is present, but support hours and escalation path are absent.",
     evidenceUrls: [`${rootUrl}/support`],
-    evidenceSnippets: ["Email support@nimbuscrm.example for support."],
+    evidenceSnippets: ["Email support@acmeflow.example for support."],
     missingInformation: ["Support hours", "Escalation policy"],
     recommendations: ["Expose support expectations in facts.json."],
   },
@@ -444,9 +508,9 @@ const recommendations: Recommendation[] = [
 
 export const demoReport: AgentOperabilityReport = {
   site: {
-    name: "NimbusCRM",
+    name: "AcmeFlow",
     summary:
-      "NimbusCRM is a fictional B2B SaaS revenue workspace used to demonstrate AgentLayer scanning, fact extraction, actions, and task checks.",
+      "AcmeFlow is a fictional B2B SaaS revenue workspace used to demonstrate AgentLayer scanning, fact extraction, actions, and task checks.",
     rootUrl,
     keyPages: {
       homepage: rootUrl,
@@ -466,32 +530,32 @@ export const demoReport: AgentOperabilityReport = {
       page(
         "",
         "homepage",
-        "NimbusCRM revenue workspace",
+        "AcmeFlow revenue workspace",
         "Revenue operations for B2B SaaS",
       ),
       page(
         "/pricing",
         "pricing",
-        "NimbusCRM pricing",
+        "AcmeFlow pricing",
         "Simple pricing for growing revenue teams",
       ),
-      page("/docs", "docs", "NimbusCRM docs", "Build with the NimbusCRM API"),
-      page("/security", "security", "NimbusCRM security", "Security overview"),
+      page("/docs", "docs", "AcmeFlow docs", "Build with the AcmeFlow API"),
+      page("/security", "security", "AcmeFlow security", "Security overview"),
       page(
         "/integrations",
         "integrations",
-        "NimbusCRM integrations",
+        "AcmeFlow integrations",
         "Connect your revenue stack",
       ),
       page(
         "/contact",
         "contact",
-        "Contact NimbusCRM sales",
-        "Request a NimbusCRM demo",
+        "Contact AcmeFlow sales",
+        "Request an AcmeFlow demo",
       ),
-      page("/terms", "policy", "NimbusCRM terms", "Terms of service"),
-      page("/privacy", "policy", "NimbusCRM privacy", "Privacy policy"),
-      page("/support", "support", "NimbusCRM support", "Customer support"),
+      page("/terms", "policy", "AcmeFlow terms", "Terms of service"),
+      page("/privacy", "policy", "AcmeFlow privacy", "Privacy policy"),
+      page("/support", "support", "AcmeFlow support", "Customer support"),
     ],
     robotsTxt: {
       url: `${rootUrl}/robots.txt`,
@@ -513,6 +577,7 @@ export const demoReport: AgentOperabilityReport = {
   },
   facts,
   actions,
+  forms,
   tasks,
   scores: {
     readability: 76,
@@ -530,13 +595,13 @@ export const demoArtifacts: GeneratedArtifact[] = [
     path: "llms.txt",
     mediaType: "text/plain",
     content:
-      "# NimbusCRM\n\nNimbusCRM is a B2B SaaS revenue workspace.\n\nImportant pages:\n- Pricing: https://nimbuscrm.example/pricing\n- Docs: https://nimbuscrm.example/docs\n- Security: https://nimbuscrm.example/security\n- Contact: https://nimbuscrm.example/contact\n",
+      "# AcmeFlow\n\nAcmeFlow is a B2B SaaS revenue workspace.\n\nImportant pages:\n- Pricing: https://acmeflow.example/pricing\n- Docs: https://acmeflow.example/docs\n- Security: https://acmeflow.example/security\n- Contact: https://acmeflow.example/contact\n",
   },
   {
     path: "llms-full.txt",
     mediaType: "text/plain",
     content:
-      "# NimbusCRM full agent context\n\nPricing, docs, integrations, support, security, and policies were scanned. Some cancellation/refund details were not found.\n",
+      "# AcmeFlow full agent context\n\nPricing, docs, integrations, support, security, and policies were scanned. Some cancellation/refund details were not found.\n",
   },
   {
     path: "site-profile.json",
@@ -554,6 +619,11 @@ export const demoArtifacts: GeneratedArtifact[] = [
     content: JSON.stringify(actions, null, 2),
   },
   {
+    path: "form-operability.json",
+    mediaType: "application/json",
+    content: JSON.stringify(forms, null, 2),
+  },
+  {
     path: "tasks-report.json",
     mediaType: "application/json",
     content: JSON.stringify(tasks, null, 2),
@@ -568,7 +638,7 @@ export const demoArtifacts: GeneratedArtifact[] = [
     mediaType: "application/json",
     content: JSON.stringify(
       {
-        name: "NimbusCRM agent actions",
+        name: "AcmeFlow agent actions",
         status: "draft",
         reviewRequired: true,
         note: "Fixture action manifest generated for the demo report. Review before publishing.",
@@ -589,10 +659,38 @@ export const demoArtifacts: GeneratedArtifact[] = [
     mediaType: "application/json",
     content: JSON.stringify(
       {
-        name: "NimbusCRM MCP metadata draft",
+        name: "AcmeFlow MCP metadata draft",
         status: "draft",
         reviewRequired: true,
         suggestedTools: ["view_pricing", "contact_sales", "open_security_page"],
+      },
+      null,
+      2,
+    ),
+  },
+  {
+    path: ".well-known/mcp/server-card.json",
+    mediaType: "application/json",
+    content: JSON.stringify(
+      {
+        name: "AcmeFlow MCP server card draft",
+        draft: true,
+        nonComplianceDisclaimer:
+          "Generated demo metadata. Validate against the latest MCP Server Card draft before production use.",
+        resources: ["llms.txt", "facts.json", "actions.json"],
+      },
+      null,
+      2,
+    ),
+  },
+  {
+    path: ".well-known/api-catalog",
+    mediaType: "application/json",
+    content: JSON.stringify(
+      {
+        name: "AcmeFlow API catalog draft",
+        draft: true,
+        apis: [{ title: "AcmeFlow API docs", url: `${rootUrl}/docs/api` }],
       },
       null,
       2,
@@ -603,12 +701,12 @@ export const demoArtifacts: GeneratedArtifact[] = [
     mediaType: "application/json",
     content: JSON.stringify(
       {
-        name: "NimbusCRM agent skill index draft",
+        name: "AcmeFlow agent skill index draft",
         status: "draft",
         skills: [
           {
-            id: "nimbuscrm-buyer-research",
-            title: "Research NimbusCRM buyer information",
+            id: "acmeflow-buyer-research",
+            title: "Research AcmeFlow buyer information",
             sourceUrl: rootUrl,
           },
         ],
@@ -644,18 +742,18 @@ export const demoArtifacts: GeneratedArtifact[] = [
     path: "report.html",
     mediaType: "text/html",
     content:
-      "<!doctype html><html><body><h1>AgentLayer report for NimbusCRM</h1><p>Standalone demo report preview.</p></body></html>\n",
+      "<!doctype html><html><body><h1>AgentLayer report for AcmeFlow</h1><p>Standalone demo report preview.</p></body></html>\n",
   },
   {
     path: "markdown/index.md",
     mediaType: "text/markdown",
     content:
-      "# NimbusCRM revenue workspace\n\nSource: https://nimbuscrm.example\n\nNimbusCRM helps revenue teams qualify accounts and operate customer journeys.\n",
+      "# AcmeFlow revenue workspace\n\nSource: https://acmeflow.example\n\nAcmeFlow helps revenue teams qualify accounts and operate customer journeys.\n",
   },
   {
     path: "markdown/pricing.md",
     mediaType: "text/markdown",
     content:
-      "# NimbusCRM pricing\n\nGrowth and Enterprise plan information was found. Exact rates and overage rules were not machine-readable in this fixture.\n",
+      "# AcmeFlow pricing\n\nGrowth and Enterprise plan information was found. Exact rates and overage rules were not machine-readable in this fixture.\n",
   },
 ];

@@ -2,6 +2,21 @@
   "name": "agentlayer",
   "version": "0.1.0",
   "private": true,
+  "description": "Monorepo for AgentLayer, a deterministic toolkit for agent-operable websites.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qqqq5910/agentlayer.git"
+  },
+  "homepage": "https://github.com/Qqqq5910/agentlayer#readme",
+  "keywords": [
+    "agentlayer",
+    "llms.txt",
+    "mcp",
+    "webmcp",
+    "agent-operability",
+    "ai-agents"
+  ],
   "packageManager": "pnpm@11.4.0",
   "scripts": {
     "build": "pnpm -r --if-present build",

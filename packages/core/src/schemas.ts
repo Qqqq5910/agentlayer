@@ -5,6 +5,8 @@ export const ScanOptionsSchema = z.object({
   maxPages: z.number().int().positive().max(100).default(20),
   timeoutMs: z.number().int().positive().default(10000),
   respectRobotsTxt: z.boolean().default(true),
+  allowLocal: z.boolean().default(false),
+  crawler: z.enum(["local", "firecrawl"]).default("local"),
   userAgent: z
     .string()
     .default("AgentLayerBot/0.1 (+https://github.com/Qqqq5910/agentlayer)")
@@ -154,6 +156,17 @@ export const AgentTaskSchema = z.object({
 
 export type AgentTask = z.infer<typeof AgentTaskSchema>;
 
+export const AgentJourneyStepSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  status: z.enum(["pass", "partial", "fail"]),
+  explanation: z.string(),
+  evidenceUrls: z.array(z.string().url()).default([]),
+  evidenceSnippets: z.array(z.string()).default([])
+});
+
+export type AgentJourneyStep = z.infer<typeof AgentJourneyStepSchema>;
+
 export const AgentTaskResultSchema = z.object({
   taskId: z.string(),
   title: z.string(),
@@ -163,10 +176,36 @@ export const AgentTaskResultSchema = z.object({
   evidenceUrls: z.array(z.string().url()),
   evidenceSnippets: z.array(z.string()),
   missingInformation: z.array(z.string()),
-  recommendations: z.array(z.string())
+  recommendations: z.array(z.string()),
+  journeySteps: z.array(AgentJourneyStepSchema).default([])
 });
 
 export type AgentTaskResult = z.infer<typeof AgentTaskResultSchema>;
+
+export const FormOperabilityFindingSchema = z.object({
+  id: z.string(),
+  status: z.enum(["pass", "partial", "fail"]),
+  message: z.string()
+});
+
+export type FormOperabilityFinding = z.infer<typeof FormOperabilityFindingSchema>;
+
+export const FormOperabilityResultSchema = z.object({
+  formId: z.string(),
+  sourceUrl: z.string().url(),
+  actionUrl: z.string().optional(),
+  method: z.enum(["GET", "POST"]).optional(),
+  purpose: z.string(),
+  score: z.number().min(0).max(100),
+  sensitivity: z.enum(["low", "medium", "high"]),
+  requiresHumanConfirmation: z.boolean(),
+  fields: z.array(ExtractedFormFieldSchema),
+  submitText: z.string().optional(),
+  findings: z.array(FormOperabilityFindingSchema),
+  recommendations: z.array(z.string())
+});
+
+export type FormOperabilityResult = z.infer<typeof FormOperabilityResultSchema>;
 
 export const RecommendationSchema = z.object({
   title: z.string(),
@@ -184,6 +223,7 @@ export const AgentOperabilityReportSchema = z.object({
   scan: SiteScanSchema,
   facts: z.array(ExtractedFactSchema),
   actions: z.array(AgentActionSchema),
+  forms: z.array(FormOperabilityResultSchema).default([]),
   tasks: z.array(AgentTaskResultSchema),
   scores: z.object({
     readability: z.number().min(0).max(100),
@@ -205,4 +245,3 @@ export const GeneratedArtifactSchema = z.object({
 });
 
 export type GeneratedArtifact = z.infer<typeof GeneratedArtifactSchema>;
-

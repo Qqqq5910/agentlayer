@@ -19,6 +19,7 @@ import type {
   AgentOperabilityReport,
   AgentTaskResult,
   ExtractedFact,
+  FormOperabilityResult,
   GeneratedArtifact,
   Recommendation,
 } from "@/lib/report-types";
@@ -100,6 +101,7 @@ export function ReportView({
     report.recommendations,
   );
   const artifactSummary = summarizeArtifacts(artifacts);
+  const formResults = report.forms ?? [];
   const formCount = report.scan.pages.reduce(
     (sum, page) => sum + page.forms.length,
     0,
@@ -215,6 +217,7 @@ export function ReportView({
         <GeneratedFiles artifacts={artifacts} summary={artifactSummary} />
         <FactsTable facts={report.facts} />
         <ActionsTable actions={report.actions} />
+        <FormOperability forms={formResults} />
         <ScannedPages formCount={formCount} report={report} />
       </div>
     </main>
@@ -608,6 +611,98 @@ function TaskResults({
             {task.recommendations.length > 0 ? (
               <p className="mt-2 text-xs text-slate-500">
                 Next: {task.recommendations[0]}
+              </p>
+            ) : null}
+            {task.journeySteps && task.journeySteps.length > 0 ? (
+              <div className="mt-4 space-y-2">
+                {task.journeySteps.map((step) => (
+                  <div
+                    className="rounded-md border border-slate-200 bg-white p-3"
+                    key={`${task.taskId}-${step.id}`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-xs font-semibold uppercase text-slate-500">
+                        {step.title}
+                      </p>
+                      <span
+                        className={`shrink-0 rounded-md border px-2 py-0.5 text-[11px] font-semibold ${taskStatusClasses(step.status)}`}
+                      >
+                        {step.status}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs leading-5 text-slate-600">
+                      {step.explanation}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FormOperability({ forms }: { forms: FormOperabilityResult[] }) {
+  if (forms.length === 0) {
+    return null;
+  }
+
+  const average = Math.round(
+    forms.reduce((sum, form) => sum + form.score, 0) / forms.length,
+  );
+
+  return (
+    <section className="panel p-5">
+      <SectionHeader
+        icon={<Route size={18} aria-hidden="true" />}
+        title="Form operability"
+        description="Deterministic checks for whether agents can understand form purpose, fields, sensitivity, and confirmation requirements."
+      />
+      <div className="mb-4 grid gap-3 text-sm sm:grid-cols-3">
+        <Metric label="Forms checked" value={String(forms.length)} />
+        <Metric label="Average score" value={`${average}/100`} />
+        <Metric
+          label="Human confirmation"
+          value={String(
+            forms.filter((form) => form.requiresHumanConfirmation).length,
+          )}
+        />
+      </div>
+      <div className="grid gap-3 md:grid-cols-2">
+        {forms.map((form) => (
+          <article
+            className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+            key={form.formId}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h3 className="font-semibold text-slate-950">
+                  {form.purpose}
+                </h3>
+                <p className="mt-1 truncate text-xs text-cyan-700">
+                  {form.actionUrl ?? form.sourceUrl}
+                </p>
+              </div>
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700">
+                {form.score}/100
+              </span>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-1">
+                {form.method ?? "method unknown"}
+              </span>
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-1">
+                {form.fields.length} fields
+              </span>
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-1">
+                {form.sensitivity} sensitivity
+              </span>
+            </div>
+            {form.recommendations.length > 0 ? (
+              <p className="mt-3 text-xs leading-5 text-slate-500">
+                Next: {form.recommendations[0]}
               </p>
             ) : null}
           </article>

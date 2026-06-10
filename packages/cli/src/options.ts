@@ -33,10 +33,22 @@ export function parseHttpUrl(value: string): string {
   return parsed.toString();
 }
 
+export function parseCrawler(value: string): "local" | "firecrawl" {
+  if (value === "local" || value === "firecrawl") {
+    return value;
+  }
+
+  throw new InvalidArgumentError(
+    `Invalid crawler "${value}". Use "local" or "firecrawl".`,
+  );
+}
+
 export type CrawlCommandOptions = {
   out?: string;
   maxPages: number;
   timeoutMs: number;
+  allowLocal?: boolean;
+  crawler: "local" | "firecrawl";
   tasks?: string;
   json?: boolean;
 };

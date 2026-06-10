@@ -9,11 +9,13 @@ export const metadata = {
 };
 
 export default function ScanPage() {
+  const remoteScanEnabled = process.env.ENABLE_REMOTE_SCAN === "true";
+
   return (
     <>
       <Navigation />
       <main className="container-shell grid gap-6 py-8 lg:grid-cols-[1fr_360px]">
-        <ScannerForm />
+        <ScannerForm remoteScanEnabled={remoteScanEnabled} />
         <aside className="space-y-4">
           <div className="panel p-5">
             <h2 className="font-semibold text-slate-950">What the scan returns</h2>
@@ -26,7 +28,8 @@ export default function ScanPage() {
           <div className="panel p-5">
             <h2 className="font-semibold text-slate-950">Need a guaranteed report?</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              The demo report uses fixture data and is always available, even before the scanner backend is complete.
+              The AcmeFlow demo report uses fixture data and is always available. Hosted deployments should only enable
+              arbitrary remote scans after reviewing SSRF protections.
             </p>
             <Link className="mt-4 inline-flex rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white" href="/demo">
               Open demo report

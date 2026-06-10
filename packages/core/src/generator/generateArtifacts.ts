@@ -35,6 +35,11 @@ export function generateArtifacts(report: AgentOperabilityReport): GeneratedArti
       content: `${JSON.stringify(report.actions, null, 2)}\n`
     },
     {
+      path: "form-operability.json",
+      mediaType: "application/json",
+      content: `${JSON.stringify(report.forms, null, 2)}\n`
+    },
+    {
       path: "tasks-report.json",
       mediaType: "application/json",
       content: `${JSON.stringify(report.tasks, null, 2)}\n`
@@ -59,6 +64,39 @@ export function generateArtifacts(report: AgentOperabilityReport): GeneratedArti
         content: `# ${page.title ?? page.headings.h1[0] ?? page.pageType}\n\nSource: ${page.finalUrl}\n\n${page.markdown}\n`
       }))
   ];
+  artifacts.push(generateArtifactIndex(report, artifacts));
 
   return artifacts.map((artifact) => GeneratedArtifactSchema.parse(artifact));
+}
+
+function generateArtifactIndex(
+  report: AgentOperabilityReport,
+  artifacts: GeneratedArtifact[]
+): GeneratedArtifact {
+  const indexEntries = [
+    ...artifacts.map((artifact) => ({
+      path: artifact.path,
+      mediaType: artifact.mediaType
+    })),
+    {
+      path: "artifacts.json",
+      mediaType: "application/json"
+    }
+  ];
+
+  return {
+    path: "artifacts.json",
+    mediaType: "application/json",
+    content: `${JSON.stringify(
+      {
+        generatedBy: "AgentLayer",
+        generatedAt: report.generatedAt,
+        rootUrl: report.site.rootUrl,
+        count: indexEntries.length,
+        artifacts: indexEntries
+      },
+      null,
+      2
+    )}\n`
+  };
 }

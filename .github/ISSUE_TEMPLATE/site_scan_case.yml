@@ -1,0 +1,58 @@
+name: Site scan case
+description: Share a public-site scan case for triage or improvement.
+title: "[Site scan]: "
+labels: ["site-scan", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share only public URLs you have permission to discuss. Do not include credentials, private reports, or sensitive customer data.
+  - type: input
+    id: url
+    attributes:
+      label: Public URL
+      placeholder: "https://example.com"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command used
+      placeholder: "pnpm agentlayer doctor https://example.com --max-pages 20"
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: What needs attention?
+      options:
+        - Crawl failed
+        - Important page missed
+        - Incorrect fact
+        - Incorrect action
+        - Task result seems wrong
+        - Generated artifact needs improvement
+        - Documentation unclear
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Explain what AgentLayer produced and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Safe excerpts
+      description: Paste only non-sensitive snippets from reports or generated files.
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent
+      options:
+        - label: The URL is public and safe to discuss in an open GitHub issue.
+          required: true
+        - label: I removed secrets, credentials, private customer data, and personal data.
+          required: true

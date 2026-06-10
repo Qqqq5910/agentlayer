@@ -1,0 +1,66 @@
+name: Bug report
+description: Report a reproducible AgentLayer bug.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve AgentLayer. Please avoid sharing private URLs, credentials, API keys, or unpublished security details.
+  - type: input
+    id: version
+    attributes:
+      label: AgentLayer version or commit
+      placeholder: "0.1.0 or commit SHA"
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - Core package
+        - CLI
+        - Web app
+        - Example SaaS site
+        - Generated artifacts
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include commands, URLs, flags, and relevant output.
+      placeholder: |
+        1. Run ...
+        2. Open ...
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "OS, Node version, pnpm version, browser if relevant"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submit checks
+      options:
+        - label: I removed secrets, private URLs, credentials, and personal data.
+          required: true
+        - label: I searched existing issues for a similar report.
+          required: true

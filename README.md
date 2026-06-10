@@ -10,11 +10,19 @@ AgentLayer is an open-source, deterministic toolkit for checking whether a publi
 
 For developers, AgentLayer provides a TypeScript core package, a repo-local CLI, and a Next.js demo app. For founders and site owners, it turns "will agents understand my site?" into a concrete report: missing facts, unclear policies, weak action paths, and task failures.
 
+![AgentLayer generated artifact preview](./docs/assets/agentlayer-preview.svg)
+
 ## What It Does
 
 AgentLayer scans public pages within same-host, max-page, timeout, and robots.txt bounds. It extracts agent-relevant structure, generates conservative machine-readable files, detects possible actions, and evaluates deterministic B2B SaaS tasks such as finding pricing, docs, security information, integrations, support, and demo/contact paths.
 
 This is not an AI SEO dashboard and not only an `llms.txt` generator. It is closer to Lighthouse for the agentic web: standards matter, but AgentLayer also asks whether agents can complete useful tasks.
+
+## AgentLayer vs Firecrawl
+
+Firecrawl is excellent when you need hosted crawling and clean content extraction for LLM ingestion. AgentLayer is focused on a different layer: agent operability. It checks whether a website exposes sourced facts, clear policies, action boundaries, task paths, and standards-ready draft artifacts.
+
+You can use them together: Firecrawl can help collect content, while AgentLayer evaluates and packages agent-facing outputs. AgentLayer does not require Firecrawl today. See [docs/integrations/firecrawl.md](./docs/integrations/firecrawl.md).
 
 ## Why Now
 
@@ -32,8 +40,12 @@ AgentLayer can generate:
 - `site-profile.json`
 - `facts.json` with source URLs and confidence
 - `actions.json`
+- `form-operability.json`
+- `artifacts.json`
 - `.well-known/agents.json`
-- `.well-known/mcp.json` draft metadata
+- `.well-known/mcp/server-card.json` draft metadata
+- `.well-known/mcp.json` legacy/draft alias
+- `.well-known/api-catalog`
 - `.well-known/agent-skills/index.json`
 - `webmcp/suggested-webmcp-tools.json`
 - `webmcp/suggested-form-annotations.md`
@@ -42,6 +54,8 @@ AgentLayer can generate:
 - `report.html`
 
 Generated MCP/WebMCP/action files are conservative suggestions. They are not official compliance claims.
+
+See [docs/standards.md](./docs/standards.md) for the current draft posture on `llms.txt`, MCP Server Card drafts, API Catalog, Agent Skills, WebMCP, and Markdown alternatives.
 
 ## Quickstart
 
@@ -56,8 +70,8 @@ pnpm dev:example
 In another terminal, scan the fixture and generate artifacts:
 
 ```bash
-pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20
-pnpm agentlayer doctor http://localhost:3001 --max-pages 20
+pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
+pnpm agentlayer doctor http://localhost:3001 --max-pages 20 --allow-local
 ```
 
 Optionally run the local web app:
@@ -68,9 +82,13 @@ pnpm dev
 
 The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at `http://localhost:3001`.
 
+## Try the Demo
+
+Run the local web app and open `http://localhost:3000/demo` for a fixture report, or scan the example SaaS site at `http://localhost:3001` with `--allow-local` and open the generated `report.html` from your output directory.
+
 ## CLI Usage
 
-Use `pnpm agentlayer` when running from a repository checkout:
+AgentLayer is currently documented for repo-local use. Use `pnpm agentlayer` when running from a repository checkout:
 
 ```bash
 pnpm agentlayer scan <url> --out ./agentlayer-output --max-pages 20
@@ -88,6 +106,8 @@ When the CLI is installed or linked as the `agentlayer` binary, use the same com
 agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
 ```
 
+When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then, prefer the repo-local commands above or a local package link.
+
 ## Web App
 
 The Next.js app includes:
@@ -99,6 +119,27 @@ The Next.js app includes:
 - Docs page explaining generated files
 
 No login, hosted database, payment flow, or LLM API key is required.
+
+## Launch Checklist
+
+Before publishing generated artifacts on a production site:
+
+- Review `facts.json`, `actions.json`, and `tasks-report.json`.
+- Keep draft/non-compliance disclaimers in MCP, WebMCP, API Catalog, and Agent Skills files.
+- Confirm sensitive actions require human confirmation.
+- Serve approved files from stable paths such as `/llms.txt` and `/.well-known/agents.json`.
+- Re-run AgentLayer after changes to navigation, pricing, docs, support, policies, security pages, or API docs.
+- Add generated artifacts to normal release review, not only one-time setup.
+
+Recommended GitHub repository topics:
+
+- `agentlayer`
+- `llms-txt`
+- `mcp`
+- `webmcp`
+- `ai-agents`
+- `agent-operability`
+- `agentic-web`
 
 ## Example Report
 
@@ -167,6 +208,15 @@ pnpm build
 ```
 
 GitHub Actions runs the same lint, typecheck, test, and build commands on pushes and pull requests.
+
+## Documentation
+
+- [Standards](./docs/standards.md)
+- [Security notes](./docs/security.md)
+- [Firecrawl integration notes](./docs/integrations/firecrawl.md)
+- [Next.js deployment](./docs/deployment/nextjs.md)
+- [Cloudflare Workers deployment](./docs/deployment/cloudflare-workers.md)
+- [Vercel deployment](./docs/deployment/vercel.md)
 
 ## Contributing
 

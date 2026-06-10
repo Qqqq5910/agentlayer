@@ -5,6 +5,8 @@
       "name": "openApiDocs",
       "description": "Open API documentation.",
       "sourceUrl": "http://localhost:3001/docs/api",
+      "actionUrl": "http://localhost:3001/docs/api",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -17,6 +19,8 @@
       "name": "contactSales",
       "description": "Find the path for contacting sales.",
       "sourceUrl": "http://localhost:3001/contact",
+      "actionUrl": "http://localhost:3001/contact",
+      "method": "POST",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -44,12 +48,57 @@
         ]
       },
       "requiresHumanConfirmation": true,
-      "sensitivity": "medium"
+      "sensitivity": "medium",
+      "formOperability": {
+        "score": 100,
+        "purpose": "contact sales",
+        "findings": [
+          {
+            "id": "stable_action_url",
+            "status": "pass"
+          },
+          {
+            "id": "method",
+            "status": "pass"
+          },
+          {
+            "id": "field_names",
+            "status": "pass"
+          },
+          {
+            "id": "labels_or_placeholders",
+            "status": "pass"
+          },
+          {
+            "id": "required_fields",
+            "status": "pass"
+          },
+          {
+            "id": "submit_text",
+            "status": "pass"
+          },
+          {
+            "id": "inferred_purpose",
+            "status": "pass"
+          },
+          {
+            "id": "sensitivity",
+            "status": "pass"
+          },
+          {
+            "id": "human_confirmation",
+            "status": "pass"
+          }
+        ],
+        "recommendations": []
+      }
     },
     {
       "name": "contactSales",
       "description": "Find the path for contacting sales.",
       "sourceUrl": "http://localhost:3001/contact",
+      "actionUrl": "http://localhost:3001/contact",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -62,6 +111,8 @@
       "name": "bookDemo",
       "description": "Find the path for booking a product demo.",
       "sourceUrl": "http://localhost:3001/demo",
+      "actionUrl": "http://localhost:3001/demo",
+      "method": "POST",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -93,12 +144,57 @@
         ]
       },
       "requiresHumanConfirmation": true,
-      "sensitivity": "medium"
+      "sensitivity": "medium",
+      "formOperability": {
+        "score": 100,
+        "purpose": "book demo",
+        "findings": [
+          {
+            "id": "stable_action_url",
+            "status": "pass"
+          },
+          {
+            "id": "method",
+            "status": "pass"
+          },
+          {
+            "id": "field_names",
+            "status": "pass"
+          },
+          {
+            "id": "labels_or_placeholders",
+            "status": "pass"
+          },
+          {
+            "id": "required_fields",
+            "status": "pass"
+          },
+          {
+            "id": "submit_text",
+            "status": "pass"
+          },
+          {
+            "id": "inferred_purpose",
+            "status": "pass"
+          },
+          {
+            "id": "sensitivity",
+            "status": "pass"
+          },
+          {
+            "id": "human_confirmation",
+            "status": "pass"
+          }
+        ],
+        "recommendations": []
+      }
     },
     {
       "name": "bookDemo",
       "description": "Find the path for booking a product demo.",
       "sourceUrl": "http://localhost:3001/demo",
+      "actionUrl": "http://localhost:3001/demo",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -111,6 +207,8 @@
       "name": "searchDocs",
       "description": "Find or search documentation.",
       "sourceUrl": "http://localhost:3001/docs",
+      "actionUrl": "http://localhost:3001/docs",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -123,6 +221,8 @@
       "name": "viewPricing",
       "description": "View pricing information.",
       "sourceUrl": "http://localhost:3001/pricing",
+      "actionUrl": "http://localhost:3001/pricing",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -135,6 +235,8 @@
       "name": "readPrivacyPolicy",
       "description": "Read the privacy policy.",
       "sourceUrl": "http://localhost:3001/privacy",
+      "actionUrl": "http://localhost:3001/privacy",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -147,6 +249,8 @@
       "name": "openSecurityPage",
       "description": "Open security or trust information.",
       "sourceUrl": "http://localhost:3001/security",
+      "actionUrl": "http://localhost:3001/security",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -159,6 +263,8 @@
       "name": "requestSupport",
       "description": "Find the support request path.",
       "sourceUrl": "http://localhost:3001/support",
+      "actionUrl": "http://localhost:3001/support",
+      "method": "POST",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -182,12 +288,57 @@
         ]
       },
       "requiresHumanConfirmation": true,
-      "sensitivity": "high"
+      "sensitivity": "high",
+      "formOperability": {
+        "score": 100,
+        "purpose": "request support",
+        "findings": [
+          {
+            "id": "stable_action_url",
+            "status": "pass"
+          },
+          {
+            "id": "method",
+            "status": "pass"
+          },
+          {
+            "id": "field_names",
+            "status": "pass"
+          },
+          {
+            "id": "labels_or_placeholders",
+            "status": "pass"
+          },
+          {
+            "id": "required_fields",
+            "status": "pass"
+          },
+          {
+            "id": "submit_text",
+            "status": "pass"
+          },
+          {
+            "id": "inferred_purpose",
+            "status": "pass"
+          },
+          {
+            "id": "sensitivity",
+            "status": "pass"
+          },
+          {
+            "id": "human_confirmation",
+            "status": "pass"
+          }
+        ],
+        "recommendations": []
+      }
     },
     {
       "name": "requestSupport",
       "description": "Find the support request path.",
       "sourceUrl": "http://localhost:3001/support",
+      "actionUrl": "http://localhost:3001/support",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -200,6 +351,8 @@
       "name": "readTerms",
       "description": "Read terms or legal policies.",
       "sourceUrl": "http://localhost:3001/terms",
+      "actionUrl": "http://localhost:3001/terms",
+      "method": "GET",
       "inputSchema": {
         "type": "object",
         "properties": {},

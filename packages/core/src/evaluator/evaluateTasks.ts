@@ -1,4 +1,4 @@
-import type { AgentAction, AgentTask, AgentTaskResult, ExtractedFact, PageSnapshot, SiteScan } from "../schemas.js";
+import type { AgentAction, AgentJourneyStep, AgentTask, AgentTaskResult, ExtractedFact, PageSnapshot, SiteScan } from "../schemas.js";
 import { clamp, countKeywordHits, includesAny, snippetAround, truncateText, uniqueStrings } from "../utils/text.js";
 import { defaultTasks } from "./defaultTasks.js";
 
@@ -145,19 +145,20 @@ function evaluateActionPath(
   const matchingPages = scan.pages.filter((page) => includesAny(`${page.pageType} ${page.finalUrl} ${page.visibleText}`, pageKeywords));
   const hasForm = matchingActions.some((action) => action.actionType === "form");
   const evidence = collectEvidence([...matchingActions, ...matchingPages], task.requiredEvidence);
+  const journeySteps = actionJourneySteps(matchingActions, matchingPages);
 
   if (hasForm) {
-    return result(task, "pass", 90, "A relevant form-based action path was found.", evidence);
+    return result(task, "pass", 90, "A relevant form-based action path was found.", evidence, [], journeySteps);
   }
   if (matchingActions.length > 0 || matchingPages.length > 0) {
     return result(task, "partial", 60, "A navigation path exists, but no actionable form was detected.", evidence, [
       "Expose field labels and purpose for the relevant form."
-    ]);
+    ], journeySteps);
   }
 
   return result(task, "fail", 0, "No matching action path was found.", evidence, [
     "Add a clear action page and form for this journey."
-  ]);
+  ], journeySteps);
 }
 
 function evaluatePageAndAction(
@@ -274,7 +275,8 @@ function result(
   score: number,
   explanation: string,
   evidence: Evidence,
-  recommendations: string[] = []
+  recommendations: string[] = [],
+  journeySteps: AgentJourneyStep[] = []
 ): AgentTaskResult {
   return {
     taskId: task.id,
@@ -285,8 +287,91 @@ function result(
     evidenceUrls: evidence.urls,
     evidenceSnippets: evidence.snippets,
     missingInformation: status === "pass" ? [] : missingInformationFor(task),
-    recommendations
+    recommendations,
+    journeySteps
   };
+}
+
+function actionJourneySteps(
+  matchingActions: readonly AgentAction[],
+  matchingPages: readonly PageSnapshot[]
+): AgentJourneyStep[] {
+  const formAction = matchingActions.find((action) => action.actionType === "form");
+  const firstAction = formAction ?? matchingActions[0];
+  const firstPage = matchingPages[0];
+  const evidenceUrls = uniqueStrings([firstAction?.url, firstAction?.sourceUrl, firstPage?.finalUrl].filter(Boolean) as string[]);
+  const requiredFields = firstAction?.requiredFields ?? [];
+  const fieldsWithNames = requiredFields.filter((field) => field.name.trim().length > 0);
+  const labeledFields = requiredFields.filter((field) => Boolean(field.label?.trim()));
+  const sensitiveActionNeedsConfirmation =
+    firstAction ? firstAction.sensitivity !== "low" || firstAction.actionType === "form" : false;
+
+  return [
+    {
+      id: "discover_action",
+      title: "Discover action",
+      status: firstAction ? "pass" : firstPage ? "partial" : "fail",
+      explanation: firstAction
+        ? `Detected ${firstAction.actionType} action "${firstAction.name}".`
+        : firstPage
+          ? "Found a relevant page, but no structured action was detected."
+          : "No relevant page or action was detected.",
+      evidenceUrls,
+      evidenceSnippets: firstAction ? [truncateText(`${firstAction.name}: ${firstAction.description}`, 180)] : []
+    },
+    {
+      id: "understand_required_fields",
+      title: "Understand required fields",
+      status: formAction
+        ? requiredFields.length > 0 && fieldsWithNames.length === requiredFields.length
+          ? labeledFields.length === requiredFields.length
+            ? "pass"
+            : "partial"
+          : "fail"
+        : firstAction
+          ? "partial"
+          : "fail",
+      explanation: formAction
+        ? requiredFields.length > 0
+          ? `${fieldsWithNames.length} of ${requiredFields.length} fields expose stable names; ${labeledFields.length} expose labels.`
+          : "The action is form-based, but no fields were extracted."
+        : firstAction
+          ? "The action is navigational, so form fields are not available for deterministic submission."
+          : "No action was available for field analysis.",
+      evidenceUrls,
+      evidenceSnippets: requiredFields.map((field) => `${field.name} (${field.type})${field.required ? " required" : ""}`).slice(0, 5)
+    },
+    {
+      id: "confirm_sensitive_action",
+      title: "Confirm sensitive action",
+      status: firstAction
+        ? sensitiveActionNeedsConfirmation
+          ? firstAction.requiresHumanConfirmation
+            ? "pass"
+            : "fail"
+          : "pass"
+        : "fail",
+      explanation: firstAction
+        ? firstAction.requiresHumanConfirmation
+          ? `Human confirmation is required for this ${firstAction.sensitivity}-sensitivity action.`
+          : firstAction.sensitivity === "low"
+            ? "No human confirmation is required for this low-sensitivity action."
+            : "This sensitive action does not require human confirmation."
+        : "No action was available for confirmation analysis.",
+      evidenceUrls,
+      evidenceSnippets: []
+    },
+    {
+      id: "submit_safely_not_performed",
+      title: "Submit safely not performed",
+      status: firstAction ? "pass" : "fail",
+      explanation: firstAction
+        ? "The evaluator stopped at deterministic preparation and did not submit the form."
+        : "No action was found, so no submission was attempted.",
+      evidenceUrls,
+      evidenceSnippets: []
+    }
+  ];
 }
 
 function missingInformationFor(task: AgentTask): string[] {

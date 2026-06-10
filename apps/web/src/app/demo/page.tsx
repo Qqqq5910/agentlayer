@@ -14,7 +14,7 @@ export default function DemoReportPage() {
         artifacts={demoArtifacts}
         eyebrow="Local fixture report"
         report={demoReport}
-        title="NimbusCRM agent operability report"
+        title="AcmeFlow agent operability report"
       />
     </>
   );

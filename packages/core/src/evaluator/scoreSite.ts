@@ -3,6 +3,7 @@ import type {
   AgentOperabilityReport,
   AgentTaskResult,
   ExtractedFact,
+  FormOperabilityResult,
   Recommendation,
   SiteScan
 } from "../schemas.js";
@@ -14,11 +15,12 @@ export function scoreSite(
   scan: SiteScan,
   facts: readonly ExtractedFact[],
   actions: readonly AgentAction[],
-  taskResults: readonly AgentTaskResult[]
+  taskResults: readonly AgentTaskResult[],
+  forms: readonly FormOperabilityResult[] = []
 ): SiteScores {
   const readability = scoreReadability(scan);
   const trustability = scoreTrustability(scan, facts);
-  const actionability = scoreActionability(actions);
+  const actionability = scoreActionability(actions, forms);
   const taskSuccess =
     taskResults.length > 0
       ? Math.round(taskResults.reduce((total, task) => total + task.score, 0) / taskResults.length)
@@ -38,7 +40,8 @@ export function generateRecommendations(
   scan: SiteScan,
   facts: readonly ExtractedFact[],
   actions: readonly AgentAction[],
-  taskResults: readonly AgentTaskResult[]
+  taskResults: readonly AgentTaskResult[],
+  forms: readonly FormOperabilityResult[] = []
 ): Recommendation[] {
   const recommendations: Recommendation[] = [];
   const add = (recommendation: Recommendation) => recommendations.push(recommendation);
@@ -123,6 +126,20 @@ export function generateRecommendations(
     });
   }
 
+  const weakForms = forms.filter((form) => form.score < 75);
+  if (weakForms.length > 0) {
+    add({
+      title: "Improve form operability",
+      severity: weakForms.some((form) => form.score < 50) ? "high" : "medium",
+      whyItMatters: "Agents need stable form actions, labeled fields, required-field markers, and confirmation rules before they can safely prepare submissions.",
+      howToFix: weakForms[0]?.recommendations[0] ?? "Review form-operability.json and add missing labels, names, required markers, and submit text.",
+      affectedTasks: taskResults
+        .filter((task) => task.journeySteps.some((step) => step.id === "understand_required_fields" && step.status !== "pass"))
+        .map((task) => task.taskId),
+      suggestedArtifact: "form-operability.json"
+    });
+  }
+
   return recommendations.slice(0, 12);
 }
 
@@ -175,20 +192,23 @@ function scoreTrustability(scan: SiteScan, facts: readonly ExtractedFact[]): num
   );
 }
 
-function scoreActionability(actions: readonly AgentAction[]): number {
+function scoreActionability(actions: readonly AgentAction[], forms: readonly FormOperabilityResult[]): number {
   const names = new Set(actions.map((action) => action.name));
-  const forms = actions.filter((action) => action.actionType === "form");
-  const fieldsExtractable = forms.length === 0 || forms.every((action) => (action.requiredFields?.length ?? 0) > 0);
+  const formActions = actions.filter((action) => action.actionType === "form");
+  const fieldsExtractable = formActions.length === 0 || formActions.every((action) => (action.requiredFields?.length ?? 0) > 0);
   const sensitivityLabeled = actions.every((action) => Boolean(action.sensitivity));
   const humanConfirmation = actions
     .filter((action) => action.sensitivity !== "low" || action.actionType === "form")
     .every((action) => action.requiresHumanConfirmation);
+  const averageFormScore =
+    forms.length > 0 ? forms.reduce((total, form) => total + form.score, 0) / forms.length : 100;
 
   return clamp(
     Math.round(
       (names.has("contact_sales") || names.has("book_demo") ? 22 : 0) +
         (names.has("search_docs") || names.has("open_api_docs") ? 18 : 0) +
-        (forms.length > 0 && fieldsExtractable ? 20 : forms.length > 0 ? 10 : 0) +
+        (formActions.length > 0 && fieldsExtractable ? 16 : formActions.length > 0 ? 8 : 0) +
+        (forms.length > 0 ? averageFormScore * 0.1 : 10) +
         (sensitivityLabeled ? 15 : 0) +
         (humanConfirmation ? 15 : 0) +
         (actions.length > 0 ? 10 : 0)

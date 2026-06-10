@@ -1,36 +1,34 @@
 import { NextResponse } from "next/server";
+import { buildAgentLayerReport, generateArtifacts } from "@agentlayer/core";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-type CoreModule = {
-  buildAgentLayerReport?: (options: { rootUrl: string; maxPages: number }) => Promise<unknown> | unknown;
-  generateArtifacts?: (report: unknown) => Promise<unknown> | unknown;
-};
-
-const importModule = new Function("specifier", "return import(specifier)") as (
-  specifier: string
-) => Promise<CoreModule>;
-
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { url?: string; maxPages?: number };
-    const rootUrl = normalizeUrl(body.url);
-    const maxPages = clampMaxPages(body.maxPages);
-    const core = await importModule("@agentlayer/core");
-
-    if (typeof core.buildAgentLayerReport !== "function" || typeof core.generateArtifacts !== "function") {
+    if (process.env.ENABLE_REMOTE_SCAN !== "true") {
       return NextResponse.json(
         {
           error:
-            "@agentlayer/core does not export buildAgentLayerReport/generateArtifacts yet. Use the demo report while the core scanner package is being completed."
+            "Remote scanning is disabled on this hosted demo. Run the CLI locally, or set ENABLE_REMOTE_SCAN=true for a deployment you control."
         },
-        { status: 503 }
+        { status: 403 }
       );
     }
 
-    const report = await core.buildAgentLayerReport({ rootUrl, maxPages });
-    const artifacts = await core.generateArtifacts(report);
+    const body = (await request.json()) as { url?: string; maxPages?: number };
+    const rootUrl = normalizeUrl(body.url);
+    const maxPages = clampMaxPages(body.maxPages);
+    const report = await buildAgentLayerReport({
+      rootUrl,
+      maxPages,
+      timeoutMs: 10000,
+      respectRobotsTxt: true,
+      allowLocal: false,
+      crawler: "local",
+      userAgent: "AgentLayerBot/0.1 (+https://github.com/Qqqq5910/agentlayer)"
+    });
+    const artifacts = generateArtifacts(report);
 
     return NextResponse.json({ report, artifacts });
   } catch (error) {

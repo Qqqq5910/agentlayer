@@ -36,6 +36,10 @@
       .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
       code { border-radius: 6px; background: #eef2f7; padding: 2px 6px; color: #0f172a; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 12px; }
       .file-list span, small { display: block; margin-top: 6px; color: #667085; line-height: 1.45; }
+      .journey-list { display: grid; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+      .journey-list li { display: grid; gap: 4px; border-left: 3px solid #dfe3e8; padding-left: 8px; }
+      .journey-list span { color: #172026; font-size: 12px; font-weight: 700; }
+      .journey-list small { margin: 0; }
       .recommendations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
       .recommendation { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
       .recommendation p { margin: 0; font-size: 14px; }
@@ -69,7 +73,7 @@
         </header>
         <aside class="hero-card">
           <span>Agent Operability Score</span>
-          <strong>92</strong>
+          <strong>94</strong>
           <p>9 pass, 0 partial, 0 fail across 9 task checks.</p>
         </aside>
       </div>
@@ -77,7 +81,7 @@
       <section class="score-grid">
         <div class="score strong"><span>Readability</span><strong>100</strong></div>
         <div class="score strong"><span>Trustability</span><strong>96</strong></div>
-        <div class="score strong"><span>Actionability</span><strong>85</strong></div>
+        <div class="score strong"><span>Actionability</span><strong>91</strong></div>
         <div class="score strong"><span>Task success</span><strong>86</strong></div>
       </section>
 
@@ -87,7 +91,8 @@
           <div class="metric"><span>Pages scanned</span><strong>13</strong></div>
           <div class="metric"><span>Facts extracted</span><strong>24</strong></div>
           <div class="metric"><span>Detected actions</span><strong>12</strong></div>
-          <div class="metric"><span>Generated files</span><strong>14</strong></div>
+          <div class="metric"><span>Forms evaluated</span><strong>3</strong></div>
+          <div class="metric"><span>Generated files</span><strong>18</strong></div>
           <div class="metric"><span>Crawl issues</span><strong>8</strong></div>
         </div>
       </section>
@@ -117,12 +122,20 @@
           <span>12 detected actions and confirmation rules.</span>
         </li>
         <li>
+          <code>form-operability.json</code>
+          <span>3 deterministic form operability checks.</span>
+        </li>
+        <li>
           <code>tasks-report.json</code>
           <span>9 deterministic task checks.</span>
         </li>
         <li>
           <code>recommendations.json</code>
           <span>1 prioritized remediation items.</span>
+        </li>
+        <li>
+          <code>artifacts.json</code>
+          <span>Machine-readable index of generated artifacts.</span>
         </li>
         <li>
           <code>report.html</code>
@@ -135,6 +148,14 @@
         <li>
           <code>.well-known/mcp.json</code>
           <span>Draft MCP metadata.</span>
+        </li>
+        <li>
+          <code>.well-known/mcp/server-card.json</code>
+          <span>Draft MCP server card.</span>
+        </li>
+        <li>
+          <code>.well-known/api-catalog</code>
+          <span>Draft API catalog discovered from public pages.</span>
         </li>
         <li>
           <code>.well-known/agent-skills/index.json</code>
@@ -163,55 +184,99 @@
           <td>Find pricing</td>
           <td><span class="badge pass">pass</span></td>
           <td>90</td>
-          <td>Pricing information is discoverable with page-level evidence.</td>
+          <td>
+            Pricing information is discoverable with page-level evidence.
+          </td>
         </tr>
         <tr>
           <td>Compare plans</td>
           <td><span class="badge pass">pass</span></td>
           <td>85</td>
-          <td>Multiple plans and comparison-oriented details were found.</td>
+          <td>
+            Multiple plans and comparison-oriented details were found.
+          </td>
         </tr>
         <tr>
           <td>Book demo or contact sales</td>
           <td><span class="badge pass">pass</span></td>
           <td>90</td>
-          <td>A relevant form-based action path was found.</td>
+          <td>
+            A relevant form-based action path was found.
+            <ul class="journey-list"><li>
+        <span><span class="badge pass">pass</span> Discover action</span>
+        <small>Detected form action &quot;contact_sales&quot;.</small>
+      </li><li>
+        <span><span class="badge pass">pass</span> Understand required fields</span>
+        <small>4 of 4 fields expose stable names; 4 expose labels.</small>
+      </li><li>
+        <span><span class="badge pass">pass</span> Confirm sensitive action</span>
+        <small>Human confirmation is required for this medium-sensitivity action.</small>
+      </li><li>
+        <span><span class="badge pass">pass</span> Submit safely not performed</span>
+        <small>The evaluator stopped at deterministic preparation and did not submit the form.</small>
+      </li></ul>
+          </td>
         </tr>
         <tr>
           <td>Find documentation</td>
           <td><span class="badge pass">pass</span></td>
           <td>85</td>
-          <td>Relevant pages and structured evidence were found.</td>
+          <td>
+            Relevant pages and structured evidence were found.
+          </td>
         </tr>
         <tr>
           <td>Find security and trust information</td>
           <td><span class="badge pass">pass</span></td>
           <td>85</td>
-          <td>Relevant pages and structured evidence were found.</td>
+          <td>
+            Relevant pages and structured evidence were found.
+          </td>
         </tr>
         <tr>
           <td>Find policies</td>
           <td><span class="badge pass">pass</span></td>
           <td>85</td>
-          <td>Privacy and terms/legal policy pages are discoverable.</td>
+          <td>
+            Privacy and terms/legal policy pages are discoverable.
+          </td>
         </tr>
         <tr>
           <td>Find integrations</td>
           <td><span class="badge pass">pass</span></td>
           <td>80</td>
-          <td>Relevant page and fact evidence were found.</td>
+          <td>
+            Relevant page and fact evidence were found.
+          </td>
         </tr>
         <tr>
           <td>Identify target customer</td>
           <td><span class="badge pass">pass</span></td>
           <td>80</td>
-          <td>Target user evidence was found.</td>
+          <td>
+            Target user evidence was found.
+          </td>
         </tr>
         <tr>
           <td>Find support</td>
           <td><span class="badge pass">pass</span></td>
           <td>90</td>
-          <td>A relevant form-based action path was found.</td>
+          <td>
+            A relevant form-based action path was found.
+            <ul class="journey-list"><li>
+        <span><span class="badge pass">pass</span> Discover action</span>
+        <small>Detected form action &quot;contact_sales&quot;.</small>
+      </li><li>
+        <span><span class="badge pass">pass</span> Understand required fields</span>
+        <small>4 of 4 fields expose stable names; 4 expose labels.</small>
+      </li><li>
+        <span><span class="badge pass">pass</span> Confirm sensitive action</span>
+        <small>Human confirmation is required for this medium-sensitivity action.</small>
+      </li><li>
+        <span><span class="badge pass">pass</span> Submit safely not performed</span>
+        <small>The evaluator stopped at deterministic preparation and did not submit the form.</small>
+      </li></ul>
+          </td>
         </tr></tbody>
         </table>
       </section>
@@ -227,6 +292,50 @@
                 <h3>Review and publish the agent action manifest</h3>
                 <p>Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest.</p>
               </article></div>
+      </section>
+
+      <section class="panel">
+        <h2>Form operability</h2>
+        <table>
+          <thead><tr><th>Form</th><th>Score</th><th>Method</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th><th>Next fix</th></tr></thead>
+          <tbody>
+        <tr>
+          <td>
+            <strong>contact sales</strong>
+            <small><a href="http://localhost:3001/contact">/contact</a></small>
+          </td>
+          <td>100</td>
+          <td>POST</td>
+          <td>4</td>
+          <td>Required</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+          <td>No immediate fixes.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>book demo</strong>
+            <small><a href="http://localhost:3001/demo">/demo</a></small>
+          </td>
+          <td>100</td>
+          <td>POST</td>
+          <td>5</td>
+          <td>Required</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+          <td>No immediate fixes.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>request support</strong>
+            <small><a href="http://localhost:3001/support">/support</a></small>
+          </td>
+          <td>100</td>
+          <td>POST</td>
+          <td>3</td>
+          <td>Required</td>
+          <td><span class="badge sensitivity-medium">medium</span></td>
+          <td>No immediate fixes.</td>
+        </tr></tbody>
+        </table>
       </section>
 
       <section class="panel">

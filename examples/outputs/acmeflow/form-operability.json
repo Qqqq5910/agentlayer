@@ -1,0 +1,254 @@
+[
+  {
+    "formId": "contact-sales-http-localhost-3001-contact-0",
+    "sourceUrl": "http://localhost:3001/contact",
+    "actionUrl": "http://localhost:3001/contact",
+    "method": "POST",
+    "purpose": "contact sales",
+    "score": 100,
+    "sensitivity": "medium",
+    "requiresHumanConfirmation": true,
+    "fields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Full name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Work email",
+        "required": true
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company",
+        "required": true
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Message"
+      }
+    ],
+    "submitText": "Contact sales",
+    "findings": [
+      {
+        "id": "stable_action_url",
+        "status": "pass",
+        "message": "Form declares a stable action URL."
+      },
+      {
+        "id": "method",
+        "status": "pass",
+        "message": "Form declares POST as its method."
+      },
+      {
+        "id": "field_names",
+        "status": "pass",
+        "message": "Fields expose deterministic names."
+      },
+      {
+        "id": "labels_or_placeholders",
+        "status": "pass",
+        "message": "All fields expose labels, aria labels, or placeholders."
+      },
+      {
+        "id": "required_fields",
+        "status": "pass",
+        "message": "Required fields are marked in the extracted form."
+      },
+      {
+        "id": "submit_text",
+        "status": "pass",
+        "message": "Submit control text is \"Contact sales\"."
+      },
+      {
+        "id": "inferred_purpose",
+        "status": "pass",
+        "message": "Purpose inferred as \"contact sales\"."
+      },
+      {
+        "id": "sensitivity",
+        "status": "pass",
+        "message": "Sensitivity is classified as medium."
+      },
+      {
+        "id": "human_confirmation",
+        "status": "pass",
+        "message": "Human confirmation is required before an agent submits this form."
+      }
+    ],
+    "recommendations": []
+  },
+  {
+    "formId": "book-demo-http-localhost-3001-demo-0",
+    "sourceUrl": "http://localhost:3001/demo",
+    "actionUrl": "http://localhost:3001/demo",
+    "method": "POST",
+    "purpose": "book demo",
+    "score": 100,
+    "sensitivity": "medium",
+    "requiresHumanConfirmation": true,
+    "fields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Full name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Work email",
+        "required": true
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company",
+        "required": true
+      },
+      {
+        "name": "preferredTime",
+        "type": "text",
+        "label": "Preferred demo time"
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Message"
+      }
+    ],
+    "submitText": "Request demo",
+    "findings": [
+      {
+        "id": "stable_action_url",
+        "status": "pass",
+        "message": "Form declares a stable action URL."
+      },
+      {
+        "id": "method",
+        "status": "pass",
+        "message": "Form declares POST as its method."
+      },
+      {
+        "id": "field_names",
+        "status": "pass",
+        "message": "Fields expose deterministic names."
+      },
+      {
+        "id": "labels_or_placeholders",
+        "status": "pass",
+        "message": "All fields expose labels, aria labels, or placeholders."
+      },
+      {
+        "id": "required_fields",
+        "status": "pass",
+        "message": "Required fields are marked in the extracted form."
+      },
+      {
+        "id": "submit_text",
+        "status": "pass",
+        "message": "Submit control text is \"Request demo\"."
+      },
+      {
+        "id": "inferred_purpose",
+        "status": "pass",
+        "message": "Purpose inferred as \"book demo\"."
+      },
+      {
+        "id": "sensitivity",
+        "status": "pass",
+        "message": "Sensitivity is classified as medium."
+      },
+      {
+        "id": "human_confirmation",
+        "status": "pass",
+        "message": "Human confirmation is required before an agent submits this form."
+      }
+    ],
+    "recommendations": []
+  },
+  {
+    "formId": "request-support-http-localhost-3001-support-0",
+    "sourceUrl": "http://localhost:3001/support",
+    "actionUrl": "http://localhost:3001/support",
+    "method": "POST",
+    "purpose": "request support",
+    "score": 100,
+    "sensitivity": "medium",
+    "requiresHumanConfirmation": true,
+    "fields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Full name",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Work email",
+        "required": true
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Message",
+        "required": true
+      }
+    ],
+    "submitText": "Request support",
+    "findings": [
+      {
+        "id": "stable_action_url",
+        "status": "pass",
+        "message": "Form declares a stable action URL."
+      },
+      {
+        "id": "method",
+        "status": "pass",
+        "message": "Form declares POST as its method."
+      },
+      {
+        "id": "field_names",
+        "status": "pass",
+        "message": "Fields expose deterministic names."
+      },
+      {
+        "id": "labels_or_placeholders",
+        "status": "pass",
+        "message": "All fields expose labels, aria labels, or placeholders."
+      },
+      {
+        "id": "required_fields",
+        "status": "pass",
+        "message": "Required fields are marked in the extracted form."
+      },
+      {
+        "id": "submit_text",
+        "status": "pass",
+        "message": "Submit control text is \"Request support\"."
+      },
+      {
+        "id": "inferred_purpose",
+        "status": "pass",
+        "message": "Purpose inferred as \"request support\"."
+      },
+      {
+        "id": "sensitivity",
+        "status": "pass",
+        "message": "Sensitivity is classified as medium."
+      },
+      {
+        "id": "human_confirmation",
+        "status": "pass",
+        "message": "Human confirmation is required before an agent submits this form."
+      }
+    ],
+    "recommendations": []
+  }
+]

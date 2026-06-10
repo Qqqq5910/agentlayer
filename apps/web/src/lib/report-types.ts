@@ -126,6 +126,35 @@ export type AgentTaskResult = {
   evidenceSnippets: string[];
   missingInformation: string[];
   recommendations: string[];
+  journeySteps?: AgentJourneyStep[];
+};
+
+export type AgentJourneyStep = {
+  id: string;
+  title: string;
+  status: "pass" | "partial" | "fail";
+  explanation: string;
+  evidenceUrls?: string[];
+  evidenceSnippets?: string[];
+};
+
+export type FormOperabilityResult = {
+  formId: string;
+  sourceUrl: string;
+  actionUrl?: string;
+  method?: "GET" | "POST";
+  purpose: string;
+  score: number;
+  sensitivity: "low" | "medium" | "high";
+  requiresHumanConfirmation: boolean;
+  fields: ExtractedFormField[];
+  submitText?: string;
+  findings: Array<{
+    id: string;
+    status: "pass" | "partial" | "fail";
+    message: string;
+  }>;
+  recommendations: string[];
 };
 
 export type Recommendation = {
@@ -142,6 +171,7 @@ export type AgentOperabilityReport = {
   scan: SiteScan;
   facts: ExtractedFact[];
   actions: AgentAction[];
+  forms?: FormOperabilityResult[];
   tasks: AgentTaskResult[];
   scores: ScoreSet;
   recommendations: Recommendation[];

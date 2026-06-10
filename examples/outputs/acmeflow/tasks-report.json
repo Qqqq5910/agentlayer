@@ -18,7 +18,8 @@
       "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing"
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "compare_plans",
@@ -36,7 +37,8 @@
       "thFor small revenue teams organizing repeatable onboarding work.Included features and limits- 5 workspaces- CRM sync- Shared playbooks- Email supportStart with demoGrowth$149per monthFor growing SaaS teams that need hand"
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "book_demo",
@@ -67,7 +69,60 @@
       "tact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning.Sales contactEmail: sales@acmeflow.exampleTypi"
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": [
+      {
+        "id": "discover_action",
+        "title": "Discover action",
+        "status": "pass",
+        "explanation": "Detected form action \"contact_sales\".",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": [
+          "contact_sales: Find the path for contacting sales."
+        ]
+      },
+      {
+        "id": "understand_required_fields",
+        "title": "Understand required fields",
+        "status": "pass",
+        "explanation": "4 of 4 fields expose stable names; 4 expose labels.",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": [
+          "name (text) required",
+          "email (email) required",
+          "company (text) required",
+          "message (textarea)"
+        ]
+      },
+      {
+        "id": "confirm_sensitive_action",
+        "title": "Confirm sensitive action",
+        "status": "pass",
+        "explanation": "Human confirmation is required for this medium-sensitivity action.",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": []
+      },
+      {
+        "id": "submit_safely_not_performed",
+        "title": "Submit safely not performed",
+        "status": "pass",
+        "explanation": "The evaluator stopped at deterministic preparation and did not submit the form.",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": []
+      }
+    ]
   },
   {
     "taskId": "find_docs",
@@ -93,7 +148,8 @@
       "API documentation: API Docs | AcmeFlow - REST API and webhooks for AcmeFlow workflows."
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "find_security",
@@ -116,7 +172,8 @@
       "Pricing information: $49, $149 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growt..."
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "find_policies",
@@ -136,7 +193,8 @@
       "read_privacy_policy: Read the privacy policy."
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "find_integrations",
@@ -160,7 +218,8 @@
       "Integration: Slack - sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace..."
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "identify_target_customer",
@@ -179,7 +238,8 @@
       "sSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review packet information without inven"
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": []
   },
   {
     "taskId": "find_support",
@@ -210,6 +270,59 @@
       "Contact Sales | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoContact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security"
     ],
     "missingInformation": [],
-    "recommendations": []
+    "recommendations": [],
+    "journeySteps": [
+      {
+        "id": "discover_action",
+        "title": "Discover action",
+        "status": "pass",
+        "explanation": "Detected form action \"contact_sales\".",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": [
+          "contact_sales: Find the path for contacting sales."
+        ]
+      },
+      {
+        "id": "understand_required_fields",
+        "title": "Understand required fields",
+        "status": "pass",
+        "explanation": "4 of 4 fields expose stable names; 4 expose labels.",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": [
+          "name (text) required",
+          "email (email) required",
+          "company (text) required",
+          "message (textarea)"
+        ]
+      },
+      {
+        "id": "confirm_sensitive_action",
+        "title": "Confirm sensitive action",
+        "status": "pass",
+        "explanation": "Human confirmation is required for this medium-sensitivity action.",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": []
+      },
+      {
+        "id": "submit_safely_not_performed",
+        "title": "Submit safely not performed",
+        "status": "pass",
+        "explanation": "The evaluator stopped at deterministic preparation and did not submit the form.",
+        "evidenceUrls": [
+          "http://localhost:3001/contact",
+          "http://localhost:3001/"
+        ],
+        "evidenceSnippets": []
+      }
+    ]
   }
 ]

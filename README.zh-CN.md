@@ -10,7 +10,15 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 
 对开发者来说，AgentLayer 提供 TypeScript core 包、仓库内 CLI 和 Next.js 演示应用。对创始人和网站所有者来说，它把“Agent 能不能看懂我的网站？”变成一份具体报告：缺少哪些事实、哪些政策不清楚、哪些操作路径薄弱、哪些任务失败。
 
+![AgentLayer 生成文件预览](./docs/assets/agentlayer-preview.svg)
+
 它不是 AI SEO 面板，也不是单纯的 `llms.txt` 生成器。更准确地说，AgentLayer 像面向 Agentic Web 的 Lighthouse：不只看你有没有某个标准文件，也看 Agent 能不能真的找到定价、读懂产品、找到文档、联系销售、识别政策和完成关键路径。
+
+## AgentLayer 和 Firecrawl 的区别
+
+Firecrawl 更适合做托管爬取和把网页转成适合 LLM 使用的内容。AgentLayer 关注的是另一层：网站对 Agent 是否“可操作”。它会检查事实来源、政策清晰度、操作边界、任务路径，以及可审阅后发布的标准草案文件。
+
+两者可以组合使用：Firecrawl 负责内容采集，AgentLayer 负责评估和打包 Agent-facing 输出。AgentLayer 目前不依赖 Firecrawl。更多见 [docs/integrations/firecrawl.md](./docs/integrations/firecrawl.md)。
 
 ## 为什么现在需要它
 
@@ -26,8 +34,12 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 - `site-profile.json`
 - 带来源和置信度的 `facts.json`
 - `actions.json`
+- `form-operability.json`
+- `artifacts.json`
 - `.well-known/agents.json`
-- `.well-known/mcp.json` 草案
+- `.well-known/mcp/server-card.json` 草案
+- `.well-known/mcp.json` legacy/draft alias
+- `.well-known/api-catalog`
 - `.well-known/agent-skills/index.json`
 - `webmcp/suggested-webmcp-tools.json`
 - `webmcp/suggested-form-annotations.md`
@@ -36,6 +48,8 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 - `report.html`
 
 这些文件默认是保守建议，不会替网站伪造合规声明，也不会声称已经正式实现某个还在演进的标准。
+
+标准相关说明见 [docs/standards.md](./docs/standards.md)，包括 `llms.txt`、MCP Server Card 草案、API Catalog、Agent Skills、WebMCP 和 Markdown 替代页。
 
 ## 快速开始
 
@@ -50,8 +64,8 @@ pnpm dev:example
 另开一个终端，扫描示例站点并生成文件：
 
 ```bash
-pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20
-pnpm agentlayer doctor http://localhost:3001 --max-pages 20
+pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
+pnpm agentlayer doctor http://localhost:3001 --max-pages 20 --allow-local
 ```
 
 可选：运行本地 Web 应用：
@@ -62,9 +76,13 @@ pnpm dev
 
 Web 应用默认在 `http://localhost:3000`，示例 SaaS 站点 AcmeFlow 默认在 `http://localhost:3001`。
 
+## 试用 demo
+
+运行本地 Web 应用后打开 `http://localhost:3000/demo` 可以查看 fixture 报告。也可以用 `--allow-local` 扫描 `http://localhost:3001` 的示例 SaaS 站点，然后打开输出目录里的 `report.html`。
+
 ## CLI
 
-在仓库 checkout 中运行 CLI 时，使用 `pnpm agentlayer`：
+AgentLayer 目前以仓库内本地使用为主。在仓库 checkout 中运行 CLI 时，使用 `pnpm agentlayer`：
 
 ```bash
 pnpm agentlayer scan <url> --out ./agentlayer-output --max-pages 20
@@ -82,6 +100,8 @@ pnpm agentlayer init-fixture --out ./agentlayer-output/tasks
 agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
 ```
 
+包发布到 npm 后，可以支持 `npx` 或其他包管理器直接执行。在正式发布前，建议使用上面的 repo-local 命令或本地 link。
+
 ## Web 应用
 
 Next.js 应用目前包含：
@@ -93,6 +113,27 @@ Next.js 应用目前包含：
 - 解释生成文件的 docs 页面
 
 不需要登录、托管数据库、支付流程或 LLM API key。
+
+## 上线检查清单
+
+生产站点发布生成文件前：
+
+- 审阅 `facts.json`、`actions.json` 和 `tasks-report.json`。
+- 保留 MCP、WebMCP、API Catalog、Agent Skills 文件里的 draft/non-compliance 提示。
+- 确认敏感操作需要人工确认。
+- 从稳定路径发布已审阅文件，例如 `/llms.txt` 和 `/.well-known/agents.json`。
+- 导航、定价、文档、支持、政策、安全页或 API 文档变化后重新运行 AgentLayer。
+- 把生成文件纳入常规发布审查，而不是一次性配置。
+
+推荐 GitHub topics：
+
+- `agentlayer`
+- `llms-txt`
+- `mcp`
+- `webmcp`
+- `ai-agents`
+- `agent-operability`
+- `agentic-web`
 
 ## 示例站点
 
@@ -161,6 +202,15 @@ pnpm build
 ```
 
 GitHub Actions 会在 push 和 pull request 上运行同样的 lint、typecheck、test 和 build 命令。
+
+## 文档
+
+- [Standards](./docs/standards.md)
+- [Security notes](./docs/security.md)
+- [Firecrawl integration notes](./docs/integrations/firecrawl.md)
+- [Next.js deployment](./docs/deployment/nextjs.md)
+- [Cloudflare Workers deployment](./docs/deployment/cloudflare-workers.md)
+- [Vercel deployment](./docs/deployment/vercel.md)
 
 ## 贡献与安全
 

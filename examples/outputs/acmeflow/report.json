@@ -18,11 +18,11 @@
       "support": "http://localhost:3001/support",
       "terms": "http://localhost:3001/terms"
     },
-    "generatedAt": "2026-06-09T19:41:49.514Z"
+    "generatedAt": "2026-06-10T04:29:46.729Z"
   },
   "scan": {
     "rootUrl": "http://localhost:3001/",
-    "scannedAt": "2026-06-09T19:41:49.512Z",
+    "scannedAt": "2026-06-10T04:29:46.728Z",
     "pages": [
       {
         "url": "http://localhost:3001/",
@@ -180,7 +180,7 @@
         "markdown": "Customer workflow automation # Turn customer handoffs into reliable workflows. AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tasks, and customer escalations across sales, success, support, and product teams. [Book a demo](http://localhost:3001/demo)[View pricing](http://localhost:3001/pricing) ![AcmeFlow dashboard showing revenue workflow automation](/_next/image?url=%2Fimages%2Facmeflow-dashboard.png&w=3840&q=75) Live workflow snapshot New enterprise kickoffOn track Security reviewQueued API handoffQueued Renewal riskQueued ## For customer success Automate onboarding plans and renewal handoffs. ## For sales engineers Track security reviews, API questions, and implementation blockers. ## For operations teams Standardize playbooks, approvals, and reporting. Integrations ## Connect the tools your revenue team already uses. Agents and operators can find our CRM, chat, analytics, and warehouse integrations from a dedicated integrations page. [Salesforce](http://localhost:3001/integrations)[HubSpot](http://localhost:3001/integrations)[Slack](http://localhost:3001/integrations)[Google Workspace](http://localhost:3001/integrations)[Microsoft Teams](http://localhost:3001/integrations)[Zapier](http://localhost:3001/integrations) Pricing starts at $49 ## Compare Starter, Growth, and Enterprise plans. [See plan details](http://localhost:3001/pricing)",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:44.164Z"
+        "fetchedAt": "2026-06-10T04:29:43.489Z"
       },
       {
         "url": "http://localhost:3001/docs/api",
@@ -290,7 +290,7 @@
         "markdown": "API docs # REST API and webhooks for AcmeFlow workflows. Developers can read account, workflow, event, and webhook resources. Production API credentials are managed by admins. ## Authentication API requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or workflow write access. ## Example endpoints GET /v1/accounts POST /v1/workflows GET /v1/events POST /v1/webhooks/test",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:44.612Z"
+        "fetchedAt": "2026-06-10T04:29:43.719Z"
       },
       {
         "url": "http://localhost:3001/contact",
@@ -435,7 +435,7 @@
           "sales@acmeflow.exampletypical"
         ],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:45.181Z"
+        "fetchedAt": "2026-06-10T04:29:44.080Z"
       },
       {
         "url": "http://localhost:3001/customers",
@@ -546,7 +546,7 @@
         "markdown": "Customers # Customer stories for B2B SaaS revenue and success teams. AcmeFlow is designed for customer success, sales engineering, support operations, and implementation teams. ## Northstar Analytics Reduced implementation handoff delays by standardizing launch tasks. ## OrbitDesk Connected support escalations to product feedback workflows. ## HelioStack Used AcmeFlow playbooks to coordinate Enterprise security reviews.",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:45.526Z"
+        "fetchedAt": "2026-06-10T04:29:44.297Z"
       },
       {
         "url": "http://localhost:3001/demo",
@@ -694,7 +694,7 @@
         "markdown": "Book demo # See AcmeFlow with your customer handoff workflow. Request a product demo for a qualified lead. A human should confirm all meeting details before scheduling. ## What the demo covers - \\- Pricing fit for Starter, Growth, or Enterprise - \\- CRM and Slack integration setup - \\- Security review and SSO requirements - \\- Customer onboarding workflow templates",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:45.905Z"
+        "fetchedAt": "2026-06-10T04:29:44.545Z"
       },
       {
         "url": "http://localhost:3001/docs",
@@ -826,7 +826,7 @@
         "markdown": "Docs # Documentation for building reliable customer workflows. Find setup guides, API docs, webhook references, role configuration, and integration walkthroughs. ## Getting started Create your first onboarding workflow and invite teammates. [Read more](http://localhost:3001/docs) ## Workflow templates Use repeatable playbooks for implementation, renewals, and escalations. [Read more](http://localhost:3001/docs) ## Roles and permissions Configure admin, operator, viewer, and auditor roles. [Read more](http://localhost:3001/docs) ## API documentation Use REST APIs and webhooks to sync workflow events. [Read more](http://localhost:3001/docs/api)",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:46.346Z"
+        "fetchedAt": "2026-06-10T04:29:44.814Z"
       },
       {
         "url": "http://localhost:3001/integrations",
@@ -942,7 +942,7 @@
         "markdown": "Integrations # Connect AcmeFlow to the tools your revenue team already uses. AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse integrations for B2B SaaS workflows. ## Salesforce Sync customer handoff signals between AcmeFlow and Salesforce. ## HubSpot Sync customer handoff signals between AcmeFlow and HubSpot. ## Slack Sync customer handoff signals between AcmeFlow and Slack. ## Google Workspace Sync customer handoff signals between AcmeFlow and Google Workspace. ## Microsoft Teams Sync customer handoff signals between AcmeFlow and Microsoft Teams. ## Zapier Sync customer handoff signals between AcmeFlow and Zapier. ## Segment Sync customer handoff signals between AcmeFlow and Segment. ## Snowflake Sync customer handoff signals between AcmeFlow and Snowflake.",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:46.855Z"
+        "fetchedAt": "2026-06-10T04:29:45.132Z"
       },
       {
         "url": "http://localhost:3001/llms.txt",
@@ -963,7 +963,7 @@
         "markdown": "# AcmeFlow > Customer workflow automation for B2B SaaS teams. ## Key Links - [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan details. - [Docs](http://localhost:3001/docs): Product documentation and setup guides. - [API Docs](http://localhost:3001/docs/api): REST API and webhook references. - [Security](http://localhost:3001/security): Security, trust, access control, and review packet information. - [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and warehouse integrations. - [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise quotes. - [Book Demo](http://localhost:3001/demo): Demo request form. - [Support](http://localhost:3001/support): Support contact and help request form. - [Privacy](http://localhost:3001/privacy): Privacy policy. - [Terms](http://localhost:3001/terms): Terms, cancellation, and refund information. ## Notes For AI Agents - Do not submit forms without explicit user confirmation. - Treat AcmeFlow as a fictional demo site for AgentLayer. - Verify factual claims against source pages.",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:47.225Z"
+        "fetchedAt": "2026-06-10T04:29:45.295Z"
       },
       {
         "url": "http://localhost:3001/pricing",
@@ -1092,7 +1092,7 @@
         "markdown": "Pricing # Plans for B2B SaaS teams from first playbook to enterprise governance. AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review. ## Starter $49 per month For small revenue teams organizing repeatable onboarding work. ### Included features and limits - \\- 5 workspaces - \\- CRM sync - \\- Shared playbooks - \\- Email support [Start with demo](http://localhost:3001/demo) ## Growth $149 per month For growing SaaS teams that need handoff automation and reporting. ### Included features and limits - \\- 25 workspaces - \\- Slack alerts - \\- Workflow approvals - \\- Priority support [Start with demo](http://localhost:3001/demo) ## Enterprise Contact sales annual contracts For larger organizations with governance and security review needs. ### Included features and limits - \\- Unlimited workspaces - \\- SSO/SAML - \\- Audit exports - \\- Security review packet [Contact sales](http://localhost:3001/demo) ## Plan differences Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds SSO/SAML, audit exports, and a security review packet for larger organizations.",
         "emails": [],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:47.676Z"
+        "fetchedAt": "2026-06-10T04:29:45.553Z"
       },
       {
         "url": "http://localhost:3001/privacy",
@@ -1204,7 +1204,7 @@
           "privacy@acmeflow.example"
         ],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:48.098Z"
+        "fetchedAt": "2026-06-10T04:29:45.825Z"
       },
       {
         "url": "http://localhost:3001/security",
@@ -1318,7 +1318,7 @@
           "security@acmeflow.example.acmeflowacmeflow"
         ],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:48.565Z"
+        "fetchedAt": "2026-06-10T04:29:46.119Z"
       },
       {
         "url": "http://localhost:3001/support",
@@ -1458,7 +1458,7 @@
           "support@acmeflow.examplehelp"
         ],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:49.013Z"
+        "fetchedAt": "2026-06-10T04:29:46.406Z"
       },
       {
         "url": "http://localhost:3001/terms",
@@ -1570,7 +1570,7 @@
           "support@acmeflow.example"
         ],
         "socialLinks": [],
-        "fetchedAt": "2026-06-09T19:41:49.474Z"
+        "fetchedAt": "2026-06-10T04:29:46.706Z"
       }
     ],
     "robotsTxt": {
@@ -1641,7 +1641,7 @@
       "sourceUrl": "http://localhost:3001/",
       "sourceText": "AcmeFlow",
       "confidence": 0.9,
-      "updatedAt": "2026-06-09T19:41:49.514Z"
+      "updatedAt": "2026-06-10T04:29:46.729Z"
     },
     {
       "id": "pricing-pricing-information-49",
@@ -1651,7 +1651,7 @@
       "sourceUrl": "http://localhost:3001/",
       "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tas",
       "confidence": 0.55,
-      "updatedAt": "2026-06-09T19:41:49.514Z"
+      "updatedAt": "2026-06-10T04:29:46.729Z"
     },
     {
       "id": "product-target-users-customer-success-sales-engineers-operati",
@@ -1661,7 +1661,7 @@
       "sourceUrl": "http://localhost:3001/",
       "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer workflow automationTurn customer handoffs into reliable workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation ta...",
       "confidence": 0.6,
-      "updatedAt": "2026-06-09T19:41:49.514Z"
+      "updatedAt": "2026-06-10T04:29:46.729Z"
     },
     {
       "id": "docs-api-documentation-api-docs-acmeflow",
@@ -1671,7 +1671,7 @@
       "sourceUrl": "http://localhost:3001/docs/api",
       "sourceText": "REST API and webhooks for AcmeFlow workflows.",
       "confidence": 0.85,
-      "updatedAt": "2026-06-09T19:41:49.514Z"
+      "updatedAt": "2026-06-10T04:29:46.729Z"
     },
     {
       "id": "contact-contact-sales-name-email-company-message",
@@ -1681,7 +1681,7 @@
       "sourceUrl": "http://localhost:3001/contact",
       "sourceText": "Contact sales",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.514Z"
+      "updatedAt": "2026-06-10T04:29:46.729Z"
     },
     {
       "id": "product-target-users-b2b-saas-revenue-and-success-teams",
@@ -1691,7 +1691,7 @@
       "sourceUrl": "http://localhost:3001/customers",
       "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow is designed for customer success, sales engineering, support operations, and impl...",
       "confidence": 0.6,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "contact-book-demo-name-email-company-preferredtime-message",
@@ -1701,7 +1701,7 @@
       "sourceUrl": "http://localhost:3001/demo",
       "sourceText": "Request demo",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "docs-documentation-documentation-acmeflow",
@@ -1711,7 +1711,7 @@
       "sourceUrl": "http://localhost:3001/docs",
       "sourceText": "Documentation for building reliable customer workflows.",
       "confidence": 0.85,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-slack",
@@ -1721,7 +1721,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": "sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.M",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-google",
@@ -1731,7 +1731,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": "nd HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow a",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-salesforce",
@@ -1741,7 +1741,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": "analytics, automation, and warehouse integrations for B2B SaaS workflows.SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-hubspot",
@@ -1751,7 +1751,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": ".SalesforceSync customer handoff signals between AcmeFlow and Salesforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSyn",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-zapier",
@@ -1761,7 +1761,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": "TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.SegmentSync customer handoff signals between AcmeFlow and Segment.SnowflakeSync cus",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-google-workspace",
@@ -1771,7 +1771,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": "nd HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow a",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "integration-integration-microsoft-teams",
@@ -1781,7 +1781,7 @@
       "sourceUrl": "http://localhost:3001/integrations",
       "sourceText": "spaceSync customer handoff signals between AcmeFlow and Google Workspace.Microsoft TeamsSync customer handoff signals between AcmeFlow and Microsoft Teams.ZapierSync customer handoff signals between AcmeFlow and Zapier.S",
       "confidence": 0.75,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "pricing-pricing-information-49-149",
@@ -1791,7 +1791,7 @@
       "sourceUrl": "http://localhost:3001/pricing",
       "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enter",
       "confidence": 0.85,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "plan-plan-name-starter",
@@ -1801,7 +1801,7 @@
       "sourceUrl": "http://localhost:3001/pricing",
       "sourceText": "to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "plan-plan-name-growth",
@@ -1811,7 +1811,7 @@
       "sourceUrl": "http://localhost:3001/pricing",
       "sourceText": "e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "plan-plan-name-enterprise",
@@ -1821,7 +1821,7 @@
       "sourceUrl": "http://localhost:3001/pricing",
       "sourceText": "rsSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a s",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "policy-privacy-policy-privacy-policy-acmeflow",
@@ -1831,7 +1831,7 @@
       "sourceUrl": "http://localhost:3001/privacy",
       "sourceText": "How the fictional AcmeFlow demo describes privacy.",
       "confidence": 0.85,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "security-security-or-trust-information-security-acmeflow",
@@ -1841,7 +1841,7 @@
       "sourceUrl": "http://localhost:3001/security",
       "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review pa",
       "confidence": 0.85,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "support-request-support-name-email-message",
@@ -1851,7 +1851,7 @@
       "sourceUrl": "http://localhost:3001/support",
       "sourceText": "Request support",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "support-support-page-support-acmeflow",
@@ -1861,7 +1861,7 @@
       "sourceUrl": "http://localhost:3001/support",
       "sourceText": "AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSupportGet help with AcmeFlow workflows, integrations, and billing.Find support contact information, help resources, and a support request form.Support cont",
       "confidence": 0.8,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     },
     {
       "id": "policy-terms-or-legal-policy-terms-acmeflow",
@@ -1871,7 +1871,7 @@
       "sourceUrl": "http://localhost:3001/terms",
       "sourceText": "Terms, cancellation, and refund information.",
       "confidence": 0.85,
-      "updatedAt": "2026-06-09T19:41:49.515Z"
+      "updatedAt": "2026-06-10T04:29:46.730Z"
     }
   ],
   "actions": [
@@ -2107,6 +2107,260 @@
       "confidence": 0.75
     }
   ],
+  "forms": [
+    {
+      "formId": "contact-sales-http-localhost-3001-contact-0",
+      "sourceUrl": "http://localhost:3001/contact",
+      "actionUrl": "http://localhost:3001/contact",
+      "method": "POST",
+      "purpose": "contact sales",
+      "score": 100,
+      "sensitivity": "medium",
+      "requiresHumanConfirmation": true,
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Work email",
+          "required": true
+        },
+        {
+          "name": "company",
+          "type": "text",
+          "label": "Company",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message"
+        }
+      ],
+      "submitText": "Contact sales",
+      "findings": [
+        {
+          "id": "stable_action_url",
+          "status": "pass",
+          "message": "Form declares a stable action URL."
+        },
+        {
+          "id": "method",
+          "status": "pass",
+          "message": "Form declares POST as its method."
+        },
+        {
+          "id": "field_names",
+          "status": "pass",
+          "message": "Fields expose deterministic names."
+        },
+        {
+          "id": "labels_or_placeholders",
+          "status": "pass",
+          "message": "All fields expose labels, aria labels, or placeholders."
+        },
+        {
+          "id": "required_fields",
+          "status": "pass",
+          "message": "Required fields are marked in the extracted form."
+        },
+        {
+          "id": "submit_text",
+          "status": "pass",
+          "message": "Submit control text is \"Contact sales\"."
+        },
+        {
+          "id": "inferred_purpose",
+          "status": "pass",
+          "message": "Purpose inferred as \"contact sales\"."
+        },
+        {
+          "id": "sensitivity",
+          "status": "pass",
+          "message": "Sensitivity is classified as medium."
+        },
+        {
+          "id": "human_confirmation",
+          "status": "pass",
+          "message": "Human confirmation is required before an agent submits this form."
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "formId": "book-demo-http-localhost-3001-demo-0",
+      "sourceUrl": "http://localhost:3001/demo",
+      "actionUrl": "http://localhost:3001/demo",
+      "method": "POST",
+      "purpose": "book demo",
+      "score": 100,
+      "sensitivity": "medium",
+      "requiresHumanConfirmation": true,
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Work email",
+          "required": true
+        },
+        {
+          "name": "company",
+          "type": "text",
+          "label": "Company",
+          "required": true
+        },
+        {
+          "name": "preferredTime",
+          "type": "text",
+          "label": "Preferred demo time"
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message"
+        }
+      ],
+      "submitText": "Request demo",
+      "findings": [
+        {
+          "id": "stable_action_url",
+          "status": "pass",
+          "message": "Form declares a stable action URL."
+        },
+        {
+          "id": "method",
+          "status": "pass",
+          "message": "Form declares POST as its method."
+        },
+        {
+          "id": "field_names",
+          "status": "pass",
+          "message": "Fields expose deterministic names."
+        },
+        {
+          "id": "labels_or_placeholders",
+          "status": "pass",
+          "message": "All fields expose labels, aria labels, or placeholders."
+        },
+        {
+          "id": "required_fields",
+          "status": "pass",
+          "message": "Required fields are marked in the extracted form."
+        },
+        {
+          "id": "submit_text",
+          "status": "pass",
+          "message": "Submit control text is \"Request demo\"."
+        },
+        {
+          "id": "inferred_purpose",
+          "status": "pass",
+          "message": "Purpose inferred as \"book demo\"."
+        },
+        {
+          "id": "sensitivity",
+          "status": "pass",
+          "message": "Sensitivity is classified as medium."
+        },
+        {
+          "id": "human_confirmation",
+          "status": "pass",
+          "message": "Human confirmation is required before an agent submits this form."
+        }
+      ],
+      "recommendations": []
+    },
+    {
+      "formId": "request-support-http-localhost-3001-support-0",
+      "sourceUrl": "http://localhost:3001/support",
+      "actionUrl": "http://localhost:3001/support",
+      "method": "POST",
+      "purpose": "request support",
+      "score": 100,
+      "sensitivity": "medium",
+      "requiresHumanConfirmation": true,
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Work email",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "textarea",
+          "label": "Message",
+          "required": true
+        }
+      ],
+      "submitText": "Request support",
+      "findings": [
+        {
+          "id": "stable_action_url",
+          "status": "pass",
+          "message": "Form declares a stable action URL."
+        },
+        {
+          "id": "method",
+          "status": "pass",
+          "message": "Form declares POST as its method."
+        },
+        {
+          "id": "field_names",
+          "status": "pass",
+          "message": "Fields expose deterministic names."
+        },
+        {
+          "id": "labels_or_placeholders",
+          "status": "pass",
+          "message": "All fields expose labels, aria labels, or placeholders."
+        },
+        {
+          "id": "required_fields",
+          "status": "pass",
+          "message": "Required fields are marked in the extracted form."
+        },
+        {
+          "id": "submit_text",
+          "status": "pass",
+          "message": "Submit control text is \"Request support\"."
+        },
+        {
+          "id": "inferred_purpose",
+          "status": "pass",
+          "message": "Purpose inferred as \"request support\"."
+        },
+        {
+          "id": "sensitivity",
+          "status": "pass",
+          "message": "Sensitivity is classified as medium."
+        },
+        {
+          "id": "human_confirmation",
+          "status": "pass",
+          "message": "Human confirmation is required before an agent submits this form."
+        }
+      ],
+      "recommendations": []
+    }
+  ],
   "tasks": [
     {
       "taskId": "find_pricing",
@@ -2127,7 +2381,8 @@
         "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing"
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "compare_plans",
@@ -2145,7 +2400,8 @@
         "thFor small revenue teams organizing repeatable onboarding work.Included features and limits- 5 workspaces- CRM sync- Shared playbooks- Email supportStart with demoGrowth$149per monthFor growing SaaS teams that need hand"
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "book_demo",
@@ -2176,7 +2432,60 @@
         "tact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning.Sales contactEmail: sales@acmeflow.exampleTypi"
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": [
+        {
+          "id": "discover_action",
+          "title": "Discover action",
+          "status": "pass",
+          "explanation": "Detected form action \"contact_sales\".",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": [
+            "contact_sales: Find the path for contacting sales."
+          ]
+        },
+        {
+          "id": "understand_required_fields",
+          "title": "Understand required fields",
+          "status": "pass",
+          "explanation": "4 of 4 fields expose stable names; 4 expose labels.",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": [
+            "name (text) required",
+            "email (email) required",
+            "company (text) required",
+            "message (textarea)"
+          ]
+        },
+        {
+          "id": "confirm_sensitive_action",
+          "title": "Confirm sensitive action",
+          "status": "pass",
+          "explanation": "Human confirmation is required for this medium-sensitivity action.",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": []
+        },
+        {
+          "id": "submit_safely_not_performed",
+          "title": "Submit safely not performed",
+          "status": "pass",
+          "explanation": "The evaluator stopped at deterministic preparation and did not submit the form.",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": []
+        }
+      ]
     },
     {
       "taskId": "find_docs",
@@ -2202,7 +2511,8 @@
         "API documentation: API Docs | AcmeFlow - REST API and webhooks for AcmeFlow workflows."
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "find_security",
@@ -2225,7 +2535,8 @@
         "Pricing information: $49, $149 - AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growt..."
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "find_policies",
@@ -2245,7 +2556,8 @@
         "read_privacy_policy: Read the privacy policy."
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "find_integrations",
@@ -2269,7 +2581,8 @@
         "Integration: Slack - sforce.HubSpotSync customer handoff signals between AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and Slack.Google WorkspaceSync customer handoff signals between AcmeFlow and Google Workspace..."
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "identify_target_customer",
@@ -2288,7 +2601,8 @@
         "sSecurityCustomersSupportBook demoSecurity and trustSecurity information for teams evaluating AcmeFlow.This page gives agents a clear source for trust, access control, privacy, and review packet information without inven"
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": []
     },
     {
       "taskId": "find_support",
@@ -2319,15 +2633,68 @@
         "Contact Sales | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoContact salesTalk with AcmeFlow about your customer workflow needs.Use this form for pricing questions, Enterprise quotes, security"
       ],
       "missingInformation": [],
-      "recommendations": []
+      "recommendations": [],
+      "journeySteps": [
+        {
+          "id": "discover_action",
+          "title": "Discover action",
+          "status": "pass",
+          "explanation": "Detected form action \"contact_sales\".",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": [
+            "contact_sales: Find the path for contacting sales."
+          ]
+        },
+        {
+          "id": "understand_required_fields",
+          "title": "Understand required fields",
+          "status": "pass",
+          "explanation": "4 of 4 fields expose stable names; 4 expose labels.",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": [
+            "name (text) required",
+            "email (email) required",
+            "company (text) required",
+            "message (textarea)"
+          ]
+        },
+        {
+          "id": "confirm_sensitive_action",
+          "title": "Confirm sensitive action",
+          "status": "pass",
+          "explanation": "Human confirmation is required for this medium-sensitivity action.",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": []
+        },
+        {
+          "id": "submit_safely_not_performed",
+          "title": "Submit safely not performed",
+          "status": "pass",
+          "explanation": "The evaluator stopped at deterministic preparation and did not submit the form.",
+          "evidenceUrls": [
+            "http://localhost:3001/contact",
+            "http://localhost:3001/"
+          ],
+          "evidenceSnippets": []
+        }
+      ]
     }
   ],
   "scores": {
     "readability": 100,
     "trustability": 96,
-    "actionability": 85,
+    "actionability": 91,
     "taskSuccess": 86,
-    "overall": 92
+    "overall": 94
   },
   "recommendations": [
     {
@@ -2341,5 +2708,5 @@
       "suggestedArtifact": ".well-known/agents.json"
     }
   ],
-  "generatedAt": "2026-06-09T19:41:49.518Z"
+  "generatedAt": "2026-06-10T04:29:46.732Z"
 }

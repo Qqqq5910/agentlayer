@@ -1,0 +1,132 @@
+{
+  "generatedBy": "AgentLayer",
+  "generatedAt": "2026-06-10T04:29:46.732Z",
+  "rootUrl": "http://localhost:3001/",
+  "count": 31,
+  "artifacts": [
+    {
+      "path": "llms.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "llms-full.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "site-profile.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "facts.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "actions.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "form-operability.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "tasks-report.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "recommendations.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "report.html",
+      "mediaType": "text/html"
+    },
+    {
+      "path": ".well-known/agents.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/mcp.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/mcp/server-card.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/api-catalog",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/agent-skills/index.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "webmcp/suggested-webmcp-tools.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "webmcp/suggested-form-annotations.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/index.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/docs-api.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/contact.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/customers.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/demo.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/docs.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/integrations.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/llms-txt.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/pricing.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/privacy.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/security.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/support.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/terms.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "report.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "artifacts.json",
+      "mediaType": "application/json"
+    }
+  ]
+}

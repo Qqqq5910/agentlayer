@@ -1,0 +1,48 @@
+name: Feature request
+description: Suggest an improvement to AgentLayer.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What agent-operability problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the feature, output, command, or workflow.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Standards artifacts
+        - Scanner
+        - Extraction
+        - Evaluation
+        - CLI
+        - Web app
+        - Documentation
+        - Deployment
+        - Integrations
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundaries
+      options:
+        - label: This request does not require submitting forms, bypassing auth, or performing destructive actions.
+          required: true
+        - label: I understand generated standards artifacts should not make unsupported compliance claims.
+          required: true
