@@ -5,14 +5,20 @@ AgentLayer works well as a pre-deploy or CI step for sites hosted on Vercel.
 ## Local Review Flow
 
 ```bash
-pnpm agentlayer generate https://your-preview-url.vercel.app --out ./agentlayer-output --max-pages 20
+pnpm agentlayer generate https://agentlayer-demo.vercel.app --out ./agentlayer-output --max-pages 20
 ```
 
-Review the output, then publish approved files through your app's `public/` directory or equivalent static asset pipeline.
+Review the output, then publish approved files through your app's `public/`
+directory or equivalent static asset pipeline.
+
+Replace `https://agentlayer-demo.vercel.app` with the concrete Vercel preview
+URL for your deployment.
 
 ## Preview Deployments
 
-Preview deployments are useful for checking whether new navigation, pricing, docs, security, or support pages remain agent-operable before production release.
+Preview deployments are useful for checking whether new navigation, pricing,
+docs, security, or support pages remain agent-operable before production
+release.
 
 Suggested flow:
 

@@ -6,29 +6,51 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
 ![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
-AgentLayer is an open-source, deterministic toolkit for checking whether a public website can be read, trusted, and operated by AI agents. It scans public pages, extracts sourced facts, identifies action paths, runs task checks, and generates draft artifacts you can review before publishing.
+AgentLayer is an open-source, deterministic toolkit for checking whether a
+public website can be read, trusted, and operated by AI agents. It scans public
+pages, extracts sourced facts, identifies action paths, runs task checks, and
+generates draft artifacts you can review before publishing.
 
-For developers, AgentLayer provides a TypeScript core package, a repo-local CLI, and a Next.js demo app. For founders and site owners, it turns "will agents understand my site?" into a concrete report: missing facts, unclear policies, weak action paths, and task failures.
+For developers, AgentLayer provides a TypeScript core package, a repo-local CLI,
+and a Next.js demo app. For founders and site owners, it turns "will agents
+understand my site?" into a concrete report: missing facts, unclear policies,
+weak action paths, and task failures.
 
 ![AgentLayer generated artifact preview](./docs/assets/agentlayer-preview.svg)
 
 ## What It Does
 
-AgentLayer scans public pages within same-host, max-page, timeout, and robots.txt bounds. It extracts agent-relevant structure, generates conservative machine-readable files, detects possible actions, and evaluates deterministic B2B SaaS tasks such as finding pricing, docs, security information, integrations, support, and demo/contact paths.
+AgentLayer scans public pages within same-host, max-page, timeout, and
+robots.txt bounds. It extracts agent-relevant structure, generates conservative
+machine-readable files, detects possible actions, and evaluates deterministic
+B2B SaaS tasks such as finding pricing, docs, security information,
+integrations, support, and demo/contact paths.
 
-This is not an AI SEO dashboard and not only an `llms.txt` generator. It is closer to Lighthouse for the agentic web: standards matter, but AgentLayer also asks whether agents can complete useful tasks.
+This is not an AI SEO dashboard and not only an `llms.txt` generator. It is
+closer to Lighthouse for the agentic web: standards matter, but AgentLayer also
+asks whether agents can complete useful tasks.
 
 ## AgentLayer vs Firecrawl
 
-Firecrawl is excellent when you need hosted crawling and clean content extraction for LLM ingestion. AgentLayer is focused on a different layer: agent operability. It checks whether a website exposes sourced facts, clear policies, action boundaries, task paths, and standards-ready draft artifacts.
+Firecrawl is excellent when you need hosted crawling and clean content
+extraction for LLM ingestion. AgentLayer is focused on a different layer: agent
+operability. It checks whether a website exposes sourced facts, clear policies,
+action boundaries, task paths, and standards-ready draft artifacts.
 
-You can use them together: Firecrawl can help collect content, while AgentLayer evaluates and packages agent-facing outputs. AgentLayer does not require Firecrawl today. See [docs/integrations/firecrawl.md](./docs/integrations/firecrawl.md).
+You can use them together: Firecrawl can help collect content, while AgentLayer
+evaluates and packages agent-facing outputs. AgentLayer does not require
+Firecrawl today. See
+[docs/integrations/firecrawl.md](./docs/integrations/firecrawl.md).
 
 ## Why Now
 
-AI agents increasingly read and operate websites on behalf of users. Most sites are optimized for humans and search engines, not for agents that need sourced facts, clear policies, action boundaries, and machine-readable alternatives.
+AI agents increasingly read and operate websites on behalf of users. Most sites
+are optimized for humans and search engines, not for agents that need sourced
+facts, clear policies, action boundaries, and machine-readable alternatives.
 
-Standards and conventions such as `llms.txt`, MCP, WebMCP, Agent Skills, and API catalogs are emerging. Site owners need tooling that helps them implement and test agent operability without inventing claims or submitting forms.
+Standards and conventions such as `llms.txt`, MCP, WebMCP, Agent Skills, and API
+catalogs are emerging. Site owners need tooling that helps them implement and
+test agent operability without inventing claims or submitting forms.
 
 ## Generated Outputs
 
@@ -53,9 +75,12 @@ AgentLayer can generate:
 - `recommendations.json`
 - `report.html`
 
-Generated MCP/WebMCP/action files are conservative suggestions. They are not official compliance claims.
+Generated MCP/WebMCP/action files are conservative suggestions. They are not
+official compliance claims.
 
-See [docs/standards.md](./docs/standards.md) for the current draft posture on `llms.txt`, MCP Server Card drafts, API Catalog, Agent Skills, WebMCP, and Markdown alternatives.
+See [docs/standards.md](./docs/standards.md) for the current draft posture on
+`llms.txt`, MCP Server Card drafts, API Catalog, Agent Skills, WebMCP, and
+Markdown alternatives.
 
 ## Quickstart
 
@@ -80,33 +105,42 @@ Optionally run the local web app:
 pnpm dev
 ```
 
-The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at `http://localhost:3001`.
+The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at
+`http://localhost:3001`.
 
 ## Try the Demo
 
-Run the local web app and open `http://localhost:3000/demo` for a fixture report, or scan the example SaaS site at `http://localhost:3001` with `--allow-local` and open the generated `report.html` from your output directory.
+Run the local web app and open `http://localhost:3000/demo` for a fixture
+report. You can also scan the example SaaS site at `http://localhost:3001` with
+`--allow-local` and open the generated `report.html` from your output directory.
 
 ## CLI Usage
 
-AgentLayer is currently documented for repo-local use. Use `pnpm agentlayer` when running from a repository checkout:
+AgentLayer is currently documented for repo-local use. Use `pnpm agentlayer`
+when running from a repository checkout:
 
 ```bash
-pnpm agentlayer scan <url> --out ./agentlayer-output --max-pages 20
-pnpm agentlayer generate <url> --out ./agentlayer-output --max-pages 20
-pnpm agentlayer test <url> --tasks ./examples/tasks/b2b-saas.default.json --out ./agentlayer-report.json
-pnpm agentlayer doctor <url> --max-pages 20
+pnpm agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
+pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+pnpm agentlayer test https://example.com --tasks ./examples/tasks/b2b-saas.default.json --out ./agentlayer-report.json
+pnpm agentlayer doctor https://example.com --max-pages 20
 pnpm agentlayer init-fixture --out ./agentlayer-output/tasks
 ```
 
-`init-fixture` writes `b2b-saas.default.json` into the output directory unless you pass a `.json` file path. It refuses to overwrite an existing task suite unless you add `--force`.
+`init-fixture` writes `b2b-saas.default.json` into the output directory unless
+you pass a `.json` file path. It refuses to overwrite an existing task suite
+unless you add `--force`.
 
-When the CLI is installed or linked as the `agentlayer` binary, use the same commands without `pnpm`:
+When the CLI is installed or linked as the `agentlayer` binary, use the same
+commands without `pnpm`:
 
 ```bash
 agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
 ```
 
-When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then, prefer the repo-local commands above or a local package link.
+When packages are published to npm, the CLI can support `npx`/package-manager
+execution. Until then, prefer the repo-local commands above or a local package
+link.
 
 ## Web App
 
@@ -125,13 +159,31 @@ No login, hosted database, payment flow, or LLM API key is required.
 Before publishing generated artifacts on a production site:
 
 - Review `facts.json`, `actions.json`, and `tasks-report.json`.
-- Keep draft/non-compliance disclaimers in MCP, WebMCP, API Catalog, and Agent Skills files.
+- Keep draft/non-compliance disclaimers in MCP, WebMCP, API Catalog, and Agent
+  Skills files.
 - Confirm sensitive actions require human confirmation.
-- Serve approved files from stable paths such as `/llms.txt` and `/.well-known/agents.json`.
-- Re-run AgentLayer after changes to navigation, pricing, docs, support, policies, security pages, or API docs.
+- Serve approved files from stable paths such as `/llms.txt` and
+  `/.well-known/agents.json`.
+- Re-run AgentLayer after changes to navigation, pricing, docs, support,
+  policies, security pages, or API docs.
 - Add generated artifacts to normal release review, not only one-time setup.
 
-Recommended GitHub repository topics:
+## GitHub Setup Checklist
+
+Before tagging `v0.1.0`, polish the public repository metadata:
+
+- Description:
+  `Deterministic toolkit for making websites readable, trusted, and operable by AI agents.`
+- Website: `https://github.com/Qqqq5910/agentlayer#readme` until a hosted
+  project site is live.
+- Social preview or demo screenshot: use `docs/assets/agentlayer-preview.svg` or
+  an updated screenshot from `http://localhost:3000/demo`.
+- Release: create `v0.1.0` from the release notes in
+  [release-notes/v0.1.0.md](./release-notes/v0.1.0.md).
+- Demo link: include `http://localhost:3000/demo` as the local demo path and
+  mention that the AcmeFlow fixture runs at `http://localhost:3001`.
+
+Recommended topics:
 
 - `agentlayer`
 - `llms-txt`
@@ -143,7 +195,10 @@ Recommended GitHub repository topics:
 
 ## Example Report
 
-`apps/example-saas-site` is a fictional B2B SaaS site called AcmeFlow. It includes pricing, docs, API docs, security, integrations, contact sales, book demo, privacy, terms, support, and customer pages. Use it as the local fixture for scanner demos and tests.
+`apps/example-saas-site` is a fictional B2B SaaS site called AcmeFlow. It
+includes pricing, docs, API docs, security, integrations, contact sales, book
+demo, privacy, terms, support, and customer pages. Use it as the local fixture
+for scanner demos and tests.
 
 ## Architecture
 
@@ -171,18 +226,24 @@ Overall Agent Operability Score is a weighted average:
 - Actionability: 30%
 - Task success: 20%
 
-The evaluator is deterministic. It uses discovered pages, headings, links, forms, extracted facts, actions, and text snippets. It does not require an LLM by default.
+The evaluator is deterministic. It uses discovered pages, headings, links,
+forms, extracted facts, actions, and text snippets. It does not require an LLM
+by default.
 
 ## Limitations
 
 - Extraction is heuristic and conservative.
-- AgentLayer does not guarantee compliance with MCP, WebMCP, or any future standard.
-- Generated manifests are suggestions that must be reviewed before production use.
-- Crawls are bounded by same-host links, `maxPages`, request timeouts, and robots.txt guidance.
+- AgentLayer does not guarantee compliance with MCP, WebMCP, or any future
+  standard.
+- Generated manifests are suggestions that must be reviewed before production
+  use.
+- Crawls are bounded by same-host links, `maxPages`, request timeouts, and
+  robots.txt guidance.
 - The scanner does not submit forms.
 - The scanner does not crawl authenticated or private areas.
 - The scanner does not perform destructive actions.
-- Remote sites can block crawling; AgentLayer reports those failures rather than bypassing them.
+- Remote sites can block crawling; AgentLayer reports those failures rather than
+  bypassing them.
 
 ## Roadmap
 
@@ -207,7 +268,8 @@ pnpm test
 pnpm build
 ```
 
-GitHub Actions runs the same lint, typecheck, test, and build commands on pushes and pull requests.
+GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
+and pull requests.
 
 ## Documentation
 

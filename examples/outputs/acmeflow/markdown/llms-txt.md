@@ -2,4 +2,31 @@
 
 Source: http://localhost:3001/llms.txt
 
-# AcmeFlow > Customer workflow automation for B2B SaaS teams. ## Key Links - [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan details. - [Docs](http://localhost:3001/docs): Product documentation and setup guides. - [API Docs](http://localhost:3001/docs/api): REST API and webhook references. - [Security](http://localhost:3001/security): Security, trust, access control, and review packet information. - [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and warehouse integrations. - [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise quotes. - [Book Demo](http://localhost:3001/demo): Demo request form. - [Support](http://localhost:3001/support): Support contact and help request form. - [Privacy](http://localhost:3001/privacy): Privacy policy. - [Terms](http://localhost:3001/terms): Terms, cancellation, and refund information. ## Notes For AI Agents - Do not submit forms without explicit user confirmation. - Treat AcmeFlow as a fictional demo site for AgentLayer. - Verify factual claims against source pages.
+# AcmeFlow
+
+> Customer workflow automation for B2B SaaS teams.
+
+## Key Links
+
+- [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan
+  details.
+- [Docs](http://localhost:3001/docs): Product documentation and setup guides.
+- [API Docs](http://localhost:3001/docs/api): REST API and webhook references.
+- [Security](http://localhost:3001/security): Security, trust, access control,
+  and review packet information.
+- [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and
+  warehouse integrations.
+- [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise
+  quotes.
+- [Book Demo](http://localhost:3001/demo): Demo request form.
+- [Support](http://localhost:3001/support): Support contact and help request
+  form.
+- [Privacy](http://localhost:3001/privacy): Privacy policy.
+- [Terms](http://localhost:3001/terms): Terms, cancellation, and refund
+  information.
+
+## Notes For AI Agents
+
+- Do not submit forms without explicit user confirmation.
+- Treat AcmeFlow as a fictional demo site for AgentLayer.
+- Verify factual claims against source pages.

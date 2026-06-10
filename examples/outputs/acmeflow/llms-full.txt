@@ -1,6 +1,6 @@
 # AcmeFlow - Full Agent Context
 
-Generated: 2026-06-10T04:29:46.732Z
+Generated: 2026-06-10T05:34:10.806Z
 Root URL: http://localhost:3001/
 
 This file contains source-linked Markdown snapshots of important public pages discovered by AgentLayer.
@@ -10,88 +10,386 @@ This file contains source-linked Markdown snapshots of important public pages di
 Source: http://localhost:3001/
 Page type: home
 
-Customer workflow automation # Turn customer handoffs into reliable workflows. AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tasks, and customer escalations across sales, success, support, and product teams. [Book a demo](http://localhost:3001/demo)[View pricing](http://localhost:3001/pricing) ![AcmeFlow dashboard showing revenue workflow automation](/_next/image?url=%2Fimages%2Facmeflow-dashboard.png&w=3840&q=75) Live workflow snapshot New enterprise kickoffOn track Security reviewQueued API handoffQueued Renewal riskQueued ## For customer success Automate onboarding plans and renewal handoffs. ## For sales engineers Track security reviews, API questions, and implementation blockers. ## For operations teams Standardize playbooks, approvals, and reporting. Integrations ## Connect the tools your revenue team already uses. Agents and operators can find our CRM, chat, analytics, and warehouse integrations from a dedicated integrations page. [Salesforce](http://localhost:3001/integrations)[HubSpot](http://localhost:3001/integrations)[Slack](http://localhost:3001/integrations)[Google Workspace](http://localhost:3001/integrations)[Microsoft Teams](http://localhost:3001/integrations)[Zapier](http://localhost:3001/integrations) Pricing starts at $49 ## Compare Starter, Growth, and Enterprise plans. [See plan details](http://localhost:3001/pricing)
+Customer workflow automation
+
+# Turn customer handoffs into reliable workflows.
+
+AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, implementation tasks, and customer escalations across sales, success, support, and product teams.
+
+[Book a demo](http://localhost:3001/demo)
+[View pricing](http://localhost:3001/pricing)
+
+![AcmeFlow dashboard showing revenue workflow automation](/_next/image?url=%2Fimages%2Facmeflow-dashboard.png&w=3840&q=75)
+
+Live workflow snapshot
+
+New enterprise kickoffOn track
+
+Security reviewQueued
+
+API handoffQueued
+
+Renewal riskQueued
+
+## For customer success
+
+Automate onboarding plans and renewal handoffs.
+
+## For sales engineers
+
+Track security reviews, API questions, and implementation blockers.
+
+## For operations teams
+
+Standardize playbooks, approvals, and reporting.
+
+Integrations
+
+## Connect the tools your revenue team already uses.
+
+Agents and operators can find our CRM, chat, analytics, and warehouse integrations from a dedicated integrations page.
+
+[Salesforce](http://localhost:3001/integrations)
+[HubSpot](http://localhost:3001/integrations)
+[Slack](http://localhost:3001/integrations)
+[Google Workspace](http://localhost:3001/integrations)
+[Microsoft Teams](http://localhost:3001/integrations)
+[Zapier](http://localhost:3001/integrations)
+
+Pricing starts at $49
+
+## Compare Starter, Growth, and Enterprise plans.
+
+[See plan details](http://localhost:3001/pricing)
 
 ## Pricing | AcmeFlow
 
 Source: http://localhost:3001/pricing
 Page type: pricing
 
-Pricing # Plans for B2B SaaS teams from first playbook to enterprise governance. AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review. ## Starter $49 per month For small revenue teams organizing repeatable onboarding work. ### Included features and limits - \- 5 workspaces - \- CRM sync - \- Shared playbooks - \- Email support [Start with demo](http://localhost:3001/demo) ## Growth $149 per month For growing SaaS teams that need handoff automation and reporting. ### Included features and limits - \- 25 workspaces - \- Slack alerts - \- Workflow approvals - \- Priority support [Start with demo](http://localhost:3001/demo) ## Enterprise Contact sales annual contracts For larger organizations with governance and security review needs. ### Included features and limits - \- Unlimited workspaces - \- SSO/SAML - \- Audit exports - \- Security review packet [Contact sales](http://localhost:3001/demo) ## Plan differences Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds SSO/SAML, audit exports, and a security review packet for larger organizations.
+Pricing
+
+# Plans for B2B SaaS teams from first playbook to enterprise governance.
+
+AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.
+
+## Starter
+
+$49
+
+per month
+
+For small revenue teams organizing repeatable onboarding work.
+
+### Included features and limits
+
+-   \- 5 workspaces
+-   \- CRM sync
+-   \- Shared playbooks
+-   \- Email support
+
+[Start with demo](http://localhost:3001/demo)
+
+## Growth
+
+$149
+
+per month
+
+For growing SaaS teams that need handoff automation and reporting.
+
+### Included features and limits
+
+-   \- 25 workspaces
+-   \- Slack alerts
+-   \- Workflow approvals
+-   \- Priority support
+
+[Start with demo](http://localhost:3001/demo)
+
+## Enterprise
+
+Contact sales
+
+annual contracts
+
+For larger organizations with governance and security review needs.
+
+### Included features and limits
+
+-   \- Unlimited workspaces
+-   \- SSO/SAML
+-   \- Audit exports
+-   \- Security review packet
+
+[Contact sales](http://localhost:3001/demo)
+
+## Plan differences
+
+Starter focuses on shared playbooks, Growth adds Slack alerts and approvals, and Enterprise adds SSO/SAML, audit exports, and a security review packet for larger organizations.
 
 ## Documentation | AcmeFlow
 
 Source: http://localhost:3001/docs
 Page type: docs
 
-Docs # Documentation for building reliable customer workflows. Find setup guides, API docs, webhook references, role configuration, and integration walkthroughs. ## Getting started Create your first onboarding workflow and invite teammates. [Read more](http://localhost:3001/docs) ## Workflow templates Use repeatable playbooks for implementation, renewals, and escalations. [Read more](http://localhost:3001/docs) ## Roles and permissions Configure admin, operator, viewer, and auditor roles. [Read more](http://localhost:3001/docs) ## API documentation Use REST APIs and webhooks to sync workflow events. [Read more](http://localhost:3001/docs/api)
+Docs
+
+# Documentation for building reliable customer workflows.
+
+Find setup guides, API docs, webhook references, role configuration, and integration walkthroughs.
+
+## Getting started
+
+Create your first onboarding workflow and invite teammates.
+
+[Read more](http://localhost:3001/docs)
+
+## Workflow templates
+
+Use repeatable playbooks for implementation, renewals, and escalations.
+
+[Read more](http://localhost:3001/docs)
+
+## Roles and permissions
+
+Configure admin, operator, viewer, and auditor roles.
+
+[Read more](http://localhost:3001/docs)
+
+## API documentation
+
+Use REST APIs and webhooks to sync workflow events.
+
+[Read more](http://localhost:3001/docs/api)
 
 ## API Docs | AcmeFlow
 
 Source: http://localhost:3001/docs/api
 Page type: api_docs
 
-API docs # REST API and webhooks for AcmeFlow workflows. Developers can read account, workflow, event, and webhook resources. Production API credentials are managed by admins. ## Authentication API requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or workflow write access. ## Example endpoints GET /v1/accounts POST /v1/workflows GET /v1/events POST /v1/webhooks/test
+API docs
+
+# REST API and webhooks for AcmeFlow workflows.
+
+Developers can read account, workflow, event, and webhook resources. Production API credentials are managed by admins.
+
+## Authentication
+
+API requests use bearer tokens created by an account admin. Tokens can be scoped to read-only or workflow write access.
+
+## Example endpoints
+
+GET /v1/accounts
+POST /v1/workflows
+GET /v1/events
+POST /v1/webhooks/test
 
 ## Security | AcmeFlow
 
 Source: http://localhost:3001/security
 Page type: security
 
-Security and trust # Security information for teams evaluating AcmeFlow. This page gives agents a clear source for trust, access control, privacy, and review packet information without inventing compliance claims. ## Data protection Customer workflow data is encrypted in transit and at rest in the fictional AcmeFlow demo. ## Access controls Enterprise workspaces can configure SSO/SAML, role-based permissions, and audit exports. ## Compliance posture A security review packet is available for Enterprise evaluation. This demo does not claim certification. ## Incident contact Security questions can be sent to security@acmeflow.example.
+Security and trust
+
+# Security information for teams evaluating AcmeFlow.
+
+This page gives agents a clear source for trust, access control, privacy, and review packet information without inventing compliance claims.
+
+## Data protection
+
+Customer workflow data is encrypted in transit and at rest in the fictional AcmeFlow demo.
+
+## Access controls
+
+Enterprise workspaces can configure SSO/SAML, role-based permissions, and audit exports.
+
+## Compliance posture
+
+A security review packet is available for Enterprise evaluation. This demo does not claim certification.
+
+## Incident contact
+
+Security questions can be sent to security@acmeflow.example.
 
 ## Integrations | AcmeFlow
 
 Source: http://localhost:3001/integrations
 Page type: integrations
 
-Integrations # Connect AcmeFlow to the tools your revenue team already uses. AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse integrations for B2B SaaS workflows. ## Salesforce Sync customer handoff signals between AcmeFlow and Salesforce. ## HubSpot Sync customer handoff signals between AcmeFlow and HubSpot. ## Slack Sync customer handoff signals between AcmeFlow and Slack. ## Google Workspace Sync customer handoff signals between AcmeFlow and Google Workspace. ## Microsoft Teams Sync customer handoff signals between AcmeFlow and Microsoft Teams. ## Zapier Sync customer handoff signals between AcmeFlow and Zapier. ## Segment Sync customer handoff signals between AcmeFlow and Segment. ## Snowflake Sync customer handoff signals between AcmeFlow and Snowflake.
+Integrations
+
+# Connect AcmeFlow to the tools your revenue team already uses.
+
+AcmeFlow supports CRM, collaboration, analytics, automation, and warehouse integrations for B2B SaaS workflows.
+
+## Salesforce
+
+Sync customer handoff signals between AcmeFlow and Salesforce.
+
+## HubSpot
+
+Sync customer handoff signals between AcmeFlow and HubSpot.
+
+## Slack
+
+Sync customer handoff signals between AcmeFlow and Slack.
+
+## Google Workspace
+
+Sync customer handoff signals between AcmeFlow and Google Workspace.
+
+## Microsoft Teams
+
+Sync customer handoff signals between AcmeFlow and Microsoft Teams.
+
+## Zapier
+
+Sync customer handoff signals between AcmeFlow and Zapier.
+
+## Segment
+
+Sync customer handoff signals between AcmeFlow and Segment.
+
+## Snowflake
+
+Sync customer handoff signals between AcmeFlow and Snowflake.
 
 ## Privacy Policy | AcmeFlow
 
 Source: http://localhost:3001/privacy
 Page type: privacy
 
-Privacy policy # How the fictional AcmeFlow demo describes privacy. This policy page exists so AgentLayer can find a clear privacy source during scans. ## Privacy summary AcmeFlow collects account contact information, workspace configuration, and workflow event data for providing the fictional service. The demo does not collect real personal information. ## Retention and deletion Customers may request account export or deletion by contacting privacy@acmeflow.example. Support confirms identity before processing account deletion requests.
+Privacy policy
+
+# How the fictional AcmeFlow demo describes privacy.
+
+This policy page exists so AgentLayer can find a clear privacy source during scans.
+
+## Privacy summary
+
+AcmeFlow collects account contact information, workspace configuration, and workflow event data for providing the fictional service. The demo does not collect real personal information.
+
+## Retention and deletion
+
+Customers may request account export or deletion by contacting privacy@acmeflow.example. Support confirms identity before processing account deletion requests.
 
 ## Terms | AcmeFlow
 
 Source: http://localhost:3001/terms
 Page type: terms
 
-Terms # Terms, cancellation, and refund information. This page gives agents a specific source for legal and cancellation questions. ## Service terms AcmeFlow is a fictional product fixture. Paid subscriptions would be governed by an order form and service agreement reviewed by the customer. ## Cancellation and refunds Starter and Growth plans may be cancelled before the next billing period. Enterprise cancellations and refunds follow the signed order form. Contact support@acmeflow.example for cancellation requests.
+Terms
+
+# Terms, cancellation, and refund information.
+
+This page gives agents a specific source for legal and cancellation questions.
+
+## Service terms
+
+AcmeFlow is a fictional product fixture. Paid subscriptions would be governed by an order form and service agreement reviewed by the customer.
+
+## Cancellation and refunds
+
+Starter and Growth plans may be cancelled before the next billing period. Enterprise cancellations and refunds follow the signed order form. Contact support@acmeflow.example for cancellation requests.
 
 ## Contact Sales | AcmeFlow
 
 Source: http://localhost:3001/contact
 Page type: contact
 
-Contact sales # Talk with AcmeFlow about your customer workflow needs. Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning. ## Sales contact Email: sales@acmeflow.example Typical response time: one business day.
+Contact sales
+
+# Talk with AcmeFlow about your customer workflow needs.
+
+Use this form for pricing questions, Enterprise quotes, security review requests, and implementation planning.
+
+## Sales contact
+
+Email: sales@acmeflow.example
+
+Typical response time: one business day.
 
 ## Book Demo | AcmeFlow
 
 Source: http://localhost:3001/demo
 Page type: demo
 
-Book demo # See AcmeFlow with your customer handoff workflow. Request a product demo for a qualified lead. A human should confirm all meeting details before scheduling. ## What the demo covers - \- Pricing fit for Starter, Growth, or Enterprise - \- CRM and Slack integration setup - \- Security review and SSO requirements - \- Customer onboarding workflow templates
+Book demo
+
+# See AcmeFlow with your customer handoff workflow.
+
+Request a product demo for a qualified lead. A human should confirm all meeting details before scheduling.
+
+## What the demo covers
+
+-   \- Pricing fit for Starter, Growth, or Enterprise
+-   \- CRM and Slack integration setup
+-   \- Security review and SSO requirements
+-   \- Customer onboarding workflow templates
 
 ## Customers | AcmeFlow
 
 Source: http://localhost:3001/customers
 Page type: customers
 
-Customers # Customer stories for B2B SaaS revenue and success teams. AcmeFlow is designed for customer success, sales engineering, support operations, and implementation teams. ## Northstar Analytics Reduced implementation handoff delays by standardizing launch tasks. ## OrbitDesk Connected support escalations to product feedback workflows. ## HelioStack Used AcmeFlow playbooks to coordinate Enterprise security reviews.
+Customers
+
+# Customer stories for B2B SaaS revenue and success teams.
+
+AcmeFlow is designed for customer success, sales engineering, support operations, and implementation teams.
+
+## Northstar Analytics
+
+Reduced implementation handoff delays by standardizing launch tasks.
+
+## OrbitDesk
+
+Connected support escalations to product feedback workflows.
+
+## HelioStack
+
+Used AcmeFlow playbooks to coordinate Enterprise security reviews.
 
 ## llms.txt
 
 Source: http://localhost:3001/llms.txt
 Page type: llms
 
-# AcmeFlow > Customer workflow automation for B2B SaaS teams. ## Key Links - [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan details. - [Docs](http://localhost:3001/docs): Product documentation and setup guides. - [API Docs](http://localhost:3001/docs/api): REST API and webhook references. - [Security](http://localhost:3001/security): Security, trust, access control, and review packet information. - [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and warehouse integrations. - [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise quotes. - [Book Demo](http://localhost:3001/demo): Demo request form. - [Support](http://localhost:3001/support): Support contact and help request form. - [Privacy](http://localhost:3001/privacy): Privacy policy. - [Terms](http://localhost:3001/terms): Terms, cancellation, and refund information. ## Notes For AI Agents - Do not submit forms without explicit user confirmation. - Treat AcmeFlow as a fictional demo site for AgentLayer. - Verify factual claims against source pages.
+# AcmeFlow
+
+> Customer workflow automation for B2B SaaS teams.
+
+## Key Links
+- [Pricing](http://localhost:3001/pricing): Starter, Growth, and Enterprise plan details.
+- [Docs](http://localhost:3001/docs): Product documentation and setup guides.
+- [API Docs](http://localhost:3001/docs/api): REST API and webhook references.
+- [Security](http://localhost:3001/security): Security, trust, access control, and review packet information.
+- [Integrations](http://localhost:3001/integrations): CRM, chat, automation, and warehouse integrations.
+- [Contact Sales](http://localhost:3001/contact): Sales questions and Enterprise quotes.
+- [Book Demo](http://localhost:3001/demo): Demo request form.
+- [Support](http://localhost:3001/support): Support contact and help request form.
+- [Privacy](http://localhost:3001/privacy): Privacy policy.
+- [Terms](http://localhost:3001/terms): Terms, cancellation, and refund information.
+
+## Notes For AI Agents
+- Do not submit forms without explicit user confirmation.
+- Treat AcmeFlow as a fictional demo site for AgentLayer.
+- Verify factual claims against source pages.
 
 ## Support | AcmeFlow
 
 Source: http://localhost:3001/support
 Page type: support
 
-Support # Get help with AcmeFlow workflows, integrations, and billing. Find support contact information, help resources, and a support request form. ## Support contact Email: support@acmeflow.example Help center topics: billing, integrations, API, SSO, webhooks.
+Support
+
+# Get help with AcmeFlow workflows, integrations, and billing.
+
+Find support contact information, help resources, and a support request form.
+
+## Support contact
+
+Email: support@acmeflow.example
+
+Help center topics: billing, integrations, API, SSO, webhooks.

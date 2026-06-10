@@ -1,6 +1,6 @@
 {
   "generatedBy": "AgentLayer",
-  "generatedAt": "2026-06-10T04:29:46.732Z",
+  "generatedAt": "2026-06-10T05:34:10.806Z",
   "rootUrl": "http://localhost:3001/",
   "count": 31,
   "artifacts": [
@@ -34,6 +34,10 @@
     },
     {
       "path": "recommendations.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "report.json",
       "mediaType": "application/json"
     },
     {
@@ -119,10 +123,6 @@
     {
       "path": "markdown/terms.md",
       "mediaType": "text/markdown"
-    },
-    {
-      "path": "report.json",
-      "mediaType": "application/json"
     },
     {
       "path": "artifacts.json",

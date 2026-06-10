@@ -53,17 +53,17 @@ export async function loadCoreApi<const T extends readonly CoreFunctionName[]>(
 
 async function importCoreModule(): Promise<UnknownCoreModule> {
   try {
-    return (await import(CORE_PACKAGE_NAME)) as UnknownCoreModule;
-  } catch (packageError) {
+    return (await import(CORE_SOURCE_URL)) as UnknownCoreModule;
+  } catch (sourceError) {
     try {
-      return (await import(CORE_SOURCE_URL)) as UnknownCoreModule;
-    } catch (sourceError) {
+      return (await import(CORE_PACKAGE_NAME)) as UnknownCoreModule;
+    } catch (packageError) {
       throw new CliError(
         [
           "Could not load @agentlayer/core.",
           "Run pnpm install from the repo root or rebuild @agentlayer/core, then retry.",
+          `Source import failed: ${formatCoreError(sourceError)}.`,
           `Package import failed: ${formatCoreError(packageError)}.`,
-          `Source fallback failed: ${formatCoreError(sourceError)}.`,
         ].join(" "),
       );
     }

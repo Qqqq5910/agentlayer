@@ -1,6 +1,8 @@
 import type { AgentOperabilityReport, GeneratedArtifact } from "../schemas.js";
 import { GeneratedArtifactSchema } from "../schemas.js";
+import { truncatePreservingWhitespace, truncateText } from "../utils/text.js";
 import { pageMarkdownPath } from "../utils/urls.js";
+import { describeGeneratedArtifacts } from "./artifactCatalog.js";
 import { generateLlmsFullTxt } from "./generateLlmsFullTxt.js";
 import { generateLlmsTxt } from "./generateLlmsTxt.js";
 import { generateReportHtml } from "./generateReportHtml.js";
@@ -50,6 +52,11 @@ export function generateArtifacts(report: AgentOperabilityReport): GeneratedArti
       content: `${JSON.stringify(report.recommendations, null, 2)}\n`
     },
     {
+      path: "report.json",
+      mediaType: "application/json",
+      content: `${JSON.stringify(reportArtifactValue(report), null, 2)}\n`
+    },
+    {
       path: "report.html",
       mediaType: "text/html",
       content: generateReportHtml(report)
@@ -69,20 +76,54 @@ export function generateArtifacts(report: AgentOperabilityReport): GeneratedArti
   return artifacts.map((artifact) => GeneratedArtifactSchema.parse(artifact));
 }
 
+function reportArtifactValue(report: AgentOperabilityReport): AgentOperabilityReport {
+  return {
+    ...report,
+    scan: {
+      ...report.scan,
+      pages: report.scan.pages.map((page) => ({
+        ...page,
+        visibleText: truncateText(page.visibleText, 320),
+        markdown: truncatePreservingWhitespace(page.markdown, 320)
+      }))
+    },
+    facts: report.facts.map((fact) => ({
+      ...fact,
+      sourceText: fact.sourceText ? truncateText(fact.sourceText, 220) : fact.sourceText
+    })),
+    tasks: report.tasks.map((task) => ({
+      ...task,
+      evidenceSnippets: task.evidenceSnippets.map((snippet) => truncateText(snippet, 220)),
+      journeySteps: task.journeySteps.map((step) => ({
+        ...step,
+        evidenceSnippets: step.evidenceSnippets.map((snippet) => truncateText(snippet, 220))
+      }))
+    }))
+  };
+}
+
 function generateArtifactIndex(
   report: AgentOperabilityReport,
   artifacts: GeneratedArtifact[]
 ): GeneratedArtifact {
-  const indexEntries = [
-    ...artifacts.map((artifact) => ({
-      path: artifact.path,
-      mediaType: artifact.mediaType
-    })),
-    {
-      path: "artifacts.json",
-      mediaType: "application/json"
-    }
-  ];
+  const actualEntries = artifacts.map((artifact) => ({
+    path: artifact.path,
+    mediaType: artifact.mediaType
+  }));
+  const catalogEntries = describeGeneratedArtifacts(report).map(({ path, mediaType }) => ({
+    path,
+    mediaType
+  }));
+  const indexEntries =
+    JSON.stringify(actualEntries) === JSON.stringify(catalogEntries.slice(0, actualEntries.length))
+      ? catalogEntries
+      : [
+          ...actualEntries,
+          {
+            path: "artifacts.json",
+            mediaType: "application/json"
+          }
+        ];
 
   return {
     path: "artifacts.json",

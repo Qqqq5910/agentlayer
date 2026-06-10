@@ -27,9 +27,7 @@
     "status": "pass",
     "score": 85,
     "explanation": "Multiple plans and comparison-oriented details were found.",
-    "evidenceUrls": [
-      "http://localhost:3001/pricing"
-    ],
+    "evidenceUrls": ["http://localhost:3001/pricing"],
     "evidenceSnippets": [
       "Plan name: Starter - to enterprise governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue tea...",
       "Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing for Starter and Growth teams. Enterprise plans are quoted through sales after a security and workflow review.Starter$49per monthFor small revenue teams organizing",

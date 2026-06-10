@@ -4,9 +4,7 @@
     "severity": "medium",
     "whyItMatters": "The scan found operable actions, but agents still need a stable public manifest instead of re-inferring forms from HTML.",
     "howToFix": "Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest.",
-    "affectedTasks": [
-      "book_demo"
-    ],
+    "affectedTasks": ["book_demo"],
     "suggestedArtifact": ".well-known/agents.json"
   }
 ]

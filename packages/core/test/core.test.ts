@@ -12,6 +12,7 @@ import {
   generateLlmsTxt,
   scoreSite
 } from "../src/index.js";
+import { describeGeneratedArtifacts } from "../src/generator/artifactCatalog.js";
 import { extractPageSnapshot } from "../src/extractor/extractMetadata.js";
 import { classifyPage } from "../src/scanner/pageClassifier.js";
 import { SiteScanSchema, type SiteScan } from "../src/schemas.js";
@@ -42,6 +43,8 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     const scan = sampleScan();
     const contactPage = scan.pages.find((page) => page.pageType === "contact");
 
+    expect(scan.pages[0]?.markdown.split("\n").length).toBeGreaterThanOrEqual(5);
+    expect(scan.pages[0]?.markdown).toContain("\n\n");
     expect(contactPage?.forms[0]).toMatchObject({
       method: "POST",
       purpose: "contact sales"
@@ -117,6 +120,12 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     const llmsTxt = generateLlmsTxt(report);
     const llmsFullTxt = generateLlmsFullTxt(report);
     const artifacts = generateArtifacts(report);
+    const reportHtml = artifacts.find((artifact) => artifact.path === "report.html")?.content ?? "";
+    const artifactManifest = JSON.parse(artifacts.find((artifact) => artifact.path === "artifacts.json")?.content ?? "{}") as {
+      count: number;
+      artifacts: Array<{ path: string; mediaType: string }>;
+    };
+    const artifactCatalog = describeGeneratedArtifacts(report).map(({ path, mediaType }) => ({ path, mediaType }));
 
     expect(llmsTxt).toContain("# AcmeFlow");
     expect(llmsTxt).toContain("## Agent Actions");
@@ -128,6 +137,7 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
         "facts.json",
         "actions.json",
         "form-operability.json",
+        "report.json",
         "artifacts.json",
         ".well-known/agents.json",
         ".well-known/mcp.json",
@@ -138,21 +148,25 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
         "markdown/index.md"
       ])
     );
-    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
-      expect.stringContaining("Agent Operability Score")
-    );
-    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
-      expect.stringContaining("Generated files")
-    );
-    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
-      expect.stringContaining("Top recommendations")
-    );
-    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
-      expect.stringContaining("Detected actions")
-    );
-    expect(artifacts.find((artifact) => artifact.path === "report.html")?.content).toEqual(
-      expect.stringContaining("Form operability")
-    );
+    expect(reportHtml).toContain("Agent Operability Score");
+    expect(reportHtml).toContain("Agent operability report for AcmeFlow");
+    expect(reportHtml).toContain("Generated artifacts");
+    expect(reportHtml).toContain(`<span>Generated artifacts</span><strong>${artifactManifest.count}</strong>`);
+    expect(reportHtml).toContain(`${artifactManifest.count} total`);
+    expect(reportHtml).toContain("The count matches the <code>artifacts.json</code> manifest count");
+    expect(reportHtml).toContain(`href="markdown/pricing.md"`);
+    expect(reportHtml).toContain("Markdown snapshot from /pricing.");
+    expect(reportHtml).toContain("Crawl Issues");
+    expect(reportHtml).toContain("Non-blocking warning");
+    expect(reportHtml).toContain("HTTP 404");
+    expect(reportHtml).toContain("Redirect skipped");
+    expect(reportHtml).toContain("affect the score only when they hide evidence");
+    expect(reportHtml).toContain("Top recommendations");
+    expect(reportHtml).toContain("Detected actions");
+    expect(reportHtml).toContain("Form operability");
+    expect(artifactManifest.artifacts).toHaveLength(artifactManifest.count);
+    expect(artifactManifest.artifacts).toEqual(artifactCatalog);
+    expect(artifacts.map(({ path, mediaType }) => ({ path, mediaType }))).toEqual(artifactCatalog);
     expect(artifacts.find((artifact) => artifact.path === "tasks-report.json")?.content).toEqual(
       expect.stringContaining("submit_safely_not_performed")
     );
@@ -194,7 +208,20 @@ function sampleScan(): SiteScan {
       page("/terms", policyHtml("Terms of Service")),
       page("/support", supportHtml())
     ],
-    errors: []
+    errors: [
+      {
+        url: "https://acme.test/private",
+        message: "Skipped because robots.txt disallows crawling this URL."
+      },
+      {
+        url: "https://acme.test/missing",
+        message: "Fetch failed with HTTP 404."
+      },
+      {
+        url: "https://acme.test/away",
+        message: "Skipped redirect outside allowed crawl scope: https://external.test/away"
+      }
+    ]
   });
 }
 

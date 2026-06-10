@@ -1,12 +1,30 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import * as dns from "node:dns/promises";
+
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { scanSite } from "../src/index.js";
 import { fetchWithTimeout } from "../src/scanner/fetchRobots.js";
-import { isPublicHttpUrl } from "../src/utils/safety.js";
+import { assertPublicHttpUrlResolved, isPublicHttpUrl } from "../src/utils/safety.js";
+
+vi.mock("node:dns/promises", () => ({
+  lookup: vi.fn()
+}));
+
+const lookupMock = vi.mocked(dns.lookup);
 
 describe("public URL safety", () => {
+  beforeEach(() => {
+    lookupMock.mockImplementation(async (hostname) => [
+      {
+        address: hostname === "example.com" ? "93.184.216.34" : "203.0.114.10",
+        family: 4
+      }
+    ]);
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
+    lookupMock.mockReset();
   });
 
   it.each([
@@ -49,14 +67,49 @@ describe("public URL safety", () => {
     expect(scan.rootUrl).toBe("http://localhost:3000/");
   });
 
+  it.each([
+    ["127.0.0.1", 4],
+    ["10.0.0.7", 4],
+    ["192.168.1.7", 4],
+    ["172.16.0.7", 4],
+    ["169.254.169.254", 4],
+    ["::1", 6],
+    ["fc00::1", 6],
+    ["fe80::1", 6]
+  ])("rejects public-looking hostnames that resolve to %s", async (address, family) => {
+    lookupMock.mockResolvedValueOnce([{ address, family }]);
+
+    await expect(assertPublicHttpUrlResolved("https://agentlayer-public.example/")).rejects.toThrow(
+      "hostname resolves to a local, private, link-local, metadata, multicast, reserved, or internal address"
+    );
+
+    expect(lookupMock).toHaveBeenCalledWith("agentlayer-public.example", { all: true });
+  });
+
+  it("allows public hostnames when every DNS result is public", async () => {
+    lookupMock.mockResolvedValueOnce([
+      { address: "93.184.216.34", family: 4 },
+      { address: "2606:2800:220:1:248:1893:25c8:1946", family: 6 }
+    ]);
+
+    await expect(assertPublicHttpUrlResolved("https://example.com/")).resolves.toBeUndefined();
+  });
+
   it("rejects redirects to private network targets before following them", async () => {
+    lookupMock.mockImplementation(async (hostname) => [
+      {
+        address: hostname === "metadata.example" ? "169.254.169.254" : "93.184.216.34",
+        family: 4
+      }
+    ]);
+
     const fetchMock = vi
       .spyOn(globalThis, "fetch")
       .mockResolvedValueOnce(
         new Response("", {
           status: 302,
           headers: {
-            location: "http://169.254.169.254/latest/meta-data/"
+            location: "http://metadata.example/latest/meta-data/"
           }
         })
       )

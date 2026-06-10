@@ -15,6 +15,15 @@ export function truncateText(value: string, maxLength: number): string {
   return `${clean.slice(0, Math.max(0, maxLength - 1)).trim()}...`;
 }
 
+export function truncatePreservingWhitespace(value: string, maxLength: number): string {
+  const clean = value.trim();
+  if (clean.length <= maxLength) {
+    return clean;
+  }
+
+  return `${clean.slice(0, Math.max(0, maxLength - 1)).trimEnd()}...`;
+}
+
 export function uniqueStrings(values: Iterable<string>): string[] {
   const seen = new Set<string>();
   const result: string[] = [];

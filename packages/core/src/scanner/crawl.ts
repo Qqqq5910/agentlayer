@@ -3,7 +3,7 @@ import { ScanOptionsSchema } from "../schemas.js";
 import { firecrawlCrawler } from "../crawlers/firecrawlCrawler.js";
 import { localCrawler } from "../crawlers/localCrawler.js";
 import type { Crawler } from "../crawlers/types.js";
-import { assertPublicHttpUrl } from "../utils/safety.js";
+import { assertPublicHttpUrlResolved } from "../utils/safety.js";
 import { normalizeRootUrl } from "../utils/urls.js";
 
 export async function scanSite(inputOptions: unknown): Promise<SiteScan> {
@@ -19,7 +19,7 @@ export async function scanSite(inputOptions: unknown): Promise<SiteScan> {
     rootUrl: normalizeRootUrl(parsed.rootUrl)
   };
 
-  assertPublicHttpUrl(options.rootUrl, { allowLocal: options.allowLocal });
+  await assertPublicHttpUrlResolved(options.rootUrl, { allowLocal: options.allowLocal });
   return selectCrawler(options).scan(options);
 }
 

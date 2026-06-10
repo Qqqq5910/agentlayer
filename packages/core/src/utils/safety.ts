@@ -1,3 +1,6 @@
+import * as dns from "node:dns/promises";
+import net from "node:net";
+
 import { isSameHostname, normalizePathname, normalizeUrl } from "./urls.js";
 
 const UNSAFE_PATH_PATTERNS = [
@@ -51,6 +54,54 @@ export function assertPublicHttpUrl(candidate: string, options: UrlSafetyOptions
   }
 }
 
+export async function isPublicHttpUrlResolved(candidate: string, options: UrlSafetyOptions = {}): Promise<boolean> {
+  return (await getUnsafeUrlReasonResolved(candidate, options)) === null;
+}
+
+export async function assertPublicHttpUrlResolved(candidate: string, options: UrlSafetyOptions = {}): Promise<void> {
+  const reason = await getUnsafeUrlReasonResolved(candidate, options);
+  if (reason) {
+    throw new Error(`Blocked unsafe URL "${candidate}": ${reason}`);
+  }
+}
+
+export async function getUnsafeUrlReasonResolved(
+  candidate: string,
+  options: UrlSafetyOptions = {}
+): Promise<string | null> {
+  const staticReason = getUnsafeUrlReason(candidate, options);
+  if (staticReason) {
+    return staticReason;
+  }
+
+  if (options.allowLocal) {
+    return null;
+  }
+
+  const hostname = hostnameFromUrl(candidate);
+  if (!hostname || net.isIP(hostname) !== 0) {
+    return null;
+  }
+
+  let records: Array<{ address: string; family: number }>;
+  try {
+    records = await dns.lookup(hostname, { all: true });
+  } catch (error) {
+    return `hostname could not be resolved: ${formatDnsError(error)}`;
+  }
+
+  if (records.length === 0) {
+    return "hostname did not resolve to any address.";
+  }
+
+  const unsafeAddress = records.find((record) => isUnsafeIpAddress(record.address));
+  if (unsafeAddress) {
+    return `hostname resolves to a local, private, link-local, metadata, multicast, reserved, or internal address (${unsafeAddress.address}).`;
+  }
+
+  return null;
+}
+
 export function getUnsafeUrlReason(candidate: string, options: UrlSafetyOptions = {}): string | null {
   let url: URL;
   try {
@@ -96,6 +147,39 @@ export function isSafeCrawlUrl(candidate: string, rootUrl: string, options: UrlS
   return !SKIPPED_EXTENSIONS.has(extension);
 }
 
+export async function isSafeCrawlUrlResolved(
+  candidate: string,
+  rootUrl: string,
+  options: UrlSafetyOptions = {}
+): Promise<boolean> {
+  const normalized = normalizeUrl(candidate);
+  if (!normalized || !isSameHostname(normalized, rootUrl)) {
+    return false;
+  }
+
+  if (!(await isPublicHttpUrlResolved(normalized, options))) {
+    return false;
+  }
+
+  const url = new URL(normalized);
+  const path = normalizePathname(url.pathname);
+  if (UNSAFE_PATH_PATTERNS.some((pattern) => pattern.test(path))) {
+    return false;
+  }
+
+  const lastSegment = path.split("/").pop() ?? "";
+  const extension = lastSegment.includes(".") ? `.${lastSegment.split(".").pop() ?? ""}`.toLowerCase() : "";
+  return !SKIPPED_EXTENSIONS.has(extension);
+}
+
+function hostnameFromUrl(candidate: string): string | null {
+  try {
+    return stripHostnameBrackets(new URL(candidate).hostname.toLowerCase());
+  } catch {
+    return null;
+  }
+}
+
 function stripHostnameBrackets(hostname: string): string {
   return hostname.startsWith("[") && hostname.endsWith("]") ? hostname.slice(1, -1) : hostname;
 }
@@ -139,12 +223,19 @@ function isUnsafeIPv4(hostname: string): boolean {
 function isUnsafeIPv4Octets(octets: number[]): boolean {
   const [first = 0, second = 0] = octets;
   return (
+    first === 0 ||
     first === 10 ||
     first === 127 ||
+    (first === 100 && second >= 64 && second <= 127) ||
     (first === 172 && second >= 16 && second <= 31) ||
+    (first === 192 && second === 0) ||
+    (first === 192 && second === 0 && octets[2] === 2) ||
     (first === 192 && second === 168) ||
     (first === 169 && second === 254) ||
-    first === 0
+    (first === 198 && (second === 18 || second === 19)) ||
+    (first === 198 && second === 51 && octets[2] === 100) ||
+    (first === 203 && second === 0 && octets[2] === 113) ||
+    first >= 224
   );
 }
 
@@ -169,13 +260,31 @@ function isUnsafeIPv6(hostname: string): boolean {
     normalized === "::1" ||
     normalized === "0:0:0:0:0:0:0:1" ||
     (mappedIPv4Octets !== null && isUnsafeIPv4Octets(mappedIPv4Octets)) ||
+    normalized.startsWith("100:") ||
     normalized.startsWith("fc") ||
     normalized.startsWith("fd") ||
     normalized.startsWith("fe8") ||
     normalized.startsWith("fe9") ||
     normalized.startsWith("fea") ||
-    normalized.startsWith("feb")
+    normalized.startsWith("feb") ||
+    normalized.startsWith("ff") ||
+    normalized.startsWith("2001:2:") ||
+    normalized.startsWith("2001:db8:") ||
+    normalized.startsWith("2001:10:")
   );
+}
+
+function isUnsafeIpAddress(address: string): boolean {
+  const hostname = stripHostnameBrackets(address.toLowerCase());
+  return isUnsafeIPv4(hostname) || isUnsafeIPv6(hostname) || isMetadataHost(hostname);
+}
+
+function formatDnsError(error: unknown): string {
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+
+  return "unknown DNS error";
 }
 
 function parseMappedIPv4Octets(hostname: string): number[] | null {

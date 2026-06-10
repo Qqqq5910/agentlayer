@@ -1,16 +1,36 @@
 import type { AgentOperabilityReport } from "../schemas.js";
+import { describeGeneratedArtifacts } from "./artifactCatalog.js";
 
 export function generateReportHtml(report: AgentOperabilityReport): string {
   const taskSummary = summarizeTasks(report);
-  const artifactRows = generatedFiles(report)
+  const artifactSummaries = describeGeneratedArtifacts(report);
+  const crawlIssues = classifyCrawlIssues(report.scan.errors);
+  const artifactRows = artifactSummaries
     .map(
       (artifact) => `
         <li>
-          <code>${escapeHtml(artifact.path)}</code>
-          <span>${escapeHtml(artifact.description)}</span>
+          <a href="${escapeAttribute(artifact.path)}"><code>${escapeHtml(artifact.path)}</code></a>
+          <span>${escapeHtml(artifact.mediaType)} - ${escapeHtml(artifact.description)}</span>
         </li>`
     )
     .join("");
+  const crawlIssueRows =
+    crawlIssues.length > 0
+      ? crawlIssues
+          .map(
+            (issue) => `
+              <tr>
+                <td><span class="badge issue-${issue.severity}">${escapeHtml(issue.badge)}</span></td>
+                <td>
+                  <strong>${escapeHtml(issue.title)}</strong>
+                  <small><a href="${escapeAttribute(issue.url)}">${escapeHtml(sourceLabel(issue.url))}</a></small>
+                </td>
+                <td>${escapeHtml(issue.message)}</td>
+                <td>${escapeHtml(issue.scoreImpact)}</td>
+              </tr>`
+          )
+          .join("")
+      : "";
 
   const taskRows = report.tasks
     .map((task) => {
@@ -108,20 +128,27 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
     <style>
       :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
       * { box-sizing: border-box; }
-      body { margin: 0; color: #172026; background: #f6f8fb; }
+      body { margin: 0; color: #172026; background: #f4f7f6; }
       main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 64px; }
       h1, h2 { margin: 0 0 12px; }
-      h1 { max-width: 780px; font-size: clamp(32px, 5vw, 56px); line-height: 1.02; letter-spacing: 0; }
+      h1 { max-width: 820px; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: 0; }
       h2 { font-size: 22px; }
       h3 { margin: 12px 0 8px; font-size: 16px; }
       p { color: #53606b; line-height: 1.65; }
       section { margin-top: 28px; }
-      .eyebrow { color: #0e7490; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-      .hero { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 280px; align-items: end; }
-      .hero-card { border: 1px solid #bae6fd; border-radius: 8px; background: #ecfeff; padding: 20px; }
-      .hero-card span { color: #155e75; font-size: 13px; font-weight: 700; }
-      .hero-card strong { display: block; margin-top: 8px; font-size: 56px; line-height: 1; }
+      .eyebrow { color: #0f766e; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+      .hero { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 300px; align-items: stretch; border: 1px solid #cfd8d4; border-radius: 8px; background: #ffffff; padding: 28px; box-shadow: 0 18px 54px rgba(23, 32, 38, .08); }
+      .hero header { display: grid; align-content: center; }
+      .hero .lede { max-width: 760px; font-size: 17px; }
+      .hero-card { display: grid; align-content: center; border: 1px solid #a7d7ce; border-radius: 8px; background: #e9f8f5; padding: 22px; }
+      .hero-card span { color: #115e59; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+      .hero-card strong { display: block; margin-top: 10px; font-size: 64px; line-height: .95; color: #0f2f2b; }
+      .hero-card p { margin-bottom: 0; color: #31534f; }
+      .report-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .report-meta a, .report-meta span { border: 1px solid #dfe5e2; border-radius: 999px; padding: 6px 10px; background: #fbfcfd; color: #33433f; font-size: 13px; text-decoration: none; }
       .panel { background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; box-shadow: 0 14px 42px rgba(17, 24, 39, .06); }
+      .section-heading { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
+      .section-heading p { margin: 0; max-width: 700px; }
       .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
       .score { border-radius: 8px; border: 1px solid #dfe3e8; background: white; padding: 16px; }
       .score span { color: #53606b; font-size: 13px; font-weight: 700; }
@@ -135,6 +162,7 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .metric strong { display: block; margin-top: 6px; font-size: 24px; color: #172026; }
       .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
       .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
+      .file-list a { text-decoration: none; }
       code { border-radius: 6px; background: #eef2f7; padding: 2px 6px; color: #0f172a; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 12px; }
       .file-list span, small { display: block; margin-top: 6px; color: #667085; line-height: 1.45; }
       .journey-list { display: grid; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
@@ -156,10 +184,13 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .severity-high, .sensitivity-high { background: #ffe0de; color: #9a271f; }
       .severity-medium, .sensitivity-medium { background: #fff0c2; color: #7a5300; }
       .severity-low, .sensitivity-low { background: #dff8ff; color: #075c6e; }
+      .issue-warning { background: #fff7d6; color: #7a5300; }
+      .issue-error { background: #ffe0de; color: #9a271f; }
       @media (max-width: 760px) {
         main { padding-top: 28px; }
         .hero { grid-template-columns: 1fr; }
         .hero-card strong { font-size: 48px; }
+        .section-heading { display: block; }
       }
     </style>
   </head>
@@ -168,9 +199,13 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       <div class="hero">
         <header>
           <p class="eyebrow">AgentLayer operability report</p>
-          <h1>${escapeHtml(report.site.name)} can be read, trusted, and operated by agents.</h1>
-          <p>${escapeHtml(report.site.summary)}</p>
-          <p><a href="${escapeAttribute(report.site.rootUrl)}">${escapeHtml(report.site.rootUrl)}</a></p>
+          <h1>Agent operability report for ${escapeHtml(report.site.name)}</h1>
+          <p class="lede">${escapeHtml(report.site.summary)}</p>
+          <div class="report-meta">
+            <a href="${escapeAttribute(report.site.rootUrl)}">${escapeHtml(report.site.rootUrl)}</a>
+            <span>${report.scan.pages.length} pages scanned</span>
+            <span>${artifactSummaries.length} generated artifacts</span>
+          </div>
         </header>
         <aside class="hero-card">
           <span>Agent Operability Score</span>
@@ -193,15 +228,33 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
           ${metric("Facts extracted", report.facts.length)}
           ${metric("Detected actions", report.actions.length)}
           ${metric("Forms evaluated", report.forms.length)}
-          ${metric("Generated files", generatedFiles(report).length)}
+          ${metric("Generated artifacts", artifactSummaries.length)}
           ${metric("Crawl issues", report.scan.errors.length)}
         </div>
       </section>
 
       <section class="panel">
-        <h2>Generated files</h2>
-        <p>These files are generated by <code>agentlayer generate</code> and can be reviewed before publishing.</p>
+        <div class="section-heading">
+          <div>
+            <h2>Generated artifacts</h2>
+            <p>These paths are generated by <code>agentlayer generate</code>. The count matches the <code>artifacts.json</code> manifest count, including page-level markdown snapshots.</p>
+          </div>
+          <strong>${artifactSummaries.length} total</strong>
+        </div>
         <ul class="file-list">${artifactRows}</ul>
+      </section>
+
+      <section class="panel">
+        <h2>Crawl Issues</h2>
+        <p>Crawl issues are scan diagnostics, not automatic score penalties. Non-blocking warnings affect the score only when they hide evidence needed for facts, actions, or task checks.</p>
+        ${
+          crawlIssues.length > 0
+            ? `<table>
+          <thead><tr><th>Severity</th><th>URL</th><th>Issue</th><th>Score impact</th></tr></thead>
+          <tbody>${crawlIssueRows}</tbody>
+        </table>`
+            : `<div class="empty-state">No crawl issues were recorded for this scan.</div>`
+        }
       </section>
 
       <section class="panel">
@@ -264,27 +317,66 @@ function summarizeTasks(report: AgentOperabilityReport): Record<"pass" | "partia
   );
 }
 
-function generatedFiles(report: AgentOperabilityReport): Array<{ path: string; description: string }> {
-  return [
-    { path: "llms.txt", description: "Concise site guide for agents." },
-    { path: "llms-full.txt", description: "Full page context with source URLs." },
-    { path: "site-profile.json", description: "Site identity, summary, and key pages." },
-    { path: "facts.json", description: `${report.facts.length} extracted facts with source evidence.` },
-    { path: "actions.json", description: `${report.actions.length} detected actions and confirmation rules.` },
-    { path: "form-operability.json", description: `${report.forms.length} deterministic form operability checks.` },
-    { path: "tasks-report.json", description: `${report.tasks.length} deterministic task checks.` },
-    { path: "recommendations.json", description: `${report.recommendations.length} prioritized remediation items.` },
-    { path: "artifacts.json", description: "Machine-readable index of generated artifacts." },
-    { path: "report.html", description: "Standalone shareable operability report." },
-    { path: ".well-known/agents.json", description: "Draft public action manifest." },
-    { path: ".well-known/mcp.json", description: "Draft MCP metadata." },
-    { path: ".well-known/mcp/server-card.json", description: "Draft MCP server card." },
-    { path: ".well-known/api-catalog", description: "Draft API catalog discovered from public pages." },
-    { path: ".well-known/agent-skills/index.json", description: "Draft agent skill index." },
-    { path: "webmcp/suggested-webmcp-tools.json", description: "Suggested WebMCP tool definitions." },
-    { path: "webmcp/suggested-form-annotations.md", description: "Suggested form annotations for agent UX." },
-    { path: "markdown/*.md", description: `${report.scan.pages.length} page snapshots when markdown is available.` }
-  ];
+type CrawlIssue = {
+  url: string;
+  message: string;
+  title: string;
+  badge: string;
+  severity: "warning" | "error";
+  scoreImpact: string;
+};
+
+function classifyCrawlIssues(errors: AgentOperabilityReport["scan"]["errors"]): CrawlIssue[] {
+  return errors.map((error) => {
+    const message = error.message;
+    const lowerMessage = message.toLowerCase();
+    const httpStatus = lowerMessage.match(/http\s+(\d{3})/)?.[1];
+
+    if (lowerMessage.includes("robots.txt")) {
+      return warningIssue(error, "Skipped by robots.txt", "The crawler respected robots.txt. This is a non-blocking warning unless it prevented evidence collection for a required task.");
+    }
+
+    if (lowerMessage.includes("redirect")) {
+      return warningIssue(error, "Redirect skipped", "The redirect target was outside the allowed crawl scope. This is a non-blocking warning unless the skipped target held unique task evidence.");
+    }
+
+    if (httpStatus === "404") {
+      return warningIssue(error, "HTTP 404", "The URL was missing during crawl. This is a non-blocking warning unless the missing page was needed to verify facts, actions, or task success.");
+    }
+
+    if (lowerMessage.includes("skipped")) {
+      return warningIssue(error, "Skipped URL", "The URL was skipped by crawl policy. This is a non-blocking warning unless it removed evidence needed by the scoring checks.");
+    }
+
+    if (httpStatus?.startsWith("4")) {
+      return warningIssue(error, `HTTP ${httpStatus}`, "Client-side fetch failures are warnings unless they block access to pages needed for facts, actions, or task checks.");
+    }
+
+    return {
+      url: error.url,
+      message,
+      title: httpStatus ? `HTTP ${httpStatus}` : "Fetch issue",
+      badge: "Review",
+      severity: "error",
+      scoreImpact:
+        "Review this issue. It may reduce scores indirectly when the crawler cannot collect evidence for readability, trustability, actionability, or task success."
+    };
+  });
+}
+
+function warningIssue(
+  error: AgentOperabilityReport["scan"]["errors"][number],
+  title: string,
+  scoreImpact: string
+): CrawlIssue {
+  return {
+    url: error.url,
+    message: error.message,
+    title,
+    badge: "Non-blocking warning",
+    severity: "warning",
+    scoreImpact
+  };
 }
 
 function journeyStepsList(steps: AgentOperabilityReport["tasks"][number]["journeySteps"]): string {
@@ -315,8 +407,12 @@ function scoreTone(score: number): "strong" | "mixed" | "weak" {
 }
 
 function sourceLabel(sourceUrl: string): string {
-  const url = new URL(sourceUrl);
-  return url.pathname || "/";
+  try {
+    const url = new URL(sourceUrl);
+    return url.pathname || "/";
+  } catch {
+    return sourceUrl;
+  }
 }
 
 function escapeHtml(value: string | number): string {

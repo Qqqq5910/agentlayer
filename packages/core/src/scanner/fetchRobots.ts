@@ -1,5 +1,5 @@
 import type { SiteScan, ScanOptions } from "../schemas.js";
-import { assertPublicHttpUrl } from "../utils/safety.js";
+import { assertPublicHttpUrlResolved } from "../utils/safety.js";
 import { normalizeUrl } from "../utils/urls.js";
 
 const MAX_REDIRECTS = 5;
@@ -33,7 +33,7 @@ export async function fetchWithTimeout(
   url: string,
   options: Pick<ScanOptions, "timeoutMs" | "userAgent" | "allowLocal">
 ): Promise<Response> {
-  assertPublicHttpUrl(url, { allowLocal: options.allowLocal });
+  await assertPublicHttpUrlResolved(url, { allowLocal: options.allowLocal });
 
   let currentUrl = url;
   for (let redirectCount = 0; redirectCount <= MAX_REDIRECTS; redirectCount += 1) {
@@ -52,7 +52,7 @@ export async function fetchWithTimeout(
       throw new Error(`Blocked invalid redirect target from ${currentUrl}.`);
     }
 
-    assertPublicHttpUrl(nextUrl, { allowLocal: options.allowLocal });
+    await assertPublicHttpUrlResolved(nextUrl, { allowLocal: options.allowLocal });
     currentUrl = nextUrl;
   }
 

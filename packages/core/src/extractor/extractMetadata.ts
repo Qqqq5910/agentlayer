@@ -20,6 +20,7 @@ export function extractPageSnapshot(input: SnapshotInput): PageSnapshot {
 
   if (!input.contentType?.includes("html") && looksLikePlainText(input.html, input.finalUrl)) {
     const text = normalizeWhitespace(input.html);
+    const markdown = textToMarkdown(input.html);
     return {
       url: input.requestedUrl,
       finalUrl: input.finalUrl,
@@ -34,7 +35,7 @@ export function extractPageSnapshot(input: SnapshotInput): PageSnapshot {
       jsonLd: [],
       openGraph: {},
       visibleText: text,
-      markdown: textToMarkdown(text),
+      markdown,
       emails: extractEmails(text),
       socialLinks: [],
       fetchedAt

@@ -1,5 +1,5 @@
 import type { AgentOperabilityReport, PageSnapshot } from "../schemas.js";
-import { truncateText } from "../utils/text.js";
+import { truncatePreservingWhitespace } from "../utils/text.js";
 
 export function generateLlmsFullTxt(report: AgentOperabilityReport): string {
   const lines: string[] = [];
@@ -18,7 +18,7 @@ export function generateLlmsFullTxt(report: AgentOperabilityReport): string {
     lines.push(`Source: ${page.finalUrl}`);
     lines.push(`Page type: ${page.pageType}`);
     lines.push("");
-    lines.push(truncateText(page.markdown || page.visibleText, 6000));
+    lines.push(truncatePreservingWhitespace(page.markdown || page.visibleText, 6000));
     lines.push("");
   }
 

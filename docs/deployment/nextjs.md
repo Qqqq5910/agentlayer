@@ -1,6 +1,7 @@
 # Next.js Deployment
 
-Use AgentLayer during development or CI to generate files, then serve reviewed artifacts from your Next.js app.
+Use AgentLayer during development or CI to generate files, then serve reviewed
+artifacts from your Next.js app.
 
 ## Generate Artifacts
 
@@ -34,11 +35,15 @@ Next.js will serve files from `public/` at the matching URL path.
 
 ## Route Handler Option
 
-If you need dynamic generation, create route handlers for specific files and return reviewed content with the correct content type. Keep dynamic routes deterministic and avoid generating unsupported compliance claims at request time.
+If you need dynamic generation, create route handlers for specific files and
+return reviewed content with the correct content type. Keep dynamic routes
+deterministic and avoid generating unsupported compliance claims at request
+time.
 
 ## Release Checklist
 
 - Confirm generated facts match current pages.
 - Keep draft disclaimers in standards files.
 - Add human confirmation to sensitive actions.
-- Re-run AgentLayer after navigation, pricing, docs, policy, or security changes.
+- Re-run AgentLayer after navigation, pricing, docs, policy, or security
+  changes.

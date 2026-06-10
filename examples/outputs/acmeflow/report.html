@@ -5,60 +5,347 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AgentLayer Report - AcmeFlow</title>
     <style>
-      :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      * { box-sizing: border-box; }
-      body { margin: 0; color: #172026; background: #f6f8fb; }
-      main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 64px; }
-      h1, h2 { margin: 0 0 12px; }
-      h1 { max-width: 780px; font-size: clamp(32px, 5vw, 56px); line-height: 1.02; letter-spacing: 0; }
-      h2 { font-size: 22px; }
-      h3 { margin: 12px 0 8px; font-size: 16px; }
-      p { color: #53606b; line-height: 1.65; }
-      section { margin-top: 28px; }
-      .eyebrow { color: #0e7490; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-      .hero { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 280px; align-items: end; }
-      .hero-card { border: 1px solid #bae6fd; border-radius: 8px; background: #ecfeff; padding: 20px; }
-      .hero-card span { color: #155e75; font-size: 13px; font-weight: 700; }
-      .hero-card strong { display: block; margin-top: 8px; font-size: 56px; line-height: 1; }
-      .panel { background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; box-shadow: 0 14px 42px rgba(17, 24, 39, .06); }
-      .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-      .score { border-radius: 8px; border: 1px solid #dfe3e8; background: white; padding: 16px; }
-      .score span { color: #53606b; font-size: 13px; font-weight: 700; }
-      .score strong { display: block; margin-top: 10px; font-size: 34px; }
-      .score.strong { border-color: #bbf7d0; background: #f0fdf4; color: #166534; }
-      .score.mixed { border-color: #fde68a; background: #fffbeb; color: #92400e; }
-      .score.weak { border-color: #fecdd3; background: #fff1f2; color: #9f1239; }
-      .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
-      .metric { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
-      .metric span { display: block; color: #667085; font-size: 12px; text-transform: uppercase; }
-      .metric strong { display: block; margin-top: 6px; font-size: 24px; color: #172026; }
-      .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
-      .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
-      code { border-radius: 6px; background: #eef2f7; padding: 2px 6px; color: #0f172a; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 12px; }
-      .file-list span, small { display: block; margin-top: 6px; color: #667085; line-height: 1.45; }
-      .journey-list { display: grid; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
-      .journey-list li { display: grid; gap: 4px; border-left: 3px solid #dfe3e8; padding-left: 8px; }
-      .journey-list span { color: #172026; font-size: 12px; font-weight: 700; }
-      .journey-list small { margin: 0; }
-      .recommendations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-      .recommendation { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
-      .recommendation p { margin: 0; font-size: 14px; }
-      .empty-state { border: 1px dashed #cbd5e1; border-radius: 8px; padding: 18px; color: #53606b; background: #fbfcfd; }
-      table { width: 100%; border-collapse: collapse; font-size: 14px; }
-      th, td { border-bottom: 1px solid #e5e8ec; padding: 10px; text-align: left; vertical-align: top; }
-      th { color: #53606b; font-weight: 600; }
-      a { color: #0b66c3; }
-      .badge { display: inline-block; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
-      .pass { background: #d8f5e5; color: #17633a; }
-      .partial { background: #fff0c2; color: #7a5300; }
-      .fail { background: #ffe0de; color: #9a271f; }
-      .severity-high, .sensitivity-high { background: #ffe0de; color: #9a271f; }
-      .severity-medium, .sensitivity-medium { background: #fff0c2; color: #7a5300; }
-      .severity-low, .sensitivity-low { background: #dff8ff; color: #075c6e; }
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: #172026;
+        background: #f4f7f6;
+      }
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 40px 20px 64px;
+      }
+      h1,
+      h2 {
+        margin: 0 0 12px;
+      }
+      h1 {
+        max-width: 820px;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        margin: 12px 0 8px;
+        font-size: 16px;
+      }
+      p {
+        color: #53606b;
+        line-height: 1.65;
+      }
+      section {
+        margin-top: 28px;
+      }
+      .eyebrow {
+        color: #0f766e;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .hero {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        align-items: stretch;
+        border: 1px solid #cfd8d4;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 28px;
+        box-shadow: 0 18px 54px rgba(23, 32, 38, 0.08);
+      }
+      .hero header {
+        display: grid;
+        align-content: center;
+      }
+      .hero .lede {
+        max-width: 760px;
+        font-size: 17px;
+      }
+      .hero-card {
+        display: grid;
+        align-content: center;
+        border: 1px solid #a7d7ce;
+        border-radius: 8px;
+        background: #e9f8f5;
+        padding: 22px;
+      }
+      .hero-card span {
+        color: #115e59;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .hero-card strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 64px;
+        line-height: 0.95;
+        color: #0f2f2b;
+      }
+      .hero-card p {
+        margin-bottom: 0;
+        color: #31534f;
+      }
+      .report-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .report-meta a,
+      .report-meta span {
+        border: 1px solid #dfe5e2;
+        border-radius: 999px;
+        padding: 6px 10px;
+        background: #fbfcfd;
+        color: #33433f;
+        font-size: 13px;
+        text-decoration: none;
+      }
+      .panel {
+        background: white;
+        border: 1px solid #dfe3e8;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 14px 42px rgba(17, 24, 39, 0.06);
+      }
+      .section-heading {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .section-heading p {
+        margin: 0;
+        max-width: 700px;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .score {
+        border-radius: 8px;
+        border: 1px solid #dfe3e8;
+        background: white;
+        padding: 16px;
+      }
+      .score span {
+        color: #53606b;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .score strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 34px;
+      }
+      .score.strong {
+        border-color: #bbf7d0;
+        background: #f0fdf4;
+        color: #166534;
+      }
+      .score.mixed {
+        border-color: #fde68a;
+        background: #fffbeb;
+        color: #92400e;
+      }
+      .score.weak {
+        border-color: #fecdd3;
+        background: #fff1f2;
+        color: #9f1239;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 12px;
+      }
+      .metric {
+        border: 1px solid #e5e8ec;
+        border-radius: 8px;
+        padding: 14px;
+        background: #fbfcfd;
+      }
+      .metric span {
+        display: block;
+        color: #667085;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      .metric strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 24px;
+        color: #172026;
+      }
+      .file-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .file-list li {
+        border: 1px solid #e5e8ec;
+        border-radius: 8px;
+        padding: 12px;
+        background: #fbfcfd;
+      }
+      .file-list a {
+        text-decoration: none;
+      }
+      code {
+        border-radius: 6px;
+        background: #eef2f7;
+        padding: 2px 6px;
+        color: #0f172a;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 12px;
+      }
+      .file-list span,
+      small {
+        display: block;
+        margin-top: 6px;
+        color: #667085;
+        line-height: 1.45;
+      }
+      .journey-list {
+        display: grid;
+        gap: 6px;
+        margin: 10px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .journey-list li {
+        display: grid;
+        gap: 4px;
+        border-left: 3px solid #dfe3e8;
+        padding-left: 8px;
+      }
+      .journey-list span {
+        color: #172026;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .journey-list small {
+        margin: 0;
+      }
+      .recommendations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+      }
+      .recommendation {
+        border: 1px solid #e5e8ec;
+        border-radius: 8px;
+        padding: 14px;
+        background: #fbfcfd;
+      }
+      .recommendation p {
+        margin: 0;
+        font-size: 14px;
+      }
+      .empty-state {
+        border: 1px dashed #cbd5e1;
+        border-radius: 8px;
+        padding: 18px;
+        color: #53606b;
+        background: #fbfcfd;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      th,
+      td {
+        border-bottom: 1px solid #e5e8ec;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        color: #53606b;
+        font-weight: 600;
+      }
+      a {
+        color: #0b66c3;
+      }
+      .badge {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 3px 9px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .pass {
+        background: #d8f5e5;
+        color: #17633a;
+      }
+      .partial {
+        background: #fff0c2;
+        color: #7a5300;
+      }
+      .fail {
+        background: #ffe0de;
+        color: #9a271f;
+      }
+      .severity-high,
+      .sensitivity-high {
+        background: #ffe0de;
+        color: #9a271f;
+      }
+      .severity-medium,
+      .sensitivity-medium {
+        background: #fff0c2;
+        color: #7a5300;
+      }
+      .severity-low,
+      .sensitivity-low {
+        background: #dff8ff;
+        color: #075c6e;
+      }
+      .issue-warning {
+        background: #fff7d6;
+        color: #7a5300;
+      }
+      .issue-error {
+        background: #ffe0de;
+        color: #9a271f;
+      }
       @media (max-width: 760px) {
-        main { padding-top: 28px; }
-        .hero { grid-template-columns: 1fr; }
-        .hero-card strong { font-size: 48px; }
+        main {
+          padding-top: 28px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-card strong {
+          font-size: 48px;
+        }
+        .section-heading {
+          display: block;
+        }
       }
     </style>
   </head>
@@ -67,9 +354,16 @@
       <div class="hero">
         <header>
           <p class="eyebrow">AgentLayer operability report</p>
-          <h1>AcmeFlow can be read, trusted, and operated by agents.</h1>
-          <p>AcmeFlow is a fictional B2B SaaS fixture for customer workflow automation, docs, pricing, security, and support.</p>
-          <p><a href="http://localhost:3001/">http://localhost:3001/</a></p>
+          <h1>Agent operability report for AcmeFlow</h1>
+          <p class="lede">
+            AcmeFlow is a fictional B2B SaaS fixture for customer workflow
+            automation, docs, pricing, security, and support.
+          </p>
+          <div class="report-meta">
+            <a href="http://localhost:3001/">http://localhost:3001/</a>
+            <span>13 pages scanned</span>
+            <span>31 generated artifacts</span>
+          </div>
         </header>
         <aside class="hero-card">
           <span>Agent Operability Score</span>
@@ -79,542 +373,777 @@
       </div>
 
       <section class="score-grid">
-        <div class="score strong"><span>Readability</span><strong>100</strong></div>
-        <div class="score strong"><span>Trustability</span><strong>96</strong></div>
-        <div class="score strong"><span>Actionability</span><strong>91</strong></div>
-        <div class="score strong"><span>Task success</span><strong>86</strong></div>
+        <div class="score strong">
+          <span>Readability</span><strong>100</strong>
+        </div>
+        <div class="score strong">
+          <span>Trustability</span><strong>96</strong>
+        </div>
+        <div class="score strong">
+          <span>Actionability</span><strong>91</strong>
+        </div>
+        <div class="score strong">
+          <span>Task success</span><strong>86</strong>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Scan summary</h2>
         <div class="summary-grid">
-          <div class="metric"><span>Pages scanned</span><strong>13</strong></div>
-          <div class="metric"><span>Facts extracted</span><strong>24</strong></div>
-          <div class="metric"><span>Detected actions</span><strong>12</strong></div>
-          <div class="metric"><span>Forms evaluated</span><strong>3</strong></div>
-          <div class="metric"><span>Generated files</span><strong>18</strong></div>
-          <div class="metric"><span>Crawl issues</span><strong>8</strong></div>
+          <div class="metric">
+            <span>Pages scanned</span><strong>13</strong>
+          </div>
+          <div class="metric">
+            <span>Facts extracted</span><strong>24</strong>
+          </div>
+          <div class="metric">
+            <span>Detected actions</span><strong>12</strong>
+          </div>
+          <div class="metric">
+            <span>Forms evaluated</span><strong>3</strong>
+          </div>
+          <div class="metric">
+            <span>Generated artifacts</span><strong>31</strong>
+          </div>
+          <div class="metric"><span>Crawl issues</span><strong>0</strong></div>
         </div>
       </section>
 
       <section class="panel">
-        <h2>Generated files</h2>
-        <p>These files are generated by <code>agentlayer generate</code> and can be reviewed before publishing.</p>
+        <div class="section-heading">
+          <div>
+            <h2>Generated artifacts</h2>
+            <p>
+              These paths are generated by <code>agentlayer generate</code>. The
+              count matches the <code>artifacts.json</code> manifest count,
+              including page-level markdown snapshots.
+            </p>
+          </div>
+          <strong>31 total</strong>
+        </div>
         <ul class="file-list">
-        <li>
-          <code>llms.txt</code>
-          <span>Concise site guide for agents.</span>
-        </li>
-        <li>
-          <code>llms-full.txt</code>
-          <span>Full page context with source URLs.</span>
-        </li>
-        <li>
-          <code>site-profile.json</code>
-          <span>Site identity, summary, and key pages.</span>
-        </li>
-        <li>
-          <code>facts.json</code>
-          <span>24 extracted facts with source evidence.</span>
-        </li>
-        <li>
-          <code>actions.json</code>
-          <span>12 detected actions and confirmation rules.</span>
-        </li>
-        <li>
-          <code>form-operability.json</code>
-          <span>3 deterministic form operability checks.</span>
-        </li>
-        <li>
-          <code>tasks-report.json</code>
-          <span>9 deterministic task checks.</span>
-        </li>
-        <li>
-          <code>recommendations.json</code>
-          <span>1 prioritized remediation items.</span>
-        </li>
-        <li>
-          <code>artifacts.json</code>
-          <span>Machine-readable index of generated artifacts.</span>
-        </li>
-        <li>
-          <code>report.html</code>
-          <span>Standalone shareable operability report.</span>
-        </li>
-        <li>
-          <code>.well-known/agents.json</code>
-          <span>Draft public action manifest.</span>
-        </li>
-        <li>
-          <code>.well-known/mcp.json</code>
-          <span>Draft MCP metadata.</span>
-        </li>
-        <li>
-          <code>.well-known/mcp/server-card.json</code>
-          <span>Draft MCP server card.</span>
-        </li>
-        <li>
-          <code>.well-known/api-catalog</code>
-          <span>Draft API catalog discovered from public pages.</span>
-        </li>
-        <li>
-          <code>.well-known/agent-skills/index.json</code>
-          <span>Draft agent skill index.</span>
-        </li>
-        <li>
-          <code>webmcp/suggested-webmcp-tools.json</code>
-          <span>Suggested WebMCP tool definitions.</span>
-        </li>
-        <li>
-          <code>webmcp/suggested-form-annotations.md</code>
-          <span>Suggested form annotations for agent UX.</span>
-        </li>
-        <li>
-          <code>markdown/*.md</code>
-          <span>13 page snapshots when markdown is available.</span>
-        </li></ul>
+          <li>
+            <a href="llms.txt"><code>llms.txt</code></a>
+            <span>text/plain - Concise site guide for agents.</span>
+          </li>
+          <li>
+            <a href="llms-full.txt"><code>llms-full.txt</code></a>
+            <span>text/plain - Full page context with source URLs.</span>
+          </li>
+          <li>
+            <a href="site-profile.json"><code>site-profile.json</code></a>
+            <span
+              >application/json - Site identity, summary, and key pages.</span
+            >
+          </li>
+          <li>
+            <a href="facts.json"><code>facts.json</code></a>
+            <span
+              >application/json - 24 extracted facts with source evidence.</span
+            >
+          </li>
+          <li>
+            <a href="actions.json"><code>actions.json</code></a>
+            <span
+              >application/json - 12 detected actions and confirmation
+              rules.</span
+            >
+          </li>
+          <li>
+            <a href="form-operability.json"
+              ><code>form-operability.json</code></a
+            >
+            <span
+              >application/json - 3 deterministic form operability checks.</span
+            >
+          </li>
+          <li>
+            <a href="tasks-report.json"><code>tasks-report.json</code></a>
+            <span>application/json - 9 deterministic task checks.</span>
+          </li>
+          <li>
+            <a href="recommendations.json"><code>recommendations.json</code></a>
+            <span>application/json - 1 prioritized remediation items.</span>
+          </li>
+          <li>
+            <a href="report.json"><code>report.json</code></a>
+            <span
+              >application/json - Machine-readable AgentLayer report with long
+              page text truncated for review.</span
+            >
+          </li>
+          <li>
+            <a href="report.html"><code>report.html</code></a>
+            <span>text/html - Standalone shareable operability report.</span>
+          </li>
+          <li>
+            <a href=".well-known/agents.json"
+              ><code>.well-known/agents.json</code></a
+            >
+            <span>application/json - Draft public action manifest.</span>
+          </li>
+          <li>
+            <a href=".well-known/mcp.json"><code>.well-known/mcp.json</code></a>
+            <span>application/json - Draft MCP metadata.</span>
+          </li>
+          <li>
+            <a href=".well-known/mcp/server-card.json"
+              ><code>.well-known/mcp/server-card.json</code></a
+            >
+            <span>application/json - Draft MCP server card.</span>
+          </li>
+          <li>
+            <a href=".well-known/api-catalog"
+              ><code>.well-known/api-catalog</code></a
+            >
+            <span
+              >application/json - Draft API catalog discovered from public
+              pages.</span
+            >
+          </li>
+          <li>
+            <a href=".well-known/agent-skills/index.json"
+              ><code>.well-known/agent-skills/index.json</code></a
+            >
+            <span>application/json - Draft agent skill index.</span>
+          </li>
+          <li>
+            <a href="webmcp/suggested-webmcp-tools.json"
+              ><code>webmcp/suggested-webmcp-tools.json</code></a
+            >
+            <span>application/json - Suggested WebMCP tool definitions.</span>
+          </li>
+          <li>
+            <a href="webmcp/suggested-form-annotations.md"
+              ><code>webmcp/suggested-form-annotations.md</code></a
+            >
+            <span
+              >text/markdown - Suggested form annotations for agent UX.</span
+            >
+          </li>
+          <li>
+            <a href="markdown/index.md"><code>markdown/index.md</code></a>
+            <span>text/markdown - Markdown snapshot from /.</span>
+          </li>
+          <li>
+            <a href="markdown/docs-api.md"><code>markdown/docs-api.md</code></a>
+            <span>text/markdown - Markdown snapshot from /docs/api.</span>
+          </li>
+          <li>
+            <a href="markdown/contact.md"><code>markdown/contact.md</code></a>
+            <span>text/markdown - Markdown snapshot from /contact.</span>
+          </li>
+          <li>
+            <a href="markdown/customers.md"
+              ><code>markdown/customers.md</code></a
+            >
+            <span>text/markdown - Markdown snapshot from /customers.</span>
+          </li>
+          <li>
+            <a href="markdown/demo.md"><code>markdown/demo.md</code></a>
+            <span>text/markdown - Markdown snapshot from /demo.</span>
+          </li>
+          <li>
+            <a href="markdown/docs.md"><code>markdown/docs.md</code></a>
+            <span>text/markdown - Markdown snapshot from /docs.</span>
+          </li>
+          <li>
+            <a href="markdown/integrations.md"
+              ><code>markdown/integrations.md</code></a
+            >
+            <span>text/markdown - Markdown snapshot from /integrations.</span>
+          </li>
+          <li>
+            <a href="markdown/llms-txt.md"><code>markdown/llms-txt.md</code></a>
+            <span>text/markdown - Markdown snapshot from /llms.txt.</span>
+          </li>
+          <li>
+            <a href="markdown/pricing.md"><code>markdown/pricing.md</code></a>
+            <span>text/markdown - Markdown snapshot from /pricing.</span>
+          </li>
+          <li>
+            <a href="markdown/privacy.md"><code>markdown/privacy.md</code></a>
+            <span>text/markdown - Markdown snapshot from /privacy.</span>
+          </li>
+          <li>
+            <a href="markdown/security.md"><code>markdown/security.md</code></a>
+            <span>text/markdown - Markdown snapshot from /security.</span>
+          </li>
+          <li>
+            <a href="markdown/support.md"><code>markdown/support.md</code></a>
+            <span>text/markdown - Markdown snapshot from /support.</span>
+          </li>
+          <li>
+            <a href="markdown/terms.md"><code>markdown/terms.md</code></a>
+            <span>text/markdown - Markdown snapshot from /terms.</span>
+          </li>
+          <li>
+            <a href="artifacts.json"><code>artifacts.json</code></a>
+            <span
+              >application/json - Machine-readable index of generated
+              artifacts.</span
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2>Crawl Issues</h2>
+        <p>
+          Crawl issues are scan diagnostics, not automatic score penalties.
+          Non-blocking warnings affect the score only when they hide evidence
+          needed for facts, actions, or task checks.
+        </p>
+        <div class="empty-state">
+          No crawl issues were recorded for this scan.
+        </div>
       </section>
 
       <section class="panel">
         <h2>Task Results</h2>
         <table>
-          <thead><tr><th>Task</th><th>Status</th><th>Score</th><th>Explanation</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Status</th>
+              <th>Score</th>
+              <th>Explanation</th>
+            </tr>
+          </thead>
           <tbody>
-        <tr>
-          <td>Find pricing</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>90</td>
-          <td>
-            Pricing information is discoverable with page-level evidence.
-          </td>
-        </tr>
-        <tr>
-          <td>Compare plans</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>85</td>
-          <td>
-            Multiple plans and comparison-oriented details were found.
-          </td>
-        </tr>
-        <tr>
-          <td>Book demo or contact sales</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>90</td>
-          <td>
-            A relevant form-based action path was found.
-            <ul class="journey-list"><li>
-        <span><span class="badge pass">pass</span> Discover action</span>
-        <small>Detected form action &quot;contact_sales&quot;.</small>
-      </li><li>
-        <span><span class="badge pass">pass</span> Understand required fields</span>
-        <small>4 of 4 fields expose stable names; 4 expose labels.</small>
-      </li><li>
-        <span><span class="badge pass">pass</span> Confirm sensitive action</span>
-        <small>Human confirmation is required for this medium-sensitivity action.</small>
-      </li><li>
-        <span><span class="badge pass">pass</span> Submit safely not performed</span>
-        <small>The evaluator stopped at deterministic preparation and did not submit the form.</small>
-      </li></ul>
-          </td>
-        </tr>
-        <tr>
-          <td>Find documentation</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>85</td>
-          <td>
-            Relevant pages and structured evidence were found.
-          </td>
-        </tr>
-        <tr>
-          <td>Find security and trust information</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>85</td>
-          <td>
-            Relevant pages and structured evidence were found.
-          </td>
-        </tr>
-        <tr>
-          <td>Find policies</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>85</td>
-          <td>
-            Privacy and terms/legal policy pages are discoverable.
-          </td>
-        </tr>
-        <tr>
-          <td>Find integrations</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>80</td>
-          <td>
-            Relevant page and fact evidence were found.
-          </td>
-        </tr>
-        <tr>
-          <td>Identify target customer</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>80</td>
-          <td>
-            Target user evidence was found.
-          </td>
-        </tr>
-        <tr>
-          <td>Find support</td>
-          <td><span class="badge pass">pass</span></td>
-          <td>90</td>
-          <td>
-            A relevant form-based action path was found.
-            <ul class="journey-list"><li>
-        <span><span class="badge pass">pass</span> Discover action</span>
-        <small>Detected form action &quot;contact_sales&quot;.</small>
-      </li><li>
-        <span><span class="badge pass">pass</span> Understand required fields</span>
-        <small>4 of 4 fields expose stable names; 4 expose labels.</small>
-      </li><li>
-        <span><span class="badge pass">pass</span> Confirm sensitive action</span>
-        <small>Human confirmation is required for this medium-sensitivity action.</small>
-      </li><li>
-        <span><span class="badge pass">pass</span> Submit safely not performed</span>
-        <small>The evaluator stopped at deterministic preparation and did not submit the form.</small>
-      </li></ul>
-          </td>
-        </tr></tbody>
+            <tr>
+              <td>Find pricing</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>90</td>
+              <td>
+                Pricing information is discoverable with page-level evidence.
+              </td>
+            </tr>
+            <tr>
+              <td>Compare plans</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>85</td>
+              <td>
+                Multiple plans and comparison-oriented details were found.
+              </td>
+            </tr>
+            <tr>
+              <td>Book demo or contact sales</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>90</td>
+              <td>
+                A relevant form-based action path was found.
+                <ul class="journey-list">
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Discover
+                      action</span
+                    >
+                    <small
+                      >Detected form action &quot;contact_sales&quot;.</small
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Understand required
+                      fields</span
+                    >
+                    <small
+                      >4 of 4 fields expose stable names; 4 expose
+                      labels.</small
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Confirm sensitive
+                      action</span
+                    >
+                    <small
+                      >Human confirmation is required for this
+                      medium-sensitivity action.</small
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Submit safely not
+                      performed</span
+                    >
+                    <small
+                      >The evaluator stopped at deterministic preparation and
+                      did not submit the form.</small
+                    >
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Find documentation</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>85</td>
+              <td>Relevant pages and structured evidence were found.</td>
+            </tr>
+            <tr>
+              <td>Find security and trust information</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>85</td>
+              <td>Relevant pages and structured evidence were found.</td>
+            </tr>
+            <tr>
+              <td>Find policies</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>85</td>
+              <td>Privacy and terms/legal policy pages are discoverable.</td>
+            </tr>
+            <tr>
+              <td>Find integrations</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>80</td>
+              <td>Relevant page and fact evidence were found.</td>
+            </tr>
+            <tr>
+              <td>Identify target customer</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>80</td>
+              <td>Target user evidence was found.</td>
+            </tr>
+            <tr>
+              <td>Find support</td>
+              <td><span class="badge pass">pass</span></td>
+              <td>90</td>
+              <td>
+                A relevant form-based action path was found.
+                <ul class="journey-list">
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Discover
+                      action</span
+                    >
+                    <small
+                      >Detected form action &quot;contact_sales&quot;.</small
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Understand required
+                      fields</span
+                    >
+                    <small
+                      >4 of 4 fields expose stable names; 4 expose
+                      labels.</small
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Confirm sensitive
+                      action</span
+                    >
+                    <small
+                      >Human confirmation is required for this
+                      medium-sensitivity action.</small
+                    >
+                  </li>
+                  <li>
+                    <span
+                      ><span class="badge pass">pass</span> Submit safely not
+                      performed</span
+                    >
+                    <small
+                      >The evaluator stopped at deterministic preparation and
+                      did not submit the form.</small
+                    >
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <section class="panel">
         <h2>Top recommendations</h2>
         <div class="recommendations-grid">
-              <article class="recommendation">
-                <div>
-                  <span class="badge severity-medium">medium</span>
-                  <code>.well-known/agents.json</code>
-                </div>
-                <h3>Review and publish the agent action manifest</h3>
-                <p>Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest.</p>
-              </article></div>
+          <article class="recommendation">
+            <div>
+              <span class="badge severity-medium">medium</span>
+              <code>.well-known/agents.json</code>
+            </div>
+            <h3>Review and publish the agent action manifest</h3>
+            <p>
+              Review the generated .well-known/agents.json, keep human
+              confirmation on sensitive actions, and publish the approved
+              manifest.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Form operability</h2>
         <table>
-          <thead><tr><th>Form</th><th>Score</th><th>Method</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th><th>Next fix</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Form</th>
+              <th>Score</th>
+              <th>Method</th>
+              <th>Fields</th>
+              <th>Confirmation</th>
+              <th>Sensitivity</th>
+              <th>Next fix</th>
+            </tr>
+          </thead>
           <tbody>
-        <tr>
-          <td>
-            <strong>contact sales</strong>
-            <small><a href="http://localhost:3001/contact">/contact</a></small>
-          </td>
-          <td>100</td>
-          <td>POST</td>
-          <td>4</td>
-          <td>Required</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-          <td>No immediate fixes.</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>book demo</strong>
-            <small><a href="http://localhost:3001/demo">/demo</a></small>
-          </td>
-          <td>100</td>
-          <td>POST</td>
-          <td>5</td>
-          <td>Required</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-          <td>No immediate fixes.</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>request support</strong>
-            <small><a href="http://localhost:3001/support">/support</a></small>
-          </td>
-          <td>100</td>
-          <td>POST</td>
-          <td>3</td>
-          <td>Required</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-          <td>No immediate fixes.</td>
-        </tr></tbody>
+            <tr>
+              <td>
+                <strong>contact sales</strong>
+                <small
+                  ><a href="http://localhost:3001/contact">/contact</a></small
+                >
+              </td>
+              <td>100</td>
+              <td>POST</td>
+              <td>4</td>
+              <td>Required</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+              <td>No immediate fixes.</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>book demo</strong>
+                <small><a href="http://localhost:3001/demo">/demo</a></small>
+              </td>
+              <td>100</td>
+              <td>POST</td>
+              <td>5</td>
+              <td>Required</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+              <td>No immediate fixes.</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>request support</strong>
+                <small
+                  ><a href="http://localhost:3001/support">/support</a></small
+                >
+              </td>
+              <td>100</td>
+              <td>POST</td>
+              <td>3</td>
+              <td>Required</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+              <td>No immediate fixes.</td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <section class="panel">
         <h2>Detected actions</h2>
         <table>
-          <thead><tr><th>Action</th><th>Type</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Type</th>
+              <th>Fields</th>
+              <th>Confirmation</th>
+              <th>Sensitivity</th>
+            </tr>
+          </thead>
           <tbody>
-        <tr>
-          <td>
-            <strong>open_api_docs</strong>
-            <small>I want to read API documentation.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-low">low</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>contact_sales</strong>
-            <small>I want to contact sales.</small>
-          </td>
-          <td>form</td>
-          <td>4</td>
-          <td>Required</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>contact_sales</strong>
-            <small>I want to contact sales.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>book_demo</strong>
-            <small>I want to book a product demo.</small>
-          </td>
-          <td>form</td>
-          <td>5</td>
-          <td>Required</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>book_demo</strong>
-            <small>I want to book a product demo.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>search_docs</strong>
-            <small>I want to find documentation.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-low">low</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>view_pricing</strong>
-            <small>I want to understand pricing.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-low">low</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>read_privacy_policy</strong>
-            <small>I want to read the privacy policy.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-low">low</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>open_security_page</strong>
-            <small>I want to inspect security and trust details.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-low">low</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>request_support</strong>
-            <small>I need support or help.</small>
-          </td>
-          <td>form</td>
-          <td>3</td>
-          <td>Required</td>
-          <td><span class="badge sensitivity-high">high</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>request_support</strong>
-            <small>I need support or help.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-medium">medium</span></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>read_terms</strong>
-            <small>I want to read terms and legal policies.</small>
-          </td>
-          <td>navigation</td>
-          <td>0</td>
-          <td>No</td>
-          <td><span class="badge sensitivity-low">low</span></td>
-        </tr></tbody>
+            <tr>
+              <td>
+                <strong>open_api_docs</strong>
+                <small>I want to read API documentation.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-low">low</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>contact_sales</strong>
+                <small>I want to contact sales.</small>
+              </td>
+              <td>form</td>
+              <td>4</td>
+              <td>Required</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>contact_sales</strong>
+                <small>I want to contact sales.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>book_demo</strong>
+                <small>I want to book a product demo.</small>
+              </td>
+              <td>form</td>
+              <td>5</td>
+              <td>Required</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>book_demo</strong>
+                <small>I want to book a product demo.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>search_docs</strong>
+                <small>I want to find documentation.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-low">low</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>view_pricing</strong>
+                <small>I want to understand pricing.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-low">low</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>read_privacy_policy</strong>
+                <small>I want to read the privacy policy.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-low">low</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>open_security_page</strong>
+                <small>I want to inspect security and trust details.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-low">low</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>request_support</strong>
+                <small>I need support or help.</small>
+              </td>
+              <td>form</td>
+              <td>3</td>
+              <td>Required</td>
+              <td><span class="badge sensitivity-high">high</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>request_support</strong>
+                <small>I need support or help.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-medium">medium</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>read_terms</strong>
+                <small>I want to read terms and legal policies.</small>
+              </td>
+              <td>navigation</td>
+              <td>0</td>
+              <td>No</td>
+              <td><span class="badge sensitivity-low">low</span></td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <section class="panel">
         <h2>Extracted Facts</h2>
         <table>
-          <thead><tr><th>Type</th><th>Label</th><th>Value</th><th>Source</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Label</th>
+              <th>Value</th>
+              <th>Source</th>
+            </tr>
+          </thead>
           <tbody>
-        <tr>
-          <td>company</td>
-          <td>Company name</td>
-          <td>AcmeFlow</td>
-          <td><a href="http://localhost:3001/">/</a></td>
-        </tr>
-        <tr>
-          <td>pricing</td>
-          <td>Pricing information</td>
-          <td>$49</td>
-          <td><a href="http://localhost:3001/">/</a></td>
-        </tr>
-        <tr>
-          <td>product</td>
-          <td>Target users</td>
-          <td>customer success, sales engineers, operations teams</td>
-          <td><a href="http://localhost:3001/">/</a></td>
-        </tr>
-        <tr>
-          <td>docs</td>
-          <td>API documentation</td>
-          <td>API Docs | AcmeFlow</td>
-          <td><a href="http://localhost:3001/docs/api">/docs/api</a></td>
-        </tr>
-        <tr>
-          <td>contact</td>
-          <td>contact sales</td>
-          <td>name, email, company, message</td>
-          <td><a href="http://localhost:3001/contact">/contact</a></td>
-        </tr>
-        <tr>
-          <td>product</td>
-          <td>Target users</td>
-          <td>B2B SaaS revenue and success teams</td>
-          <td><a href="http://localhost:3001/customers">/customers</a></td>
-        </tr>
-        <tr>
-          <td>contact</td>
-          <td>book demo</td>
-          <td>name, email, company, preferredTime, message</td>
-          <td><a href="http://localhost:3001/demo">/demo</a></td>
-        </tr>
-        <tr>
-          <td>docs</td>
-          <td>Documentation</td>
-          <td>Documentation | AcmeFlow</td>
-          <td><a href="http://localhost:3001/docs">/docs</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>Slack</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>Google</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>Salesforce</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>HubSpot</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>Zapier</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>Google Workspace</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>integration</td>
-          <td>Integration</td>
-          <td>Microsoft Teams</td>
-          <td><a href="http://localhost:3001/integrations">/integrations</a></td>
-        </tr>
-        <tr>
-          <td>pricing</td>
-          <td>Pricing information</td>
-          <td>$49, $149</td>
-          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-        </tr>
-        <tr>
-          <td>plan</td>
-          <td>Plan name</td>
-          <td>Starter</td>
-          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-        </tr>
-        <tr>
-          <td>plan</td>
-          <td>Plan name</td>
-          <td>Growth</td>
-          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-        </tr>
-        <tr>
-          <td>plan</td>
-          <td>Plan name</td>
-          <td>Enterprise</td>
-          <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-        </tr>
-        <tr>
-          <td>policy</td>
-          <td>Privacy policy</td>
-          <td>Privacy Policy | AcmeFlow</td>
-          <td><a href="http://localhost:3001/privacy">/privacy</a></td>
-        </tr>
-        <tr>
-          <td>security</td>
-          <td>Security or trust information</td>
-          <td>Security | AcmeFlow</td>
-          <td><a href="http://localhost:3001/security">/security</a></td>
-        </tr>
-        <tr>
-          <td>support</td>
-          <td>request support</td>
-          <td>name, email, message</td>
-          <td><a href="http://localhost:3001/support">/support</a></td>
-        </tr>
-        <tr>
-          <td>support</td>
-          <td>Support page</td>
-          <td>Support | AcmeFlow</td>
-          <td><a href="http://localhost:3001/support">/support</a></td>
-        </tr>
-        <tr>
-          <td>policy</td>
-          <td>Terms or legal policy</td>
-          <td>Terms | AcmeFlow</td>
-          <td><a href="http://localhost:3001/terms">/terms</a></td>
-        </tr></tbody>
+            <tr>
+              <td>company</td>
+              <td>Company name</td>
+              <td>AcmeFlow</td>
+              <td><a href="http://localhost:3001/">/</a></td>
+            </tr>
+            <tr>
+              <td>pricing</td>
+              <td>Pricing information</td>
+              <td>$49</td>
+              <td><a href="http://localhost:3001/">/</a></td>
+            </tr>
+            <tr>
+              <td>product</td>
+              <td>Target users</td>
+              <td>customer success, sales engineers, operations teams</td>
+              <td><a href="http://localhost:3001/">/</a></td>
+            </tr>
+            <tr>
+              <td>docs</td>
+              <td>API documentation</td>
+              <td>API Docs | AcmeFlow</td>
+              <td><a href="http://localhost:3001/docs/api">/docs/api</a></td>
+            </tr>
+            <tr>
+              <td>contact</td>
+              <td>contact sales</td>
+              <td>name, email, company, message</td>
+              <td><a href="http://localhost:3001/contact">/contact</a></td>
+            </tr>
+            <tr>
+              <td>product</td>
+              <td>Target users</td>
+              <td>B2B SaaS revenue and success teams</td>
+              <td><a href="http://localhost:3001/customers">/customers</a></td>
+            </tr>
+            <tr>
+              <td>contact</td>
+              <td>book demo</td>
+              <td>name, email, company, preferredTime, message</td>
+              <td><a href="http://localhost:3001/demo">/demo</a></td>
+            </tr>
+            <tr>
+              <td>docs</td>
+              <td>Documentation</td>
+              <td>Documentation | AcmeFlow</td>
+              <td><a href="http://localhost:3001/docs">/docs</a></td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>Slack</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>Google</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>Salesforce</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>HubSpot</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>Zapier</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>Google Workspace</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>integration</td>
+              <td>Integration</td>
+              <td>Microsoft Teams</td>
+              <td>
+                <a href="http://localhost:3001/integrations">/integrations</a>
+              </td>
+            </tr>
+            <tr>
+              <td>pricing</td>
+              <td>Pricing information</td>
+              <td>$49, $149</td>
+              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+            </tr>
+            <tr>
+              <td>plan</td>
+              <td>Plan name</td>
+              <td>Starter</td>
+              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+            </tr>
+            <tr>
+              <td>plan</td>
+              <td>Plan name</td>
+              <td>Growth</td>
+              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+            </tr>
+            <tr>
+              <td>plan</td>
+              <td>Plan name</td>
+              <td>Enterprise</td>
+              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+            </tr>
+            <tr>
+              <td>policy</td>
+              <td>Privacy policy</td>
+              <td>Privacy Policy | AcmeFlow</td>
+              <td><a href="http://localhost:3001/privacy">/privacy</a></td>
+            </tr>
+            <tr>
+              <td>security</td>
+              <td>Security or trust information</td>
+              <td>Security | AcmeFlow</td>
+              <td><a href="http://localhost:3001/security">/security</a></td>
+            </tr>
+            <tr>
+              <td>support</td>
+              <td>request support</td>
+              <td>name, email, message</td>
+              <td><a href="http://localhost:3001/support">/support</a></td>
+            </tr>
+            <tr>
+              <td>support</td>
+              <td>Support page</td>
+              <td>Support | AcmeFlow</td>
+              <td><a href="http://localhost:3001/support">/support</a></td>
+            </tr>
+            <tr>
+              <td>policy</td>
+              <td>Terms or legal policy</td>
+              <td>Terms | AcmeFlow</td>
+              <td><a href="http://localhost:3001/terms">/terms</a></td>
+            </tr>
+          </tbody>
         </table>
       </section>
     </main>

@@ -1,7 +1,7 @@
 import type { PageSnapshot, ScanOptions, SiteScan } from "../schemas.js";
 import { SiteScanSchema } from "../schemas.js";
 import { extractPageSnapshot } from "../extractor/extractMetadata.js";
-import { assertPublicHttpUrl, isSafeCrawlUrl } from "../utils/safety.js";
+import { assertPublicHttpUrlResolved, isSafeCrawlUrlResolved } from "../utils/safety.js";
 import { normalizeUrl } from "../utils/urls.js";
 import { fetchRobotsTxt } from "../scanner/fetchRobots.js";
 import { fetchSitemap } from "../scanner/fetchSitemap.js";
@@ -41,7 +41,7 @@ export async function scanWithFirecrawlCrawler(options: ScanOptions): Promise<Si
     throw new Error("Firecrawl crawler requires FIRECRAWL_API_KEY.");
   }
 
-  assertPublicHttpUrl(options.rootUrl, { allowLocal: options.allowLocal });
+  await assertPublicHttpUrlResolved(options.rootUrl, { allowLocal: options.allowLocal });
 
   const [robotsTxt, sitemap, crawlResponse] = await Promise.all([
     fetchRobotsTxt(options),
@@ -62,8 +62,8 @@ export async function scanWithFirecrawlCrawler(options: ScanOptions): Promise<Si
     if (
       !requestedUrl ||
       !finalUrl ||
-      !isSafeCrawlUrl(requestedUrl, options.rootUrl, { allowLocal: options.allowLocal }) ||
-      !isSafeCrawlUrl(finalUrl, options.rootUrl, { allowLocal: options.allowLocal })
+      !(await isSafeCrawlUrlResolved(requestedUrl, options.rootUrl, { allowLocal: options.allowLocal })) ||
+      !(await isSafeCrawlUrlResolved(finalUrl, options.rootUrl, { allowLocal: options.allowLocal }))
     ) {
       errors.push({
         url: requestedUrl ?? finalUrl ?? options.rootUrl,

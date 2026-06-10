@@ -41,11 +41,7 @@
             "description": "Message"
           }
         },
-        "required": [
-          "name",
-          "email",
-          "company"
-        ]
+        "required": ["name", "email", "company"]
       },
       "requiresHumanConfirmation": true,
       "sensitivity": "medium",
@@ -137,11 +133,7 @@
             "description": "Message"
           }
         },
-        "required": [
-          "name",
-          "email",
-          "company"
-        ]
+        "required": ["name", "email", "company"]
       },
       "requiresHumanConfirmation": true,
       "sensitivity": "medium",
@@ -281,11 +273,7 @@
             "description": "Message"
           }
         },
-        "required": [
-          "name",
-          "email",
-          "message"
-        ]
+        "required": ["name", "email", "message"]
       },
       "requiresHumanConfirmation": true,
       "sensitivity": "high",

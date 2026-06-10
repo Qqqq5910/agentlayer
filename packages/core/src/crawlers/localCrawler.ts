@@ -12,6 +12,8 @@ export const localCrawler: Crawler = {
   scan: scanWithLocalCrawler
 };
 
+type QueueSource = "root" | "sitemap" | "seed" | "discovered";
+
 export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteScan> {
   const errors: SiteScan["errors"] = [];
   const robotsTxt = await fetchRobotsTxt(options);
@@ -19,27 +21,32 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
   const pages: PageSnapshot[] = [];
   const visited = new Set<string>();
   const queued = new Set<string>();
+  const queueSources = new Map<string, QueueSource>();
   const queue: string[] = [];
 
-  const enqueue = (url: string | null) => {
-    if (
-      !url ||
-      queued.has(url) ||
-      visited.has(url) ||
-      !isSafeCrawlUrl(url, options.rootUrl, { allowLocal: options.allowLocal })
-    ) {
+  const enqueue = (url: string | null, source: QueueSource) => {
+    if (!url || visited.has(url) || !isSafeCrawlUrl(url, options.rootUrl, { allowLocal: options.allowLocal })) {
+      return;
+    }
+
+    if (queued.has(url)) {
+      queueSources.set(url, moreSpecificSource(queueSources.get(url), source));
       return;
     }
 
     queued.add(url);
+    queueSources.set(url, source);
     queue.push(url);
   };
 
-  for (const url of sortUrlsByPriority(
-    [options.rootUrl, ...importantSeedUrls(options.rootUrl), ...(sitemap?.urls ?? [])],
-    options.rootUrl
-  )) {
-    enqueue(url);
+  enqueue(options.rootUrl, "root");
+
+  for (const url of sortUrlsByPriority(sitemap?.urls ?? [], options.rootUrl)) {
+    enqueue(url, "sitemap");
+  }
+
+  for (const url of sortUrlsByPriority(importantSeedUrls(options.rootUrl), options.rootUrl)) {
+    enqueue(url, "seed");
   }
 
   while (queue.length > 0 && pages.length < options.maxPages) {
@@ -49,6 +56,7 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
     }
 
     visited.add(current);
+    const source = queueSources.get(current) ?? "discovered";
 
     if (options.respectRobotsTxt && !isAllowedByRobots(current, robotsTxt?.text, options.userAgent)) {
       errors.push({
@@ -71,10 +79,12 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
 
       const contentType = response.headers.get("content-type") ?? "";
       if (!response.ok) {
-        errors.push({
-          url: current,
-          message: `Fetch failed with HTTP ${response.status}.`
-        });
+        if (!(source === "seed" && response.status === 404)) {
+          errors.push({
+            url: current,
+            message: `Fetch failed with HTTP ${response.status}.`
+          });
+        }
         continue;
       }
 
@@ -100,7 +110,7 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
         .filter((url): url is string => Boolean(url));
 
       for (const url of sortUrlsByPriority(discovered, options.rootUrl)) {
-        enqueue(url);
+        enqueue(url, "discovered");
       }
     } catch (error) {
       errors.push({
@@ -118,6 +128,27 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
     sitemap,
     errors
   });
+}
+
+function moreSpecificSource(existing: QueueSource | undefined, next: QueueSource): QueueSource {
+  if (!existing || sourcePriority(next) > sourcePriority(existing)) {
+    return next;
+  }
+
+  return existing;
+}
+
+function sourcePriority(source: QueueSource): number {
+  switch (source) {
+    case "root":
+      return 4;
+    case "discovered":
+      return 3;
+    case "sitemap":
+      return 2;
+    case "seed":
+      return 1;
+  }
 }
 
 function isSupportedContent(contentType: string, url: string): boolean {

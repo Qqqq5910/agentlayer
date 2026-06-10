@@ -1,7 +1,7 @@
 import * as cheerio from "cheerio";
 import TurndownService from "turndown";
 
-import { normalizeWhitespace, truncateText } from "../utils/text.js";
+import { normalizeWhitespace, truncatePreservingWhitespace } from "../utils/text.js";
 
 const turndown = new TurndownService({
   bulletListMarker: "-",
@@ -49,8 +49,9 @@ function cleanupMarkdown(markdown: string): string {
     .split(/\r?\n/)
     .map((line) => line.trimEnd())
     .join("\n")
+    .replace(/\)(?=\[)/g, ")\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 
-  return truncateText(compact, 20000);
+  return truncatePreservingWhitespace(compact, 20000);
 }
