@@ -1,24 +1,37 @@
 import { NextResponse } from "next/server";
-import { buildAgentLayerReport, generateArtifacts } from "@agentlayer/core";
+import {
+  assertPublicHttpUrlResolved,
+  buildAgentLayerReport,
+  generateArtifacts
+} from "@agentlayer/core";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+const REMOTE_SCAN_DISABLED_MESSAGE =
+  "Remote scanning is disabled in the hosted demo. Run the CLI locally to scan real sites.";
+
+type ScanRequestBody = {
+  url?: unknown;
+  maxPages?: unknown;
+};
 
 export async function POST(request: Request) {
   try {
     if (process.env.ENABLE_REMOTE_SCAN !== "true") {
       return NextResponse.json(
         {
-          error:
-            "Remote scanning is disabled on this hosted demo. Run the CLI locally, or set ENABLE_REMOTE_SCAN=true for a deployment you control."
+          error: REMOTE_SCAN_DISABLED_MESSAGE
         },
         { status: 403 }
       );
     }
 
-    const body = (await request.json()) as { url?: string; maxPages?: number };
-    const rootUrl = normalizeUrl(body.url);
+    const body = (await request.json()) as ScanRequestBody;
+    const rootUrl = normalizeScanUrl(body.url);
     const maxPages = clampMaxPages(body.maxPages);
+    await assertPublicHttpUrlResolved(rootUrl, { allowLocal: false });
+
     const report = await buildAgentLayerReport({
       rootUrl,
       maxPages,
@@ -41,12 +54,13 @@ export async function POST(request: Request) {
   }
 }
 
-function normalizeUrl(input: string | undefined) {
-  if (!input) {
+function normalizeScanUrl(input: unknown) {
+  if (typeof input !== "string" || input.trim().length === 0) {
     throw new Error("A website URL is required.");
   }
 
-  const withProtocol = /^https?:\/\//i.test(input) ? input : `https://${input}`;
+  const trimmed = input.trim();
+  const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
   const url = new URL(withProtocol);
 
   if (url.protocol !== "http:" && url.protocol !== "https:") {
@@ -56,10 +70,10 @@ function normalizeUrl(input: string | undefined) {
   return url.toString();
 }
 
-function clampMaxPages(value: number | undefined) {
-  if (!Number.isFinite(value)) {
+function clampMaxPages(value: unknown) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
     return 20;
   }
 
-  return Math.max(1, Math.min(100, Math.round(value ?? 20)));
+  return Math.max(1, Math.min(100, Math.round(value)));
 }

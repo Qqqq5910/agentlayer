@@ -75,6 +75,9 @@ export default function HomePage() {
                 Scan a public site, generate agent-readable draft files, and see whether common
                 AI-agent journeys have enough evidence and confirmation detail to succeed.
               </p>
+              <p className="mt-3 text-sm font-medium leading-6 text-cyan-100">
+                Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites.
+              </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   className="inline-flex h-11 items-center gap-2 rounded-md bg-white px-4 font-medium text-slate-950 hover:bg-cyan-50"

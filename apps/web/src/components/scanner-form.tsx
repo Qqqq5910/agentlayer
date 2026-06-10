@@ -36,7 +36,7 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
     if (!remoteScanEnabled) {
       setState("error");
       setMessage(
-        "This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites, or set ENABLE_REMOTE_SCAN=true for a deployment you control."
+        "Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites. Set ENABLE_REMOTE_SCAN=true only for a deployment you control."
       );
       return;
     }
@@ -88,7 +88,7 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
           <p className="mt-1 text-sm leading-6 text-slate-600">
             {remoteScanEnabled
               ? "No auth required. AgentLayer calls the core package and stores the report in this browser."
-              : "This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites."}
+              : "Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites."}
           </p>
         </div>
       </div>

@@ -2,7 +2,10 @@
 
 SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
+[English](./README.md) | [简体中文](./README.zh-CN.md)
+
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-0.1.0-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
 ![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
@@ -14,9 +17,18 @@ For developers, AgentLayer provides a TypeScript core package, a repo-local CLI,
 app. For founders and site owners, it turns "will agents understand my site?" into a concrete
 report: missing facts, unclear policies, weak action paths, and task failures.
 
-![AgentLayer generated artifact preview](./docs/assets/agentlayer-preview.svg)
+## At a Glance
 
-## Demo And Screenshot
+| Area          | What AgentLayer does                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------ |
+| Readability   | Crawls bounded public pages and creates agent-facing Markdown alternatives.                |
+| Trustability  | Extracts sourced facts with confidence, review notes, and stable output files.             |
+| Actionability | Identifies action paths, form boundaries, policy pages, and conservative manifests.        |
+| Task success  | Runs deterministic B2B SaaS task checks and writes `tasks-report.json` plus `report.html`. |
+
+## Demo / Screenshot
+
+![AgentLayer generated artifact preview](./docs/assets/agentlayer-preview.svg)
 
 The fastest way to see AgentLayer is the local demo report:
 
@@ -26,16 +38,19 @@ pnpm build
 pnpm dev
 ```
 
-Open `http://localhost:3000/demo` to inspect the fixture report UI. For a full scan, start the
-AcmeFlow fixture with `pnpm dev:example`, generate artifacts, and open the generated `report.html`:
+Open `http://localhost:3000/demo` to inspect the fixture report UI.
+
+For a full scan, start the AcmeFlow fixture in another terminal, generate artifacts, and open the
+generated `report.html`:
 
 ```bash
+pnpm dev:example
 pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
 ```
 
-The screenshot above is the current generated artifact preview. Use
-`docs/assets/agentlayer-preview.svg` as the launch social preview, or capture a fresh screenshot
-from `http://localhost:3000/demo` after running the app.
+The preview above is the current generated artifact preview and is safe to render directly on
+GitHub. Use `docs/assets/agentlayer-preview.svg` as the launch social preview, or capture a fresh
+screenshot from `http://localhost:3000/demo` after running the app.
 
 ## Who Should Use This?
 
@@ -66,7 +81,7 @@ tasks.
 - Not a compliance guarantee for MCP, WebMCP, `llms.txt`, or future standards.
 - Not browser automation, and it does not click through flows or submit forms.
 
-## AgentLayer vs Firecrawl
+## AgentLayer vs Firecrawl.
 
 Firecrawl is excellent when you need hosted crawling and clean content extraction for LLM ingestion.
 AgentLayer is focused on a different layer: agent operability. It checks whether a website exposes

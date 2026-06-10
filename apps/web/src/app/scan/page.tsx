@@ -37,8 +37,8 @@ export default function ScanPage() {
           <div className="panel p-5">
             <h2 className="font-semibold text-slate-950">Need a guaranteed report?</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              This hosted demo uses the AcmeFlow fixture. Run the CLI locally to scan real sites.
-              Hosted deployments should only enable arbitrary remote scans after reviewing SSRF
+              Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites. Hosted
+              deployments should only enable arbitrary remote scans after reviewing SSRF
               protections.
             </p>
             <Link
