@@ -15,7 +15,7 @@ packages are published.
 - Generated `llms.txt`, `llms-full.txt`, Markdown snapshots, JSON facts/actions/tasks, `.well-known`
   draft artifacts, WebMCP suggestions, and HTML reports.
 - Standards, security, integration, and deployment documentation.
-- v0.1.0 release notes and GitHub repository setup checklist.
+- v0.1.0 release notes.
 
 ### Notes
 
