@@ -136,7 +136,7 @@ export function ScannerForm({ remoteScanEnabled }: ScannerFormProps) {
         <span className="text-sm text-slate-500">
           {remoteScanEnabled
             ? "Remote crawling can fail if a site blocks automated fetches."
-            : "Run locally with pnpm agentlayer generate https://example.com --out ./agentlayer-output"}
+            : "Run locally with pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20"}
         </span>
       </div>
 

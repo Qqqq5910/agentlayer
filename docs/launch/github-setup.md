@@ -1,6 +1,7 @@
 # GitHub Launch Setup
 
-Use this checklist before publishing `v0.1.0` and announcing AgentLayer.
+Historical checklist for the first `v0.1.0` launch. For the current adoption patch metadata, use
+[github-metadata.md](./github-metadata.md).
 
 ## Repository Metadata
 
@@ -13,10 +14,10 @@ Deterministic toolkit for making websites readable, trusted, and operable by AI 
 Website URL:
 
 ```text
-https://github.com/Qqqq5910/agentlayer#readme
+https://agentlayer-readonly-demo.vercel.app
 ```
 
-Use the GitHub README URL until a hosted project website is live.
+Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites.
 
 Recommended topics:
 
@@ -31,7 +32,8 @@ Recommended topics:
 ## Suggested Social Preview
 
 Use `docs/assets/agentlayer-preview.svg` for the first GitHub social preview. If you want a product
-screenshot instead, run the local web app and capture `http://localhost:3000/demo`.
+screenshot instead, capture the live read-only demo at
+`https://agentlayer-readonly-demo.vercel.app`.
 
 Suggested screenshot checklist:
 
@@ -55,8 +57,8 @@ Suggested screenshot checklist:
 3. Create or verify the `v0.1.0` tag.
 4. Open GitHub Releases and create a new release from `v0.1.0`.
 5. Paste `release-notes/v0.1.0.md` into the release body.
-6. Include the local demo path, `http://localhost:3000/demo`, and fixture path,
-   `http://localhost:3001`.
+6. Include the live read-only demo, `https://agentlayer-readonly-demo.vercel.app`, and note that it
+   uses the AcmeFlow fixture.
 7. Publish the release.
 8. Update any launch posts with the release URL once GitHub generates it.
 
@@ -78,6 +80,7 @@ This first release is repo-local and conservative by design: no form submission,
 no private crawling, no compliance claims, and no LLM judge required by default.
 
 GitHub: https://github.com/Qqqq5910/agentlayer
+Demo: https://agentlayer-readonly-demo.vercel.app
 ```
 
 Longer version:
@@ -103,8 +106,7 @@ tracker, not a compliance guarantee, and not browser automation. It does not
 authenticate, submit forms, crawl private areas, or perform destructive actions.
 
 GitHub: https://github.com/Qqqq5910/agentlayer
-Local demo: http://localhost:3000/demo
-Fixture site: http://localhost:3001
+Demo: https://agentlayer-readonly-demo.vercel.app
 ```
 
 ## Launch Notes

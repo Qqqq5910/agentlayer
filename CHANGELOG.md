@@ -5,6 +5,19 @@ All notable changes to AgentLayer will be documented in this file.
 The format follows the spirit of Keep a Changelog, and this project uses semantic versioning once
 packages are published.
 
+## [0.1.1] - 2026-06-11
+
+### Added
+
+- Live read-only demo link in English and Chinese README files.
+- v0.1.1 adoption patch release notes.
+- Feedback guide and pinned share-your-scan issue template for real website scan reports.
+- Launch post copy and GitHub metadata recommendations.
+
+### Changed
+
+- Real-site quickstart examples now use the CLI's positional URL syntax consistently.
+
 ## [0.1.0] - 2026-06-10
 
 ### Added

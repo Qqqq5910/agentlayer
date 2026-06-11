@@ -1,6 +1,6 @@
 {
   "name": "agentlayer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Monorepo for AgentLayer, a deterministic toolkit for agent-operable websites.",
   "license": "MIT",

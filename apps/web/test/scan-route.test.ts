@@ -134,7 +134,7 @@ async function expectErrorResponse(response: Response, status: number, message: 
 }
 
 function hostedDemoDisabledMessage() {
-  return "Remote scanning is disabled in the hosted demo. Run the CLI locally to scan real sites.";
+  return "Remote scanning is disabled in the hosted demo. Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites.";
 }
 
 function lookupAllResult(address: string, family: 4 | 6) {

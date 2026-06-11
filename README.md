@@ -5,7 +5,7 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.1.0-black)
+![Version](https://img.shields.io/badge/version-0.1.1-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
 ![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
@@ -30,7 +30,13 @@ report: missing facts, unclear policies, weak action paths, and task failures.
 
 ![AgentLayer generated artifact preview](./docs/assets/agentlayer-preview.svg)
 
-The fastest way to see AgentLayer is the local demo report:
+The fastest way to see AgentLayer is the live read-only demo:
+
+[Open the AgentLayer read-only demo](https://agentlayer-readonly-demo.vercel.app)
+
+Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites.
+
+To run the local demo report:
 
 ```bash
 pnpm install
@@ -50,7 +56,7 @@ pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-p
 
 The preview above is the current generated artifact preview and is safe to render directly on
 GitHub. Use `docs/assets/agentlayer-preview.svg` as the launch social preview, or capture a fresh
-screenshot from `http://localhost:3000/demo` after running the app.
+screenshot from `https://agentlayer-readonly-demo.vercel.app`.
 
 ## Who Should Use This?
 
@@ -158,13 +164,18 @@ The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at `http:
 ## CLI Usage
 
 AgentLayer is currently documented for repo-local use. Use `pnpm agentlayer` when running from a
-repository checkout:
+repository checkout. For a first real-site trial, use:
+
+```bash
+pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+pnpm agentlayer doctor https://example.com --max-pages 20
+```
+
+Additional commands:
 
 ```bash
 pnpm agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
-pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
 pnpm agentlayer test https://example.com --tasks ./examples/tasks/b2b-saas.default.json --out ./agentlayer-report.json
-pnpm agentlayer doctor https://example.com --max-pages 20
 pnpm agentlayer init-fixture --out ./agentlayer-output/tasks
 ```
 
@@ -175,11 +186,24 @@ When the CLI is installed or linked as the `agentlayer` binary, use the same com
 `pnpm`:
 
 ```bash
-agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
+agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+agentlayer doctor https://example.com --max-pages 20
 ```
 
 When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then,
 prefer the repo-local commands above or a local package link.
+
+## Help us test real websites
+
+AgentLayer needs scans from real public websites to improve the default heuristics. If you can share
+a result, open an issue or use [docs/feedback.md](./docs/feedback.md) with:
+
+- URL
+- command
+- overall score
+- wrong facts/actions
+- confusing recommendations
+- artifacts you would publish
 
 ## Web App
 
@@ -281,6 +305,10 @@ GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
 ## Documentation
 
 - [Standards](./docs/standards.md)
+- [Feedback guide](./docs/feedback.md)
+- [Launch posts](./docs/launch/launch-posts.md)
+- [GitHub metadata](./docs/launch/github-metadata.md)
+- [Share-your-scan issue template](./docs/launch/share-your-scan.md)
 - [Security notes](./docs/security.md)
 - [Firecrawl integration notes](./docs/integrations/firecrawl.md)
 - [Next.js deployment](./docs/deployment/nextjs.md)
