@@ -197,6 +197,9 @@ jobs:
       - name: Format check
         run: pnpm format:check
 
+      - name: Build core package
+        run: pnpm --filter @agentlayer/core build
+
       - name: Lint
         run: pnpm lint
 
