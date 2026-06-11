@@ -39,6 +39,25 @@ export function parseCrawler(value: string): "local" | "firecrawl" {
   throw new InvalidArgumentError(`Invalid crawler "${value}". Use "local" or "firecrawl".`);
 }
 
+export type BlockingRule = "task-regression" | "missing-artifact" | "score-drop";
+
+export function collectBlockingRules(value: string, previous: BlockingRule[] = []): BlockingRule[] {
+  const rules = value.split(",").map((rule) => rule.trim());
+  const parsed: BlockingRule[] = [];
+
+  for (const rule of rules) {
+    if (rule !== "task-regression" && rule !== "missing-artifact" && rule !== "score-drop") {
+      throw new InvalidArgumentError(
+        `Invalid blocking rule "${rule}". Use task-regression, missing-artifact, or score-drop.`
+      );
+    }
+
+    parsed.push(rule);
+  }
+
+  return [...previous, ...parsed];
+}
+
 export type CrawlCommandOptions = {
   out?: string;
   maxPages: number;
@@ -47,6 +66,12 @@ export type CrawlCommandOptions = {
   crawler: "local" | "firecrawl";
   tasks?: string;
   json?: boolean;
+};
+
+export type CompareCommandOptions = CrawlCommandOptions & {
+  baseline: string;
+  failOn?: BlockingRule[];
+  minScoreDelta: number;
 };
 
 export type InitFixtureOptions = {

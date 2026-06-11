@@ -1,10 +1,13 @@
-import type { AgentTaskResult } from "./coreTypes.js";
+import type { AgentLayerComparison, AgentLayerRegression, AgentTaskResult } from "./coreTypes.js";
 import { withRequiredJsonArtifacts } from "./artifacts.js";
 import {
   callBuildAgentLayerReport,
+  callCompareAgentLayerBaseline,
+  callCreateAgentLayerBaseline,
   callEvaluateTasks,
   callGenerateArtifacts,
   callScanSite,
+  type CoreApi,
   loadCoreApi
 } from "./coreApi.js";
 import { getEmbeddedDefaultTasks } from "./defaultTasks.js";
@@ -13,14 +16,20 @@ import { CliError, formatErrorMessage } from "./errors.js";
 import type { CliIo } from "./io.js";
 import {
   fileExists,
+  readJsonFile,
   resolveJsonOutputPath,
   resolveOutputDirectory,
+  resolvePath,
   resolveTaskSuiteOutputPath,
   writeArtifacts,
   writeJsonFile
 } from "./io.js";
-import type { CrawlCommandOptions, InitFixtureOptions } from "./options.js";
+import type { CompareCommandOptions, CrawlCommandOptions, InitFixtureOptions } from "./options.js";
 import { loadTasks } from "./tasks.js";
+import { packageVersion } from "./version.js";
+
+type ReportCoreApi = CoreApi &
+  Required<Pick<CoreApi, "scanSite" | "buildAgentLayerReport" | "generateArtifacts">>;
 
 export async function runScanCommand(
   rootUrl: string,
@@ -164,6 +173,102 @@ export async function runDoctorCommand(
   io.stdout(formatDoctorDiagnosis(diagnosis));
 }
 
+export async function runBaselineCommand(
+  rootUrl: string,
+  options: CrawlCommandOptions,
+  io: CliIo
+): Promise<void> {
+  const core = await loadCoreApi([
+    "scanSite",
+    "buildAgentLayerReport",
+    "generateArtifacts",
+    "createAgentLayerBaseline"
+  ]);
+  const { report, artifacts, scanOptions } = await buildReportAndArtifacts(
+    core,
+    rootUrl,
+    options,
+    io,
+    "Baseline"
+  );
+  const baseline = await runCliStep("Baseline failed while creating the compact snapshot", () =>
+    callCreateAgentLayerBaseline(core.createAgentLayerBaseline, {
+      agentLayerVersion: packageVersion,
+      targetUrl: report.scan.rootUrl,
+      scanOptions,
+      report,
+      artifacts
+    })
+  );
+  const outputPath = resolveJsonOutputPath(io.cwd(), options.out, ".", "agentlayer-baseline.json");
+
+  await writeJsonFile(outputPath, baseline);
+
+  if (options.json) {
+    io.stdout(JSON.stringify({ outputPath, baseline }, null, 2));
+    return;
+  }
+
+  io.stdout(
+    [
+      `AgentLayer baseline saved for ${baseline.targetUrl}`,
+      `Overall score: ${Math.round(baseline.scores.overall)}/100`,
+      `Tasks captured: ${baseline.tasks.length}`,
+      `Artifacts inventoried: ${baseline.artifacts.length}`,
+      `Wrote: ${outputPath}`
+    ].join("\n")
+  );
+}
+
+export async function runCompareCommand(
+  rootUrl: string,
+  options: CompareCommandOptions,
+  io: CliIo
+): Promise<void> {
+  const core = await loadCoreApi([
+    "scanSite",
+    "buildAgentLayerReport",
+    "generateArtifacts",
+    "compareAgentLayerBaseline"
+  ]);
+  const baselinePath = resolvePath(io.cwd(), options.baseline);
+  const baseline = await readJsonFile<unknown>(baselinePath, "AgentLayer baseline");
+  const { report, artifacts, scanOptions } = await buildReportAndArtifacts(
+    core,
+    rootUrl,
+    options,
+    io,
+    "Compare"
+  );
+  const comparison = await runCliStep("Compare failed while evaluating the baseline", () =>
+    callCompareAgentLayerBaseline(core.compareAgentLayerBaseline, {
+      agentLayerVersion: packageVersion,
+      targetUrl: report.scan.rootUrl,
+      scanOptions,
+      baseline,
+      currentReport: report,
+      currentArtifacts: artifacts,
+      policy: {
+        failOn: options.failOn ?? [],
+        minScoreDelta: options.minScoreDelta
+      }
+    })
+  );
+  const outputPath = resolveJsonOutputPath(io.cwd(), options.out, ".", "agentlayer-compare.json");
+
+  await writeJsonFile(outputPath, comparison);
+
+  if (options.json) {
+    io.stdout(JSON.stringify({ outputPath, comparison }, null, 2));
+  } else {
+    io.stdout(`${formatComparisonSummary(comparison)}\n\nWrote: ${outputPath}`);
+  }
+
+  if (comparison.exitCode !== 0) {
+    io.setExitCode?.(comparison.exitCode);
+  }
+}
+
 export async function runInitFixtureCommand(options: InitFixtureOptions, io: CliIo): Promise<void> {
   const outputPath = resolveTaskSuiteOutputPath(io.cwd(), options.out);
 
@@ -192,6 +297,31 @@ function averageTaskScore(results: AgentTaskResult[]): number {
   return results.reduce((sum, result) => sum + result.score, 0) / results.length;
 }
 
+async function buildReportAndArtifacts(
+  core: ReportCoreApi,
+  rootUrl: string,
+  options: CrawlCommandOptions,
+  io: CliIo,
+  commandName: string
+) {
+  const tasks = await loadTasks(core, options.tasks, io.cwd());
+  const scanOptions = buildScanOptions(rootUrl, options);
+  const scan = await runCliStep(`${commandName} failed while scanning ${rootUrl}`, () =>
+    callScanSite(core.scanSite, scanOptions)
+  );
+  const report = await runCliStep(
+    `${commandName} failed while building the AgentLayer report`,
+    () => callBuildAgentLayerReport(core.buildAgentLayerReport, scan, tasks)
+  );
+  const coreArtifacts = await runCliStep(
+    `${commandName} failed while creating artifact contents`,
+    () => callGenerateArtifacts(core.generateArtifacts, report)
+  );
+  const artifacts = withRequiredJsonArtifacts(coreArtifacts, report);
+
+  return { scan, report, artifacts, scanOptions };
+}
+
 function buildScanOptions(rootUrl: string, options: CrawlCommandOptions) {
   return {
     rootUrl,
@@ -201,6 +331,63 @@ function buildScanOptions(rootUrl: string, options: CrawlCommandOptions) {
     allowLocal: Boolean(options.allowLocal),
     crawler: options.crawler
   };
+}
+
+function formatComparisonSummary(comparison: AgentLayerComparison): string {
+  const lines = [
+    "AgentLayer CI",
+    `Target: ${comparison.targetUrl}`,
+    "",
+    `Overall score: ${formatScore(comparison.scores.overall)}`,
+    `Readability: ${formatScore(comparison.scores.readability)}`,
+    `Trustability: ${formatScore(comparison.scores.trustability)}`,
+    `Actionability: ${formatScore(comparison.scores.actionability)}`,
+    `Task success: ${formatScore(comparison.scores.taskSuccess)}`,
+    "",
+    "Regressions:",
+    ...formatRegressionList(comparison.regressions),
+    "",
+    "Blocking failures:",
+    ...formatRegressionList(comparison.blockingFailures),
+    "",
+    "Recommendations:",
+    ...formatRecommendations(comparison.recommendations),
+    "",
+    `Exit code: ${comparison.exitCode}`
+  ];
+
+  return lines.join("\n");
+}
+
+function formatScore(score: AgentLayerComparison["scores"]["overall"]): string {
+  const baselineToCurrent = `${Math.round(score.baseline)} -> ${Math.round(score.current)}`;
+  return score.delta === 0
+    ? baselineToCurrent
+    : `${baselineToCurrent} (${formatDelta(score.delta)})`;
+}
+
+function formatDelta(delta: number): string {
+  return delta > 0 ? `+${Math.round(delta)}` : `${Math.round(delta)}`;
+}
+
+function formatRegressionList(regressions: readonly AgentLayerRegression[]): string[] {
+  if (regressions.length === 0) {
+    return ["- none"];
+  }
+
+  return regressions.map((regression) =>
+    regression.type === "task-regression"
+      ? `- ${regression.id}: ${regression.baseline} -> ${regression.current}`
+      : `- ${regression.message}`
+  );
+}
+
+function formatRecommendations(recommendations: readonly string[]): string[] {
+  if (recommendations.length === 0) {
+    return ["1. No new recommendations."];
+  }
+
+  return recommendations.map((recommendation, index) => `${index + 1}. ${recommendation}`);
 }
 
 async function runCliStep<T>(failurePrefix: string, action: () => Promise<T>): Promise<T> {

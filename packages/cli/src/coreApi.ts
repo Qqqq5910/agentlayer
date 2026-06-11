@@ -1,7 +1,10 @@
 import type {
+  AgentLayerBaseline,
+  AgentLayerComparison,
   AgentOperabilityReport,
   AgentTask,
   AgentTaskResult,
+  BlockingPolicy,
   GeneratedArtifact,
   SiteScan
 } from "./coreTypes.js";
@@ -11,7 +14,9 @@ type CoreFunctionName =
   | "scanSite"
   | "buildAgentLayerReport"
   | "generateArtifacts"
-  | "evaluateTasks";
+  | "evaluateTasks"
+  | "createAgentLayerBaseline"
+  | "compareAgentLayerBaseline";
 type CoreFunctionApi = Record<CoreFunctionName, (...args: unknown[]) => unknown>;
 type CoreApiWithRequired<T extends CoreFunctionName> = CoreApi & Required<Pick<CoreFunctionApi, T>>;
 
@@ -28,6 +33,8 @@ export type ScanSiteOptions = {
   maxPages: number;
   timeoutMs: number;
   respectRobotsTxt: boolean;
+  allowLocal: boolean;
+  crawler: "local" | "firecrawl";
 };
 
 export async function loadCoreApi<const T extends readonly CoreFunctionName[]>(
@@ -108,6 +115,45 @@ export async function callGenerateArtifacts(
   report: AgentOperabilityReport
 ): Promise<GeneratedArtifact[]> {
   return invokePureWithAttempts(generateArtifacts, [[report], [{ report }]], "generateArtifacts");
+}
+
+export async function callCreateAgentLayerBaseline(
+  createAgentLayerBaseline: NonNullable<CoreApi["createAgentLayerBaseline"]>,
+  input: {
+    agentLayerVersion: string;
+    targetUrl: string;
+    scanOptions: ScanSiteOptions;
+    report: AgentOperabilityReport;
+    artifacts: GeneratedArtifact[];
+  }
+): Promise<AgentLayerBaseline> {
+  return invokePureWithAttempts(
+    createAgentLayerBaseline,
+    [
+      [input],
+      [input.agentLayerVersion, input.targetUrl, input.scanOptions, input.report, input.artifacts]
+    ],
+    "createAgentLayerBaseline"
+  );
+}
+
+export async function callCompareAgentLayerBaseline(
+  compareAgentLayerBaseline: NonNullable<CoreApi["compareAgentLayerBaseline"]>,
+  input: {
+    agentLayerVersion: string;
+    targetUrl: string;
+    scanOptions: ScanSiteOptions;
+    baseline: unknown;
+    currentReport: AgentOperabilityReport;
+    currentArtifacts: GeneratedArtifact[];
+    policy: Partial<BlockingPolicy>;
+  }
+): Promise<AgentLayerComparison> {
+  return invokePureWithAttempts(
+    compareAgentLayerBaseline,
+    [[input], [input.baseline, input.currentReport, input.currentArtifacts, input.policy]],
+    "compareAgentLayerBaseline"
+  );
 }
 
 export async function callEvaluateTasks(

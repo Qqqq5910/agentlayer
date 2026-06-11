@@ -193,6 +193,15 @@ agentlayer doctor https://example.com --max-pages 20
 When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then,
 prefer the repo-local commands above or a local package link.
 
+## AgentLayer CI preview
+
+AgentLayer CI v0.2 is a preview workflow for making agent-operability changes reviewable in pull
+requests. Generate a baseline JSON report for a known target, then run compare on later scans to
+flag task regressions, missing artifacts, and optional score drops.
+
+See [docs/ci.md](./docs/ci.md) for local baseline/compare usage and the GitHub Actions preview
+workflow.
+
 ## Help us test real websites
 
 AgentLayer needs scans from real public websites to improve the default heuristics. If you can share
@@ -305,6 +314,7 @@ GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
 ## Documentation
 
 - [Standards](./docs/standards.md)
+- [AgentLayer CI preview](./docs/ci.md)
 - [Feedback guide](./docs/feedback.md)
 - [Launch posts](./docs/launch/launch-posts.md)
 - [GitHub metadata](./docs/launch/github-metadata.md)

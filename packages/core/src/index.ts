@@ -11,6 +11,12 @@ export { generateArtifacts } from "./generator/generateArtifacts.js";
 export { generateLlmsTxt } from "./generator/generateLlmsTxt.js";
 export { generateLlmsFullTxt } from "./generator/generateLlmsFullTxt.js";
 export { generateReportHtml } from "./generator/generateReportHtml.js";
+export {
+  compareAgentLayerBaseline,
+  createAgentLayerBaseline,
+  evaluateBlockingPolicy,
+  parseAgentLayerBaseline
+} from "./ci.js";
 export { assertPublicHttpUrlResolved } from "./utils/safety.js";
 
 import type { AgentOperabilityReport, AgentTask, ScanOptions, SiteScan } from "./schemas.js";

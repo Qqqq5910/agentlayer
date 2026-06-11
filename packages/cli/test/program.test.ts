@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { CliError } from "../src/errors.js";
 import { createProgram } from "../src/program.js";
 
 const silentIo = {
@@ -40,10 +41,91 @@ describe("CLI command syntax", () => {
       })
     });
   });
+
+  it("accepts the baseline positional URL command with CI output options without scanning", async () => {
+    const captured = await parseCommand("baseline", [
+      "http://localhost:3000",
+      "--out",
+      "./agentlayer-baseline.json",
+      "--allow-local"
+    ]);
+
+    expect(captured).toEqual({
+      url: "http://localhost:3000/",
+      options: expect.objectContaining({
+        out: "./agentlayer-baseline.json",
+        allowLocal: true
+      })
+    });
+  });
+
+  it("accepts the compare positional URL command with CI gating options without scanning", async () => {
+    const captured = await parseCommand("compare", [
+      "http://localhost:3000",
+      "--baseline",
+      "./agentlayer-baseline.json",
+      "--out",
+      "./agentlayer-compare.json",
+      "--fail-on",
+      "task-regression",
+      "--fail-on",
+      "score-drop",
+      "--min-score-delta",
+      "5",
+      "--allow-local"
+    ]);
+
+    expect(captured).toEqual({
+      url: "http://localhost:3000/",
+      options: expect.objectContaining({
+        baseline: "./agentlayer-baseline.json",
+        out: "./agentlayer-compare.json",
+        failOn: ["task-regression", "score-drop"],
+        minScoreDelta: 5,
+        allowLocal: true
+      })
+    });
+  });
+
+  it("surfaces compare CliError failures with exit code metadata", async () => {
+    const program = createProgram(silentIo);
+    const command = program.commands.find((candidate) => candidate.name() === "compare");
+
+    expect(command, "compare command should be registered").toBeDefined();
+
+    command?.action(() => {
+      throw new CliError("Comparison failed: score dropped below threshold", 2);
+    });
+
+    await expect(
+      program.parseAsync(
+        [
+          "compare",
+          "https://example.com",
+          "--baseline",
+          "./agentlayer-baseline.json",
+          "--out",
+          "./agentlayer-compare.json",
+          "--fail-on",
+          "task-regression",
+          "--min-score-delta",
+          "5",
+          "--allow-local"
+        ],
+        { from: "user" }
+      )
+    ).rejects.toMatchObject({
+      name: "CliError",
+      message: "Comparison failed: score dropped below threshold",
+      exitCode: 2
+    });
+  });
 });
 
+type CliCommandName = "generate" | "doctor" | "baseline" | "compare";
+
 async function parseCommand(
-  commandName: "generate" | "doctor",
+  commandName: CliCommandName,
   args: string[]
 ): Promise<{ url: string; options: Record<string, unknown> }> {
   const program = createProgram(silentIo);
@@ -60,7 +142,7 @@ async function parseCommand(
 
   expect(
     captured,
-    `${commandName} command should parse without invoking its scan action`
+    `${commandName} command should parse without invoking its registered action`
   ).toBeDefined();
   return captured!;
 }

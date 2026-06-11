@@ -1,7 +1,7 @@
 # AgentLayer CI Roadmap Foundation
 
-This document captures the v0.2 foundation for AgentLayer CI. It is a roadmap note for future work,
-not a claim that CI reporting, PR gating, or score-based regression checks are implemented today.
+This document captures the v0.2 foundation for AgentLayer CI and the next steps after the local
+preview commands. The implemented preview usage guide lives in [docs/ci.md](../ci.md).
 
 ## Goal
 
@@ -47,15 +47,15 @@ question: did this PR make a known scan target worse?
 
 ## GitHub Action
 
-The planned GitHub Action should provide a thin wrapper around AgentLayer scan and compare commands.
-It should be usable from a workflow without requiring teams to write custom parsing scripts.
+A future packaged GitHub Action can provide a thin wrapper around AgentLayer baseline and compare
+commands. Until then, use the CLI directly from a workflow as shown in [docs/ci.md](../ci.md).
 
 Expected inputs for a future action:
 
 - `target`: public URL or fixture target to scan
 - `baseline`: path to the baseline report
 - `output`: path for the PR report
-- `fail-on`: blocking policy, such as `task-failure` or `score-drop`
+- `fail-on`: blocking policy, such as `task-regression` or `score-drop`
 - `min-score-delta`: optional threshold for score regressions
 
 Expected outputs:
@@ -107,9 +107,10 @@ workflow.
 
 - Define the baseline report schema.
 - Define the comparison report schema.
-- Add a local compare command or script.
-- Add a GitHub Action wrapper.
-- Document example workflow usage.
+- Add a local baseline command.
+- Add a local compare command.
+- Document example workflow usage in [docs/ci.md](../ci.md).
+- Add a packaged GitHub Action wrapper.
 - Add fixtures for at least one public, safe scan target.
 - Decide default blocking behavior for task failures.
 - Keep score-drop blocking opt-in until scoring stability is proven.

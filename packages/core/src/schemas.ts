@@ -243,3 +243,137 @@ export const GeneratedArtifactSchema = z.object({
 });
 
 export type GeneratedArtifact = z.infer<typeof GeneratedArtifactSchema>;
+
+export const AgentLayerScoreSetSchema = AgentOperabilityReportSchema.shape.scores;
+
+export type AgentLayerScoreSet = z.infer<typeof AgentLayerScoreSetSchema>;
+
+export const AgentLayerArtifactInventoryItemSchema = z.object({
+  path: z.string(),
+  mediaType: z.string()
+});
+
+export type AgentLayerArtifactInventoryItem = z.infer<typeof AgentLayerArtifactInventoryItemSchema>;
+
+export const AgentLayerTaskBaselineSchema = z.object({
+  taskId: z.string(),
+  title: z.string(),
+  status: z.enum(["pass", "partial", "fail"]),
+  score: z.number().min(0).max(100),
+  missingInformation: z.array(z.string()).default([]),
+  recommendations: z.array(z.string()).default([])
+});
+
+export type AgentLayerTaskBaseline = z.infer<typeof AgentLayerTaskBaselineSchema>;
+
+export const AgentLayerInventoryCountsSchema = z.object({
+  facts: z.number().int().nonnegative(),
+  actions: z.number().int().nonnegative(),
+  forms: z.number().int().nonnegative()
+});
+
+export type AgentLayerInventoryCounts = z.infer<typeof AgentLayerInventoryCountsSchema>;
+
+export const AgentLayerBaselineSchema = z.object({
+  schemaVersion: z.literal("agentlayer-baseline/v1").default("agentlayer-baseline/v1"),
+  agentLayerVersion: z.string(),
+  targetUrl: z.string().url(),
+  generatedAt: z.string(),
+  scanOptions: ScanOptionsSchema,
+  scores: AgentLayerScoreSetSchema,
+  tasks: z.array(AgentLayerTaskBaselineSchema),
+  artifacts: z.array(AgentLayerArtifactInventoryItemSchema),
+  counts: AgentLayerInventoryCountsSchema,
+  acceptedFailures: z.array(z.string()).default([])
+});
+
+export type AgentLayerBaseline = z.infer<typeof AgentLayerBaselineSchema>;
+
+export const BlockingPolicySchema = z.object({
+  failOn: z.array(z.enum(["task-regression", "missing-artifact", "score-drop"])).default([]),
+  minScoreDelta: z.number().nonnegative().default(5)
+});
+
+export type BlockingPolicy = z.infer<typeof BlockingPolicySchema>;
+
+export const ScoreComparisonSchema = z.object({
+  baseline: z.number().min(0).max(100),
+  current: z.number().min(0).max(100),
+  delta: z.number()
+});
+
+export type ScoreComparison = z.infer<typeof ScoreComparisonSchema>;
+
+export const AgentLayerRegressionSchema = z.object({
+  type: z.enum([
+    "task-regression",
+    "task-score-drop",
+    "missing-artifact",
+    "score-drop",
+    "count-drop"
+  ]),
+  id: z.string(),
+  message: z.string(),
+  severity: z.enum(["blocking", "warning", "info"]),
+  baseline: z.union([z.string(), z.number()]),
+  current: z.union([z.string(), z.number(), z.null()]),
+  delta: z.number().optional()
+});
+
+export type AgentLayerRegression = z.infer<typeof AgentLayerRegressionSchema>;
+
+export const AgentLayerTaskComparisonSchema = z.object({
+  taskId: z.string(),
+  title: z.string(),
+  baselineStatus: z.enum(["pass", "partial", "fail"]),
+  currentStatus: z.enum(["pass", "partial", "fail"]).nullable(),
+  statusChanged: z.boolean(),
+  baselineScore: z.number().min(0).max(100),
+  currentScore: z.number().min(0).max(100).nullable(),
+  scoreDelta: z.number().nullable()
+});
+
+export type AgentLayerTaskComparison = z.infer<typeof AgentLayerTaskComparisonSchema>;
+
+export const AgentLayerCountComparisonSchema = z.object({
+  baseline: AgentLayerInventoryCountsSchema,
+  current: AgentLayerInventoryCountsSchema,
+  delta: AgentLayerInventoryCountsSchema.extend({
+    facts: z.number().int(),
+    actions: z.number().int(),
+    forms: z.number().int()
+  })
+});
+
+export type AgentLayerCountComparison = z.infer<typeof AgentLayerCountComparisonSchema>;
+
+export const AgentLayerComparisonSchema = z.object({
+  schemaVersion: z.literal("agentlayer-comparison/v1").default("agentlayer-comparison/v1"),
+  agentLayerVersion: z.string(),
+  targetUrl: z.string().url(),
+  baselineGeneratedAt: z.string(),
+  currentGeneratedAt: z.string(),
+  comparedAt: z.string(),
+  scanOptions: ScanOptionsSchema,
+  policy: BlockingPolicySchema,
+  scores: z.object({
+    readability: ScoreComparisonSchema,
+    trustability: ScoreComparisonSchema,
+    actionability: ScoreComparisonSchema,
+    taskSuccess: ScoreComparisonSchema,
+    overall: ScoreComparisonSchema
+  }),
+  tasks: z.array(AgentLayerTaskComparisonSchema),
+  artifacts: z.object({
+    baseline: z.array(AgentLayerArtifactInventoryItemSchema),
+    current: z.array(AgentLayerArtifactInventoryItemSchema),
+    missing: z.array(AgentLayerArtifactInventoryItemSchema)
+  }),
+  counts: AgentLayerCountComparisonSchema,
+  regressions: z.array(AgentLayerRegressionSchema),
+  blockingFailures: z.array(AgentLayerRegressionSchema),
+  recommendations: z.array(z.string()),
+  exitCode: z.union([z.literal(0), z.literal(1)])
+});
+
+export type AgentLayerComparison = z.infer<typeof AgentLayerComparisonSchema>;

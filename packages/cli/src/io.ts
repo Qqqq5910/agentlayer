@@ -7,6 +7,7 @@ export type CliIo = {
   stdout(message: string): void;
   stderr(message: string): void;
   cwd(): string;
+  setExitCode?(code: number): void;
 };
 
 export const defaultIo: CliIo = {
@@ -18,6 +19,9 @@ export const defaultIo: CliIo = {
   },
   cwd() {
     return process.cwd();
+  },
+  setExitCode(code) {
+    process.exitCode = code;
   }
 };
 

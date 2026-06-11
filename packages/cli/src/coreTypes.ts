@@ -190,3 +190,108 @@ export type GeneratedArtifact = {
   content: string;
   mediaType: string;
 };
+
+export type AgentLayerScoreSet = AgentOperabilityReport["scores"];
+
+export type AgentLayerArtifactInventoryItem = {
+  path: string;
+  mediaType: string;
+};
+
+export type AgentLayerTaskBaseline = {
+  taskId: string;
+  title: string;
+  status: "pass" | "partial" | "fail";
+  score: number;
+  missingInformation: string[];
+  recommendations: string[];
+};
+
+export type AgentLayerInventoryCounts = {
+  facts: number;
+  actions: number;
+  forms: number;
+};
+
+export type AgentLayerBaseline = {
+  schemaVersion: "agentlayer-baseline/v1";
+  agentLayerVersion: string;
+  targetUrl: string;
+  generatedAt: string;
+  scanOptions: {
+    rootUrl: string;
+    maxPages: number;
+    timeoutMs: number;
+    respectRobotsTxt: boolean;
+    allowLocal: boolean;
+    crawler: "local" | "firecrawl";
+    userAgent?: string;
+  };
+  scores: AgentLayerScoreSet;
+  tasks: AgentLayerTaskBaseline[];
+  artifacts: AgentLayerArtifactInventoryItem[];
+  counts: AgentLayerInventoryCounts;
+  acceptedFailures: string[];
+};
+
+export type BlockingRule = "task-regression" | "missing-artifact" | "score-drop";
+
+export type BlockingPolicy = {
+  failOn: BlockingRule[];
+  minScoreDelta: number;
+};
+
+export type AgentLayerRegression = {
+  type: "task-regression" | "task-score-drop" | "missing-artifact" | "score-drop" | "count-drop";
+  id: string;
+  message: string;
+  severity: "blocking" | "warning" | "info";
+  baseline: string | number;
+  current: string | number | null;
+  delta?: number;
+};
+
+export type AgentLayerTaskComparison = {
+  taskId: string;
+  title: string;
+  baselineStatus: "pass" | "partial" | "fail";
+  currentStatus: "pass" | "partial" | "fail" | null;
+  statusChanged: boolean;
+  baselineScore: number;
+  currentScore: number | null;
+  scoreDelta: number | null;
+};
+
+export type AgentLayerComparison = {
+  schemaVersion: "agentlayer-comparison/v1";
+  agentLayerVersion: string;
+  targetUrl: string;
+  baselineGeneratedAt: string;
+  currentGeneratedAt: string;
+  comparedAt: string;
+  scanOptions: AgentLayerBaseline["scanOptions"];
+  policy: BlockingPolicy;
+  scores: Record<
+    keyof AgentLayerScoreSet,
+    {
+      baseline: number;
+      current: number;
+      delta: number;
+    }
+  >;
+  tasks: AgentLayerTaskComparison[];
+  artifacts: {
+    baseline: AgentLayerArtifactInventoryItem[];
+    current: AgentLayerArtifactInventoryItem[];
+    missing: AgentLayerArtifactInventoryItem[];
+  };
+  counts: {
+    baseline: AgentLayerInventoryCounts;
+    current: AgentLayerInventoryCounts;
+    delta: AgentLayerInventoryCounts;
+  };
+  regressions: AgentLayerRegression[];
+  blockingFailures: AgentLayerRegression[];
+  recommendations: string[];
+  exitCode: 0 | 1;
+};
