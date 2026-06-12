@@ -61,12 +61,13 @@ SEO 让网站可被发现；AgentLayer 让网站可被 AI agent 操作。
 AgentLayer 是一个开源、确定性的工具包，用来检查一个公开网站是否提供了 AI agent 需要的
 事实、政策说明、动作路径，以及可以人工 review 后发布的 agent-facing artifacts。
 
-v0.1.1 重点是让更多人能试用和反馈。现在有一个托管的只读 demo，可以不用安装就查看报告界面：
+v0.1.1 重点是让更多人能试用和反馈。
+现在有一个托管的只读 demo，可以不用安装就查看报告界面：
 
 https://agentlayer-readonly-demo.vercel.app
 
-这个 demo 使用的是虚构的 AcmeFlow fixture。要扫描真实网站，请在本地运行 CLI，并在发布任何生成
-文件之前先人工检查。
+这个 demo 使用的是虚构的 AcmeFlow fixture。
+要扫描真实网站，请在本地运行 CLI，并在发布任何生成文件之前先人工检查。
 
 如果你试了，欢迎分享扫描结果：URL、command、overall score、wrong facts/actions、
 confusing recommendations，以及 artifacts you would publish。
