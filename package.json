@@ -23,9 +23,10 @@
     "agentlayer": "tsx packages/cli/src/index.ts",
     "dev": "pnpm --filter @agentlayer/web dev",
     "dev:example": "pnpm --filter @agentlayer/example-saas-site dev",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css,html}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css,html}\"",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
     "lint": "pnpm -r --if-present lint",
+    "readability:check": "node scripts/assert-readable.mjs",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },
