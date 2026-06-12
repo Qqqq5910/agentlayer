@@ -1,0 +1,437 @@
+{
+  "schemaVersion": "agentlayer-comparison/v1",
+  "agentLayerVersion": "0.2.0-alpha.1",
+  "targetUrl": "http://localhost:3001/",
+  "baselineGeneratedAt": "2026-06-11T15:32:10.112Z",
+  "currentGeneratedAt": "2026-06-11T15:32:27.227Z",
+  "comparedAt": "2026-06-11T15:32:56.148Z",
+  "scanOptions": {
+    "rootUrl": "http://localhost:3001/",
+    "maxPages": 20,
+    "timeoutMs": 10000,
+    "respectRobotsTxt": true,
+    "allowLocal": true,
+    "crawler": "local",
+    "userAgent": "AgentLayerBot/0.1 (+https://github.com/Qqqq5910/agentlayer)"
+  },
+  "policy": {
+    "failOn": ["missing-artifact"],
+    "minScoreDelta": 5
+  },
+  "scores": {
+    "readability": {
+      "baseline": 100,
+      "current": 100,
+      "delta": 0
+    },
+    "trustability": {
+      "baseline": 96,
+      "current": 96,
+      "delta": 0
+    },
+    "actionability": {
+      "baseline": 91,
+      "current": 91,
+      "delta": 0
+    },
+    "taskSuccess": {
+      "baseline": 86,
+      "current": 86,
+      "delta": 0
+    },
+    "overall": {
+      "baseline": 94,
+      "current": 94,
+      "delta": 0
+    }
+  },
+  "tasks": [
+    {
+      "taskId": "find_pricing",
+      "title": "Find pricing",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 90,
+      "currentScore": 90,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "compare_plans",
+      "title": "Compare plans",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 85,
+      "currentScore": 85,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "book_demo",
+      "title": "Book demo or contact sales",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 90,
+      "currentScore": 90,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "find_docs",
+      "title": "Find documentation",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 85,
+      "currentScore": 85,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "find_security",
+      "title": "Find security and trust information",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 85,
+      "currentScore": 85,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "find_policies",
+      "title": "Find policies",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 85,
+      "currentScore": 85,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "find_integrations",
+      "title": "Find integrations",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 80,
+      "currentScore": 80,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "identify_target_customer",
+      "title": "Identify target customer",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 80,
+      "currentScore": 80,
+      "scoreDelta": 0
+    },
+    {
+      "taskId": "find_support",
+      "title": "Find support",
+      "baselineStatus": "pass",
+      "currentStatus": "pass",
+      "statusChanged": false,
+      "baselineScore": 90,
+      "currentScore": 90,
+      "scoreDelta": 0
+    }
+  ],
+  "artifacts": {
+    "baseline": [
+      {
+        "path": ".well-known/agent-skills/index.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/agents.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/api-catalog",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/mcp.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/mcp/server-card.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "actions.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "artifacts.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "facts.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "form-operability.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "llms-full.txt",
+        "mediaType": "text/plain"
+      },
+      {
+        "path": "llms.txt",
+        "mediaType": "text/plain"
+      },
+      {
+        "path": "markdown/contact.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/customers.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/demo.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/docs-api.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/docs.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/index.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/integrations.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/llms-txt.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/pricing.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/privacy.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/security.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/support.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/terms.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "recommendations.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "report.html",
+        "mediaType": "text/html"
+      },
+      {
+        "path": "report.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "site-profile.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "tasks-report.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "webmcp/suggested-form-annotations.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "webmcp/suggested-webmcp-tools.json",
+        "mediaType": "application/json"
+      }
+    ],
+    "current": [
+      {
+        "path": ".well-known/agent-skills/index.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/api-catalog",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/mcp.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": ".well-known/mcp/server-card.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "actions.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "artifacts.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "facts.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "form-operability.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "llms-full.txt",
+        "mediaType": "text/plain"
+      },
+      {
+        "path": "llms.txt",
+        "mediaType": "text/plain"
+      },
+      {
+        "path": "markdown/contact.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/customers.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/demo.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/docs-api.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/docs.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/index.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/integrations.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/llms-txt.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/pricing.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/privacy.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/security.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/support.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "markdown/terms.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "recommendations.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "report.html",
+        "mediaType": "text/html"
+      },
+      {
+        "path": "report.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "site-profile.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "tasks-report.json",
+        "mediaType": "application/json"
+      },
+      {
+        "path": "webmcp/suggested-form-annotations.md",
+        "mediaType": "text/markdown"
+      },
+      {
+        "path": "webmcp/suggested-webmcp-tools.json",
+        "mediaType": "application/json"
+      }
+    ],
+    "missing": [
+      {
+        "path": ".well-known/agents.json",
+        "mediaType": "application/json"
+      }
+    ]
+  },
+  "counts": {
+    "baseline": {
+      "facts": 24,
+      "actions": 12,
+      "forms": 3
+    },
+    "current": {
+      "facts": 24,
+      "actions": 12,
+      "forms": 3
+    },
+    "delta": {
+      "facts": 0,
+      "actions": 0,
+      "forms": 0
+    }
+  },
+  "regressions": [
+    {
+      "type": "missing-artifact",
+      "id": ".well-known/agents.json",
+      "message": ".well-known/agents.json is missing from the current generated artifacts",
+      "severity": "warning",
+      "baseline": ".well-known/agents.json",
+      "current": null
+    }
+  ],
+  "blockingFailures": [
+    {
+      "type": "missing-artifact",
+      "id": ".well-known/agents.json",
+      "message": ".well-known/agents.json is missing from the current generated artifacts",
+      "severity": "warning",
+      "baseline": ".well-known/agents.json",
+      "current": null
+    }
+  ],
+  "recommendations": [
+    "Review the generated .well-known/agents.json, keep human confirmation on sensitive actions, and publish the approved manifest."
+  ],
+  "exitCode": 1
+}

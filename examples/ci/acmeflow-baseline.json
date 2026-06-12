@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "agentlayer-baseline/v1",
+  "agentLayerVersion": "0.2.0-alpha.1",
+  "targetUrl": "http://localhost:3001/",
+  "generatedAt": "2026-06-11T15:32:10.112Z",
+  "scanOptions": {
+    "rootUrl": "http://localhost:3001/",
+    "maxPages": 20,
+    "timeoutMs": 10000,
+    "respectRobotsTxt": true,
+    "allowLocal": true,
+    "crawler": "local",
+    "userAgent": "AgentLayerBot/0.1 (+https://github.com/Qqqq5910/agentlayer)"
+  },
+  "scores": {
+    "readability": 100,
+    "trustability": 96,
+    "actionability": 91,
+    "taskSuccess": 86,
+    "overall": 94
+  },
+  "tasks": [
+    {
+      "taskId": "find_pricing",
+      "title": "Find pricing",
+      "status": "pass",
+      "score": 90,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "compare_plans",
+      "title": "Compare plans",
+      "status": "pass",
+      "score": 85,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "book_demo",
+      "title": "Book demo or contact sales",
+      "status": "pass",
+      "score": 90,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_docs",
+      "title": "Find documentation",
+      "status": "pass",
+      "score": 85,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_security",
+      "title": "Find security and trust information",
+      "status": "pass",
+      "score": 85,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_policies",
+      "title": "Find policies",
+      "status": "pass",
+      "score": 85,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_integrations",
+      "title": "Find integrations",
+      "status": "pass",
+      "score": 80,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "identify_target_customer",
+      "title": "Identify target customer",
+      "status": "pass",
+      "score": 80,
+      "missingInformation": [],
+      "recommendations": []
+    },
+    {
+      "taskId": "find_support",
+      "title": "Find support",
+      "status": "pass",
+      "score": 90,
+      "missingInformation": [],
+      "recommendations": []
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".well-known/agent-skills/index.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/agents.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/api-catalog",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/mcp.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": ".well-known/mcp/server-card.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "actions.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "artifacts.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "facts.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "form-operability.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "llms-full.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "llms.txt",
+      "mediaType": "text/plain"
+    },
+    {
+      "path": "markdown/contact.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/customers.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/demo.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/docs-api.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/docs.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/index.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/integrations.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/llms-txt.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/pricing.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/privacy.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/security.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/support.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "markdown/terms.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "recommendations.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "report.html",
+      "mediaType": "text/html"
+    },
+    {
+      "path": "report.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "site-profile.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "tasks-report.json",
+      "mediaType": "application/json"
+    },
+    {
+      "path": "webmcp/suggested-form-annotations.md",
+      "mediaType": "text/markdown"
+    },
+    {
+      "path": "webmcp/suggested-webmcp-tools.json",
+      "mediaType": "application/json"
+    }
+  ],
+  "counts": {
+    "facts": 24,
+    "actions": 12,
+    "forms": 3
+  },
+  "acceptedFailures": []
+}

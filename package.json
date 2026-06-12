@@ -1,6 +1,6 @@
 {
   "name": "agentlayer",
-  "version": "0.1.1",
+  "version": "0.2.0-alpha.1",
   "private": true,
   "description": "Monorepo for AgentLayer, a deterministic toolkit for agent-operable websites.",
   "license": "MIT",
@@ -23,8 +23,8 @@
     "agentlayer": "tsx packages/cli/src/index.ts",
     "dev": "pnpm --filter @agentlayer/web dev",
     "dev:example": "pnpm --filter @agentlayer/example-saas-site dev",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css,html}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css,html}\"",
     "lint": "pnpm -r --if-present lint",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"

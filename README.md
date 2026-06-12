@@ -5,7 +5,7 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.1.1-black)
+![Version](https://img.shields.io/badge/version-0.2.0--alpha.1-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
 ![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
@@ -193,14 +193,18 @@ agentlayer doctor https://example.com --max-pages 20
 When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then,
 prefer the repo-local commands above or a local package link.
 
-## AgentLayer CI preview
+## AgentLayer CI Alpha
 
-AgentLayer CI v0.2 is a preview workflow for making agent-operability changes reviewable in pull
-requests. Generate a baseline JSON report for a known target, then run compare on later scans to
-flag task regressions, missing artifacts, and optional score drops.
+AgentLayer CI v0.2.0-alpha.1 adds the first local baseline/compare workflow for making
+agent-operability changes reviewable in pull requests. Generate a baseline JSON report for a known
+target, then run compare on later scans to flag task regressions, missing artifacts, and optional
+score drops. The commands are available now, but the workflow is still alpha.
 
-See [docs/ci.md](./docs/ci.md) for local baseline/compare usage and the GitHub Actions preview
+See [docs/ci.md](./docs/ci.md) for local baseline/compare usage and the GitHub Actions alpha
 workflow.
+
+Example baseline, passing comparison, and failing comparison outputs live in
+[examples/ci](./examples/ci).
 
 ## Help us test real websites
 
@@ -273,7 +277,7 @@ Overall Agent Operability Score is a weighted average:
 The evaluator is deterministic. It uses discovered pages, headings, links, forms, extracted facts,
 actions, and text snippets. It does not require an LLM by default.
 
-## v0.1 Limitations
+## v0.2 Alpha Limitations
 
 - Extraction is heuristic and conservative.
 - AgentLayer does not guarantee compliance with MCP, WebMCP, or any future standard.
@@ -283,7 +287,7 @@ actions, and text snippets. It does not require an LLM by default.
 - The scanner does not crawl authenticated or private areas.
 - The scanner does not perform destructive actions.
 - Remote sites can block crawling; AgentLayer reports those failures rather than bypassing them.
-- The CLI is documented for repo-local `pnpm agentlayer` use in v0.1.
+- The CLI is documented for repo-local `pnpm agentlayer` use in v0.2 alpha.
 - Task checks are tuned for B2B SaaS-style public websites.
 
 ## Roadmap
@@ -314,7 +318,7 @@ GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
 ## Documentation
 
 - [Standards](./docs/standards.md)
-- [AgentLayer CI preview](./docs/ci.md)
+- [AgentLayer CI alpha](./docs/ci.md)
 - [Feedback guide](./docs/feedback.md)
 - [Launch posts](./docs/launch/launch-posts.md)
 - [GitHub metadata](./docs/launch/github-metadata.md)

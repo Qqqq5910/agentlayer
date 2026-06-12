@@ -80,14 +80,20 @@ export default function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  className="inline-flex h-11 items-center gap-2 rounded-md bg-white px-4 font-medium text-slate-950 hover:bg-cyan-50"
+                  className={[
+                    "inline-flex h-11 items-center gap-2 rounded-md bg-white px-4",
+                    "font-medium text-slate-950 hover:bg-cyan-50"
+                  ].join(" ")}
                   href="/scan"
                 >
                   Scan a site
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
                 <Link
-                  className="inline-flex h-11 items-center gap-2 rounded-md border border-white/30 px-4 font-medium text-white hover:bg-white/10"
+                  className={[
+                    "inline-flex h-11 items-center gap-2 rounded-md border border-white/30 px-4",
+                    "font-medium text-white hover:bg-white/10"
+                  ].join(" ")}
                   href="/demo"
                 >
                   View demo report

@@ -5,6 +5,24 @@ All notable changes to AgentLayer will be documented in this file.
 The format follows the spirit of Keep a Changelog, and this project uses semantic versioning once
 packages are published.
 
+## [0.2.0-alpha.1] - 2026-06-11
+
+### Added
+
+- `agentlayer baseline <url>` for saving compact AgentLayer CI baseline JSON reports.
+- `agentlayer compare <url>` for comparing a fresh scan against a saved baseline.
+- Zod schemas and core comparison helpers for baselines, comparisons, regressions, and blocking
+  policies.
+- Opt-in blocking rules for task regressions, missing artifacts, and score drops.
+- Machine-readable comparison JSON and human-readable CLI summaries.
+- AgentLayer CI alpha documentation and GitHub Actions usage guidance.
+- Example CI baseline, passing comparison, and failing comparison outputs under `examples/ci/`.
+
+### Notes
+
+- This is a local-first alpha, not a hosted CI service.
+- npm packages are not published yet; use repo-local `pnpm agentlayer` commands or a local link.
+
 ## [0.1.1] - 2026-06-11
 
 ### Added

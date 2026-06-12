@@ -8,8 +8,11 @@ import {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const REMOTE_SCAN_DISABLED_MESSAGE =
-  "Remote scanning is disabled in the hosted demo. Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites.";
+const REMOTE_SCAN_DISABLED_MESSAGE = [
+  "Remote scanning is disabled in the hosted demo.",
+  "Hosted demo uses the AcmeFlow fixture.",
+  "Run the CLI locally for real sites."
+].join(" ");
 
 type ScanRequestBody = {
   url?: unknown;

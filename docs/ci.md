@@ -1,8 +1,8 @@
-# AgentLayer CI Preview
+# AgentLayer CI Alpha
 
-AgentLayer CI v0.2 is a local-first preview for making agent-operability changes reviewable in pull
-requests. It compares a known-good baseline report against a fresh scan of the same target, then
-marks only configured regressions as blocking.
+AgentLayer CI v0.2.0-alpha.1 is a local-first alpha for making agent-operability changes reviewable
+in pull requests. It compares a known-good baseline report against a fresh scan of the same target,
+then marks only configured regressions as blocking.
 
 This is not a hosted CI service, not a production compliance claim, and not an automatic publishing
 flow. The hosted demo remains read-only and uses the AcmeFlow fixture. Use local scans or owned
@@ -26,20 +26,36 @@ pnpm dev:example
 Create a baseline for a known target:
 
 ```bash
-pnpm agentlayer baseline http://localhost:3001 --out ./agentlayer-baseline.json --max-pages 20 --allow-local
+pnpm agentlayer baseline http://localhost:3001 \
+  --out ./agentlayer-baseline.json \
+  --max-pages 20 \
+  --allow-local
 ```
 
 Compare a later scan of the same target against that baseline:
 
 ```bash
-pnpm agentlayer compare http://localhost:3001 --baseline ./agentlayer-baseline.json --out ./agentlayer-compare.json --fail-on task-regression --fail-on missing-artifact --max-pages 20 --allow-local
+pnpm agentlayer compare http://localhost:3001 \
+  --baseline ./agentlayer-baseline.json \
+  --out ./agentlayer-compare.json \
+  --fail-on task-regression \
+  --fail-on missing-artifact \
+  --max-pages 20 \
+  --allow-local
 ```
 
 For a public site you own, omit `--allow-local`:
 
 ```bash
-pnpm agentlayer baseline https://example.com --out ./agentlayer-baseline.json --max-pages 20
-pnpm agentlayer compare https://example.com --baseline ./agentlayer-baseline.json --out ./agentlayer-compare.json --fail-on task-regression --max-pages 20
+pnpm agentlayer baseline https://example.com \
+  --out ./agentlayer-baseline.json \
+  --max-pages 20
+
+pnpm agentlayer compare https://example.com \
+  --baseline ./agentlayer-baseline.json \
+  --out ./agentlayer-compare.json \
+  --fail-on task-regression \
+  --max-pages 20
 ```
 
 Keep committed baselines small, reviewable, and safe to share. Do not commit reports that contain
@@ -82,7 +98,13 @@ Blocking is opt-in through repeated `--fail-on` flags:
 Example score-drop policy:
 
 ```bash
-pnpm agentlayer compare https://example.com --baseline ./agentlayer-baseline.json --out ./agentlayer-compare.json --fail-on task-regression --fail-on score-drop --min-score-delta 5 --max-pages 20
+pnpm agentlayer compare https://example.com \
+  --baseline ./agentlayer-baseline.json \
+  --out ./agentlayer-compare.json \
+  --fail-on task-regression \
+  --fail-on score-drop \
+  --min-score-delta 5 \
+  --max-pages 20
 ```
 
 Task score drops and count drops are reported as informational unless a future policy promotes them
