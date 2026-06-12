@@ -21,7 +21,10 @@ packages are published.
 ### Notes
 
 - This is a local-first alpha, not a hosted CI service.
-- npm packages are not published yet; use repo-local `pnpm agentlayer` commands or a local link.
+- The workspace packages `@agentlayer/core` and `@agentlayer/cli` are not published yet; use
+  repo-local `pnpm agentlayer` commands or a local link.
+- Do not use `npm install agentlayer`, `npx agentlayer`, or package-manager execution for this
+  repository until the scoped packages are published.
 
 ## [0.1.1] - 2026-06-11
 

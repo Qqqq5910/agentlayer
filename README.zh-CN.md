@@ -28,6 +28,21 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 - 哪些操作路径薄弱
 - 哪些任务失败
 
+## 发布状态
+
+当前源码版本是
+`0.2.0-alpha.1`。这是给本地 baseline/compare 工作流使用的 alpha 候选版本，不是已经发布到 npm 的版本。
+
+请在仓库 checkout 中使用 repo-local 命令：
+
+```bash
+pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+```
+
+workspace 包 `@agentlayer/core` 和 `@agentlayer/cli`
+目前还没有发布到 npm。在 scoped 包正式发布前，不要用 `npm install agentlayer`、`npx agentlayer`
+或其他包管理器执行方式来使用这个项目。
+
 ## 快速了解
 
 | 维度          | AgentLayer 做什么                                                             |
@@ -205,8 +220,9 @@ agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
 agentlayer doctor https://example.com --max-pages 20
 ```
 
-包发布到 npm 后，可以支持 `npx`
-或其他包管理器直接执行。在正式发布前，建议使用上面的 repo-local 命令或本地 link。
+scoped 包发布到 npm 后，可以支持 `npx`
+或其他包管理器直接执行。在正式发布前，建议使用上面的 repo-local 命令或本地 link。不要用裸名
+`agentlayer` npm 包作为本仓库的安装方式。
 
 ## AgentLayer CI alpha
 

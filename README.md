@@ -17,6 +17,21 @@ For developers, AgentLayer provides a TypeScript core package, a repo-local CLI,
 app. For founders and site owners, it turns "will agents understand my site?" into a concrete
 report: missing facts, unclear policies, weak action paths, and task failures.
 
+## Release Status
+
+The current source version is `0.2.0-alpha.1`. It is an alpha release candidate for local
+baseline/compare workflows, not a published npm release.
+
+Use repo-local commands from a checkout:
+
+```bash
+pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+```
+
+The workspace packages `@agentlayer/core` and `@agentlayer/cli` are not published to npm yet. Do not
+use `npm install agentlayer`, `npx agentlayer`, or package-manager execution for this project until
+the scoped packages are published.
+
 ## At a Glance
 
 | Area          | What AgentLayer does                                                                       |
@@ -190,8 +205,9 @@ agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
 agentlayer doctor https://example.com --max-pages 20
 ```
 
-When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then,
-prefer the repo-local commands above or a local package link.
+When the scoped packages are published to npm, the CLI can support `npx`/package-manager execution.
+Until then, prefer the repo-local commands above or a local package link. The bare `agentlayer` npm
+name should not be used for this repository.
 
 ## AgentLayer CI alpha
 
