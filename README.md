@@ -193,7 +193,7 @@ agentlayer doctor https://example.com --max-pages 20
 When packages are published to npm, the CLI can support `npx`/package-manager execution. Until then,
 prefer the repo-local commands above or a local package link.
 
-## AgentLayer CI Alpha
+## AgentLayer CI alpha
 
 AgentLayer CI v0.2.0-alpha.1 adds the first local baseline/compare workflow for making
 agent-operability changes reviewable in pull requests. Generate a baseline JSON report for a known

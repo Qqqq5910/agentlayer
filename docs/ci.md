@@ -1,4 +1,4 @@
-# AgentLayer CI Alpha
+# AgentLayer CI alpha
 
 AgentLayer CI v0.2.0-alpha.1 is a local-first alpha for making agent-operability changes reviewable
 in pull requests. It compares a known-good baseline report against a fresh scan of the same target,
