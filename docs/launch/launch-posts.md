@@ -1,78 +1,125 @@
-# AgentLayer v0.1.1 Launch Posts
+# AgentLayer v0.2.0-alpha.1 Launch Drafts
+
+Use these drafts after the scoped npm packages are published and the `pnpm dlx` smoke test passes.
+Do not post them while `@agentlayer/core` or `@agentlayer/cli` still returns `404` from the npm
+registry.
 
 ## English Short
 
 ```text
-AgentLayer v0.1.1 is out.
+AgentLayer v0.2.0-alpha.1 is ready for public alpha testing.
 
 SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
-This update adds a hosted read-only demo, clearer adoption docs, and a simple way to share real scan
-feedback.
+Try a bounded public-site scan:
 
-Demo: https://agentlayer-readonly-demo.vercel.app
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+
+You get a report with score breakdowns, task evidence, missing evidence, and suggested fixes.
+
 GitHub: https://github.com/Qqqq5910/agentlayer
+Demo: https://agentlayer-readonly-demo.vercel.app
 ```
 
 ## English Longer
 
 ```text
-AgentLayer v0.1.1 is out.
+AgentLayer v0.2.0-alpha.1 is ready for public alpha testing.
 
 SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
 AgentLayer is an open-source deterministic toolkit for checking whether a public website exposes the
 facts, policies, action paths, and reviewable artifacts that AI agents need.
 
-v0.1.1 is focused on adoption. There is now a hosted read-only demo so people can inspect the report
-UI without installing anything:
+This alpha focuses on the first 5-minute path:
 
-https://agentlayer-readonly-demo.vercel.app
+- install and run the scoped CLI with pnpm dlx
+- scan bounded public pages
+- open report.html
+- see why tasks passed, failed, or need evidence
+- compare local CI baselines when agent-operability changes
+- share real scan feedback safely
 
-The demo uses the fictional AcmeFlow fixture. To scan a real site, run the CLI locally and review the
-generated outputs before publishing anything.
+Try it:
 
-If you try it, please share your scan result: URL, command, overall score, wrong facts/actions,
-confusing recommendations, and which artifacts you would publish.
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+open ./agentlayer-output/report.html
+
+The hosted demo is read-only and uses a fictional AcmeFlow fixture. For a real site, run the CLI
+locally and review generated artifacts before publishing them.
+
+If you try it, please share what looked wrong or confusing: task results, facts/actions,
+recommendations, and which artifacts you would actually publish.
 
 GitHub: https://github.com/Qqqq5910/agentlayer
+Demo: https://agentlayer-readonly-demo.vercel.app
 ```
 
 ## Chinese Short
 
 ```text
-AgentLayer v0.1.1 发布了。
+AgentLayer v0.2.0-alpha.1 可以公开 alpha 测试了。
 
-SEO 让网站可被发现；AgentLayer 让网站可被 AI agent 操作。
+SEO 让网站可被发现；AgentLayer 让网站可被 AI Agent 操作。
 
-这次更新加入了托管只读 demo、采用反馈文档，以及一个收集真实站点扫描结果的模板。
+试扫一个公开网站：
 
-Demo: https://agentlayer-readonly-demo.vercel.app
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+
+你会得到一份报告：分数、任务证据、缺失证据、修复建议都会写清楚。
+
 GitHub: https://github.com/Qqqq5910/agentlayer
+Demo: https://agentlayer-readonly-demo.vercel.app
 ```
 
 ## Chinese Longer
 
 ```text
-AgentLayer v0.1.1 发布了。
+AgentLayer v0.2.0-alpha.1 可以公开 alpha 测试了。
 
-SEO 让网站可被发现；AgentLayer 让网站可被 AI agent 操作。
+SEO 让网站可被发现；AgentLayer 让网站可被 AI Agent 操作。
 
-AgentLayer 是一个开源、确定性的工具包，用来检查一个公开网站是否提供了 AI agent 需要的
-事实、政策说明、动作路径，以及可以人工 review 后发布的 agent-facing artifacts。
+AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是否提供了 AI Agent 需要的事实、
+政策说明、动作路径，以及可以人工 review 后发布的 agent-facing artifacts。
 
-v0.1.1 重点是让更多人能试用和反馈。
-现在有一个托管的只读 demo，可以不用安装就查看报告界面：
+这个 alpha 版本重点打通 5 分钟试用路径：
 
-https://agentlayer-readonly-demo.vercel.app
+- 用 pnpm dlx 运行 scoped CLI
+- 扫描有边界的公开页面
+- 打开 report.html
+- 看清楚任务为什么通过、失败或缺少证据
+- 用本地 CI baseline/compare 检查 agent-operability 回归
+- 安全地反馈真实网站扫描结果
 
-这个 demo 使用的是虚构的 AcmeFlow fixture。
-要扫描真实网站，请在本地运行 CLI，并在发布任何生成文件之前先人工检查。
+试用：
 
-如果你试了，欢迎分享扫描结果：URL、command、overall score、wrong facts/actions、
-confusing recommendations，以及 artifacts you would publish。
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+open ./agentlayer-output/report.html
+
+在线 demo 是只读的，使用虚构的 AcmeFlow fixture。真实网站请在本地运行 CLI，并在发布任何
+生成文件之前先人工检查。
+
+如果你试了，欢迎反馈：任务结果、facts/actions、recommendations 哪里不准或不清楚，以及哪些
+artifacts 你真的愿意发布。
 
 GitHub: https://github.com/Qqqq5910/agentlayer
+Demo: https://agentlayer-readonly-demo.vercel.app
+```
+
+## Outreach Prompts
+
+Use these for direct asks to early testers:
+
+```text
+Could you run AgentLayer on one public SaaS/docs site you control and send me the report summary?
+I am looking for wrong facts/actions, confusing recommendations, and whether report.html points to
+2-3 useful website fixes.
+```
+
+```text
+I am collecting real public-site scans for AgentLayer's alpha. No private URLs or customer data.
+The useful feedback is: overall score, failed/partial tasks, false positives, and artifacts you
+would publish after review.
 ```
 
 ## Alternative Taglines
