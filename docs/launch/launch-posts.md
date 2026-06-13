@@ -4,6 +4,9 @@ Use these drafts after the scoped npm packages are published and the `pnpm dlx` 
 Do not post them while `@junyi5910/agentlayer-core` or `@junyi5910/agentlayer-cli` still returns
 `404` from the npm registry.
 
+For China-specific launch formats, use [Xiaohongshu](./xiaohongshu-post.md) and
+[Douyin](./douyin-post.md).
+
 ## English Short
 
 ```text
@@ -13,7 +16,7 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
 Try a bounded public-site scan:
 
-pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://your-site.com --out ./agentlayer-output --max-pages 20
 
 You get a report with score breakdowns, task evidence, missing evidence, and suggested fixes.
 
@@ -42,7 +45,7 @@ This alpha focuses on the first 5-minute path:
 
 Try it:
 
-pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://your-site.com --out ./agentlayer-output --max-pages 20
 open ./agentlayer-output/report.html
 
 The hosted demo is read-only and uses a fictional AcmeFlow fixture. For a real site, run the CLI
@@ -64,7 +67,7 @@ SEO 让网站可被发现；AgentLayer 让网站可被 AI Agent 操作。
 
 试扫一个公开网站：
 
-pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://your-site.com --out ./agentlayer-output --max-pages 20
 
 你会得到一份报告：分数、任务证据、缺失证据、修复建议都会写清楚。
 
@@ -93,7 +96,7 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 
 试用：
 
-pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://your-site.com --out ./agentlayer-output --max-pages 20
 open ./agentlayer-output/report.html
 
 在线 demo 是只读的，使用虚构的 AcmeFlow fixture。真实网站请在本地运行 CLI，并在发布任何

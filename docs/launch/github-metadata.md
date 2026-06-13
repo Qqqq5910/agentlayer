@@ -63,6 +63,6 @@ Publish launch posts only after:
 - `@junyi5910/agentlayer-core@0.2.0-alpha.3` is visible on npm.
 - `@junyi5910/agentlayer-cli@0.2.0-alpha.3` is visible on npm.
 - `pnpm dlx @junyi5910/agentlayer-cli --help` works in a fresh directory.
-- `pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 3`
+- `pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://example.com --out ./agentlayer-output --max-pages 3`
   completes.
 - GitHub `main` includes the release commits.

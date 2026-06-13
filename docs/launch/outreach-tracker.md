@@ -24,6 +24,7 @@ external feedback still waiting on real users.
   operators.
 - Existing GitHub, Discord, Slack, X, LinkedIn, or newsletter relationships where direct product
   feedback is normal.
+- Public posts on Xiaohongshu or Douyin using the platform-specific launch drafts.
 - Open-source maintainers who publish public docs and care about AI-agent readability.
 - Friendly customers or peers who can safely share a public marketing/docs URL.
 
