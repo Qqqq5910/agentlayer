@@ -1,0 +1,61 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-018",
+  "sourceLabel": "product-analytics-developer-platform",
+  "siteType": "Product analytics developer platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 85,
+    "readability": 82,
+    "trustability": 85,
+    "actionability": 91,
+    "taskSuccess": 79
+  },
+  "tasks": {
+    "pass": [
+      "Find pricing",
+      "Compare plans",
+      "Book demo or contact sales",
+      "Find documentation",
+      "Find policies",
+      "Find integrations",
+      "Identify target customer"
+    ],
+    "partial": ["Find security and trust information", "Find support"],
+    "fail": [],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Improve task: Find security and trust information",
+    "Improve task: Find support",
+    "Expose sitemap.xml",
+    "Review and publish the agent action manifest"
+  ],
+  "heuristicObservations": [
+    "Bounded scan captured 20 public page snapshots across 13 page category/categories.",
+    "Partial journey tasks: Find security and trust information; Find support.",
+    "Recommendation title suggests sitemap discovery was absent or not usable for this bounded run.",
+    "Candidate actions were emitted; this sample keeps only counts and review-oriented artifact notes.",
+    "Forms were detected but not submitted; this sample excludes field payloads and submission data."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "source-backed fact count summary",
+    "reviewed action-manifest summary",
+    "form operability summary without field payloads"
+  ],
+  "artifactCounts": {
+    "facts": 34,
+    "actions": 10,
+    "forms": 1
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

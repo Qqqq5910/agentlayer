@@ -5,6 +5,22 @@ All notable changes to AgentLayer will be documented in this file.
 The format follows the spirit of Keep a Changelog, and published packages use semantic-versioned
 releases.
 
+## [0.2.0-alpha.3] - 2026-06-14
+
+### Added
+
+- Added 10 more anonymized real-world public-site scan summaries under `examples/real-world/`,
+  bringing the committed feedback sample set to 20.
+- Documented two real-scan heuristic patterns: canonical-domain redirects that produce no-page
+  reports, and fragment-only form actions.
+
+### Fixed
+
+- Form actions such as `action="#"` now fall back to the source page URL before becoming generated
+  AgentLayer actions. Reports and `.well-known/agents.json` can now be generated for client-side
+  demo/contact forms that use fragment-only action attributes.
+- Added regression coverage for fragment-only form actions in report and artifact generation.
+
 ## [0.2.0-alpha.2] - 2026-06-13
 
 ### Fixed

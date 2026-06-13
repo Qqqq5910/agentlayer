@@ -1,0 +1,223 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-012",
+  "source": "bounded public root URL scan report",
+  "sourceLabel": "database-backend-developer-platform",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Database and backend developer platform",
+  "reportAvailability": "available",
+  "scannedAt": "2026-06-13T16:11:28.376Z",
+  "generatedAt": "2026-06-13T16:11:28.397Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": null,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPagesObserved": 20,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true,
+    "inferredFromReportJson": true
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 2
+  },
+  "pagesScanned": 20,
+  "pageInventory": [
+    {
+      "pageRef": "page-001",
+      "status": 200,
+      "pageType": "home",
+      "pathCategory": "home",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-002",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-003",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-004",
+      "status": 200,
+      "pageType": "llms",
+      "pathCategory": "llms",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-005",
+      "status": 200,
+      "pageType": "pricing",
+      "pathCategory": "pricing",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-006",
+      "status": 200,
+      "pageType": "privacy",
+      "pathCategory": "privacy",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-007",
+      "status": 200,
+      "pageType": "security",
+      "pathCategory": "security",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-008",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-009",
+      "status": 200,
+      "pageType": "terms",
+      "pathCategory": "terms",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-010",
+      "status": 200,
+      "pageType": "privacy",
+      "pathCategory": "privacy",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-011",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-012",
+      "status": 200,
+      "pageType": "contact",
+      "pathCategory": "contact",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-013",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-014",
+      "status": 200,
+      "pageType": "security",
+      "pathCategory": "security",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-015",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-016",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-017",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-018",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-019",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-020",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    }
+  ],
+  "pageInventorySummary": [
+    {
+      "pageType": "contact",
+      "count": 1
+    },
+    {
+      "pageType": "customers",
+      "count": 7
+    },
+    {
+      "pageType": "docs",
+      "count": 2
+    },
+    {
+      "pageType": "home",
+      "count": 1
+    },
+    {
+      "pageType": "llms",
+      "count": 1
+    },
+    {
+      "pageType": "pricing",
+      "count": 1
+    },
+    {
+      "pageType": "privacy",
+      "count": 2
+    },
+    {
+      "pageType": "security",
+      "count": 2
+    },
+    {
+      "pageType": "support",
+      "count": 2
+    },
+    {
+      "pageType": "terms",
+      "count": 1
+    }
+  ],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

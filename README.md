@@ -5,7 +5,7 @@ SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.2.0--alpha.2-black)
+![Version](https://img.shields.io/badge/version-0.2.0--alpha.3-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
 ![CI](https://github.com/Qqqq5910/agentlayer/actions/workflows/ci.yml/badge.svg)
 
@@ -19,7 +19,7 @@ report: missing facts, unclear policies, weak action paths, and task failures.
 
 ## Release Status
 
-The current source version is `0.2.0-alpha.2`. It is an alpha release for trying AgentLayer on
+The current source version is `0.2.0-alpha.3`. It is an alpha release for trying AgentLayer on
 public websites and local baseline/compare workflows.
 
 Alpha packages are published as `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`. The

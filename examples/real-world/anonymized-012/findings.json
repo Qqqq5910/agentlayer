@@ -1,0 +1,60 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-012",
+  "sourceLabel": "database-backend-developer-platform",
+  "siteType": "Database and backend developer platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 87,
+    "readability": 97,
+    "trustability": 96,
+    "actionability": 79,
+    "taskSuccess": 77
+  },
+  "tasks": {
+    "pass": [
+      "Find pricing",
+      "Compare plans",
+      "Book demo or contact sales",
+      "Find documentation",
+      "Find security and trust information",
+      "Find policies",
+      "Identify target customer",
+      "Find support"
+    ],
+    "partial": [],
+    "fail": ["Find integrations"],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Improve task: Find integrations",
+    "Review and publish the agent action manifest",
+    "Improve form operability"
+  ],
+  "heuristicObservations": [
+    "Bounded scan captured 20 public page snapshots across 10 page category/categories.",
+    "Failed journey tasks: Find integrations.",
+    "Candidate actions were emitted; this sample keeps only counts and review-oriented artifact notes.",
+    "Forms were detected but not submitted; this sample excludes field payloads and submission data."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "source-backed fact count summary",
+    "reviewed action-manifest summary",
+    "form operability summary without field payloads"
+  ],
+  "artifactCounts": {
+    "facts": 44,
+    "actions": 28,
+    "forms": 18
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

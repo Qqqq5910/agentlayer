@@ -1,0 +1,62 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-011",
+  "sourceLabel": "mature-productivity-saas",
+  "siteType": "Productivity and issue-tracking SaaS",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 77,
+    "readability": 73,
+    "trustability": 76,
+    "actionability": 90,
+    "taskSuccess": 63
+  },
+  "tasks": {
+    "pass": ["Find documentation", "Find integrations", "Identify target customer", "Find support"],
+    "partial": [
+      "Find pricing",
+      "Book demo or contact sales",
+      "Find security and trust information",
+      "Find policies"
+    ],
+    "fail": ["Compare plans"],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Add /llms.txt",
+    "Improve task: Find pricing",
+    "Improve task: Compare plans",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Review and publish the agent action manifest"
+  ],
+  "heuristicObservations": [
+    "Bounded scan captured 20 public page snapshots across 6 page category/categories.",
+    "Failed journey tasks: Compare plans.",
+    "Partial journey tasks: Find pricing; Book demo or contact sales; Find security and trust information; Find policies.",
+    "Recommendation title suggests no machine-readable /llms.txt artifact was confirmed in this bounded run.",
+    "Candidate actions were emitted; this sample keeps only counts and review-oriented artifact notes.",
+    "Forms were detected but not submitted; this sample excludes field payloads and submission data."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "source-backed fact count summary",
+    "reviewed action-manifest summary",
+    "form operability summary without field payloads"
+  ],
+  "artifactCounts": {
+    "facts": 30,
+    "actions": 19,
+    "forms": 1
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

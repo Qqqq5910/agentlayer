@@ -1,0 +1,69 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-020",
+  "sourceLabel": "serverless-database-platform",
+  "siteType": "Serverless database developer platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 21,
+    "readability": 24,
+    "trustability": 12,
+    "actionability": 40,
+    "taskSuccess": 0
+  },
+  "tasks": {
+    "pass": [],
+    "partial": [],
+    "fail": [
+      "Find pricing",
+      "Compare plans",
+      "Book demo or contact sales",
+      "Find documentation",
+      "Find security and trust information",
+      "Find policies",
+      "Find integrations",
+      "Identify target customer",
+      "Find support"
+    ],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Add /llms.txt",
+    "Improve task: Find pricing",
+    "Improve task: Compare plans",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find documentation",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Improve task: Find integrations",
+    "Improve task: Identify target customer",
+    "Improve task: Find support",
+    "Add source-backed facts",
+    "Expose agent action paths"
+  ],
+  "heuristicObservations": [
+    "Report was produced with scores and task failures but no page snapshots; treat this as crawl-coverage feedback, not a product judgment.",
+    "Failed journey tasks: Find pricing; Compare plans; Book demo or contact sales; Find documentation; Find security and trust information; Find policies; Find integrations; Identify target customer; Find support.",
+    "Crawl issues observed: outside_allowed_crawl_scope (20).",
+    "Recommendation title suggests no machine-readable /llms.txt artifact was confirmed in this bounded run.",
+    "No source-backed facts were emitted in the report."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "crawl issue count summary"
+  ],
+  "artifactCounts": {
+    "facts": 0,
+    "actions": 0,
+    "forms": 0
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

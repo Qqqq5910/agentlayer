@@ -1,0 +1,71 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-015",
+  "sourceLabel": "frontend-deployment-platform",
+  "siteType": "Frontend cloud deployment platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 53,
+    "readability": 53,
+    "trustability": 61,
+    "actionability": 66,
+    "taskSuccess": 22
+  },
+  "tasks": {
+    "pass": ["Identify target customer"],
+    "partial": ["Book demo or contact sales", "Find support"],
+    "fail": [
+      "Find pricing",
+      "Compare plans",
+      "Find documentation",
+      "Find security and trust information",
+      "Find policies",
+      "Find integrations"
+    ],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Improve task: Find pricing",
+    "Improve task: Compare plans",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find documentation",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Improve task: Find integrations",
+    "Improve task: Find support",
+    "Expose sitemap.xml",
+    "Publish robots.txt",
+    "Review and publish the agent action manifest"
+  ],
+  "heuristicObservations": [
+    "Only 2 public page snapshot(s) were captured; failed journeys may reflect bounded crawler coverage.",
+    "Failed journey tasks: Find pricing; Compare plans; Find documentation; Find security and trust information; Find policies; Find integrations.",
+    "Partial journey tasks: Book demo or contact sales; Find support.",
+    "Crawl issues observed: too_many_redirects (43), outside_allowed_crawl_scope (4).",
+    "Recommendation title suggests sitemap discovery was absent or not usable for this bounded run.",
+    "Recommendation title suggests robots.txt was not confirmed during this bounded run.",
+    "Candidate actions were emitted; this sample keeps only counts and review-oriented artifact notes.",
+    "Forms were detected but not submitted; this sample excludes field payloads and submission data."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "source-backed fact count summary",
+    "reviewed action-manifest summary",
+    "form operability summary without field payloads",
+    "crawl issue count summary"
+  ],
+  "artifactCounts": {
+    "facts": 3,
+    "actions": 1,
+    "forms": 1
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

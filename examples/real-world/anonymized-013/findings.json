@@ -1,0 +1,59 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-013",
+  "sourceLabel": "payments-infrastructure-platform",
+  "siteType": "Payments and financial infrastructure platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 74,
+    "readability": 76,
+    "trustability": 86,
+    "actionability": 73,
+    "taskSuccess": 58
+  },
+  "tasks": {
+    "pass": ["Find pricing", "Compare plans", "Identify target customer", "Find support"],
+    "partial": ["Book demo or contact sales", "Find documentation", "Find policies"],
+    "fail": ["Find security and trust information", "Find integrations"],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find documentation",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Improve task: Find integrations",
+    "Expose sitemap.xml",
+    "Review and publish the agent action manifest"
+  ],
+  "heuristicObservations": [
+    "Bounded scan captured 20 public page snapshots across 6 page category/categories.",
+    "Failed journey tasks: Find security and trust information; Find integrations.",
+    "Partial journey tasks: Book demo or contact sales; Find documentation; Find policies.",
+    "Crawl issues observed: outside_allowed_crawl_scope (6).",
+    "Recommendation title suggests sitemap discovery was absent or not usable for this bounded run.",
+    "Candidate actions were emitted; this sample keeps only counts and review-oriented artifact notes.",
+    "Forms were detected but not submitted; this sample excludes field payloads and submission data."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "source-backed fact count summary",
+    "reviewed action-manifest summary",
+    "form operability summary without field payloads",
+    "crawl issue count summary"
+  ],
+  "artifactCounts": {
+    "facts": 28,
+    "actions": 19,
+    "forms": 1
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

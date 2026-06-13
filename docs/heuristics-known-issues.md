@@ -41,6 +41,35 @@ remaining items are still candidate follow-up work.
 - Test fixture idea: Public root links to `https://support.example.net/help`; assert no crawl
   occurs, but the report preserves a safe skipped-journey hint.
 
+## Observed: Canonical Domain Redirects Can Produce No-Page Reports
+
+- Pattern: A public root on one domain can redirect most important paths to a different canonical
+  domain. Seen in a `v0.2.0-alpha.2` sample where the requested host redirected to another public
+  host, leaving zero page snapshots and nine failed tasks.
+- Expected: Same-host safety should still prevent silently crawling a different host, but the report
+  should tell the user to rerun against the canonical destination rather than treating every missing
+  task as ordinary content absence.
+- Fix idea: Preserve the redirect target host in a redacted/safe diagnostic and add a top-level
+  recommendation such as "Rerun against the canonical host" when most candidates are skipped as
+  outside allowed scope.
+- Test fixture idea: Fixture root `https://old.example/` redirects important paths to
+  `https://new.example/`; assert the report classifies this as a canonical-host coverage issue.
+
+## Observed: Fragment-Only Form Actions Can Break Action URLs
+
+- Status: fixed in source with regression coverage for `action="#"` forms.
+- Pattern: Some demo/contact forms declare `action="#"` and rely on client-side JavaScript or the
+  current page as the effective submission target. A `v0.2.0-alpha.2` real-world scan exposed this
+  as an invalid action URL during artifact generation.
+- Expected: Fragment-only form actions should not prevent report generation. AgentLayer should fall
+  back to the source page URL for the reviewable action manifest and mark the form action as not a
+  stable explicit URL.
+- Fix idea: Normalize form action URLs before emitting `AgentAction.url`; if normalization fails,
+  use the page URL while preserving the form-operability recommendation to declare a stable HTTP(S)
+  action.
+- Test fixture idea: A `/demo` page with `<form method="post" action="#">`; assert report and
+  `.well-known/agents.json` generation succeeds and the action URL is `/demo`.
+
 ## Observed: Redirect Loops Produce Sparse Or Partial Samples
 
 - Pattern: Several public roots or candidate paths returned too-many-redirects, sometimes leaving

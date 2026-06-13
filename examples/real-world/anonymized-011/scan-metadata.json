@@ -1,0 +1,207 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-011",
+  "source": "bounded public root URL scan report",
+  "sourceLabel": "mature-productivity-saas",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Productivity and issue-tracking SaaS",
+  "reportAvailability": "available",
+  "scannedAt": "2026-06-13T15:44:30.541Z",
+  "generatedAt": "2026-06-13T15:44:30.550Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": null,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPagesObserved": 20,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true,
+    "inferredFromReportJson": true
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 915
+  },
+  "pagesScanned": 20,
+  "pageInventory": [
+    {
+      "pageRef": "page-001",
+      "status": 200,
+      "pageType": "home",
+      "pathCategory": "home",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-002",
+      "status": 200,
+      "pageType": "integrations",
+      "pathCategory": "integrations",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-003",
+      "status": 200,
+      "pageType": "contact",
+      "pathCategory": "contact",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-004",
+      "status": 200,
+      "pageType": "contact",
+      "pathCategory": "contact",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-005",
+      "status": 200,
+      "pageType": "api_docs",
+      "pathCategory": "api_docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-006",
+      "status": 200,
+      "pageType": "api_docs",
+      "pathCategory": "api_docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-007",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-008",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-009",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-010",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-011",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-012",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-013",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-014",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-015",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-016",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-017",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-018",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-019",
+      "status": 200,
+      "pageType": "docs",
+      "pathCategory": "docs",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-020",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    }
+  ],
+  "pageInventorySummary": [
+    {
+      "pageType": "api_docs",
+      "count": 2
+    },
+    {
+      "pageType": "contact",
+      "count": 2
+    },
+    {
+      "pageType": "docs",
+      "count": 13
+    },
+    {
+      "pageType": "home",
+      "count": 1
+    },
+    {
+      "pageType": "integrations",
+      "count": 1
+    },
+    {
+      "pageType": "support",
+      "count": 1
+    }
+  ],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

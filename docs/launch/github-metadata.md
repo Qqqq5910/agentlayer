@@ -1,6 +1,6 @@
 # GitHub Metadata
 
-Recommended metadata for the AgentLayer v0.2.0-alpha.2 public alpha.
+Recommended metadata for the AgentLayer v0.2.0-alpha.3 public alpha.
 
 ## Description
 
@@ -61,8 +61,8 @@ because npm rejected creating the org for this release.
 
 Publish launch posts only after:
 
-- `@junyi5910/agentlayer-core@0.2.0-alpha.2` is visible on npm.
-- `@junyi5910/agentlayer-cli@0.2.0-alpha.2` is visible on npm.
+- `@junyi5910/agentlayer-core@0.2.0-alpha.3` is visible on npm.
+- `@junyi5910/agentlayer-cli@0.2.0-alpha.3` is visible on npm.
 - `pnpm dlx @junyi5910/agentlayer-cli --help` works in a fresh directory.
 - `pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 3`
   completes.

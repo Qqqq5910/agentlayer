@@ -1,0 +1,62 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-019",
+  "sourceLabel": "email-api-messaging-platform",
+  "siteType": "Email API and messaging platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 74,
+    "readability": 73,
+    "trustability": 82,
+    "actionability": 71,
+    "taskSuccess": 70
+  },
+  "tasks": {
+    "pass": [
+      "Find pricing",
+      "Compare plans",
+      "Find security and trust information",
+      "Find integrations",
+      "Identify target customer",
+      "Find support"
+    ],
+    "partial": ["Book demo or contact sales", "Find documentation"],
+    "fail": ["Find policies"],
+    "unavailable": []
+  },
+  "recommendationTitles": [
+    "Add /llms.txt",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find documentation",
+    "Improve task: Find policies",
+    "Review and publish the agent action manifest"
+  ],
+  "heuristicObservations": [
+    "Bounded scan captured 20 public page snapshots across 9 page category/categories.",
+    "Failed journey tasks: Find policies.",
+    "Partial journey tasks: Book demo or contact sales; Find documentation.",
+    "Recommendation title suggests no machine-readable /llms.txt artifact was confirmed in this bounded run.",
+    "Candidate actions were emitted; this sample keeps only counts and review-oriented artifact notes.",
+    "Forms were detected but not submitted; this sample excludes field payloads and submission data."
+  ],
+  "artifactsWouldPublish": [
+    "anonymized scan summary",
+    "score snapshot",
+    "pass/partial/fail task table",
+    "page inventory summary without raw text",
+    "source-backed fact count summary",
+    "reviewed action-manifest summary",
+    "form operability summary without field payloads"
+  ],
+  "artifactCounts": {
+    "facts": 28,
+    "actions": 16,
+    "forms": 6
+  },
+  "rawContentIncluded": false,
+  "fullFactsIncluded": false,
+  "fullActionsIncluded": false,
+  "fullFormsIncluded": false,
+  "privateDataIncluded": false
+}

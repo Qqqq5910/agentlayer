@@ -1,0 +1,79 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-015",
+  "source": "bounded public root URL scan report",
+  "sourceLabel": "frontend-deployment-platform",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Frontend cloud deployment platform",
+  "reportAvailability": "available",
+  "scannedAt": "2026-06-13T16:14:11.687Z",
+  "generatedAt": "2026-06-13T16:14:11.697Z",
+  "scanStatus": "completed_limited_page_coverage",
+  "commandExitCodes": {
+    "scan": null,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPagesObserved": 2,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true,
+    "inferredFromReportJson": true
+  },
+  "robotsTxt": {
+    "found": false,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": false,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 0
+  },
+  "pagesScanned": 2,
+  "pageInventory": [
+    {
+      "pageRef": "page-001",
+      "status": 200,
+      "pageType": "home",
+      "pathCategory": "home",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-002",
+      "status": 200,
+      "pageType": "llms",
+      "pathCategory": "llms",
+      "sameHost": true
+    }
+  ],
+  "pageInventorySummary": [
+    {
+      "pageType": "home",
+      "count": 1
+    },
+    {
+      "pageType": "llms",
+      "count": 1
+    }
+  ],
+  "crawlErrorCounts": {
+    "too_many_redirects": 43,
+    "outside_allowed_crawl_scope": 4
+  },
+  "crawlErrorExamples": [
+    {
+      "type": "outside_allowed_crawl_scope",
+      "count": 4,
+      "exampleTarget": "redacted"
+    },
+    {
+      "type": "too_many_redirects",
+      "count": 43,
+      "exampleTarget": "redacted"
+    }
+  ]
+}

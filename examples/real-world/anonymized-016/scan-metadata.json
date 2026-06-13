@@ -1,0 +1,61 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-016",
+  "source": "bounded public root URL scan report",
+  "sourceLabel": "observability-developer-saas",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Observability and developer monitoring SaaS",
+  "reportAvailability": "available",
+  "scannedAt": "2026-06-13T16:37:51.819Z",
+  "generatedAt": "2026-06-13T16:37:51.824Z",
+  "scanStatus": "completed_with_no_page_snapshots",
+  "commandExitCodes": {
+    "scan": null,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPagesObserved": 0,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true,
+    "inferredFromReportJson": true
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": false,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 0
+  },
+  "pagesScanned": 0,
+  "pageInventory": [],
+  "pageInventorySummary": [],
+  "crawlErrorCounts": {
+    "too_many_redirects": 18,
+    "robots_txt_disallowed": 1,
+    "outside_allowed_crawl_scope": 1
+  },
+  "crawlErrorExamples": [
+    {
+      "type": "outside_allowed_crawl_scope",
+      "count": 1,
+      "exampleTarget": "redacted"
+    },
+    {
+      "type": "robots_txt_disallowed",
+      "count": 1,
+      "exampleTarget": "redacted"
+    },
+    {
+      "type": "too_many_redirects",
+      "count": 18,
+      "exampleTarget": "redacted"
+    }
+  ]
+}

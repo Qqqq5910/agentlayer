@@ -26,6 +26,10 @@ honestly instead of inventing results.
 
 ## Current Sample Set
 
+The current set includes 20 anonymized samples. `anonymized-001` through `anonymized-010` are early
+bounded exploration samples. `anonymized-011` through `anonymized-020` are `v0.2.0-alpha.2` public
+site scans capped at 20 pages, covering high-scoring, mid-scoring, and crawl-coverage failure cases.
+
 - `anonymized-001`: API platform / developer tool; completed; 5 page(s); overall score 57.
 - `anonymized-002`: Observability and security SaaS;
   partial_json_after_timed_out_or_interrupted_cli; 3 page(s); overall score unavailable.
@@ -42,3 +46,19 @@ honestly instead of inventing results.
   score 71.
 - `anonymized-010`: Database developer platform; failed_or_blocked_before_scan_json; 0 page(s);
   overall score unavailable.
+- `anonymized-011`: Productivity and issue-tracking SaaS; completed; 20 page(s); overall score 77.
+- `anonymized-012`: Database and backend developer platform; completed; 20 page(s); overall
+  score 87.
+- `anonymized-013`: Payments and financial infrastructure platform; completed; 20 page(s); overall
+  score 74.
+- `anonymized-014`: Frontend cloud and developer platform; completed; 20 page(s); overall score 72.
+- `anonymized-015`: Frontend cloud deployment platform; completed_limited_page_coverage; 2 page(s);
+  overall score 53.
+- `anonymized-016`: Observability and developer monitoring SaaS; completed_with_no_page_snapshots; 0
+  page(s); overall score 18.
+- `anonymized-017`: Identity and authentication developer platform; completed; 20 page(s); overall
+  score 78.
+- `anonymized-018`: Product analytics developer platform; completed; 20 page(s); overall score 85.
+- `anonymized-019`: Email API and messaging platform; completed; 20 page(s); overall score 74.
+- `anonymized-020`: Serverless database developer platform; completed_with_no_page_snapshots; 0
+  page(s); overall score 21.

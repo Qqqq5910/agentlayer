@@ -1,0 +1,219 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-019",
+  "source": "bounded public root URL scan report",
+  "sourceLabel": "email-api-messaging-platform",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Email API and messaging platform",
+  "reportAvailability": "available",
+  "scannedAt": "2026-06-13T16:38:26.489Z",
+  "generatedAt": "2026-06-13T16:38:26.498Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": null,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPagesObserved": 20,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true,
+    "inferredFromReportJson": true
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 103
+  },
+  "pagesScanned": 20,
+  "pageInventory": [
+    {
+      "pageRef": "page-001",
+      "status": 200,
+      "pageType": "home",
+      "pathCategory": "home",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-002",
+      "status": 200,
+      "pageType": "contact",
+      "pathCategory": "contact",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-003",
+      "status": 200,
+      "pageType": "customers",
+      "pathCategory": "customers",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-004",
+      "status": 200,
+      "pageType": "unknown",
+      "pathCategory": "unknown",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-005",
+      "status": 200,
+      "pageType": "pricing",
+      "pathCategory": "pricing",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-006",
+      "status": 200,
+      "pageType": "security",
+      "pathCategory": "security",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-007",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-008",
+      "status": 200,
+      "pageType": "unknown",
+      "pathCategory": "unknown",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-009",
+      "status": 200,
+      "pageType": "faq",
+      "pathCategory": "faq",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-010",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-011",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-012",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-013",
+      "status": 200,
+      "pageType": "faq",
+      "pathCategory": "faq",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-014",
+      "status": 200,
+      "pageType": "faq",
+      "pathCategory": "faq",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-015",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-016",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-017",
+      "status": 200,
+      "pageType": "unknown",
+      "pathCategory": "unknown",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-018",
+      "status": 200,
+      "pageType": "integrations",
+      "pathCategory": "integrations",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-019",
+      "status": 200,
+      "pageType": "unknown",
+      "pathCategory": "unknown",
+      "sameHost": true
+    },
+    {
+      "pageRef": "page-020",
+      "status": 200,
+      "pageType": "support",
+      "pathCategory": "support",
+      "sameHost": true
+    }
+  ],
+  "pageInventorySummary": [
+    {
+      "pageType": "contact",
+      "count": 1
+    },
+    {
+      "pageType": "customers",
+      "count": 1
+    },
+    {
+      "pageType": "faq",
+      "count": 3
+    },
+    {
+      "pageType": "home",
+      "count": 1
+    },
+    {
+      "pageType": "integrations",
+      "count": 1
+    },
+    {
+      "pageType": "pricing",
+      "count": 1
+    },
+    {
+      "pageType": "security",
+      "count": 1
+    },
+    {
+      "pageType": "support",
+      "count": 7
+    },
+    {
+      "pageType": "unknown",
+      "count": 4
+    }
+  ],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

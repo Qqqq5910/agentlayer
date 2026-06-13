@@ -1,0 +1,49 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-020",
+  "source": "bounded public root URL scan report",
+  "sourceLabel": "serverless-database-platform",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Serverless database developer platform",
+  "reportAvailability": "available",
+  "scannedAt": "2026-06-13T16:37:56.134Z",
+  "generatedAt": "2026-06-13T16:37:56.139Z",
+  "scanStatus": "completed_with_no_page_snapshots",
+  "commandExitCodes": {
+    "scan": null,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPagesObserved": 0,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true,
+    "inferredFromReportJson": true
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 0
+  },
+  "pagesScanned": 0,
+  "pageInventory": [],
+  "pageInventorySummary": [],
+  "crawlErrorCounts": {
+    "outside_allowed_crawl_scope": 20
+  },
+  "crawlErrorExamples": [
+    {
+      "type": "outside_allowed_crawl_scope",
+      "count": 20,
+      "exampleTarget": "redacted"
+    }
+  ]
+}

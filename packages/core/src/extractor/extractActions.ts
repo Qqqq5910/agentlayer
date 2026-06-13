@@ -1,5 +1,6 @@
 import type { AgentAction, ExtractedForm, PageSnapshot, SiteScan } from "../schemas.js";
 import { dedupeBy, includesAny, slugify } from "../utils/text.js";
+import { normalizeUrl } from "../utils/urls.js";
 
 export function extractActions(scan: SiteScan): AgentAction[] {
   const actions: AgentAction[] = [];
@@ -20,6 +21,7 @@ export function extractActions(scan: SiteScan): AgentAction[] {
 
 function actionFromForm(page: PageSnapshot, form: ExtractedForm): AgentAction {
   const name = actionNameFromPurpose(form.purpose, page);
+  const actionUrl = stableActionUrl(form, page);
   const sensitivity = sensitivityFor(
     `${form.purpose} ${form.submitText ?? ""} ${page.visibleText}`
   );
@@ -34,7 +36,7 @@ function actionFromForm(page: PageSnapshot, form: ExtractedForm): AgentAction {
     description: descriptionForActionName(name),
     userIntent: userIntentForActionName(name),
     actionType: "form",
-    url: form.action ?? page.finalUrl,
+    url: actionUrl,
     method: form.method,
     requiredFields: form.fields,
     requiresHumanConfirmation,
@@ -42,6 +44,10 @@ function actionFromForm(page: PageSnapshot, form: ExtractedForm): AgentAction {
     sourceUrl: form.sourceUrl,
     confidence: form.purpose === "unknown form" ? 0.55 : 0.85
   };
+}
+
+function stableActionUrl(form: ExtractedForm, page: PageSnapshot): string {
+  return form.action ? (normalizeUrl(form.action, page.finalUrl) ?? page.finalUrl) : page.finalUrl;
 }
 
 function navigationActionForPage(page: PageSnapshot): AgentAction | null {
