@@ -19,8 +19,8 @@ The fastest path is to comment on the pinned feedback issue:
 
 - [Share your AgentLayer scan result](https://github.com/Qqqq5910/agentlayer/issues/1)
 
-If you are inviting someone else to test AgentLayer, send them the
-[alpha tester kit](./launch/tester-kit.md).
+If you are inviting someone else to test AgentLayer, start with the
+[launch materials](./launch/README.md) or send them the [alpha tester kit](./launch/tester-kit.md).
 
 Use the GitHub issue template that best matches the scan:
 
@@ -55,7 +55,7 @@ Please include these fields:
 
 ```text
 URL: https://example.com
-command: pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 20
+command: pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://example.com --out ./agentlayer-output --max-pages 20
 overall score: 78
 wrong facts/actions: The scanner treated the newsletter form as a contact-sales action.
 confusing recommendations: The pricing recommendation mentioned plan limits, but our pricing page

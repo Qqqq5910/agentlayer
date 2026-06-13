@@ -8,13 +8,13 @@ report, and use to send useful feedback.
 
 ## Result Checklist
 
-| Result                       | Status             | Evidence                                                                                                                                                                                                                                                           |
-| ---------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| npm alpha installable        | Complete           | `@junyi5910/agentlayer-cli@0.2.0-alpha.3` and `@junyi5910/agentlayer-core@0.2.0-alpha.3` are published. `latest` and `alpha` npm dist-tags point to `0.2.0-alpha.3`. Published CLI smoke passed on GitHub Actions.                                                 |
-| README first screen converts | Complete           | `README.md` and `README.zh-CN.md` lead with positioning, badges, release status, `pnpm dlx` quickstart, generated artifact caveats, and safety boundaries.                                                                                                         |
-| Report is explainable        | Complete           | `report.html` includes score breakdown, scoring guide link, task reasons, evidence, missing evidence, next fixes, recommendations, crawl issues, generated artifacts, actions, forms, and facts. `docs/scoring.md` documents score areas and limitations.          |
-| Real website feedback loop   | Partially complete | Maintainer seed set has 20 anonymized public-site scan summaries under `examples/real-world/`. Feedback docs, issue templates, pinned issue, and outreach tracker exist. External-user feedback remains pending until testers submit real results.                 |
-| CI alpha reproducible        | Complete           | `docs/ci.md`, `examples/ci/README.md`, `examples/ci/github-actions-public-site.yml`, `examples/ci/github-actions-local-fixture.yml`, baseline JSON, passing comparison JSON, failing comparison JSON, and `.github/workflows/published-cli-smoke.yml` are present. |
+| Result                       | Status             | Evidence                                                                                                                                                                                                                                                             |
+| ---------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| npm alpha installable        | Complete           | `@junyi5910/agentlayer-cli@0.2.0-alpha.3` and `@junyi5910/agentlayer-core@0.2.0-alpha.3` are published. `latest` and `alpha` npm dist-tags point to `0.2.0-alpha.3`. Published CLI smoke passed on GitHub Actions.                                                   |
+| README first screen converts | Complete           | `README.md` and `README.zh-CN.md` lead with positioning, badges, release status, `pnpm dlx` quickstart, generated artifact caveats, and safety boundaries.                                                                                                           |
+| Report is explainable        | Complete           | `report.html` includes score breakdown, scoring guide link, task reasons, evidence, missing evidence, next fixes, recommendations, crawl issues, generated artifacts, actions, forms, and facts. `docs/scoring.md` documents score areas and limitations.            |
+| Real website feedback loop   | Partially complete | Maintainer seed set has 20 anonymized public-site scan summaries under `examples/real-world/`. Feedback docs, issue templates, pinned issue, launch materials, and outreach tracker exist. External-user feedback remains pending until testers submit real results. |
+| CI alpha reproducible        | Complete           | `docs/ci.md`, `examples/ci/README.md`, `examples/ci/github-actions-public-site.yml`, `examples/ci/github-actions-local-fixture.yml`, baseline JSON, passing comparison JSON, failing comparison JSON, and `.github/workflows/published-cli-smoke.yml` are present.   |
 
 ## Task Audit
 
@@ -58,6 +58,9 @@ The repository can prove that the product is installable, documented, explainabl
 CI, and seeded with maintainer-run real-world scans. It cannot prove that 10 external testers have
 run it or that 5 actionable external feedback reports have been collected until those people submit
 results.
+
+`docs/launch/outreach-tracker.md` includes maintainer simulation rows to show the desired tracking
+format. Those rows are useful practice records, but they do not count as external-user evidence.
 
 Treat this as the remaining non-code month-one work:
 
