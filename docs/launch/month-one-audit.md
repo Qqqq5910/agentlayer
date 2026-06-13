@@ -60,7 +60,10 @@ run it or that 5 actionable external feedback reports have been collected until 
 results.
 
 `docs/launch/outreach-tracker.md` includes maintainer simulation rows to show the desired tracking
-format. Those rows are useful practice records, but they do not count as external-user evidence.
+format. Those rows are useful practice records, but they do not count as external-user evidence. Two
+maintainer-seed candidate issues were opened from those simulations:
+[#3](https://github.com/Qqqq5910/agentlayer/issues/3) for canonical-domain redirect diagnostics and
+[#4](https://github.com/Qqqq5910/agentlayer/issues/4) for high-signal bounded crawl prioritization.
 
 Treat this as the remaining non-code month-one work:
 
