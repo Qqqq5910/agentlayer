@@ -8,10 +8,10 @@ Share your AgentLayer scan result
 
 ## Intro
 
-AgentLayer v0.1.1 is looking for real public-site scan feedback. The read-only demo at
+AgentLayer is looking for real public-site scan feedback. The read-only demo at
 https://agentlayer-readonly-demo.vercel.app uses the fictional AcmeFlow fixture so people can
-inspect the report UI. For feedback on your own site, please run the CLI locally and paste the scan
-details below.
+inspect the report UI. For feedback on your own site, please run the CLI and paste the scan details
+below.
 
 Please avoid sharing private tokens, internal URLs, customer data, or other sensitive information.
 
@@ -35,5 +35,5 @@ artifacts you would publish:
 
 ## Maintainer Note
 
-Pin this issue during the v0.1.1 adoption window and point people to `docs/feedback.md` for the
-longer feedback guide.
+Pin this issue during the public alpha feedback window and point people to `docs/feedback.md` for
+the longer feedback guide.

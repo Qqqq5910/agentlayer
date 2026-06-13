@@ -1,8 +1,7 @@
 # Share AgentLayer Scan Results
 
-AgentLayer v0.1.1 benefits most from real scans of real public sites. If you try it, please share
-what it got right, what it got wrong, and which generated artifacts you would actually publish after
-review.
+AgentLayer benefits most from real scans of real public sites. If you try it, please share what it
+got right, what it got wrong, and which generated artifacts you would actually publish after review.
 
 The hosted read-only demo is available at:
 
@@ -38,7 +37,7 @@ Please include these fields:
 
 ```text
 URL: https://example.com
-command: pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+command: pnpm dlx @agentlayer/cli generate https://example.com --out ./agentlayer-output --max-pages 20
 overall score: 78
 wrong facts/actions: The scanner treated the newsletter form as a contact-sales action.
 confusing recommendations: The pricing recommendation mentioned plan limits, but our pricing page

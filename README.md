@@ -13,24 +13,23 @@ AgentLayer is an open-source, deterministic toolkit for checking whether a publi
 read, trusted, and operated by AI agents. It scans public pages, extracts sourced facts, identifies
 action paths, runs task checks, and generates draft artifacts you can review before publishing.
 
-For developers, AgentLayer provides a TypeScript core package, a repo-local CLI, and a Next.js demo
+For developers, AgentLayer provides a TypeScript core package, an npm alpha CLI, and a Next.js demo
 app. For founders and site owners, it turns "will agents understand my site?" into a concrete
 report: missing facts, unclear policies, weak action paths, and task failures.
 
 ## Release Status
 
-The current source version is `0.2.0-alpha.1`. It is an alpha release candidate for local
-baseline/compare workflows, not a published npm release.
+The current source version is `0.2.0-alpha.1`. It is an alpha release for trying AgentLayer on
+public websites and local baseline/compare workflows.
 
-Use repo-local commands from a checkout:
+Run the CLI without installing it globally:
 
 ```bash
-pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
-The workspace packages `@agentlayer/core` and `@agentlayer/cli` are not published to npm yet. Do not
-use `npm install agentlayer`, `npx agentlayer`, or package-manager execution for this project until
-the scoped packages are published.
+Generated artifacts are drafts. Review facts, actions, policies, and standards-related files before
+publishing them on a production site.
 
 ## At a Glance
 
@@ -66,7 +65,7 @@ generated `report.html`:
 
 ```bash
 pnpm dev:example
-pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
+pnpm dlx @agentlayer/cli generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
 ```
 
 The preview above is the current generated artifact preview and is safe to render directly on
@@ -153,45 +152,43 @@ Card drafts, API Catalog, Agent Skills, WebMCP, and Markdown alternatives.
 
 ## Quickstart
 
-Start the example SaaS site:
+Scan a public website and generate draft artifacts:
 
 ```bash
-pnpm install
-pnpm build
-pnpm dev:example
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
-In another terminal, scan the fixture and generate artifacts:
+Open `./agentlayer-output/report.html` to review the report. Treat generated files as drafts: review
+sourced facts, action boundaries, and MCP/WebMCP/API Catalog/Agent Skills suggestions before
+publishing anything.
 
-```bash
-pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
-pnpm agentlayer doctor http://localhost:3001 --max-pages 20 --allow-local
-```
+AgentLayer scans bounded public pages. It follows same-host, max-page, timeout, and robots.txt
+limits; it does not submit forms, crawl private/authenticated areas, or perform destructive actions.
 
-Optionally run the local web app:
-
-```bash
-pnpm dev
-```
-
-The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at `http://localhost:3001`.
+To run the example SaaS fixture or the local web app from a repository checkout, see
+[Development](#development).
 
 ## CLI Usage
 
-AgentLayer is currently documented for repo-local use. Use `pnpm agentlayer` when running from a
-repository checkout. For a first real-site trial, use:
+Recommended alpha command:
 
 ```bash
-pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
-pnpm agentlayer doctor https://example.com --max-pages 20
+pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+```
+
+For a first real-site trial:
+
+```bash
+pnpm dlx @agentlayer/cli generate https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @agentlayer/cli doctor https://example.com --max-pages 20
 ```
 
 Additional commands:
 
 ```bash
-pnpm agentlayer scan https://example.com --out ./agentlayer-output --max-pages 20
-pnpm agentlayer test https://example.com --tasks ./examples/tasks/b2b-saas.default.json --out ./agentlayer-report.json
-pnpm agentlayer init-fixture --out ./agentlayer-output/tasks
+pnpm dlx @agentlayer/cli scan https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @agentlayer/cli test https://example.com --out ./agentlayer-report.json
+pnpm dlx @agentlayer/cli init-fixture --out ./agentlayer-output/tasks
 ```
 
 `init-fixture` writes `b2b-saas.default.json` into the output directory unless you pass a `.json`
@@ -205,9 +202,8 @@ agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
 agentlayer doctor https://example.com --max-pages 20
 ```
 
-When the scoped packages are published to npm, the CLI can support `npx`/package-manager execution.
-Until then, prefer the repo-local commands above or a local package link. The bare `agentlayer` npm
-name should not be used for this repository.
+The bare `agentlayer` npm package name is not this repository. Use the scoped package
+`@agentlayer/cli`.
 
 ## AgentLayer CI alpha
 
@@ -297,13 +293,12 @@ actions, and text snippets. It does not require an LLM by default.
 
 - Extraction is heuristic and conservative.
 - AgentLayer does not guarantee compliance with MCP, WebMCP, or any future standard.
-- Generated manifests are suggestions that must be reviewed before production use.
+- Generated artifacts and manifests are drafts that must be reviewed before production use.
 - Crawls are bounded by same-host links, `maxPages`, request timeouts, and robots.txt guidance.
 - The scanner does not submit forms.
 - The scanner does not crawl authenticated or private areas.
 - The scanner does not perform destructive actions.
 - Remote sites can block crawling; AgentLayer reports those failures rather than bypassing them.
-- The CLI is documented for repo-local `pnpm agentlayer` use in v0.2 alpha.
 - Task checks are tuned for B2B SaaS-style public websites.
 
 ## Roadmap
@@ -321,6 +316,8 @@ actions, and text snippets. It does not require an LLM by default.
 
 ## Development
 
+Use repo-local commands when running from a repository checkout:
+
 ```bash
 pnpm install
 pnpm lint
@@ -328,6 +325,27 @@ pnpm typecheck
 pnpm test
 pnpm build
 ```
+
+Start the example SaaS site:
+
+```bash
+pnpm dev:example
+```
+
+In another terminal, scan the fixture with the repo-local CLI:
+
+```bash
+pnpm agentlayer generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
+pnpm agentlayer doctor http://localhost:3001 --max-pages 20 --allow-local
+```
+
+Optionally run the local web app:
+
+```bash
+pnpm dev
+```
+
+The web app runs at `http://localhost:3000`. The AcmeFlow fixture runs at `http://localhost:3001`.
 
 GitHub Actions runs the same lint, typecheck, test, and build commands on pushes and pull requests.
 
