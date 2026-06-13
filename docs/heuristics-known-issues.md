@@ -1,8 +1,8 @@
 # Heuristics Known Issues
 
 These notes come from the anonymized real-world scan samples in `examples/real-world`. They are
-heuristic observations only. This document does not claim any evaluator, crawler, extractor, or
-generator fix has been made.
+heuristic observations only. Items marked `fixed in source` have focused regression coverage; the
+remaining items are still candidate follow-up work.
 
 ## Observed: Bounded Crawl Misses Public Evidence
 
@@ -18,6 +18,8 @@ generator fix has been made.
 
 ## Observed: Blog URL Keywords Can Become Page-Type False Positives
 
+- Status: fixed in source with regression tests for blog pricing/security/integration false
+  positives.
 - Pattern: Blog article URLs containing words such as pricing, security, integrations, or trust can
   be classified as canonical task pages. Seen in `anonymized-009`, where multiple blog paths were
   typed as pricing/security/integrations.
@@ -53,6 +55,8 @@ generator fix has been made.
 
 ## Observed: Demo Or Contact-Sales Often Becomes Partial Without Form Detection
 
+- Status: fixed in source for task wording. The score remains partial, but the explanation now
+  distinguishes a discovered action URL from missing operable form or required-field evidence.
 - Pattern: The scanner finds a demo/contact-sales navigation path but reports partial because no
   actionable form is detected in the bounded crawl. Seen across multiple completed samples.
 - Expected: Navigation-only evidence should remain partial, but recommendations should avoid

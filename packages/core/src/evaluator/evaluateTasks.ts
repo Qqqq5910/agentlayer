@@ -295,9 +295,11 @@ function evaluateActionPath(
       task,
       "partial",
       60,
-      "A navigation path exists, but no actionable form was detected.",
+      "A journey path was discovered, but no operable form or required-field evidence was detected.",
       evidence,
-      ["Expose field labels and purpose for the relevant form."],
+      [
+        "Keep the action URL discoverable and expose an operable form with labeled required fields for this journey."
+      ],
       journeySteps
     );
   }
@@ -536,7 +538,7 @@ function actionJourneySteps(
           ? `${fieldsWithNames.length} of ${requiredFields.length} fields expose stable names; ${labeledFields.length} expose labels.`
           : "The action is form-based, but no fields were extracted."
         : firstAction
-          ? "The action is navigational, so form fields are not available for deterministic submission."
+          ? "The action URL is discoverable, but no form or required-field evidence is available for deterministic submission."
           : "No action was available for field analysis.",
       evidenceUrls,
       evidenceSnippets: requiredFields

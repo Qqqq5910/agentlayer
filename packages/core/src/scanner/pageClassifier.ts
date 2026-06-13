@@ -15,6 +15,17 @@ type ClassifierInput = {
 export function classifyPage(input: ClassifierInput): string {
   const url = new URL(input.url);
   const path = url.pathname.toLowerCase();
+  const pathSegments = path.split("/").filter(Boolean);
+  const firstSegment = pathSegments[0] ?? "";
+  const isEditorialContentPath = [
+    "article",
+    "articles",
+    "blog",
+    "blogs",
+    "news",
+    "resource",
+    "resources"
+  ].includes(firstSegment);
   const titleAndHeadings = [
     input.title ?? "",
     input.description ?? "",
@@ -33,16 +44,19 @@ export function classifyPage(input: ClassifierInput): string {
   if (path.endsWith("/llms.txt")) {
     return "llms";
   }
-  if (includesAny(path, ["/docs/api", "/api", "/developers"])) {
+  if (
+    pathStartsWith(pathSegments, ["docs", "api"]) ||
+    firstPathSegmentIs(pathSegments, ["api", "developers"])
+  ) {
     return "api_docs";
   }
-  if (includesAny(path, ["/pricing", "/plans"])) {
+  if (firstPathSegmentIs(pathSegments, ["pricing", "plans"])) {
     return "pricing";
   }
-  if (includesAny(path, ["/docs", "/documentation"])) {
+  if (firstPathSegmentIs(pathSegments, ["docs", "documentation"])) {
     return "docs";
   }
-  if (includesAny(path, ["/security", "/trust", "/compliance"])) {
+  if (firstPathSegmentIs(pathSegments, ["security", "trust", "compliance"])) {
     return "security";
   }
   if (includesAny(path, ["/privacy"]) || includesAny(context, ["privacy policy"])) {
@@ -73,8 +87,14 @@ export function classifyPage(input: ClassifierInput): string {
     return "support";
   }
   if (
-    includesAny(path, ["/integrations", "/connectors"]) ||
-    includesAny(titleAndHeadings, ["integration", "integrations", "connectors", "apps marketplace"])
+    firstPathSegmentIs(pathSegments, ["integrations", "connectors"]) ||
+    (!isEditorialContentPath &&
+      includesAny(titleAndHeadings, [
+        "integration",
+        "integrations",
+        "connectors",
+        "apps marketplace"
+      ]))
   ) {
     return "integrations";
   }
@@ -84,16 +104,22 @@ export function classifyPage(input: ClassifierInput): string {
   ) {
     return "customers";
   }
-  if (includesAny(titleAndHeadings, ["api reference", "developer docs"])) {
+  if (
+    !isEditorialContentPath &&
+    includesAny(titleAndHeadings, ["api reference", "developer docs"])
+  ) {
     return "api_docs";
   }
-  if (includesAny(titleAndHeadings, ["documentation", "docs"])) {
+  if (!isEditorialContentPath && includesAny(titleAndHeadings, ["documentation", "docs"])) {
     return "docs";
   }
-  if (includesAny(titleAndHeadings, ["pricing", "plans", "price"])) {
+  if (!isEditorialContentPath && includesAny(titleAndHeadings, ["pricing", "plans", "price"])) {
     return "pricing";
   }
-  if (includesAny(titleAndHeadings, ["security", "trust center", "soc 2", "compliance", "gdpr"])) {
+  if (
+    !isEditorialContentPath &&
+    includesAny(titleAndHeadings, ["security", "trust center", "soc 2", "compliance", "gdpr"])
+  ) {
     return "security";
   }
   if (includesAny(context, ["faq", "frequently asked questions"])) {
@@ -101,4 +127,12 @@ export function classifyPage(input: ClassifierInput): string {
   }
 
   return "unknown";
+}
+
+function pathStartsWith(pathSegments: readonly string[], prefix: readonly string[]): boolean {
+  return prefix.every((segment, index) => pathSegments[index] === segment);
+}
+
+function firstPathSegmentIs(pathSegments: readonly string[], values: readonly string[]): boolean {
+  return values.includes(pathSegments[0] ?? "");
 }
