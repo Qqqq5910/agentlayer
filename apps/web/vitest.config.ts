@@ -9,7 +9,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@agentlayer/core": fileURLToPath(
+      "@junyi5910/agentlayer-core": fileURLToPath(
         new URL("../../packages/core/src/index.ts", import.meta.url)
       )
     }

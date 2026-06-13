@@ -32,10 +32,13 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 
 当前源码版本是 `0.2.0-alpha.1`。这是用于公开网站试用和本地 baseline/compare 工作流的 alpha 版本。
 
+Alpha 包发布为 `@junyi5910/agentlayer-core` 和 `@junyi5910/agentlayer-cli`。`@agentlayer` org
+scope 仍计划保留；当前 alpha 使用 `@junyi5910` scope，因为 npm org 创建被拒，需要 support 解锁。
+
 无需全局安装，可以直接运行 CLI：
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 生成文件都是草案。发布到生产站点前，请先审阅事实、操作、政策和标准相关文件。
@@ -74,7 +77,7 @@ pnpm dev
 
 ```bash
 pnpm dev:example
-pnpm dlx @agentlayer/cli generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
+pnpm dlx @junyi5910/agentlayer-cli generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
 ```
 
 上方图片是当前生成文件预览，可以直接在 GitHub 上渲染。发布前可以使用
@@ -170,7 +173,7 @@ Catalog、Agent Skills、WebMCP 和 Markdown 替代页。
 扫描一个公开网站并生成草案文件：
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 打开 `./agentlayer-output/report.html`
@@ -186,22 +189,22 @@ AgentLayer 只扫描有边界的公开页面。它遵守同站、页数、超时
 推荐的 alpha 命令：
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 第一次扫描真实网站建议使用：
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://example.com --out ./agentlayer-output --max-pages 20
-pnpm dlx @agentlayer/cli doctor https://example.com --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli doctor https://example.com --max-pages 20
 ```
 
 其他命令：
 
 ```bash
-pnpm dlx @agentlayer/cli scan https://example.com --out ./agentlayer-output --max-pages 20
-pnpm dlx @agentlayer/cli test https://example.com --out ./agentlayer-report.json
-pnpm dlx @agentlayer/cli init-fixture --out ./agentlayer-output/tasks
+pnpm dlx @junyi5910/agentlayer-cli scan https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli test https://example.com --out ./agentlayer-report.json
+pnpm dlx @junyi5910/agentlayer-cli init-fixture --out ./agentlayer-output/tasks
 ```
 
 `init-fixture` 会把 `b2b-saas.default.json` 写入输出目录；如果传入 `.json`
@@ -214,7 +217,7 @@ agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20
 agentlayer doctor https://example.com --max-pages 20
 ```
 
-裸名 `agentlayer` npm 包不是本仓库。请使用 scoped package：`@agentlayer/cli`。
+裸名 `agentlayer` npm 包不是本仓库。请使用 scoped package：`@junyi5910/agentlayer-cli`。
 
 ## AgentLayer CI alpha
 

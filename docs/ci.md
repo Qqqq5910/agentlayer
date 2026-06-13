@@ -10,10 +10,14 @@ public URLs for CI.
 
 ## Published CLI Usage
 
+For `v0.2.0-alpha.1`, the published alpha packages are `@junyi5910/agentlayer-core` and
+`@junyi5910/agentlayer-cli`. The `@agentlayer` npm org scope remains the future migration target;
+this alpha uses the user scope because npm rejected creating the org for this release.
+
 Create a baseline for a public site you own:
 
 ```bash
-pnpm dlx @agentlayer/cli baseline https://example.com \
+pnpm dlx @junyi5910/agentlayer-cli baseline https://example.com \
   --out ./agentlayer-baseline.json \
   --max-pages 20
 ```
@@ -21,7 +25,7 @@ pnpm dlx @agentlayer/cli baseline https://example.com \
 Compare a later scan of the same target against that baseline:
 
 ```bash
-pnpm dlx @agentlayer/cli compare https://example.com \
+pnpm dlx @junyi5910/agentlayer-cli compare https://example.com \
   --baseline ./agentlayer-baseline.json \
   --out ./agentlayer-compare.json \
   --fail-on task-regression \
@@ -32,12 +36,12 @@ pnpm dlx @agentlayer/cli compare https://example.com \
 For a local app or fixture, start the app in another terminal and include `--allow-local`:
 
 ```bash
-pnpm dlx @agentlayer/cli baseline http://localhost:3001 \
+pnpm dlx @junyi5910/agentlayer-cli baseline http://localhost:3001 \
   --out ./agentlayer-baseline.json \
   --max-pages 20 \
   --allow-local
 
-pnpm dlx @agentlayer/cli compare http://localhost:3001 \
+pnpm dlx @junyi5910/agentlayer-cli compare http://localhost:3001 \
   --baseline ./agentlayer-baseline.json \
   --out ./agentlayer-compare.json \
   --fail-on task-regression \
@@ -126,7 +130,7 @@ Blocking is opt-in through repeated `--fail-on` flags:
 Example score-drop policy:
 
 ```bash
-pnpm dlx @agentlayer/cli compare https://example.com \
+pnpm dlx @junyi5910/agentlayer-cli compare https://example.com \
   --baseline ./agentlayer-baseline.json \
   --out ./agentlayer-compare.json \
   --fail-on task-regression \
@@ -173,8 +177,8 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: >
-          pnpm dlx @agentlayer/cli compare https://example.com --baseline ./agentlayer-baseline.json
-          --fail-on task-regression
+          pnpm dlx @junyi5910/agentlayer-cli compare https://example.com --baseline
+          ./agentlayer-baseline.json --fail-on task-regression
 ```
 
 Replace `./agentlayer-baseline.json` with the committed baseline path for your project. Make sure

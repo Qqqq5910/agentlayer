@@ -19,13 +19,13 @@ jobs:
           node-version: 24
 
       - name: Check published CLI help
-        run: pnpm dlx @agentlayer/cli --help
+        run: pnpm dlx @junyi5910/agentlayer-cli --help
 
       - name: Doctor public fixture
-        run: pnpm dlx @agentlayer/cli doctor https://example.com --max-pages 3
+        run: pnpm dlx @junyi5910/agentlayer-cli doctor https://example.com --max-pages 3
 
       - name: Generate public fixture
         run: |
-          pnpm dlx @agentlayer/cli generate https://example.com \
+          pnpm dlx @junyi5910/agentlayer-cli generate https://example.com \
             --out ./agentlayer-output \
             --max-pages 3

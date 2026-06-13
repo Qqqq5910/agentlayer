@@ -21,7 +21,7 @@ type CoreFunctionApi = Record<CoreFunctionName, (...args: unknown[]) => unknown>
 type CoreApiWithRequired<T extends CoreFunctionName> = CoreApi & Required<Pick<CoreFunctionApi, T>>;
 
 type UnknownCoreModule = Record<string, unknown>;
-const CORE_PACKAGE_NAME = "@agentlayer/core";
+const CORE_PACKAGE_NAME = "@junyi5910/agentlayer-core";
 const CORE_SOURCE_URL = new URL("../../core/src/index.ts", import.meta.url).href;
 
 export type CoreApi = Partial<CoreFunctionApi> & {
@@ -45,7 +45,7 @@ export async function loadCoreApi<const T extends readonly CoreFunctionName[]>(
   for (const functionName of requiredFunctions) {
     if (typeof core[functionName] !== "function") {
       throw new CliError(
-        `Installed @agentlayer/core is incompatible: missing export "${functionName}". Rebuild or reinstall @agentlayer/core, then retry.`
+        `Installed @junyi5910/agentlayer-core is incompatible: missing export "${functionName}". Rebuild or reinstall @junyi5910/agentlayer-core, then retry.`
       );
     }
   }
@@ -62,8 +62,8 @@ async function importCoreModule(): Promise<UnknownCoreModule> {
     } catch (packageError) {
       throw new CliError(
         [
-          "Could not load @agentlayer/core.",
-          "Run pnpm install from the repo root or rebuild @agentlayer/core, then retry.",
+          "Could not load @junyi5910/agentlayer-core.",
+          "Run pnpm install from the repo root or rebuild @junyi5910/agentlayer-core, then retry.",
           `Source import failed: ${formatCoreError(sourceError)}.`,
           `Package import failed: ${formatCoreError(packageError)}.`
         ].join(" ")
@@ -203,7 +203,7 @@ async function invokePureWithAttempts<T>(
   }
 
   throw new CliError(
-    `Could not call @agentlayer/core ${label}. This CLI may be paired with an incompatible core build. Last error: ${formatCoreError(lastError)}`
+    `Could not call @junyi5910/agentlayer-core ${label}. This CLI may be paired with an incompatible core build. Last error: ${formatCoreError(lastError)}`
   );
 }
 

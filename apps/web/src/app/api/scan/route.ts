@@ -3,7 +3,7 @@ import {
   assertPublicHttpUrlResolved,
   buildAgentLayerReport,
   generateArtifacts
-} from "@agentlayer/core";
+} from "@junyi5910/agentlayer-core";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

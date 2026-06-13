@@ -18,7 +18,8 @@ releases.
   scan summaries.
 - Feedback issue templates for real scans, false positives, and confusing recommendations.
 - Copyable CI workflow examples under `examples/ci/`.
-- Manual published CLI smoke workflow for post-publish `pnpm dlx @agentlayer/cli` verification.
+- Manual published CLI smoke workflow for post-publish `pnpm dlx @junyi5910/agentlayer-cli`
+  verification.
 - Release checklist documenting npm publish order, post-publish smoke tests, and GitHub sync timing.
 - v0.2.0-alpha.1 launch drafts and pinned scan-feedback issue copy.
 - Zod schemas and core comparison helpers for baselines, comparisons, regressions, and blocking
@@ -46,8 +47,11 @@ releases.
 ### Notes
 
 - This is a local-first alpha, not a hosted CI service.
+- This alpha publishes `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`; the
+  `@agentlayer` npm org scope remains the future migration target because npm rejected creating the
+  org for this alpha.
 - Use the scoped npm alpha CLI for quickstarts:
-  `pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20`.
+  `pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20`.
   Repo-local `pnpm agentlayer` commands are for repository checkouts and fixture development.
 - Do not use the unscoped `agentlayer` package name.
 

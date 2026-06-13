@@ -11,8 +11,8 @@ vi.mock("node:dns/promises", () => ({
 const buildAgentLayerReportMock = vi.hoisted(() => vi.fn());
 const generateArtifactsMock = vi.hoisted(() => vi.fn());
 
-vi.mock("@agentlayer/core", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@agentlayer/core")>();
+vi.mock("@junyi5910/agentlayer-core", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@junyi5910/agentlayer-core")>();
   return {
     ...actual,
     buildAgentLayerReport: buildAgentLayerReportMock,

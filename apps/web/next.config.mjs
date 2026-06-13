@@ -1,7 +1,7 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  serverExternalPackages: ["@agentlayer/core"]
+  serverExternalPackages: ["@junyi5910/agentlayer-core"]
 };
 
 export default nextConfig;

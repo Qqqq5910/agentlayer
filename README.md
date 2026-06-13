@@ -22,10 +22,14 @@ report: missing facts, unclear policies, weak action paths, and task failures.
 The current source version is `0.2.0-alpha.1`. It is an alpha release for trying AgentLayer on
 public websites and local baseline/compare workflows.
 
+Alpha packages are published as `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`. The
+`@agentlayer` org scope is still planned; this alpha uses the `@junyi5910` scope because npm
+rejected org creation and support needs to unlock it.
+
 Run the CLI without installing it globally:
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 Generated artifacts are drafts. Review facts, actions, policies, and standards-related files before
@@ -65,7 +69,7 @@ generated `report.html`:
 
 ```bash
 pnpm dev:example
-pnpm dlx @agentlayer/cli generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
+pnpm dlx @junyi5910/agentlayer-cli generate http://localhost:3001 --out ./agentlayer-output --max-pages 20 --allow-local
 ```
 
 The preview above is the current generated artifact preview and is safe to render directly on
@@ -155,7 +159,7 @@ Card drafts, API Catalog, Agent Skills, WebMCP, and Markdown alternatives.
 Scan a public website and generate draft artifacts:
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 Open `./agentlayer-output/report.html` to review the report. Treat generated files as drafts: review
@@ -173,22 +177,22 @@ To run the example SaaS fixture or the local web app from a repository checkout,
 Recommended alpha command:
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 For a first real-site trial:
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://example.com --out ./agentlayer-output --max-pages 20
-pnpm dlx @agentlayer/cli doctor https://example.com --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli doctor https://example.com --max-pages 20
 ```
 
 Additional commands:
 
 ```bash
-pnpm dlx @agentlayer/cli scan https://example.com --out ./agentlayer-output --max-pages 20
-pnpm dlx @agentlayer/cli test https://example.com --out ./agentlayer-report.json
-pnpm dlx @agentlayer/cli init-fixture --out ./agentlayer-output/tasks
+pnpm dlx @junyi5910/agentlayer-cli scan https://example.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli test https://example.com --out ./agentlayer-report.json
+pnpm dlx @junyi5910/agentlayer-cli init-fixture --out ./agentlayer-output/tasks
 ```
 
 `init-fixture` writes `b2b-saas.default.json` into the output directory unless you pass a `.json`
@@ -203,7 +207,7 @@ agentlayer doctor https://example.com --max-pages 20
 ```
 
 The bare `agentlayer` npm package name is not this repository. Use the scoped package
-`@agentlayer/cli`.
+`@junyi5910/agentlayer-cli`.
 
 ## AgentLayer CI alpha
 

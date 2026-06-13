@@ -1,5 +1,5 @@
 {
-  "name": "@agentlayer/core",
+  "name": "@junyi5910/agentlayer-core",
   "version": "0.2.0-alpha.1",
   "description": "Core scanner, extractor, evaluator, and artifact generator for AgentLayer.",
   "license": "MIT",

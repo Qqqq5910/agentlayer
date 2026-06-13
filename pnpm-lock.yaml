@@ -56,7 +56,7 @@ importers:
 
   apps/web:
     dependencies:
-      "@agentlayer/core":
+      "@junyi5910/agentlayer-core":
         specifier: workspace:*
         version: link:../../packages/core
       lucide-react:
@@ -90,7 +90,7 @@ importers:
 
   packages/cli:
     dependencies:
-      "@agentlayer/core":
+      "@junyi5910/agentlayer-core":
         specifier: 0.2.0-alpha.1
         version: link:../core
       commander:

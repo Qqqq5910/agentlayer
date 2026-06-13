@@ -47,7 +47,7 @@ Please include these fields:
 
 ```text
 URL: https://example.com
-command: pnpm dlx @agentlayer/cli generate https://example.com --out ./agentlayer-output --max-pages 20
+command: pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 20
 overall score: 78
 wrong facts/actions: The scanner treated the newsletter form as a contact-sales action.
 confusing recommendations: The pricing recommendation mentioned plan limits, but our pricing page

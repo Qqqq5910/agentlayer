@@ -55,11 +55,15 @@ Share your AgentLayer scan result
 
 ## Release Post Timing
 
+For this alpha, npm packages publish as `@junyi5910/agentlayer-core` and
+`@junyi5910/agentlayer-cli`. The `@agentlayer` npm org scope remains the future migration target
+because npm rejected creating the org for this release.
+
 Publish launch posts only after:
 
-- `@agentlayer/core@0.2.0-alpha.1` is visible on npm.
-- `@agentlayer/cli@0.2.0-alpha.1` is visible on npm.
-- `pnpm dlx @agentlayer/cli --help` works in a fresh directory.
-- `pnpm dlx @agentlayer/cli generate https://example.com --out ./agentlayer-output --max-pages 3`
+- `@junyi5910/agentlayer-core@0.2.0-alpha.1` is visible on npm.
+- `@junyi5910/agentlayer-cli@0.2.0-alpha.1` is visible on npm.
+- `pnpm dlx @junyi5910/agentlayer-cli --help` works in a fresh directory.
+- `pnpm dlx @junyi5910/agentlayer-cli generate https://example.com --out ./agentlayer-output --max-pages 3`
   completes.
 - GitHub `main` includes the release commits.

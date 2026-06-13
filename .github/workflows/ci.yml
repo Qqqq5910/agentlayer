@@ -37,7 +37,7 @@ jobs:
         run: pnpm format:check
 
       - name: Build core package
-        run: pnpm --filter @agentlayer/core build
+        run: pnpm --filter @junyi5910/agentlayer-core build
 
       - name: Lint
         run: pnpm lint

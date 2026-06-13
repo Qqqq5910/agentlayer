@@ -134,7 +134,7 @@ agent-facing artifacts, run the same command again with the same scan bounds so 
 comparable:
 
 ```bash
-pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 Then open `./agentlayer-output/report.html` and review:
