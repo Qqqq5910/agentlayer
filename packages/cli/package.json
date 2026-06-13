@@ -1,6 +1,6 @@
 {
   "name": "@junyi5910/agentlayer-cli",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.0-alpha.2",
   "description": "Command-line interface for scanning websites and generating AgentLayer artifacts.",
   "license": "MIT",
   "repository": {
@@ -44,7 +44,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@junyi5910/agentlayer-core": "0.2.0-alpha.1",
+    "@junyi5910/agentlayer-core": "0.2.0-alpha.2",
     "commander": "^12.1.0"
   }
 }

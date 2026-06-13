@@ -132,7 +132,7 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
       * { box-sizing: border-box; }
       body { margin: 0; color: #172026; background: #f4f7f6; }
-      main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 64px; }
+      main { width: min(1120px, 100%); margin: 0 auto; padding: 40px 20px 64px; }
       h1, h2 { margin: 0 0 12px; }
       h1 { max-width: 820px; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: 0; }
       h2 { font-size: 22px; }
@@ -140,16 +140,16 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       p { color: #53606b; line-height: 1.65; }
       section { margin-top: 28px; }
       .eyebrow { color: #0f766e; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-      .hero { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 300px; align-items: stretch; border: 1px solid #cfd8d4; border-radius: 8px; background: #ffffff; padding: 28px; box-shadow: 0 18px 54px rgba(23, 32, 38, .08); }
+      .hero { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) 300px; align-items: stretch; min-width: 0; border: 1px solid #cfd8d4; border-radius: 8px; background: #ffffff; padding: 28px; box-shadow: 0 18px 54px rgba(23, 32, 38, .08); }
       .hero header { display: grid; align-content: center; }
       .hero .lede { max-width: 760px; font-size: 17px; }
-      .hero-card { display: grid; align-content: center; border: 1px solid #a7d7ce; border-radius: 8px; background: #e9f8f5; padding: 22px; }
+      .hero-card { display: grid; align-content: center; min-width: 0; border: 1px solid #a7d7ce; border-radius: 8px; background: #e9f8f5; padding: 22px; }
       .hero-card span { color: #115e59; font-size: 13px; font-weight: 800; text-transform: uppercase; }
       .hero-card strong { display: block; margin-top: 10px; font-size: 64px; line-height: .95; color: #0f2f2b; }
       .hero-card p { margin-bottom: 0; color: #31534f; }
       .report-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-      .report-meta a, .report-meta span { border: 1px solid #dfe5e2; border-radius: 999px; padding: 6px 10px; background: #fbfcfd; color: #33433f; font-size: 13px; text-decoration: none; }
-      .panel { background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; box-shadow: 0 14px 42px rgba(17, 24, 39, .06); }
+      .report-meta a, .report-meta span { max-width: 100%; border: 1px solid #dfe5e2; border-radius: 999px; padding: 6px 10px; background: #fbfcfd; color: #33433f; font-size: 13px; text-decoration: none; overflow-wrap: anywhere; word-break: break-word; }
+      .panel { min-width: 0; background: white; border: 1px solid #dfe3e8; border-radius: 8px; padding: 20px; box-shadow: 0 14px 42px rgba(17, 24, 39, .06); }
       .section-heading { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
       .section-heading p { margin: 0; max-width: 700px; }
       .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
@@ -167,7 +167,7 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .explain-card { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
       .explain-card h3 { margin-top: 0; }
       .explain-card p { margin-bottom: 0; font-size: 14px; }
-      .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+      .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
       .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
       .file-list a { text-decoration: none; }
       code { border-radius: 6px; background: #eef2f7; padding: 2px 6px; color: #0f172a; font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 12px; }
@@ -183,10 +183,19 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .recommendation p { margin: 0 0 8px; font-size: 14px; }
       .recommendation small { margin-top: 8px; }
       .empty-state { border: 1px dashed #cbd5e1; border-radius: 8px; padding: 18px; color: #53606b; background: #fbfcfd; }
-      table { width: 100%; border-collapse: collapse; font-size: 14px; }
-      th, td { border-bottom: 1px solid #e5e8ec; padding: 10px; text-align: left; vertical-align: top; }
+      .table-wrap { width: 100%; overflow-x: auto; }
+      table { width: 100%; min-width: 720px; table-layout: fixed; border-collapse: collapse; font-size: 14px; }
+      th, td { border-bottom: 1px solid #e5e8ec; padding: 10px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
       th { color: #53606b; font-weight: 600; }
       a { color: #0b66c3; }
+      a, code, small, .compact-list, .compact-list li, .journey-list, .journey-list li, .file-list li, .recommendation { min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
+      .task-table { min-width: 960px; }
+      .task-table th:nth-child(1), .task-table td:nth-child(1) { width: 13%; }
+      .task-table th:nth-child(2), .task-table td:nth-child(2) { width: 10%; }
+      .task-table th:nth-child(3), .task-table td:nth-child(3) { width: 7%; }
+      .task-table th:nth-child(4), .task-table td:nth-child(4) { width: 20%; }
+      .task-table th:nth-child(5), .task-table td:nth-child(5) { width: 35%; }
+      .task-table th:nth-child(6), .task-table td:nth-child(6) { width: 15%; }
       .badge { display: inline-block; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
       .pass { background: #d8f5e5; color: #17633a; }
       .partial { background: #fff0c2; color: #7a5300; }
@@ -282,20 +291,22 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
         <p>Crawl issues are scan diagnostics, not automatic score penalties. Non-blocking warnings affect the score only when they hide evidence needed for facts, actions, or task checks.</p>
         ${
           crawlIssues.length > 0
-            ? `<table>
+            ? `<div class="table-wrap"><table>
           <thead><tr><th>Severity</th><th>URL</th><th>Issue</th><th>Score impact</th></tr></thead>
           <tbody>${crawlIssueRows}</tbody>
-        </table>`
+        </table></div>`
             : `<div class="empty-state">No crawl issues were recorded for this scan.</div>`
         }
       </section>
 
       <section class="panel">
         <h2>Task Results</h2>
-        <table>
+        <div class="table-wrap">
+        <table class="task-table">
           <thead><tr><th>Task</th><th>Status</th><th>Score</th><th>Reason</th><th>Evidence</th><th>Next fix</th></tr></thead>
           <tbody>${taskRows}</tbody>
         </table>
+        </div>
       </section>
 
       <section class="panel">
@@ -307,26 +318,32 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
 
       <section class="panel">
         <h2>Form operability</h2>
+        <div class="table-wrap">
         <table>
           <thead><tr><th>Form</th><th>Score</th><th>Method</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th><th>Next fix</th></tr></thead>
           <tbody>${formRows}</tbody>
         </table>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Detected actions</h2>
+        <div class="table-wrap">
         <table>
           <thead><tr><th>Action</th><th>Type</th><th>Fields</th><th>Confirmation</th><th>Sensitivity</th></tr></thead>
           <tbody>${actionRows}</tbody>
         </table>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Extracted Facts</h2>
+        <div class="table-wrap">
         <table>
           <thead><tr><th>Type</th><th>Label</th><th>Value</th><th>Source</th></tr></thead>
           <tbody>${factRows}</tbody>
         </table>
+        </div>
       </section>
     </main>
   </body>

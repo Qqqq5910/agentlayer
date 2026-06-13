@@ -189,6 +189,9 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(reportHtml).toContain("affect the score only when they hide evidence");
     expect(reportHtml).toContain("Critical and warning recommendations");
     expect(reportHtml).toContain("scoring guide");
+    expect(reportHtml).toContain(".table-wrap { width: 100%; overflow-x: auto; }");
+    expect(reportHtml).toContain("overflow-wrap: anywhere");
+    expect(reportHtml).toContain('<table class="task-table">');
     expect(reportHtml).toContain("<strong>Why:</strong>");
     expect(reportHtml).toContain("<strong>Fix:</strong>");
     expect(reportHtml).toContain("Detected actions");

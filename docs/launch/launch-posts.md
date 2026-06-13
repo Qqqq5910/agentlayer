@@ -1,4 +1,4 @@
-# AgentLayer v0.2.0-alpha.1 Launch Drafts
+# AgentLayer v0.2.0-alpha.2 Launch Drafts
 
 Use these drafts after the scoped npm packages are published and the `pnpm dlx` smoke test passes.
 Do not post them while `@junyi5910/agentlayer-core` or `@junyi5910/agentlayer-cli` still returns
@@ -11,7 +11,7 @@ target.
 ## English Short
 
 ```text
-AgentLayer v0.2.0-alpha.1 is ready for public alpha testing.
+AgentLayer v0.2.0-alpha.2 is ready for public alpha testing.
 
 SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
@@ -28,7 +28,7 @@ Demo: https://agentlayer-readonly-demo.vercel.app
 ## English Longer
 
 ```text
-AgentLayer v0.2.0-alpha.1 is ready for public alpha testing.
+AgentLayer v0.2.0-alpha.2 is ready for public alpha testing.
 
 SEO made websites discoverable. AgentLayer makes websites operable by AI agents.
 
@@ -62,7 +62,7 @@ Demo: https://agentlayer-readonly-demo.vercel.app
 ## Chinese Short
 
 ```text
-AgentLayer v0.2.0-alpha.1 可以公开 alpha 测试了。
+AgentLayer v0.2.0-alpha.2 可以公开 alpha 测试了。
 
 SEO 让网站可被发现；AgentLayer 让网站可被 AI Agent 操作。
 
@@ -79,7 +79,7 @@ Demo: https://agentlayer-readonly-demo.vercel.app
 ## Chinese Longer
 
 ```text
-AgentLayer v0.2.0-alpha.1 可以公开 alpha 测试了。
+AgentLayer v0.2.0-alpha.2 可以公开 alpha 测试了。
 
 SEO 让网站可被发现；AgentLayer 让网站可被 AI Agent 操作。
 

@@ -5,6 +5,15 @@ All notable changes to AgentLayer will be documented in this file.
 The format follows the spirit of Keep a Changelog, and published packages use semantic-versioned
 releases.
 
+## [0.2.0-alpha.2] - 2026-06-13
+
+### Fixed
+
+- Generated `report.html` now keeps wide task, evidence, facts, forms, and action tables inside the
+  report viewport. Long URLs, evidence snippets, artifact paths, and recommendation text wrap
+  instead of forcing the page wider than the screen.
+- Added regression coverage for the report table wrapping CSS.
+
 ## [0.2.0-alpha.1] - 2026-06-11
 
 ### Added

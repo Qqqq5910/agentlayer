@@ -25,7 +25,7 @@
         background: #f4f7f6;
       }
       main {
-        max-width: 1120px;
+        width: min(1120px, 100%);
         margin: 0 auto;
         padding: 40px 20px 64px;
       }
@@ -65,6 +65,7 @@
         gap: 24px;
         grid-template-columns: minmax(0, 1fr) 300px;
         align-items: stretch;
+        min-width: 0;
         border: 1px solid #cfd8d4;
         border-radius: 8px;
         background: #ffffff;
@@ -82,6 +83,7 @@
       .hero-card {
         display: grid;
         align-content: center;
+        min-width: 0;
         border: 1px solid #a7d7ce;
         border-radius: 8px;
         background: #e9f8f5;
@@ -112,6 +114,7 @@
       }
       .report-meta a,
       .report-meta span {
+        max-width: 100%;
         border: 1px solid #dfe5e2;
         border-radius: 999px;
         padding: 6px 10px;
@@ -119,8 +122,11 @@
         color: #33433f;
         font-size: 13px;
         text-decoration: none;
+        overflow-wrap: anywhere;
+        word-break: break-word;
       }
       .panel {
+        min-width: 0;
         background: white;
         border: 1px solid #dfe3e8;
         border-radius: 8px;
@@ -196,9 +202,27 @@
         font-size: 24px;
         color: #172026;
       }
+      .explain-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+      .explain-card {
+        border: 1px solid #e5e8ec;
+        border-radius: 8px;
+        padding: 14px;
+        background: #fbfcfd;
+      }
+      .explain-card h3 {
+        margin-top: 0;
+      }
+      .explain-card p {
+        margin-bottom: 0;
+        font-size: 14px;
+      }
       .file-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
         gap: 10px;
         margin: 0;
         padding: 0;
@@ -249,6 +273,15 @@
       .journey-list small {
         margin: 0;
       }
+      .compact-list {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding-left: 18px;
+      }
+      .muted {
+        color: #667085;
+      }
       .recommendations-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -261,8 +294,11 @@
         background: #fbfcfd;
       }
       .recommendation p {
-        margin: 0;
+        margin: 0 0 8px;
         font-size: 14px;
+      }
+      .recommendation small {
+        margin-top: 8px;
       }
       .empty-state {
         border: 1px dashed #cbd5e1;
@@ -271,8 +307,14 @@
         color: #53606b;
         background: #fbfcfd;
       }
+      .table-wrap {
+        width: 100%;
+        overflow-x: auto;
+      }
       table {
         width: 100%;
+        min-width: 720px;
+        table-layout: fixed;
         border-collapse: collapse;
         font-size: 14px;
       }
@@ -282,6 +324,8 @@
         padding: 10px;
         text-align: left;
         vertical-align: top;
+        overflow-wrap: anywhere;
+        word-break: break-word;
       }
       th {
         color: #53606b;
@@ -289,6 +333,46 @@
       }
       a {
         color: #0b66c3;
+      }
+      a,
+      code,
+      small,
+      .compact-list,
+      .compact-list li,
+      .journey-list,
+      .journey-list li,
+      .file-list li,
+      .recommendation {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+      .task-table {
+        min-width: 960px;
+      }
+      .task-table th:nth-child(1),
+      .task-table td:nth-child(1) {
+        width: 13%;
+      }
+      .task-table th:nth-child(2),
+      .task-table td:nth-child(2) {
+        width: 10%;
+      }
+      .task-table th:nth-child(3),
+      .task-table td:nth-child(3) {
+        width: 7%;
+      }
+      .task-table th:nth-child(4),
+      .task-table td:nth-child(4) {
+        width: 20%;
+      }
+      .task-table th:nth-child(5),
+      .task-table td:nth-child(5) {
+        width: 35%;
+      }
+      .task-table th:nth-child(6),
+      .task-table td:nth-child(6) {
+        width: 15%;
       }
       .badge {
         display: inline-block;
@@ -377,6 +461,46 @@
         <div class="score strong"><span>Trustability</span><strong>96</strong></div>
         <div class="score strong"><span>Actionability</span><strong>91</strong></div>
         <div class="score strong"><span>Task success</span><strong>86</strong></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>How to read this report</h2>
+            <p>
+              The overall score is deterministic: readability 25%, trustability 25%, actionability
+              30%, and task success 20%. Use it as a repair guide for public pages, not as a
+              compliance guarantee. See the
+              <a href="https://github.com/Qqqq5910/agentlayer/blob/main/docs/scoring.md"
+                >scoring guide</a
+              >
+              for the full model.
+            </p>
+          </div>
+        </div>
+        <div class="explain-grid">
+          <article class="explain-card">
+            <h3>Score evidence</h3>
+            <p>
+              Scores come from crawled pages, source-backed facts, detected actions, form checks,
+              generated artifacts, and task journey results.
+            </p>
+          </article>
+          <article class="explain-card">
+            <h3>Task findings</h3>
+            <p>
+              Each task lists the reason, evidence URLs or snippets, missing information, and the
+              next fix to try before rerunning the scan.
+            </p>
+          </article>
+          <article class="explain-card">
+            <h3>Severity labels</h3>
+            <p>
+              Critical fixes block core agent operation, warnings reduce reliability, and
+              suggestions improve discoverability or polish.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section class="panel">
@@ -552,505 +676,812 @@
 
       <section class="panel">
         <h2>Task Results</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Task</th>
-              <th>Status</th>
-              <th>Score</th>
-              <th>Explanation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Find pricing</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>90</td>
-              <td>Pricing information is discoverable with page-level evidence.</td>
-            </tr>
-            <tr>
-              <td>Compare plans</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>85</td>
-              <td>Multiple plans and comparison-oriented details were found.</td>
-            </tr>
-            <tr>
-              <td>Book demo or contact sales</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>90</td>
-              <td>
-                A relevant form-based action path was found.
-                <ul class="journey-list">
-                  <li>
-                    <span><span class="badge pass">pass</span> Discover action</span>
-                    <small>Detected form action &quot;contact_sales&quot;.</small>
-                  </li>
-                  <li>
-                    <span><span class="badge pass">pass</span> Understand required fields</span>
-                    <small>4 of 4 fields expose stable names; 4 expose labels.</small>
-                  </li>
-                  <li>
-                    <span><span class="badge pass">pass</span> Confirm sensitive action</span>
-                    <small
-                      >Human confirmation is required for this medium-sensitivity action.</small
-                    >
-                  </li>
-                  <li>
-                    <span><span class="badge pass">pass</span> Submit safely not performed</span>
-                    <small
-                      >The evaluator stopped at deterministic preparation and did not submit the
-                      form.</small
-                    >
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td>Find documentation</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>85</td>
-              <td>Relevant pages and structured evidence were found.</td>
-            </tr>
-            <tr>
-              <td>Find security and trust information</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>85</td>
-              <td>Relevant pages and structured evidence were found.</td>
-            </tr>
-            <tr>
-              <td>Find policies</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>85</td>
-              <td>Privacy and terms/legal policy pages are discoverable.</td>
-            </tr>
-            <tr>
-              <td>Find integrations</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>80</td>
-              <td>Relevant page and fact evidence were found.</td>
-            </tr>
-            <tr>
-              <td>Identify target customer</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>80</td>
-              <td>Target user evidence was found.</td>
-            </tr>
-            <tr>
-              <td>Find support</td>
-              <td><span class="badge pass">pass</span></td>
-              <td>90</td>
-              <td>
-                A relevant form-based action path was found.
-                <ul class="journey-list">
-                  <li>
-                    <span><span class="badge pass">pass</span> Discover action</span>
-                    <small>Detected form action &quot;contact_sales&quot;.</small>
-                  </li>
-                  <li>
-                    <span><span class="badge pass">pass</span> Understand required fields</span>
-                    <small>4 of 4 fields expose stable names; 4 expose labels.</small>
-                  </li>
-                  <li>
-                    <span><span class="badge pass">pass</span> Confirm sensitive action</span>
-                    <small
-                      >Human confirmation is required for this medium-sensitivity action.</small
-                    >
-                  </li>
-                  <li>
-                    <span><span class="badge pass">pass</span> Submit safely not performed</span>
-                    <small
-                      >The evaluator stopped at deterministic preparation and did not submit the
-                      form.</small
-                    >
-                  </li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Score</th>
+                <th>Reason</th>
+                <th>Evidence</th>
+                <th>Next fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Find pricing</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>90</td>
+                <td>Pricing information is discoverable with page-level evidence.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/contact">/contact</a></li>
+                    <li>
+                      w AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans
+                      for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow
+                      offers transparent monthly pricing for Starter and Growth teams. Ent
+                    </li>
+                    <li>
+                      Pricing information: $49 -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      helps B2B SaaS teams coordinate onboarding,...
+                    </li>
+                    <li>
+                      Pricing information: $49, $149 -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans
+                      for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow
+                      offers transparent monthly pricing f...
+                    </li>
+                    <li>
+                      Plan name: Starter - to enterprise governance.AcmeFlow offers transparent
+                      monthly pricing for Starter and Growth teams. Enterprise plans are quoted
+                      through sales after a security and workflow review.Starter$49per monthF...
+                    </li>
+                    <li>
+                      Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing
+                      for Starter and Growth teams. Enterprise plans are quoted through sales after
+                      a security and workflow review.Starter$49per monthFor small reve...
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Compare plans</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>85</td>
+                <td>Multiple plans and comparison-oriented details were found.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li>
+                      Plan name: Starter - to enterprise governance.AcmeFlow offers transparent
+                      monthly pricing for Starter and Growth teams. Enterprise plans are quoted
+                      through sales after a security and workflow review.Starter$49per monthF...
+                    </li>
+                    <li>
+                      Plan name: Growth - e governance.AcmeFlow offers transparent monthly pricing
+                      for Starter and Growth teams. Enterprise plans are quoted through sales after
+                      a security and workflow review.Starter$49per monthFor small reve...
+                    </li>
+                    <li>
+                      Plan name: Enterprise - rsSupportBook demoPricingPlans for B2B SaaS teams from
+                      first playbook to enterprise governance.AcmeFlow offers transparent monthly
+                      pricing for Starter and Growth teams. Enterprise plans are quote...
+                    </li>
+                    <li>
+                      thFor small revenue teams organizing repeatable onboarding work.Included
+                      features and limits- 5 workspaces- CRM sync- Shared playbooks- Email
+                      supportStart with demoGrowth$149per monthFor growing SaaS teams that need hand
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Book demo or contact sales</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>90</td>
+                <td>
+                  A relevant form-based action path was found.
+                  <ul class="journey-list">
+                    <li>
+                      <span><span class="badge pass">pass</span> Discover action</span>
+                      <small>Detected form action &quot;contact_sales&quot;.</small>
+                    </li>
+                    <li>
+                      <span><span class="badge pass">pass</span> Understand required fields</span>
+                      <small>4 of 4 fields expose stable names; 4 expose labels.</small>
+                    </li>
+                    <li>
+                      <span><span class="badge pass">pass</span> Confirm sensitive action</span>
+                      <small
+                        >Human confirmation is required for this medium-sensitivity action.</small
+                      >
+                    </li>
+                    <li>
+                      <span><span class="badge pass">pass</span> Submit safely not performed</span>
+                      <small
+                        >The evaluator stopped at deterministic preparation and did not submit the
+                        form.</small
+                      >
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/contact">/contact</a></li>
+                    <li><a href="http://localhost:3001/demo">/demo</a></li>
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/docs/api">/docs/api</a></li>
+                    <li><a href="http://localhost:3001/customers">/customers</a></li>
+                    <li><a href="http://localhost:3001/docs">/docs</a></li>
+                    <li><a href="http://localhost:3001/integrations">/integrations</a></li>
+                    <li><a href="http://localhost:3001/llms.txt">/llms.txt</a></li>
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li><a href="http://localhost:3001/privacy">/privacy</a></li>
+                    <li><a href="http://localhost:3001/security">/security</a></li>
+                    <li><a href="http://localhost:3001/support">/support</a></li>
+                    <li><a href="http://localhost:3001/terms">/terms</a></li>
+                    <li>contact_sales: Find the path for contacting sales.</li>
+                    <li>book_demo: Find the path for booking a product demo.</li>
+                    <li>
+                      w automation AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoCustomer workflow automationTurn customer handoffs into reliable
+                      workflows.AcmeFlow helps B2B SaaS teams coordinate onboarding, renewals, imple
+                    </li>
+                    <li>
+                      s | AcmeFlow AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoAPI docsREST API and webhooks for AcmeFlow workflows.Developers can read
+                      account, workflow, event, and webhook resources. Production API creden
+                    </li>
+                    <li>
+                      tact salesTalk with AcmeFlow about your customer workflow needs.Use this form
+                      for pricing questions, Enterprise quotes, security review requests, and
+                      implementation planning.Sales contactEmail: sales@acmeflow.exampleTypi
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Find documentation</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>85</td>
+                <td>Relevant pages and structured evidence were found.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/docs/api">/docs/api</a></li>
+                    <li><a href="http://localhost:3001/docs">/docs</a></li>
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/customers">/customers</a></li>
+                    <li><a href="http://localhost:3001/integrations">/integrations</a></li>
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li><a href="http://localhost:3001/security">/security</a></li>
+                    <li><a href="http://localhost:3001/support">/support</a></li>
+                    <li>
+                      API Docs | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST
+                      API and webhooks for AcmeFlow workflows.Developers can read account, workflow,
+                      event, and webhook resources. Production API
+                    </li>
+                    <li>
+                      Documentation | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoDocsDocumentation for building reliable customer workflows.Find setup
+                      guides, API docs, webhook references, role configuration, and
+                    </li>
+                    <li>
+                      Pricing information: $49 -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      helps B2B SaaS teams coordinate onboarding,...
+                    </li>
+                    <li>
+                      Target users: customer success, sales engineers, operations teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      hel...
+                    </li>
+                    <li>
+                      API documentation: API Docs | AcmeFlow - REST API and webhooks for AcmeFlow
+                      workflows.
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Find security and trust information</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>85</td>
+                <td>Relevant pages and structured evidence were found.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/security">/security</a></li>
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/customers">/customers</a></li>
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li><a href="http://localhost:3001/support">/support</a></li>
+                    <li>
+                      Security | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoSecurity and
+                      trustSecurity information for teams evaluating AcmeFlow.This page gives agents
+                      a clear source for trust, access control, pr
+                    </li>
+                    <li>
+                      Pricing information: $49 -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      helps B2B SaaS teams coordinate onboarding,...
+                    </li>
+                    <li>
+                      Target users: customer success, sales engineers, operations teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      hel...
+                    </li>
+                    <li>
+                      Target users: B2B SaaS revenue and success teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow
+                      is designed for customer succe...
+                    </li>
+                    <li>
+                      Pricing information: $49, $149 -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPricingPlans
+                      for B2B SaaS teams from first playbook to enterprise governance.AcmeFlow
+                      offers transparent monthly pricing f...
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Find policies</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>85</td>
+                <td>Privacy and terms/legal policy pages are discoverable.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/privacy">/privacy</a></li>
+                    <li><a href="http://localhost:3001/terms">/terms</a></li>
+                    <li>
+                      Privacy Policy | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoPrivacy
+                      policyHow the fictional AcmeFlow demo describes privacy.This policy page
+                      exists so AgentLayer can find a clear privacy sou
+                    </li>
+                    <li>
+                      d demos. The data on this site is intentionally public and
+                      non-sensitive.PrivacyTermsContact salesSupportTerms | AcmeFlow
+                    </li>
+                    <li>
+                      Privacy policy: Privacy Policy | AcmeFlow - How the fictional AcmeFlow demo
+                      describes privacy.
+                    </li>
+                    <li>
+                      Terms or legal policy: Terms | AcmeFlow - Terms, cancellation, and refund
+                      information.
+                    </li>
+                    <li>read_privacy_policy: Read the privacy policy.</li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Find integrations</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>80</td>
+                <td>Relevant page and fact evidence were found.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/integrations">/integrations</a></li>
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/customers">/customers</a></li>
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li><a href="http://localhost:3001/security">/security</a></li>
+                    <li><a href="http://localhost:3001/support">/support</a></li>
+                    <li>
+                      Integrations | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoIntegrationsConnect AcmeFlow to the tools your revenue team already
+                      uses.AcmeFlow supports CRM, collaboration, analytics, automation
+                    </li>
+                    <li>
+                      Pricing information: $49 -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      helps B2B SaaS teams coordinate onboarding,...
+                    </li>
+                    <li>
+                      Target users: customer success, sales engineers, operations teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      hel...
+                    </li>
+                    <li>
+                      Target users: B2B SaaS revenue and success teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow
+                      is designed for customer succe...
+                    </li>
+                    <li>
+                      Integration: Slack - sforce.HubSpotSync customer handoff signals between
+                      AcmeFlow and HubSpot.SlackSync customer handoff signals between AcmeFlow and
+                      Slack.Google WorkspaceSync customer handoff signals between AcmeFlow...
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Identify target customer</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>80</td>
+                <td>Target user evidence was found.</td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/customers">/customers</a></li>
+                    <li><a href="http://localhost:3001/security">/security</a></li>
+                    <li>
+                      Target users: customer success, sales engineers, operations teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      hel...
+                    </li>
+                    <li>
+                      Target users: B2B SaaS revenue and success teams -
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook
+                      demoCustomersCustomer stories for B2B SaaS revenue and success teams.AcmeFlow
+                      is designed for customer succe...
+                    </li>
+                    <li>
+                      sSecurityCustomersSupportBook demoSecurity and trustSecurity information for
+                      teams evaluating AcmeFlow.This page gives agents a clear source for trust,
+                      access control, privacy, and review packet information without inven
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+              <tr>
+                <td>Find support</td>
+                <td><span class="badge pass">pass</span></td>
+                <td>90</td>
+                <td>
+                  A relevant form-based action path was found.
+                  <ul class="journey-list">
+                    <li>
+                      <span><span class="badge pass">pass</span> Discover action</span>
+                      <small>Detected form action &quot;contact_sales&quot;.</small>
+                    </li>
+                    <li>
+                      <span><span class="badge pass">pass</span> Understand required fields</span>
+                      <small>4 of 4 fields expose stable names; 4 expose labels.</small>
+                    </li>
+                    <li>
+                      <span><span class="badge pass">pass</span> Confirm sensitive action</span>
+                      <small
+                        >Human confirmation is required for this medium-sensitivity action.</small
+                      >
+                    </li>
+                    <li>
+                      <span><span class="badge pass">pass</span> Submit safely not performed</span>
+                      <small
+                        >The evaluator stopped at deterministic preparation and did not submit the
+                        form.</small
+                      >
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="compact-list">
+                    <li><a href="http://localhost:3001/contact">/contact</a></li>
+                    <li><a href="http://localhost:3001/support">/support</a></li>
+                    <li><a href="http://localhost:3001/">/</a></li>
+                    <li><a href="http://localhost:3001/docs/api">/docs/api</a></li>
+                    <li><a href="http://localhost:3001/customers">/customers</a></li>
+                    <li><a href="http://localhost:3001/demo">/demo</a></li>
+                    <li><a href="http://localhost:3001/docs">/docs</a></li>
+                    <li><a href="http://localhost:3001/integrations">/integrations</a></li>
+                    <li><a href="http://localhost:3001/llms.txt">/llms.txt</a></li>
+                    <li><a href="http://localhost:3001/pricing">/pricing</a></li>
+                    <li><a href="http://localhost:3001/privacy">/privacy</a></li>
+                    <li><a href="http://localhost:3001/security">/security</a></li>
+                    <li><a href="http://localhost:3001/terms">/terms</a></li>
+                    <li>contact_sales: Find the path for contacting sales.</li>
+                    <li>request_support: Find the support request path.</li>
+                    <li>
+                      omer workflow automation
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoCustomer
+                      workflow automationTurn customer handoffs into reliable workflows.AcmeFlow
+                      helps B2B SaaS teams coordinate onboarding, ren
+                    </li>
+                    <li>
+                      API Docs | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoAPI docsREST
+                      API and webhooks for AcmeFlow workflows.Developers can read account, workflow,
+                      event, and webhook resources. Production API
+                    </li>
+                    <li>
+                      Contact Sales | AcmeFlow
+                      AcmeFlowPricingDocsIntegrationsSecurityCustomersSupportBook demoContact
+                      salesTalk with AcmeFlow about your customer workflow needs.Use this form for
+                      pricing questions, Enterprise quotes, security
+                    </li>
+                  </ul>
+                </td>
+                <td><span class="muted">No immediate fix suggested.</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section class="panel">
-        <h2>Top recommendations</h2>
+        <h2>Critical and warning recommendations</h2>
         <div class="recommendations-grid">
           <article class="recommendation">
             <div>
-              <span class="badge severity-medium">medium</span>
+              <span class="badge severity-medium">Warning</span>
               <code>.well-known/agents.json</code>
             </div>
             <h3>Review and publish the agent action manifest</h3>
             <p>
-              Review the generated .well-known/agents.json, keep human confirmation on sensitive
-              actions, and publish the approved manifest.
+              <strong>Why:</strong> The scan found operable actions, but agents still need a stable
+              public manifest instead of re-inferring forms from HTML.
             </p>
+            <p>
+              <strong>Fix:</strong> Review the generated .well-known/agents.json, keep human
+              confirmation on sensitive actions, and publish the approved manifest.
+            </p>
+            <small>Affects: book_demo</small>
           </article>
         </div>
       </section>
 
       <section class="panel">
         <h2>Form operability</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Form</th>
-              <th>Score</th>
-              <th>Method</th>
-              <th>Fields</th>
-              <th>Confirmation</th>
-              <th>Sensitivity</th>
-              <th>Next fix</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>contact sales</strong>
-                <small><a href="http://localhost:3001/contact">/contact</a></small>
-              </td>
-              <td>100</td>
-              <td>POST</td>
-              <td>4</td>
-              <td>Required</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-              <td>No immediate fixes.</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>book demo</strong>
-                <small><a href="http://localhost:3001/demo">/demo</a></small>
-              </td>
-              <td>100</td>
-              <td>POST</td>
-              <td>5</td>
-              <td>Required</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-              <td>No immediate fixes.</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>request support</strong>
-                <small><a href="http://localhost:3001/support">/support</a></small>
-              </td>
-              <td>100</td>
-              <td>POST</td>
-              <td>3</td>
-              <td>Required</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-              <td>No immediate fixes.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Form</th>
+                <th>Score</th>
+                <th>Method</th>
+                <th>Fields</th>
+                <th>Confirmation</th>
+                <th>Sensitivity</th>
+                <th>Next fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>contact sales</strong>
+                  <small><a href="http://localhost:3001/contact">/contact</a></small>
+                </td>
+                <td>100</td>
+                <td>POST</td>
+                <td>4</td>
+                <td>Required</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+                <td>No immediate fixes.</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>book demo</strong>
+                  <small><a href="http://localhost:3001/demo">/demo</a></small>
+                </td>
+                <td>100</td>
+                <td>POST</td>
+                <td>5</td>
+                <td>Required</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+                <td>No immediate fixes.</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>request support</strong>
+                  <small><a href="http://localhost:3001/support">/support</a></small>
+                </td>
+                <td>100</td>
+                <td>POST</td>
+                <td>3</td>
+                <td>Required</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+                <td>No immediate fixes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Detected actions</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Action</th>
-              <th>Type</th>
-              <th>Fields</th>
-              <th>Confirmation</th>
-              <th>Sensitivity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>open_api_docs</strong>
-                <small>I want to read API documentation.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-low">low</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>contact_sales</strong>
-                <small>I want to contact sales.</small>
-              </td>
-              <td>form</td>
-              <td>4</td>
-              <td>Required</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>contact_sales</strong>
-                <small>I want to contact sales.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>book_demo</strong>
-                <small>I want to book a product demo.</small>
-              </td>
-              <td>form</td>
-              <td>5</td>
-              <td>Required</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>book_demo</strong>
-                <small>I want to book a product demo.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>search_docs</strong>
-                <small>I want to find documentation.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-low">low</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>view_pricing</strong>
-                <small>I want to understand pricing.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-low">low</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>read_privacy_policy</strong>
-                <small>I want to read the privacy policy.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-low">low</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>open_security_page</strong>
-                <small>I want to inspect security and trust details.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-low">low</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>request_support</strong>
-                <small>I need support or help.</small>
-              </td>
-              <td>form</td>
-              <td>3</td>
-              <td>Required</td>
-              <td><span class="badge sensitivity-high">high</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>request_support</strong>
-                <small>I need support or help.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-medium">medium</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>read_terms</strong>
-                <small>I want to read terms and legal policies.</small>
-              </td>
-              <td>navigation</td>
-              <td>0</td>
-              <td>No</td>
-              <td><span class="badge sensitivity-low">low</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Type</th>
+                <th>Fields</th>
+                <th>Confirmation</th>
+                <th>Sensitivity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>open_api_docs</strong>
+                  <small>I want to read API documentation.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-low">low</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>contact_sales</strong>
+                  <small>I want to contact sales.</small>
+                </td>
+                <td>form</td>
+                <td>4</td>
+                <td>Required</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>contact_sales</strong>
+                  <small>I want to contact sales.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>book_demo</strong>
+                  <small>I want to book a product demo.</small>
+                </td>
+                <td>form</td>
+                <td>5</td>
+                <td>Required</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>book_demo</strong>
+                  <small>I want to book a product demo.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>search_docs</strong>
+                  <small>I want to find documentation.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-low">low</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>view_pricing</strong>
+                  <small>I want to understand pricing.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-low">low</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>read_privacy_policy</strong>
+                  <small>I want to read the privacy policy.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-low">low</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>open_security_page</strong>
+                  <small>I want to inspect security and trust details.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-low">low</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>request_support</strong>
+                  <small>I need support or help.</small>
+                </td>
+                <td>form</td>
+                <td>3</td>
+                <td>Required</td>
+                <td><span class="badge sensitivity-high">high</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>request_support</strong>
+                  <small>I need support or help.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-medium">medium</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>read_terms</strong>
+                  <small>I want to read terms and legal policies.</small>
+                </td>
+                <td>navigation</td>
+                <td>0</td>
+                <td>No</td>
+                <td><span class="badge sensitivity-low">low</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Extracted Facts</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Label</th>
-              <th>Value</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>company</td>
-              <td>Company name</td>
-              <td>AcmeFlow</td>
-              <td><a href="http://localhost:3001/">/</a></td>
-            </tr>
-            <tr>
-              <td>pricing</td>
-              <td>Pricing information</td>
-              <td>$49</td>
-              <td><a href="http://localhost:3001/">/</a></td>
-            </tr>
-            <tr>
-              <td>product</td>
-              <td>Target users</td>
-              <td>customer success, sales engineers, operations teams</td>
-              <td><a href="http://localhost:3001/">/</a></td>
-            </tr>
-            <tr>
-              <td>docs</td>
-              <td>API documentation</td>
-              <td>API Docs | AcmeFlow</td>
-              <td><a href="http://localhost:3001/docs/api">/docs/api</a></td>
-            </tr>
-            <tr>
-              <td>contact</td>
-              <td>contact sales</td>
-              <td>name, email, company, message</td>
-              <td><a href="http://localhost:3001/contact">/contact</a></td>
-            </tr>
-            <tr>
-              <td>product</td>
-              <td>Target users</td>
-              <td>B2B SaaS revenue and success teams</td>
-              <td><a href="http://localhost:3001/customers">/customers</a></td>
-            </tr>
-            <tr>
-              <td>contact</td>
-              <td>book demo</td>
-              <td>name, email, company, preferredTime, message</td>
-              <td><a href="http://localhost:3001/demo">/demo</a></td>
-            </tr>
-            <tr>
-              <td>docs</td>
-              <td>Documentation</td>
-              <td>Documentation | AcmeFlow</td>
-              <td><a href="http://localhost:3001/docs">/docs</a></td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>Slack</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>Google</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>Salesforce</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>HubSpot</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>Zapier</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>Google Workspace</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>integration</td>
-              <td>Integration</td>
-              <td>Microsoft Teams</td>
-              <td>
-                <a href="http://localhost:3001/integrations">/integrations</a>
-              </td>
-            </tr>
-            <tr>
-              <td>pricing</td>
-              <td>Pricing information</td>
-              <td>$49, $149</td>
-              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-            </tr>
-            <tr>
-              <td>plan</td>
-              <td>Plan name</td>
-              <td>Starter</td>
-              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-            </tr>
-            <tr>
-              <td>plan</td>
-              <td>Plan name</td>
-              <td>Growth</td>
-              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-            </tr>
-            <tr>
-              <td>plan</td>
-              <td>Plan name</td>
-              <td>Enterprise</td>
-              <td><a href="http://localhost:3001/pricing">/pricing</a></td>
-            </tr>
-            <tr>
-              <td>policy</td>
-              <td>Privacy policy</td>
-              <td>Privacy Policy | AcmeFlow</td>
-              <td><a href="http://localhost:3001/privacy">/privacy</a></td>
-            </tr>
-            <tr>
-              <td>security</td>
-              <td>Security or trust information</td>
-              <td>Security | AcmeFlow</td>
-              <td><a href="http://localhost:3001/security">/security</a></td>
-            </tr>
-            <tr>
-              <td>support</td>
-              <td>request support</td>
-              <td>name, email, message</td>
-              <td><a href="http://localhost:3001/support">/support</a></td>
-            </tr>
-            <tr>
-              <td>support</td>
-              <td>Support page</td>
-              <td>Support | AcmeFlow</td>
-              <td><a href="http://localhost:3001/support">/support</a></td>
-            </tr>
-            <tr>
-              <td>policy</td>
-              <td>Terms or legal policy</td>
-              <td>Terms | AcmeFlow</td>
-              <td><a href="http://localhost:3001/terms">/terms</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Label</th>
+                <th>Value</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>company</td>
+                <td>Company name</td>
+                <td>AcmeFlow</td>
+                <td><a href="http://localhost:3001/">/</a></td>
+              </tr>
+              <tr>
+                <td>pricing</td>
+                <td>Pricing information</td>
+                <td>$49</td>
+                <td><a href="http://localhost:3001/">/</a></td>
+              </tr>
+              <tr>
+                <td>product</td>
+                <td>Target users</td>
+                <td>customer success, sales engineers, operations teams</td>
+                <td><a href="http://localhost:3001/">/</a></td>
+              </tr>
+              <tr>
+                <td>docs</td>
+                <td>API documentation</td>
+                <td>API Docs | AcmeFlow</td>
+                <td><a href="http://localhost:3001/docs/api">/docs/api</a></td>
+              </tr>
+              <tr>
+                <td>contact</td>
+                <td>contact sales</td>
+                <td>name, email, company, message</td>
+                <td><a href="http://localhost:3001/contact">/contact</a></td>
+              </tr>
+              <tr>
+                <td>product</td>
+                <td>Target users</td>
+                <td>B2B SaaS revenue and success teams</td>
+                <td><a href="http://localhost:3001/customers">/customers</a></td>
+              </tr>
+              <tr>
+                <td>contact</td>
+                <td>book demo</td>
+                <td>name, email, company, preferredTime, message</td>
+                <td><a href="http://localhost:3001/demo">/demo</a></td>
+              </tr>
+              <tr>
+                <td>docs</td>
+                <td>Documentation</td>
+                <td>Documentation | AcmeFlow</td>
+                <td><a href="http://localhost:3001/docs">/docs</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>Slack</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>Google</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>Salesforce</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>HubSpot</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>Zapier</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>Google Workspace</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>integration</td>
+                <td>Integration</td>
+                <td>Microsoft Teams</td>
+                <td><a href="http://localhost:3001/integrations">/integrations</a></td>
+              </tr>
+              <tr>
+                <td>pricing</td>
+                <td>Pricing information</td>
+                <td>$49, $149</td>
+                <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+              </tr>
+              <tr>
+                <td>plan</td>
+                <td>Plan name</td>
+                <td>Starter</td>
+                <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+              </tr>
+              <tr>
+                <td>plan</td>
+                <td>Plan name</td>
+                <td>Growth</td>
+                <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+              </tr>
+              <tr>
+                <td>plan</td>
+                <td>Plan name</td>
+                <td>Enterprise</td>
+                <td><a href="http://localhost:3001/pricing">/pricing</a></td>
+              </tr>
+              <tr>
+                <td>policy</td>
+                <td>Privacy policy</td>
+                <td>Privacy Policy | AcmeFlow</td>
+                <td><a href="http://localhost:3001/privacy">/privacy</a></td>
+              </tr>
+              <tr>
+                <td>security</td>
+                <td>Security or trust information</td>
+                <td>Security | AcmeFlow</td>
+                <td><a href="http://localhost:3001/security">/security</a></td>
+              </tr>
+              <tr>
+                <td>support</td>
+                <td>request support</td>
+                <td>name, email, message</td>
+                <td><a href="http://localhost:3001/support">/support</a></td>
+              </tr>
+              <tr>
+                <td>support</td>
+                <td>Support page</td>
+                <td>Support | AcmeFlow</td>
+                <td><a href="http://localhost:3001/support">/support</a></td>
+              </tr>
+              <tr>
+                <td>policy</td>
+                <td>Terms or legal policy</td>
+                <td>Terms | AcmeFlow</td>
+                <td><a href="http://localhost:3001/terms">/terms</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
   </body>
