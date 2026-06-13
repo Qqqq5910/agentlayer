@@ -72,9 +72,7 @@ releases.
 ### Notes
 
 - This is a local-first alpha, not a hosted CI service.
-- This alpha publishes `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`; the
-  `@agentlayer` npm org scope remains the future migration target because npm rejected creating the
-  org for this alpha.
+- This alpha publishes `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`.
 - Use the scoped npm alpha CLI for quickstarts:
   `pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20`.
   Repo-local `pnpm agentlayer` commands are for repository checkouts and fixture development.

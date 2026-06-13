@@ -40,10 +40,5 @@ confusing recommendations:
 artifacts you would publish:
 ```
 
-## Maintainer Note
-
-This alpha uses the `@junyi5910` npm user scope because npm rejected creating the `@agentlayer` org
-for this release. Keep the `@agentlayer` org scope as the future migration target.
-
 Pin this issue during the public alpha feedback window and point people to `docs/feedback.md` for
 the longer feedback guide.

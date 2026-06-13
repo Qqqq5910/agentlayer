@@ -56,8 +56,7 @@ Share your AgentLayer scan result
 ## Release Post Timing
 
 For this alpha, npm packages publish as `@junyi5910/agentlayer-core` and
-`@junyi5910/agentlayer-cli`. The `@agentlayer` npm org scope remains the future migration target
-because npm rejected creating the org for this release.
+`@junyi5910/agentlayer-cli`.
 
 Publish launch posts only after:
 

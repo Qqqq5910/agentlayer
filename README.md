@@ -22,9 +22,7 @@ report: missing facts, unclear policies, weak action paths, and task failures.
 The current source version is `0.2.0-alpha.3`. It is an alpha release for trying AgentLayer on
 public websites and local baseline/compare workflows.
 
-Alpha packages are published as `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`. The
-`@agentlayer` org scope is still planned; this alpha uses the `@junyi5910` scope because npm
-rejected org creation and support needs to unlock it.
+Alpha packages are published as `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`.
 
 Run the CLI without installing it globally:
 

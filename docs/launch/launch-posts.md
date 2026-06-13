@@ -4,10 +4,6 @@ Use these drafts after the scoped npm packages are published and the `pnpm dlx` 
 Do not post them while `@junyi5910/agentlayer-core` or `@junyi5910/agentlayer-cli` still returns
 `404` from the npm registry.
 
-For this alpha, the npm packages use the `@junyi5910` user scope because npm rejected creating the
-`@agentlayer` org for this release. Keep the `@agentlayer` npm org scope as the future migration
-target.
-
 ## English Short
 
 ```text

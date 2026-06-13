@@ -10,9 +10,7 @@ public URLs for CI.
 
 ## Published CLI Usage
 
-For `v0.2.0-alpha.1`, the published alpha packages are `@junyi5910/agentlayer-core` and
-`@junyi5910/agentlayer-cli`. The `@agentlayer` npm org scope remains the future migration target;
-this alpha uses the user scope because npm rejected creating the org for this release.
+The published alpha packages are `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`.
 
 Create a baseline for a public site you own:
 

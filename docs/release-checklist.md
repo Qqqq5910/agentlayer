@@ -5,9 +5,7 @@ npm registry, GitHub release page, and CI smoke test in the same state.
 
 ## Scope Note
 
-This alpha publishes `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`. The `@agentlayer`
-npm org scope remains the future migration target, but the current alpha uses the user scope because
-npm rejected creating the org for this release.
+This alpha publishes `@junyi5910/agentlayer-core` and `@junyi5910/agentlayer-cli`.
 
 ## Before Publishing
 
@@ -106,7 +104,5 @@ After pushing, create the GitHub release for `v0.2.0-alpha.1` using
 ## Do Not Do
 
 - Do not publish or recommend the unscoped `agentlayer` package name.
-- Do not publish this alpha under the `@agentlayer` org scope; reserve that scope for a future
-  migration after npm org creation is available.
 - Do not mark generated MCP, WebMCP, API Catalog, or Agent Skills files as compliance guarantees.
 - Do not upload private URLs, credentials, customer data, or raw private scan output.
