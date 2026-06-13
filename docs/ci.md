@@ -149,11 +149,11 @@ jobs:
   agentlayer:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
           version: 11.4.0
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm

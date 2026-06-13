@@ -27,6 +27,12 @@ const resources: Array<[string, string, string, LucideIcon]> = [
     "How the public alpha score, task checks, severities, and limitations work.",
     "https://github.com/Qqqq5910/agentlayer/blob/main/docs/scoring.md",
     FileText
+  ],
+  [
+    "Release checklist",
+    "Publish order, smoke tests, and GitHub sync steps for the npm alpha.",
+    "https://github.com/Qqqq5910/agentlayer/blob/main/docs/release-checklist.md",
+    FileText
   ]
 ];
 

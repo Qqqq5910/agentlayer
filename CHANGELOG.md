@@ -19,6 +19,7 @@ packages are published.
 - Feedback issue templates for real scans, false positives, and confusing recommendations.
 - Copyable CI workflow examples under `examples/ci/`.
 - Manual published CLI smoke workflow for post-publish `pnpm dlx @agentlayer/cli` verification.
+- Release checklist documenting npm publish order, post-publish smoke tests, and GitHub sync timing.
 - Zod schemas and core comparison helpers for baselines, comparisons, regressions, and blocking
   policies.
 - Opt-in blocking rules for task regressions, missing artifacts, and score drops.

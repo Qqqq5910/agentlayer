@@ -381,6 +381,7 @@ GitHub Actions 会在 push 和 pull request 上运行同样的 lint、typecheck�
 - [Scoring guide](./docs/scoring.md)
 - [Standards](./docs/standards.md)
 - [AgentLayer CI alpha](./docs/ci.md)
+- [Release checklist](./docs/release-checklist.md)
 - [Feedback guide](./docs/feedback.md)
 - [Launch posts](./docs/launch/launch-posts.md)
 - [GitHub metadata](./docs/launch/github-metadata.md)
