@@ -12,6 +12,10 @@ issues.
 - Keep all outreach and feedback scoped to public pages, reviewed scan summaries, and non-sensitive
   artifacts.
 
+Use the [alpha tester kit](./tester-kit.md) when inviting testers. Use the
+[month-one completion audit](./month-one-audit.md) to separate completed repository work from
+external feedback still waiting on real users.
+
 ## Invite Channels
 
 - Personal DMs to SaaS founders, indie hackers, docs owners, developer-tool builders, and agency
@@ -43,7 +47,7 @@ No private URLs, credentials, customer data, or internal pages.
 ```text
 Could you try a bounded AgentLayer scan on one public site you control?
 
-pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://your-site.com --out ./agentlayer-output --max-pages 20
 open ./agentlayer-output/report.html
 
 The most useful feedback is:

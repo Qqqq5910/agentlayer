@@ -13,14 +13,16 @@ https://agentlayer-readonly-demo.vercel.app uses the fictional AcmeFlow fixture 
 inspect the report UI. For feedback on your own site, please run the CLI and paste the scan details
 below.
 
-After the scoped npm alpha is published, the preferred command is:
+The preferred command is:
 
 ```bash
-pnpm dlx @junyi5910/agentlayer-cli generate https://your-site.com --out ./agentlayer-output --max-pages 20
+pnpm dlx @junyi5910/agentlayer-cli@0.2.0-alpha.3 generate https://your-site.com --out ./agentlayer-output --max-pages 20
 ```
 
 Please avoid sharing private tokens, credentials, internal URLs, customer data, confidential
 screenshots, unpublished launch plans, or other sensitive information.
+
+For a tester-facing walkthrough, use `docs/launch/tester-kit.md`.
 
 ## Template
 

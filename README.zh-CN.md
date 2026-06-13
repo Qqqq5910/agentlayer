@@ -32,8 +32,6 @@ AgentLayer 是一个开源、确定性的工具包，用来检查公开网站是
 
 当前源码版本是 `0.2.0-alpha.3`。这是用于公开网站试用和本地 baseline/compare 工作流的 alpha 版本。
 
-Alpha 包发布为 `@junyi5910/agentlayer-core` 和 `@junyi5910/agentlayer-cli`。
-
 无需全局安装，可以直接运行 CLI：
 
 ```bash

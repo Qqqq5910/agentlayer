@@ -19,6 +19,9 @@ The fastest path is to comment on the pinned feedback issue:
 
 - [Share your AgentLayer scan result](https://github.com/Qqqq5910/agentlayer/issues/1)
 
+If you are inviting someone else to test AgentLayer, send them the
+[alpha tester kit](./launch/tester-kit.md).
+
 Use the GitHub issue template that best matches the scan:
 
 - [Share a real scan](https://github.com/Qqqq5910/agentlayer/issues/new?template=share-scan.yml) for
