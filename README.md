@@ -225,7 +225,9 @@ Example baseline, passing comparison, and failing comparison outputs live in
 ## Help us test real websites
 
 AgentLayer needs scans from real public websites to improve the default heuristics. If you can share
-a result, open an issue or use [docs/feedback.md](./docs/feedback.md) with:
+a result, comment on
+[the pinned scan feedback issue](https://github.com/Qqqq5910/agentlayer/issues/1) or use
+[docs/feedback.md](./docs/feedback.md) with:
 
 - URL
 - command
@@ -365,6 +367,7 @@ GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
 - [Feedback guide](./docs/feedback.md)
 - [Pinned scan feedback issue](https://github.com/Qqqq5910/agentlayer/issues/1)
 - [Launch posts](./docs/launch/launch-posts.md)
+- [Launch outreach tracker](./docs/launch/outreach-tracker.md)
 - [GitHub metadata](./docs/launch/github-metadata.md)
 - [Share-your-scan issue template](./docs/launch/share-your-scan.md)
 - [Security notes](./docs/security.md)

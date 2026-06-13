@@ -21,11 +21,12 @@ The fastest path is to comment on the pinned feedback issue:
 
 Use the GitHub issue template that best matches the scan:
 
-- [Share a real scan](../.github/ISSUE_TEMPLATE/share-scan.yml) for general scan feedback.
-- [False positive](../.github/ISSUE_TEMPLATE/false-positive.yml) when a fact, action, task result,
-  recommendation, or CI regression looks wrong.
-- [Confusing recommendation](../.github/ISSUE_TEMPLATE/confusing-recommendation.yml) when the report
-  does not make the next fix clear.
+- [Share a real scan](https://github.com/Qqqq5910/agentlayer/issues/new?template=share-scan.yml) for
+  general scan feedback.
+- [False positive](https://github.com/Qqqq5910/agentlayer/issues/new?template=false-positive.yml)
+  when a fact, action, task result, recommendation, or CI regression looks wrong.
+- [Confusing recommendation](https://github.com/Qqqq5910/agentlayer/issues/new?template=confusing-recommendation.yml)
+  when the report does not make the next fix clear.
 
 ## What To Share
 
