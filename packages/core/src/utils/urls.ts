@@ -16,20 +16,29 @@ const TRACKING_PARAMS = new Set([
 const IMPORTANT_PATHS = [
   "/",
   "/pricing",
+  "/plans",
+  "/compare-plans",
+  "/compare/plans",
   "/docs",
   "/documentation",
   "/api",
   "/developers",
   "/security",
   "/trust",
+  "/trust-center",
+  "/legal",
   "/privacy",
   "/terms",
   "/contact",
   "/sales",
+  "/contact-sales",
   "/demo",
+  "/book-demo",
+  "/request-demo",
   "/support",
   "/help",
   "/integrations",
+  "/connectors",
   "/customers",
   "/case-studies",
   "/faq",
@@ -38,12 +47,15 @@ const IMPORTANT_PATHS = [
 
 const IMPORTANT_PATH_KEYWORDS = [
   "pricing",
+  "plans",
+  "compare",
   "docs",
   "documentation",
   "api",
   "developer",
   "security",
   "trust",
+  "legal",
   "privacy",
   "terms",
   "contact",
@@ -56,6 +68,61 @@ const IMPORTANT_PATH_KEYWORDS = [
   "case-stud",
   "faq",
   "llms"
+];
+
+const LOW_SIGNAL_FIRST_SEGMENTS = new Set([
+  "article",
+  "articles",
+  "blog",
+  "blogs",
+  "changelog",
+  "changelogs",
+  "guide",
+  "guides",
+  "learn",
+  "news",
+  "release",
+  "releases",
+  "release-notes",
+  "resource",
+  "resources",
+  "updates"
+]);
+
+const DEEP_REFERENCE_SEGMENTS = new Set([
+  "api-reference",
+  "changelog",
+  "changelogs",
+  "reference",
+  "references",
+  "release-notes"
+]);
+
+const HIGH_SIGNAL_GROUPS = [
+  {
+    score: 96,
+    tokens: ["pricing", "plans", "compare"]
+  },
+  {
+    score: 94,
+    tokens: ["security", "trust", "compliance"]
+  },
+  {
+    score: 93,
+    tokens: ["legal", "privacy", "terms"]
+  },
+  {
+    score: 92,
+    tokens: ["contact", "sales", "demo", "support", "help"]
+  },
+  {
+    score: 91,
+    tokens: ["docs", "documentation", "api", "developers", "developer"]
+  },
+  {
+    score: 90,
+    tokens: ["integrations", "integration", "connectors", "connector"]
+  }
 ];
 
 export function normalizeUrl(input: string, baseUrl?: string): string | null {
@@ -167,19 +234,52 @@ export function sortUrlsByPriority(urls: Iterable<string>, rootUrl: string): str
 
 export function urlPriority(value: string, root: URL): number {
   const url = new URL(value);
-  const path = url.pathname.toLowerCase();
+  const path = normalizePathname(url.pathname).toLowerCase();
+  const pathSegments = path.split("/").filter(Boolean);
+  const tokens = pathTokens(pathSegments);
 
   if (url.toString() === root.toString() || path === "/") {
     return 100;
   }
 
+  if (path.endsWith("/llms.txt")) {
+    return 88;
+  }
+
+  const highSignalScore = highSignalPathScore(pathSegments, tokens);
+  if (highSignalScore !== null) {
+    return Math.max(
+      0,
+      highSignalScore -
+        depthPenalty(pathSegments) -
+        lowSignalContentPenalty(pathSegments) -
+        deepReferencePenalty(pathSegments)
+    );
+  }
+
   const keywordScore = IMPORTANT_PATH_KEYWORDS.reduce(
-    (score, keyword) => score + (path.includes(keyword) ? 8 : 0),
+    (score, keyword) => score + (path.includes(keyword) ? 5 : 0),
     0
   );
-  const depthPenalty = path.split("/").filter(Boolean).length * 2;
 
-  return Math.max(0, 40 + keywordScore - depthPenalty);
+  return Math.max(
+    0,
+    35 +
+      keywordScore -
+      pathSegments.length * 3 -
+      lowSignalContentPenalty(pathSegments) -
+      deepReferencePenalty(pathSegments)
+  );
+}
+
+export function isHighSignalTaskUrl(value: string, rootUrl: string): boolean {
+  const normalized = normalizeUrl(value);
+  if (!normalized) {
+    return false;
+  }
+
+  const root = new URL(rootUrl);
+  return urlPriority(normalized, root) >= 70;
 }
 
 export function pageMarkdownPath(pageUrl: string, rootUrl: string): string {
@@ -201,4 +301,65 @@ export function pageMarkdownPath(pageUrl: string, rootUrl: string): string {
 export function displayUrlPath(value: string): string {
   const url = new URL(value);
   return `${url.pathname}${url.search}` || "/";
+}
+
+function highSignalPathScore(
+  pathSegments: readonly string[],
+  tokens: readonly string[]
+): number | null {
+  if (isLowSignalContentPath(pathSegments)) {
+    return null;
+  }
+
+  const firstSegmentTokens = pathSegments[0] ? tokenizePathSegment(pathSegments[0]) : [];
+  for (const group of HIGH_SIGNAL_GROUPS) {
+    if (group.tokens.some((token) => firstSegmentTokens.includes(token))) {
+      return group.score;
+    }
+  }
+
+  for (const group of HIGH_SIGNAL_GROUPS) {
+    if (group.tokens.some((token) => tokens.includes(token))) {
+      return group.score - 12;
+    }
+  }
+
+  const firstSegment = pathSegments[0] ?? "";
+  if (firstSegment === "customers" || firstSegment === "case-studies") {
+    return 68;
+  }
+
+  if (firstSegment === "faq") {
+    return 66;
+  }
+
+  return null;
+}
+
+function isLowSignalContentPath(pathSegments: readonly string[]): boolean {
+  return LOW_SIGNAL_FIRST_SEGMENTS.has(pathSegments[0] ?? "");
+}
+
+function lowSignalContentPenalty(pathSegments: readonly string[]): number {
+  return isLowSignalContentPath(pathSegments) ? 45 : 0;
+}
+
+function deepReferencePenalty(pathSegments: readonly string[]): number {
+  if (pathSegments.length <= 2) {
+    return 0;
+  }
+
+  return pathSegments.some((segment) => DEEP_REFERENCE_SEGMENTS.has(segment)) ? 20 : 0;
+}
+
+function depthPenalty(pathSegments: readonly string[]): number {
+  return Math.max(0, pathSegments.length - 1) * 4;
+}
+
+function pathTokens(pathSegments: readonly string[]): string[] {
+  return pathSegments.flatMap(tokenizePathSegment);
+}
+
+function tokenizePathSegment(segment: string): string[] {
+  return segment.split(/[^a-z0-9]+/).filter(Boolean);
 }

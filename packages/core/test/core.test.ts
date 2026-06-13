@@ -214,6 +214,28 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
   });
 });
 
+describe("crawl coverage diagnostics", () => {
+  it("surfaces canonical-domain redirect clusters instead of ordinary missing-content fixes", async () => {
+    const report = await buildAgentLayerReport(canonicalRedirectLimitedScan());
+    const titles = report.recommendations.map((recommendation) => recommendation.title);
+    const diagnostic = report.recommendations[0];
+
+    expect(diagnostic).toMatchObject({
+      title: "Review canonical-domain crawl coverage",
+      severity: "high",
+      affectedTasks: expect.arrayContaining(["find_pricing", "book_demo"])
+    });
+    expect(diagnostic?.whyItMatters).toContain("0 page snapshots were captured");
+    expect(diagnostic?.whyItMatters).toContain("4 skipped redirects pointed to www.acme.test");
+    expect(diagnostic?.whyItMatters).toContain("bounded crawl coverage");
+    expect(diagnostic?.howToFix).toContain("rerun the scan with https://www.acme.test");
+    expect(diagnostic?.howToFix).toContain("will not crawl www.acme.test automatically");
+    expect(titles.some((title) => title.startsWith("Improve task:"))).toBe(false);
+    expect(titles).not.toContain("Add source-backed facts");
+    expect(titles).not.toContain("Expose agent action paths");
+  });
+});
+
 function sampleScan(): SiteScan {
   return SiteScanSchema.parse({
     rootUrl: ROOT_URL,
@@ -256,6 +278,36 @@ function sampleScan(): SiteScan {
       {
         url: "https://acme.test/away",
         message: "Skipped redirect outside allowed crawl scope: https://external.test/away"
+      }
+    ]
+  });
+}
+
+function canonicalRedirectLimitedScan(): SiteScan {
+  return SiteScanSchema.parse({
+    rootUrl: ROOT_URL,
+    scannedAt: "2026-06-14T00:00:00.000Z",
+    pages: [],
+    errors: [
+      {
+        url: "https://acme.test/",
+        message: "Skipped redirect outside allowed crawl scope: https://www.acme.test/"
+      },
+      {
+        url: "https://acme.test/pricing",
+        message: "Skipped redirect outside allowed crawl scope: https://www.acme.test/pricing"
+      },
+      {
+        url: "https://acme.test/docs",
+        message: "Skipped redirect outside allowed crawl scope: https://www.acme.test/docs"
+      },
+      {
+        url: "https://acme.test/contact",
+        message: "Skipped redirect outside allowed crawl scope: https://www.acme.test/contact"
+      },
+      {
+        url: "https://acme.test/missing",
+        message: "Fetch failed with HTTP 404."
       }
     ]
   });

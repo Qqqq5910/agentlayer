@@ -6,6 +6,8 @@ remaining items are still candidate follow-up work.
 
 ## Observed: Bounded Crawl Misses Public Evidence
 
+- Status: mitigated in source with high-signal URL prioritization and bounded-crawl diagnostics for
+  high-signal candidates left unfetched by `maxPages`.
 - Pattern: A 5-page public-root scan can miss pricing, policy, support, or security pages even when
   the public site likely exposes them elsewhere. Seen in samples where task checks failed or
   remained partial despite broad public navigation.
@@ -43,6 +45,8 @@ remaining items are still candidate follow-up work.
 
 ## Observed: Canonical Domain Redirects Can Produce No-Page Reports
 
+- Status: fixed in source with a coverage-first recommendation for low-page scans dominated by
+  outside-scope redirects to a common external host.
 - Pattern: A public root on one domain can redirect most important paths to a different canonical
   domain. Seen in a `v0.2.0-alpha.2` sample where the requested host redirected to another public
   host, leaving zero page snapshots and nine failed tasks.

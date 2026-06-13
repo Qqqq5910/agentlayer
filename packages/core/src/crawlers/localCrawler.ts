@@ -2,7 +2,12 @@ import type { PageSnapshot, ScanOptions, SiteScan } from "../schemas.js";
 import { SiteScanSchema } from "../schemas.js";
 import { extractPageSnapshot } from "../extractor/extractMetadata.js";
 import { isAllowedByRobots, isSafeCrawlUrl } from "../utils/safety.js";
-import { importantSeedUrls, normalizeUrl, sortUrlsByPriority } from "../utils/urls.js";
+import {
+  importantSeedUrls,
+  isHighSignalTaskUrl,
+  normalizeUrl,
+  sortUrlsByPriority
+} from "../utils/urls.js";
 import { fetchRobotsTxt, fetchWithTimeout } from "../scanner/fetchRobots.js";
 import { fetchSitemap } from "../scanner/fetchSitemap.js";
 import type { Crawler } from "./types.js";
@@ -52,6 +57,8 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
   for (const url of sortUrlsByPriority(importantSeedUrls(options.rootUrl), options.rootUrl)) {
     enqueue(url, "seed");
   }
+
+  prioritizeQueue(queue, options.rootUrl);
 
   while (queue.length > 0 && pages.length < options.maxPages) {
     const current = queue.shift();
@@ -122,12 +129,17 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
       for (const url of sortUrlsByPriority(discovered, options.rootUrl)) {
         enqueue(url, "discovered");
       }
+      prioritizeQueue(queue, options.rootUrl);
     } catch (error) {
       errors.push({
         url: current,
         message: error instanceof Error ? error.message : "Unknown fetch error."
       });
     }
+  }
+
+  if (pages.length >= options.maxPages) {
+    noteBoundedHighSignalCandidates(queue, visited, errors, options.rootUrl);
   }
 
   return SiteScanSchema.parse({
@@ -138,6 +150,28 @@ export async function scanWithLocalCrawler(options: ScanOptions): Promise<SiteSc
     sitemap,
     errors
   });
+}
+
+function prioritizeQueue(queue: string[], rootUrl: string): void {
+  queue.splice(0, queue.length, ...sortUrlsByPriority(queue, rootUrl));
+}
+
+function noteBoundedHighSignalCandidates(
+  queue: readonly string[],
+  visited: ReadonlySet<string>,
+  errors: SiteScan["errors"],
+  rootUrl: string
+): void {
+  const candidates = queue
+    .filter((url) => !visited.has(url) && isHighSignalTaskUrl(url, rootUrl))
+    .slice(0, 5);
+
+  for (const url of candidates) {
+    errors.push({
+      url,
+      message: "Not fetched because maxPages bound was reached before this high-signal candidate."
+    });
+  }
 }
 
 function moreSpecificSource(existing: QueueSource | undefined, next: QueueSource): QueueSource {

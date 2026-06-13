@@ -11,6 +11,18 @@ import { clamp, includesAny } from "../utils/text.js";
 
 export type SiteScores = AgentOperabilityReport["scores"];
 
+const LOW_COVERAGE_PAGE_LIMIT = 2;
+const COMMON_EXTERNAL_REDIRECT_MIN_COUNT = 3;
+const COMMON_EXTERNAL_REDIRECT_MIN_SHARE = 0.6;
+const COMMON_EXTERNAL_REDIRECT_MIN_ERROR_SHARE = 0.5;
+const OUT_OF_SCOPE_REDIRECT_RE = /skipped redirect outside allowed crawl scope:\s*(\S+)/i;
+
+type RedirectHostCluster = {
+  hostname: string;
+  count: number;
+  exampleUrl: string;
+};
+
 export function scoreSite(
   scan: SiteScan,
   facts: readonly ExtractedFact[],
@@ -47,6 +59,11 @@ export function generateRecommendations(
 ): Recommendation[] {
   const recommendations: Recommendation[] = [];
   const add = (recommendation: Recommendation) => recommendations.push(recommendation);
+  const redirectCoverageRecommendation = canonicalRedirectCoverageRecommendation(scan, taskResults);
+
+  if (redirectCoverageRecommendation) {
+    return [redirectCoverageRecommendation];
+  }
 
   if (!hasLlmsTxt(scan)) {
     add({
@@ -157,6 +174,95 @@ export function generateRecommendations(
   }
 
   return recommendations.slice(0, 12);
+}
+
+function canonicalRedirectCoverageRecommendation(
+  scan: SiteScan,
+  taskResults: readonly AgentTaskResult[]
+): Recommendation | null {
+  if (scan.pages.length > LOW_COVERAGE_PAGE_LIMIT) {
+    return null;
+  }
+
+  const redirectCluster = commonExternalRedirectCluster(scan);
+  if (!redirectCluster) {
+    return null;
+  }
+
+  const pageCount = scan.pages.length;
+  const pageLabel =
+    pageCount === 1 ? "1 page snapshot was captured" : `${pageCount} page snapshots were captured`;
+  const rootHost = hostnameFor(scan.rootUrl) ?? "the requested host";
+  const canonicalRoot = originFor(redirectCluster.exampleUrl) ?? redirectCluster.hostname;
+
+  return {
+    title: "Review canonical-domain crawl coverage",
+    severity: "high",
+    whyItMatters: `${pageLabel} while ${redirectCluster.count} skipped redirects pointed to ${redirectCluster.hostname}. Missing facts, actions, or task evidence may reflect bounded crawl coverage rather than missing site content.`,
+    howToFix: `If ${redirectCluster.hostname} is the intended public host for ${rootHost}, rerun the scan with ${canonicalRoot}. The scanner keeps the original host boundary and will not crawl ${redirectCluster.hostname} automatically.`,
+    affectedTasks: taskResults.filter((task) => task.status !== "pass").map((task) => task.taskId)
+  };
+}
+
+function commonExternalRedirectCluster(scan: SiteScan): RedirectHostCluster | null {
+  const rootHost = hostnameFor(scan.rootUrl);
+  const clusters = new Map<string, RedirectHostCluster>();
+  let redirectCount = 0;
+
+  for (const error of scan.errors) {
+    const targetUrl = outOfScopeRedirectTarget(error.message);
+    if (!targetUrl) {
+      continue;
+    }
+
+    const hostname = hostnameFor(targetUrl);
+    if (!hostname || hostname === rootHost) {
+      continue;
+    }
+
+    redirectCount += 1;
+    const cluster = clusters.get(hostname) ?? { hostname, count: 0, exampleUrl: targetUrl };
+    cluster.count += 1;
+    clusters.set(hostname, cluster);
+  }
+
+  if (redirectCount < COMMON_EXTERNAL_REDIRECT_MIN_COUNT) {
+    return null;
+  }
+
+  const topCluster = Array.from(clusters.values()).sort(
+    (left, right) => right.count - left.count
+  )[0];
+  if (
+    !topCluster ||
+    topCluster.count < COMMON_EXTERNAL_REDIRECT_MIN_COUNT ||
+    topCluster.count / redirectCount < COMMON_EXTERNAL_REDIRECT_MIN_SHARE ||
+    topCluster.count / scan.errors.length < COMMON_EXTERNAL_REDIRECT_MIN_ERROR_SHARE
+  ) {
+    return null;
+  }
+
+  return topCluster;
+}
+
+function outOfScopeRedirectTarget(message: string): string | null {
+  return message.match(OUT_OF_SCOPE_REDIRECT_RE)?.[1] ?? null;
+}
+
+function hostnameFor(value: string): string | null {
+  try {
+    return new URL(value).hostname.toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+function originFor(value: string): string | null {
+  try {
+    return new URL(value).origin;
+  } catch {
+    return null;
+  }
 }
 
 function scoreReadability(scan: SiteScan): number {
