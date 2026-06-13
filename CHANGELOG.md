@@ -11,6 +11,14 @@ packages are published.
 
 - `agentlayer baseline <url>` for saving compact AgentLayer CI baseline JSON reports.
 - `agentlayer compare <url>` for comparing a fresh scan against a saved baseline.
+- Scoring guide at `docs/scoring.md`, linked from README and the web docs page.
+- Report explanations for score weights, task evidence, missing evidence, next fixes, and
+  Critical/Warning/Suggestion recommendation labels.
+- Real-world anonymized scan sample format under `examples/real-world/`, with 10 bounded public-site
+  scan summaries.
+- Feedback issue templates for real scans, false positives, and confusing recommendations.
+- Copyable CI workflow examples under `examples/ci/`.
+- Manual published CLI smoke workflow for post-publish `pnpm dlx @agentlayer/cli` verification.
 - Zod schemas and core comparison helpers for baselines, comparisons, regressions, and blocking
   policies.
 - Opt-in blocking rules for task regressions, missing artifacts, and score drops.
@@ -18,13 +26,28 @@ packages are published.
 - AgentLayer CI alpha documentation and GitHub Actions usage guidance.
 - Example CI baseline, passing comparison, and failing comparison outputs under `examples/ci/`.
 
+### Changed
+
+- CLI `generate` summaries now show Critical/Warning/Suggestion recommendation counts and priority
+  fixes.
+- CLI `compare` summaries now show the active blocking policy and label blocking failures clearly.
+- Navigation-only demo/contact/support task results now distinguish a discovered journey URL from
+  missing operable form or required-field evidence.
+- CI workflow examples use stable GitHub Action versions.
+
+### Fixed
+
+- Blog/news/resource article URLs with pricing, security, trust, or integration keywords are no
+  longer classified as canonical pricing, security, docs, or integrations pages unless their path is
+  a canonical landing page.
+
 ### Notes
 
 - This is a local-first alpha, not a hosted CI service.
-- The workspace packages `@agentlayer/core` and `@agentlayer/cli` are not published yet; use
-  repo-local `pnpm agentlayer` commands or a local link.
-- Do not use `npm install agentlayer`, `npx agentlayer`, or package-manager execution for this
-  repository until the scoped packages are published.
+- The workspace packages `@agentlayer/core` and `@agentlayer/cli` are prepared for scoped npm alpha
+  publication. If the npm registry still returns 404, use repo-local `pnpm agentlayer` commands
+  until the scoped packages are published.
+- Do not use the unscoped `agentlayer` package name.
 
 ## [0.1.1] - 2026-06-11
 
