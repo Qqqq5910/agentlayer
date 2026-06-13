@@ -1,0 +1,30 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-005",
+  "siteType": "Network, security, and developer platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": null,
+    "readability": null,
+    "trustability": null,
+    "actionability": null,
+    "taskSuccess": null
+  },
+  "tasks": {
+    "pass": [],
+    "partial": [],
+    "fail": [],
+    "unavailable": ["Task checks were not run or did not finish."]
+  },
+  "wrongFactsOrActionsObserved": [
+    "Initial public-root scan did not finish before the bounded outer timeout; no task or score data was collected."
+  ],
+  "confusingRecommendations": [],
+  "artifactsWouldPublish": [],
+  "safeEvidenceNotes": [
+    "Initial public-root scan did not finish before the bounded outer timeout; no task or score data was collected."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

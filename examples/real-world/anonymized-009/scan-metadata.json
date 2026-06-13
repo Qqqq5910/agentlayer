@@ -1,0 +1,74 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-009",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Search, observability, and security platform",
+  "scannedAt": "2026-06-13T00:28:15.208Z",
+  "generatedAt": "2026-06-13T00:28:25.405Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": 0,
+    "test": 0,
+    "doctor": 0
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": "pnpm agentlayer test <public-root-url> --out <tmp>/tasks.json --max-pages 5 --timeout-ms 5000 --json",
+    "doctor": "pnpm agentlayer doctor <public-root-url> --out <tmp>/doctor.json --max-pages 5 --timeout-ms 5000 --json"
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 11409
+  },
+  "pagesScanned": 5,
+  "pageInventory": [
+    {
+      "path": "/",
+      "status": 200,
+      "pageType": "home",
+      "sameHost": true
+    },
+    {
+      "path": "/trust/ai-data-faq/supplemental-terms",
+      "status": 200,
+      "pageType": "security",
+      "sameHost": true
+    },
+    {
+      "path": "/blog/advantages-of-resource-based-pricing-in-security",
+      "status": 200,
+      "pageType": "pricing",
+      "sameHost": true
+    },
+    {
+      "path": "/blog/security-integration-example",
+      "status": 200,
+      "pageType": "integrations",
+      "sameHost": true
+    },
+    {
+      "path": "/blog/building-customer-trust-through-secure-experiences-with-open-banking",
+      "status": 200,
+      "pageType": "unknown",
+      "sameHost": true
+    }
+  ],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

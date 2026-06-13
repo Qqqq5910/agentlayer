@@ -62,6 +62,19 @@ Keep committed baselines small, reviewable, and safe to share. Do not commit rep
 secrets, credentials, private URLs, personal data, unpublished customer details, or private fixture
 content.
 
+## Copyable Examples
+
+Copyable GitHub Actions snippets live in [examples/ci](../examples/ci/README.md):
+
+- [public-site scan](../examples/ci/github-actions-public-site.yml) for an owned public URL with
+  baseline and compare artifacts
+- [local fixture scan](../examples/ci/github-actions-local-fixture.yml) for a local app using
+  `--allow-local`
+
+After the npm alpha packages are published, maintainers can manually run
+[`published-cli-smoke.yml`](../.github/workflows/published-cli-smoke.yml) to verify that the
+published CLI starts, runs `doctor`, and runs `generate` from `pnpm dlx`.
+
 ## Baseline Reports
 
 `baseline` writes an `agentlayer-baseline/v1` JSON report. It records the target, AgentLayer

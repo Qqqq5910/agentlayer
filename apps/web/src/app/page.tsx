@@ -200,8 +200,8 @@ export default function HomePage() {
                       <h3 className="text-sm font-semibold">Recommendations</h3>
                     </div>
                     <p className="mt-2 text-sm leading-6 text-slate-300">
-                      {recommendationSummary.high} high-priority and {recommendationSummary.medium}{" "}
-                      medium-priority fixes in the fixture report.
+                      {recommendationSummary.high} critical and {recommendationSummary.medium}{" "}
+                      warning fixes in the fixture report.
                     </p>
                   </div>
                 </div>

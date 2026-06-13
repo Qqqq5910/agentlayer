@@ -92,6 +92,9 @@ describe("AgentLayer CI command exit behavior", () => {
     };
 
     expect(exitCode).toBe(1);
+    expect(stdout.join("\n")).toContain("Policy:");
+    expect(stdout.join("\n")).toContain("Fail on: task-regression");
+    expect(stdout.join("\n")).toContain("[blocking] find_pricing: pass -> fail");
     expect(stdout.join("\n")).toContain("Exit code: 1");
     expect(comparison.exitCode).toBe(1);
     expect(comparison.blockingFailures).toEqual([

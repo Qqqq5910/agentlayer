@@ -1,0 +1,97 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-001",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "API platform / developer tool",
+  "scannedAt": "2026-06-13T00:23:32.313Z",
+  "generatedAt": "2026-06-13T00:24:47.101Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": 0,
+    "test": 0,
+    "doctor": 0
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": "pnpm agentlayer test <public-root-url> --out <tmp>/tasks.json --max-pages 5 --timeout-ms 5000 --json",
+    "doctor": "pnpm agentlayer doctor <public-root-url> --out <tmp>/doctor.json --max-pages 5 --timeout-ms 5000 --json"
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 26
+  },
+  "pagesScanned": 5,
+  "pageInventory": [
+    {
+      "path": "/",
+      "status": 200,
+      "pageType": "home",
+      "sameHost": true
+    },
+    {
+      "path": "/demo",
+      "status": 200,
+      "pageType": "demo",
+      "sameHost": true
+    },
+    {
+      "path": "/documentation",
+      "status": 200,
+      "pageType": "docs",
+      "sameHost": true
+    },
+    {
+      "path": "/faq",
+      "status": 200,
+      "pageType": "faq",
+      "sameHost": true
+    },
+    {
+      "path": "/help",
+      "status": 200,
+      "pageType": "support",
+      "sameHost": true
+    }
+  ],
+  "crawlErrorCounts": {
+    "too_many_redirects": 7
+  },
+  "crawlErrorExamples": [
+    {
+      "path": "/state-of-api/marketing-state-of-api-sitemap.xml",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/api",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/case-studies",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/contact",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/customers",
+      "type": "too_many_redirects"
+    }
+  ]
+}

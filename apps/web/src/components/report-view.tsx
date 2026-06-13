@@ -35,6 +35,7 @@ import {
   scoreToneClasses,
   scoreToneLabel,
   severityClasses,
+  severityLabel,
   summarizeArtifacts,
   summarizeRecommendations,
   summarizeTasks,
@@ -178,7 +179,7 @@ export function ReportView({ report, artifacts, title, eyebrow, demoNotice }: Re
             value={`${artifactSummary.total} outputs`}
           />
           <OverviewCard
-            detail={`${recommendationSummary.high} high, ${recommendationSummary.medium} medium, ${recommendationSummary.low} low`}
+            detail={`${recommendationSummary.high} critical, ${recommendationSummary.medium} warning, ${recommendationSummary.low} suggestion`}
             icon={<Sparkles size={18} aria-hidden="true" />}
             label="Recommendations"
             value={`${recommendationSummary.total} fixes`}
@@ -195,6 +196,22 @@ export function ReportView({ report, artifacts, title, eyebrow, demoNotice }: Re
               score={report.scores[card.key]}
             />
           ))}
+        </section>
+
+        <section className="panel p-5">
+          <SectionHeader
+            icon={<Gauge size={18} aria-hidden="true" />}
+            title="How scoring works"
+            description="The overall score is deterministic: readability 25%, trustability 25%, actionability 30%, and task success 20%. Use it as a repair guide for public pages, not a compliance guarantee."
+          />
+          <Link
+            className="focus-ring inline-flex h-9 items-center justify-center rounded-md border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            href="https://github.com/Qqqq5910/agentlayer/blob/main/docs/scoring.md"
+            target="_blank"
+          >
+            Scoring model
+            <ArrowUpRight className="ml-1" size={14} aria-hidden="true" />
+          </Link>
         </section>
 
         <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
@@ -379,13 +396,13 @@ function Recommendations({
       />
       <div className="mb-4 flex flex-wrap gap-2 text-xs font-semibold">
         <span className="rounded-md border border-rose-200 bg-rose-50 px-2 py-1 text-rose-800">
-          {summary.high} high
+          {summary.high} critical
         </span>
         <span className="rounded-md border border-amber-200 bg-amber-50 px-2 py-1 text-amber-800">
-          {summary.medium} medium
+          {summary.medium} warning
         </span>
         <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-slate-700">
-          {summary.low} low
+          {summary.low} suggestion
         </span>
       </div>
       <div className="space-y-3">
@@ -395,7 +412,7 @@ function Recommendations({
               <span
                 className={`rounded-md border px-2 py-1 text-xs font-semibold ${severityClasses(item.severity)}`}
               >
-                {item.severity}
+                {severityLabel(item.severity)}
               </span>
               {item.suggestedArtifact ? (
                 <span className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600">
@@ -406,7 +423,7 @@ function Recommendations({
             <h3 className="mt-3 font-semibold text-slate-950">{item.title}</h3>
             <p className="mt-2 text-sm leading-6 text-slate-600">{item.whyItMatters}</p>
             <p className="mt-3 text-sm leading-6 text-slate-700">
-              <span className="font-medium text-slate-950">Action:</span> {item.howToFix}
+              <span className="font-medium text-slate-950">Fix:</span> {item.howToFix}
             </p>
             {item.affectedTasks.length > 0 ? (
               <p className="mt-2 text-xs text-slate-500">
@@ -560,6 +577,7 @@ function TaskResults({ summary, tasks }: { summary: TaskSummary; tasks: AgentTas
               </div>
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-600">{task.explanation}</p>
+            <TaskEvidence task={task} />
             {task.missingInformation.length > 0 ? (
               <p className="mt-3 text-xs text-slate-500">
                 Missing: {task.missingInformation.join(", ")}
@@ -592,6 +610,35 @@ function TaskResults({ summary, tasks }: { summary: TaskSummary; tasks: AgentTas
         ))}
       </div>
     </section>
+  );
+}
+
+function TaskEvidence({ task }: { task: AgentTaskResult }) {
+  const evidenceUrls = task.evidenceUrls ?? [];
+  const evidenceSnippets = task.evidenceSnippets ?? [];
+
+  if (evidenceUrls.length === 0 && evidenceSnippets.length === 0) {
+    return (
+      <p className="mt-3 text-xs text-slate-500">Evidence: no task-specific evidence recorded.</p>
+    );
+  }
+
+  return (
+    <div className="mt-3 rounded-md border border-slate-200 bg-white p-3">
+      <p className="text-xs font-semibold uppercase text-slate-500">Evidence</p>
+      <ul className="mt-2 space-y-2 text-xs leading-5 text-slate-600">
+        {evidenceUrls.slice(0, 3).map((url) => (
+          <li className="truncate text-cyan-700" key={url}>
+            <a href={url} rel="noreferrer" target="_blank">
+              {url}
+            </a>
+          </li>
+        ))}
+        {evidenceSnippets.slice(0, 3).map((snippet) => (
+          <li key={snippet}>{snippet}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

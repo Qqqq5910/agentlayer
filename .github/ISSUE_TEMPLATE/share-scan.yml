@@ -1,0 +1,73 @@
+name: Share a real scan
+description: Share safe feedback from a real AgentLayer scan.
+title: "[Scan feedback]: "
+labels: ["scan-feedback", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Real scans make AgentLayer better. Share only public information you have permission to discuss.
+
+        Do not paste secrets, private URLs, customer data, credentials, internal paths, screenshots with confidential info, or unpublished launch plans.
+  - type: input
+    id: version
+    attributes:
+      label: AgentLayer version or commit
+      placeholder: "0.2.0-alpha.1 or commit SHA"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public URL scanned
+      description: Use only a public URL that is safe to discuss in an open GitHub issue.
+      placeholder: "https://example.com"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command used
+      description: Include flags, but remove private paths, tokens, and internal URLs.
+      placeholder:
+        "pnpm agentlayer generate https://example.com --out ./agentlayer-output --max-pages 20"
+    validations:
+      required: true
+  - type: dropdown
+    id: scan_surface
+    attributes:
+      label: What should we look at?
+      options:
+        - Overall scan quality
+        - Facts or actions
+        - Task results
+        - Generated artifacts
+        - CI baseline or compare output
+        - Documentation or setup
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feedback summary
+      description: What looked useful, wrong, missing, or confusing?
+    validations:
+      required: true
+  - type: textarea
+    id: safe_excerpts
+    attributes:
+      label: Safe excerpts
+      description:
+        Paste only small, non-sensitive snippets from reports, generated files, logs, or
+        screenshots.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: This scan is from a public site I can discuss in an open GitHub issue.
+          required: true
+        - label:
+            I removed secrets, private URLs, customer data, credentials, internal paths, screenshots
+            with confidential info, and unpublished launch plans.
+          required: true

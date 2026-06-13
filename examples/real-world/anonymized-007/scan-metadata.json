@@ -1,0 +1,36 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-007",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Frontend cloud and developer platform",
+  "scannedAt": null,
+  "generatedAt": null,
+  "scanStatus": "failed_or_blocked_before_scan_json",
+  "commandExitCodes": {
+    "scan": 142,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": null,
+    "doctor": null
+  },
+  "robotsTxt": null,
+  "sitemap": null,
+  "pagesScanned": 0,
+  "pageInventory": [],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

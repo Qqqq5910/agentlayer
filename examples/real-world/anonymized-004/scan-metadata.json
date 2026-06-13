@@ -1,0 +1,85 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-004",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Communications API platform",
+  "scannedAt": "2026-06-13T00:26:29.829Z",
+  "generatedAt": "2026-06-13T00:26:58.311Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": 0,
+    "test": 0,
+    "doctor": 0
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": "pnpm agentlayer test <public-root-url> --out <tmp>/tasks.json --max-pages 5 --timeout-ms 5000 --json",
+    "doctor": "pnpm agentlayer doctor <public-root-url> --out <tmp>/doctor.json --max-pages 5 --timeout-ms 5000 --json"
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 7
+  },
+  "pagesScanned": 5,
+  "pageInventory": [
+    {
+      "path": "/en-us",
+      "status": 200,
+      "pageType": "unknown",
+      "sameHost": true
+    },
+    {
+      "path": "/en-us/products",
+      "status": 200,
+      "pageType": "support",
+      "sameHost": true
+    },
+    {
+      "path": "/en-us/developers",
+      "status": 200,
+      "pageType": "api_docs",
+      "sameHost": true
+    },
+    {
+      "path": "/docs",
+      "status": 200,
+      "pageType": "docs",
+      "sameHost": true
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200,
+      "pageType": "llms",
+      "sameHost": true
+    }
+  ],
+  "crawlErrorCounts": {
+    "outside_allowed_scope_redirect": 2
+  },
+  "crawlErrorExamples": [
+    {
+      "path": "/customers",
+      "type": "outside_allowed_scope_redirect"
+    },
+    {
+      "path": "/help",
+      "type": "outside_allowed_scope_redirect"
+    }
+  ]
+}

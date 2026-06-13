@@ -35,6 +35,10 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
   const taskRows = report.tasks
     .map((task) => {
       const journeyMarkup = journeyStepsList(task.journeySteps);
+      const evidenceMarkup = taskEvidenceList(task);
+      const nextFixMarkup = task.recommendations.length
+        ? `<ul class="compact-list">${task.recommendations.map((fix) => `<li>${escapeHtml(fix)}</li>`).join("")}</ul>`
+        : `<span class="muted">No immediate fix suggested.</span>`;
 
       return `
         <tr>
@@ -44,6 +48,8 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
           <td>
             ${escapeHtml(task.explanation)}${journeyMarkup ? `\n            ${journeyMarkup}` : ""}
           </td>
+          <td>${evidenceMarkup}</td>
+          <td>${nextFixMarkup}</td>
         </tr>`;
     })
     .join("");
@@ -97,27 +103,24 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
     )
     .join("");
 
-  const recommendationCards =
-    report.recommendations.length > 0
-      ? report.recommendations
-          .slice(0, 6)
-          .map(
-            (recommendation) => `
-              <article class="recommendation">
-                <div>
-                  <span class="badge severity-${escapeAttribute(recommendation.severity)}">${escapeHtml(recommendation.severity)}</span>
-                  ${
-                    recommendation.suggestedArtifact
-                      ? `<code>${escapeHtml(recommendation.suggestedArtifact)}</code>`
-                      : ""
-                  }
-                </div>
-                <h3>${escapeHtml(recommendation.title)}</h3>
-                <p>${escapeHtml(recommendation.howToFix)}</p>
-              </article>`
-          )
-          .join("")
-      : `<div class="empty-state">No high-priority recommendations were generated for this scan.</div>`;
+  const priorityRecommendations = report.recommendations.filter(
+    (recommendation) => recommendation.severity !== "low"
+  );
+  const suggestionRecommendations = report.recommendations.filter(
+    (recommendation) => recommendation.severity === "low"
+  );
+  const priorityRecommendationCards = recommendationCardsFor(
+    priorityRecommendations,
+    "No critical or warning recommendations were generated for this scan."
+  );
+  const suggestionSection =
+    suggestionRecommendations.length > 0
+      ? `<section class="panel">
+        <h2>Suggestions</h2>
+        <p>These are lower-priority cleanup items that can improve discoverability or polish after critical and warning fixes are reviewed.</p>
+        <div class="recommendations-grid">${recommendationCardsFor(suggestionRecommendations, "")}</div>
+      </section>`
+      : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -160,6 +163,10 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .metric { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
       .metric span { display: block; color: #667085; font-size: 12px; text-transform: uppercase; }
       .metric strong { display: block; margin-top: 6px; font-size: 24px; color: #172026; }
+      .explain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+      .explain-card { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
+      .explain-card h3 { margin-top: 0; }
+      .explain-card p { margin-bottom: 0; font-size: 14px; }
       .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
       .file-list li { border: 1px solid #e5e8ec; border-radius: 8px; padding: 12px; background: #fbfcfd; }
       .file-list a { text-decoration: none; }
@@ -169,9 +176,12 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       .journey-list li { display: grid; gap: 4px; border-left: 3px solid #dfe3e8; padding-left: 8px; }
       .journey-list span { color: #172026; font-size: 12px; font-weight: 700; }
       .journey-list small { margin: 0; }
+      .compact-list { display: grid; gap: 6px; margin: 0; padding-left: 18px; }
+      .muted { color: #667085; }
       .recommendations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
       .recommendation { border: 1px solid #e5e8ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
-      .recommendation p { margin: 0; font-size: 14px; }
+      .recommendation p { margin: 0 0 8px; font-size: 14px; }
+      .recommendation small { margin-top: 8px; }
       .empty-state { border: 1px dashed #cbd5e1; border-radius: 8px; padding: 18px; color: #53606b; background: #fbfcfd; }
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { border-bottom: 1px solid #e5e8ec; padding: 10px; text-align: left; vertical-align: top; }
@@ -222,6 +232,29 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       </section>
 
       <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>How to read this report</h2>
+            <p>The overall score is deterministic: readability 25%, trustability 25%, actionability 30%, and task success 20%. Use it as a repair guide for public pages, not as a compliance guarantee. See the <a href="https://github.com/Qqqq5910/agentlayer/blob/main/docs/scoring.md">scoring guide</a> for the full model.</p>
+          </div>
+        </div>
+        <div class="explain-grid">
+          <article class="explain-card">
+            <h3>Score evidence</h3>
+            <p>Scores come from crawled pages, source-backed facts, detected actions, form checks, generated artifacts, and task journey results.</p>
+          </article>
+          <article class="explain-card">
+            <h3>Task findings</h3>
+            <p>Each task lists the reason, evidence URLs or snippets, missing information, and the next fix to try before rerunning the scan.</p>
+          </article>
+          <article class="explain-card">
+            <h3>Severity labels</h3>
+            <p>Critical fixes block core agent operation, warnings reduce reliability, and suggestions improve discoverability or polish.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
         <h2>Scan summary</h2>
         <div class="summary-grid">
           ${metric("Pages scanned", report.scan.pages.length)}
@@ -260,15 +293,17 @@ export function generateReportHtml(report: AgentOperabilityReport): string {
       <section class="panel">
         <h2>Task Results</h2>
         <table>
-          <thead><tr><th>Task</th><th>Status</th><th>Score</th><th>Explanation</th></tr></thead>
+          <thead><tr><th>Task</th><th>Status</th><th>Score</th><th>Reason</th><th>Evidence</th><th>Next fix</th></tr></thead>
           <tbody>${taskRows}</tbody>
         </table>
       </section>
 
       <section class="panel">
-        <h2>Top recommendations</h2>
-        <div class="recommendations-grid">${recommendationCards}</div>
+        <h2>Critical and warning recommendations</h2>
+        <div class="recommendations-grid">${priorityRecommendationCards}</div>
       </section>
+
+      ${suggestionSection}
 
       <section class="panel">
         <h2>Form operability</h2>
@@ -305,6 +340,40 @@ function scoreCard(label: string, score: number): string {
 
 function metric(label: string, value: string | number): string {
   return `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+}
+
+function recommendationCardsFor(
+  recommendations: AgentOperabilityReport["recommendations"],
+  emptyState: string
+): string {
+  if (recommendations.length === 0) {
+    return emptyState ? `<div class="empty-state">${escapeHtml(emptyState)}</div>` : "";
+  }
+
+  return recommendations
+    .slice(0, 6)
+    .map(
+      (recommendation) => `
+              <article class="recommendation">
+                <div>
+                  <span class="badge severity-${escapeAttribute(recommendation.severity)}">${escapeHtml(severityLabel(recommendation.severity))}</span>
+                  ${
+                    recommendation.suggestedArtifact
+                      ? `<code>${escapeHtml(recommendation.suggestedArtifact)}</code>`
+                      : ""
+                  }
+                </div>
+                <h3>${escapeHtml(recommendation.title)}</h3>
+                <p><strong>Why:</strong> ${escapeHtml(recommendation.whyItMatters)}</p>
+                <p><strong>Fix:</strong> ${escapeHtml(recommendation.howToFix)}</p>
+                ${
+                  recommendation.affectedTasks.length > 0
+                    ? `<small>Affects: ${escapeHtml(recommendation.affectedTasks.join(", "))}</small>`
+                    : ""
+                }
+              </article>`
+    )
+    .join("");
 }
 
 function summarizeTasks(
@@ -414,6 +483,37 @@ function journeyStepsList(steps: AgentOperabilityReport["tasks"][number]["journe
       </li>`
     )
     .join("")}</ul>`;
+}
+
+function taskEvidenceList(task: AgentOperabilityReport["tasks"][number]): string {
+  const evidenceItems = [
+    ...task.evidenceUrls.map(
+      (url) => `<li><a href="${escapeAttribute(url)}">${escapeHtml(sourceLabel(url))}</a></li>`
+    ),
+    ...task.evidenceSnippets.map((snippet) => `<li>${escapeHtml(snippet)}</li>`)
+  ];
+  const missingItems = task.missingInformation.map(
+    (item) => `<li><span class="muted">Missing:</span> ${escapeHtml(item)}</li>`
+  );
+  const items = [...evidenceItems, ...missingItems];
+
+  if (items.length === 0) {
+    return `<span class="muted">No task-specific evidence recorded.</span>`;
+  }
+
+  return `<ul class="compact-list">${items.join("")}</ul>`;
+}
+
+function severityLabel(severity: AgentOperabilityReport["recommendations"][number]["severity"]) {
+  if (severity === "high") {
+    return "Critical";
+  }
+
+  if (severity === "medium") {
+    return "Warning";
+  }
+
+  return "Suggestion";
 }
 
 function scoreTone(score: number): "strong" | "mixed" | "weak" {

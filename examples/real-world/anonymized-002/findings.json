@@ -1,0 +1,38 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-002",
+  "siteType": "Observability and security SaaS",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": null,
+    "readability": null,
+    "trustability": null,
+    "actionability": null,
+    "taskSuccess": null
+  },
+  "tasks": {
+    "pass": [],
+    "partial": [],
+    "fail": [],
+    "unavailable": ["Task checks were not run or did not finish."]
+  },
+  "wrongFactsOrActionsObserved": [
+    "The scan command returned a non-zero exit but left usable structured scan JSON; follow-up task and doctor commands were not run.",
+    "Multiple same-host candidate paths hit too-many-redirects errors, which can hide otherwise public pricing, policy, or support evidence."
+  ],
+  "confusingRecommendations": [],
+  "artifactsWouldPublish": [
+    "scan summary",
+    "task-status summary",
+    "heuristic issue notes",
+    "page inventory without raw text"
+  ],
+  "safeEvidenceNotes": [
+    "The scan command returned a non-zero exit but left usable structured scan JSON; follow-up task and doctor commands were not run.",
+    "Multiple same-host candidate paths hit too-many-redirects errors, which can hide otherwise public pricing, policy, or support evidence.",
+    "llms.txt was detected as a page type in the bounded crawl."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

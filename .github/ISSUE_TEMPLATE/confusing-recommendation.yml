@@ -1,0 +1,76 @@
+name: Confusing recommendation
+description: Share a real AgentLayer recommendation that was unclear or hard to act on.
+title: "[Confusing recommendation]: "
+labels: ["confusing-recommendation", "scan-feedback", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Recommendation feedback is most useful when it comes from real scans. Share enough safe context for maintainers to understand what was confusing.
+
+        Do not paste secrets, private URLs, customer data, credentials, internal paths, screenshots with confidential info, or unpublished launch plans.
+  - type: input
+    id: version
+    attributes:
+      label: AgentLayer version or commit
+      placeholder: "0.2.0-alpha.1 or commit SHA"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public URL or fixture
+      description: Use a public URL or sanitized fixture that is safe to discuss.
+      placeholder: "https://example.com or sanitized fixture"
+    validations:
+      required: true
+  - type: dropdown
+    id: recommendation_area
+    attributes:
+      label: Recommendation area
+      options:
+        - Readability
+        - Trustability
+        - Actionability
+        - Task success
+        - Generated artifacts
+        - CI compare output
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Recommendation text or summary
+      description: Paste only the safe recommendation text or summarize it.
+    validations:
+      required: true
+  - type: textarea
+    id: confusion
+    attributes:
+      label: What was confusing?
+      description: Tell us what decision, edit, or next step was unclear.
+    validations:
+      required: true
+  - type: textarea
+    id: better_outcome
+    attributes:
+      label: What would have helped?
+      description: Suggest clearer wording, evidence, severity, or next-step guidance.
+  - type: textarea
+    id: safe_context
+    attributes:
+      label: Safe context
+      description:
+        Add non-sensitive scan details, page text, or report snippets that explain the situation.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: This feedback comes from a real scan or sanitized fixture that is safe to discuss.
+          required: true
+        - label:
+            I removed secrets, private URLs, customer data, credentials, internal paths, screenshots
+            with confidential info, and unpublished launch plans.
+          required: true

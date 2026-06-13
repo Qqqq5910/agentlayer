@@ -1,0 +1,53 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-006",
+  "siteType": "Frontend cloud and developer platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 71,
+    "readability": 68,
+    "trustability": 72,
+    "actionability": 72,
+    "taskSuccess": 70.56
+  },
+  "tasks": {
+    "pass": [
+      "Find pricing",
+      "Compare plans",
+      "Book demo or contact sales",
+      "Find integrations",
+      "Identify target customer",
+      "Find support"
+    ],
+    "partial": ["Find documentation", "Find security and trust information"],
+    "fail": ["Find policies"],
+    "unavailable": []
+  },
+  "wrongFactsOrActionsObserved": [
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected."
+  ],
+  "confusingRecommendations": [
+    "Add /llms.txt",
+    "Improve task: Find documentation",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Review and publish the agent action manifest",
+    "Find documentation: Add clearer page titles, headings, and stable links for this journey.",
+    "Find security and trust information: Add clearer page titles, headings, and stable links for this journey.",
+    "Find policies: Add visible policy links and machine-readable summaries."
+  ],
+  "artifactsWouldPublish": [
+    "scan summary",
+    "task-status summary",
+    "heuristic issue notes",
+    "doctor score snapshot",
+    "page inventory without raw text",
+    "pass/partial/fail task table"
+  ],
+  "safeEvidenceNotes": [
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

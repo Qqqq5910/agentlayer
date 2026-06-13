@@ -1,0 +1,85 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-002",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Observability and security SaaS",
+  "scannedAt": "2026-06-13T00:28:16.990Z",
+  "generatedAt": null,
+  "scanStatus": "partial_json_after_timed_out_or_interrupted_cli",
+  "commandExitCodes": {
+    "scan": 142,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": null,
+    "doctor": null
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 14
+  },
+  "pagesScanned": 3,
+  "pageInventory": [
+    {
+      "path": "/",
+      "status": 200,
+      "pageType": "home",
+      "sameHost": true
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200,
+      "pageType": "llms",
+      "sameHost": true
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "pageType": "home",
+      "sameHost": true
+    }
+  ],
+  "crawlErrorCounts": {
+    "too_many_redirects": 151
+  },
+  "crawlErrorExamples": [
+    {
+      "path": "/case-studies",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/customers",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/demo",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/integrations",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/pricing",
+      "type": "too_many_redirects"
+    }
+  ]
+}

@@ -84,6 +84,18 @@ export function severityClasses(severity: Recommendation["severity"]) {
   return "border-slate-200 bg-slate-50 text-slate-700";
 }
 
+export function severityLabel(severity: Recommendation["severity"]) {
+  if (severity === "high") {
+    return "Critical";
+  }
+
+  if (severity === "medium") {
+    return "Warning";
+  }
+
+  return "Suggestion";
+}
+
 export function actionSensitivityClasses(sensitivity: "low" | "medium" | "high") {
   if (sensitivity === "high") {
     return "border-rose-200 bg-rose-50 text-rose-800";

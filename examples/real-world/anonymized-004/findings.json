@@ -1,0 +1,59 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-004",
+  "siteType": "Communications API platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 59,
+    "readability": 83,
+    "trustability": 63,
+    "actionability": 53,
+    "taskSuccess": 30.56
+  },
+  "tasks": {
+    "pass": ["Find documentation", "Identify target customer"],
+    "partial": ["Book demo or contact sales", "Find support"],
+    "fail": [
+      "Find pricing",
+      "Compare plans",
+      "Find security and trust information",
+      "Find policies",
+      "Find integrations"
+    ],
+    "unavailable": []
+  },
+  "wrongFactsOrActionsObserved": [
+    "Some first-party-looking journeys redirected to another host and were skipped by same-host scope rules.",
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl."
+  ],
+  "confusingRecommendations": [
+    "Improve task: Find pricing",
+    "Improve task: Compare plans",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Find pricing: Create a pricing page or add a clear pricing/contact-sales link.",
+    "Compare plans: Add pricing plan names and comparison details.",
+    "Book demo or contact sales: Expose field labels and purpose for the relevant form.",
+    "Find security and trust information: Create a stable, discoverable page for this journey.",
+    "Find policies: Add visible policy links and machine-readable summaries."
+  ],
+  "artifactsWouldPublish": [
+    "scan summary",
+    "task-status summary",
+    "heuristic issue notes",
+    "doctor score snapshot",
+    "page inventory without raw text",
+    "pass/partial/fail task table"
+  ],
+  "safeEvidenceNotes": [
+    "Some first-party-looking journeys redirected to another host and were skipped by same-host scope rules.",
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl.",
+    "llms.txt was detected as a page type in the bounded crawl."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

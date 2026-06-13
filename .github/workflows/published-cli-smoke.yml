@@ -1,0 +1,31 @@
+name: Published CLI smoke
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.4.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check published CLI help
+        run: pnpm dlx @agentlayer/cli --help
+
+      - name: Doctor public fixture
+        run: pnpm dlx @agentlayer/cli doctor https://example.com --max-pages 3
+
+      - name: Generate public fixture
+        run: |
+          pnpm dlx @agentlayer/cli generate https://example.com \
+            --out ./agentlayer-output \
+            --max-pages 3

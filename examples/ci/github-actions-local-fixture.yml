@@ -1,0 +1,87 @@
+name: AgentLayer local-fixture CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  AGENTLAYER_LOCAL_URL: http://localhost:3001
+  AGENTLAYER_COMMITTED_BASELINE: ./examples/ci/acmeflow-baseline.json
+  AGENTLAYER_ARTIFACT_DIR: ./agentlayer-ci
+
+jobs:
+  agentlayer-local-fixture:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.4.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build workspace
+        run: pnpm build
+
+      - name: Start local fixture
+        run: |
+          pnpm dev:example > "$RUNNER_TEMP/agentlayer-fixture.log" 2>&1 &
+
+          for attempt in {1..60}; do
+            if curl -fsS "$AGENTLAYER_LOCAL_URL" > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+
+          cat "$RUNNER_TEMP/agentlayer-fixture.log"
+          exit 1
+
+      - name: Create current local baseline artifact
+        run: |
+          mkdir -p "$AGENTLAYER_ARTIFACT_DIR"
+          # After @agentlayer/cli is published, replace "pnpm agentlayer" with
+          # "pnpm dlx @agentlayer/cli".
+          pnpm agentlayer baseline "$AGENTLAYER_LOCAL_URL" \
+            --out "$AGENTLAYER_ARTIFACT_DIR/current-local-baseline.json" \
+            --max-pages 20 \
+            --allow-local
+
+      - name: Compare local fixture against committed baseline
+        run: |
+          pnpm agentlayer compare "$AGENTLAYER_LOCAL_URL" \
+            --baseline "$AGENTLAYER_COMMITTED_BASELINE" \
+            --out "$AGENTLAYER_ARTIFACT_DIR/local-compare.json" \
+            --fail-on task-regression \
+            --fail-on missing-artifact \
+            --max-pages 20 \
+            --allow-local
+
+      - name: Upload AgentLayer local baseline artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agentlayer-current-local-baseline
+          path: ${{ env.AGENTLAYER_ARTIFACT_DIR }}/current-local-baseline.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload AgentLayer local compare artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agentlayer-local-compare
+          path: ${{ env.AGENTLAYER_ARTIFACT_DIR }}/local-compare.json
+          if-no-files-found: warn
+          retention-days: 14

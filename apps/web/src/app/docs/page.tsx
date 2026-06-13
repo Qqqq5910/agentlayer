@@ -21,6 +21,15 @@ const files: Array<[string, string, LucideIcon]> = [
   ]
 ];
 
+const resources: Array<[string, string, string, LucideIcon]> = [
+  [
+    "Scoring guide",
+    "How the public alpha score, task checks, severities, and limitations work.",
+    "https://github.com/Qqqq5910/agentlayer/blob/main/docs/scoring.md",
+    FileText
+  ]
+];
+
 export default function DocsPage() {
   return (
     <>
@@ -68,6 +77,25 @@ export default function DocsPage() {
               </div>
             </article>
           ))}
+        </section>
+
+        <section className="mt-8">
+          <h2 className="text-xl font-semibold text-slate-950">Reference</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {resources.map(([name, description, href, Icon]) => (
+              <Link className="panel block p-5" href={href} key={name as string}>
+                <div className="flex items-start gap-3">
+                  <div className="grid size-10 place-items-center rounded-md bg-slate-950 text-white">
+                    <Icon size={18} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-950">{name}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
       </main>
     </>

@@ -170,6 +170,8 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     );
     expect(reportHtml).toContain("Agent Operability Score");
     expect(reportHtml).toContain("Agent operability report for AcmeFlow");
+    expect(reportHtml).toContain("How to read this report");
+    expect(reportHtml).toContain("readability 25%, trustability 25%, actionability 30%");
     expect(reportHtml).toContain("Generated artifacts");
     expect(reportHtml).toContain(
       `<span>Generated artifacts</span><strong>${artifactManifest.count}</strong>`
@@ -185,7 +187,10 @@ describe("forms, facts, actions, tasks, scoring, and generation", () => {
     expect(reportHtml).toContain("HTTP 404");
     expect(reportHtml).toContain("Redirect skipped");
     expect(reportHtml).toContain("affect the score only when they hide evidence");
-    expect(reportHtml).toContain("Top recommendations");
+    expect(reportHtml).toContain("Critical and warning recommendations");
+    expect(reportHtml).toContain("scoring guide");
+    expect(reportHtml).toContain("<strong>Why:</strong>");
+    expect(reportHtml).toContain("<strong>Fix:</strong>");
     expect(reportHtml).toContain("Detected actions");
     expect(reportHtml).toContain("Form operability");
     expect(artifactManifest.artifacts).toHaveLength(artifactManifest.count);

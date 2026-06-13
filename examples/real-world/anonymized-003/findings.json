@@ -1,0 +1,36 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-003",
+  "siteType": "Developer monitoring SaaS",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": null,
+    "readability": null,
+    "trustability": null,
+    "actionability": null,
+    "taskSuccess": null
+  },
+  "tasks": {
+    "pass": [],
+    "partial": [],
+    "fail": [],
+    "unavailable": ["Task checks were not run or did not finish."]
+  },
+  "wrongFactsOrActionsObserved": [
+    "The scan command returned a non-zero exit but left usable structured scan JSON; follow-up task and doctor commands were not run.",
+    "Multiple same-host candidate paths hit too-many-redirects errors, which can hide otherwise public pricing, policy, or support evidence.",
+    "Some first-party-looking journeys redirected to another host and were skipped by same-host scope rules.",
+    "Robots.txt was fetched, but no page snapshots were collected. Task and scoring output should be treated as unavailable, not as a content failure."
+  ],
+  "confusingRecommendations": [],
+  "artifactsWouldPublish": ["scan summary", "task-status summary", "heuristic issue notes"],
+  "safeEvidenceNotes": [
+    "The scan command returned a non-zero exit but left usable structured scan JSON; follow-up task and doctor commands were not run.",
+    "Multiple same-host candidate paths hit too-many-redirects errors, which can hide otherwise public pricing, policy, or support evidence.",
+    "Some first-party-looking journeys redirected to another host and were skipped by same-host scope rules.",
+    "Robots.txt was fetched, but no page snapshots were collected. Task and scoring output should be treated as unavailable, not as a content failure."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

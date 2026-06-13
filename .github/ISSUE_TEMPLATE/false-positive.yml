@@ -1,0 +1,81 @@
+name: False positive
+description: Report a real scan result that AgentLayer flagged incorrectly.
+title: "[False positive]: "
+labels: ["false-positive", "scan-feedback", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping tune AgentLayer against real scans. Share the smallest safe example that shows the false positive.
+
+        Do not paste secrets, private URLs, customer data, credentials, internal paths, screenshots with confidential info, or unpublished launch plans.
+  - type: input
+    id: version
+    attributes:
+      label: AgentLayer version or commit
+      placeholder: "0.2.0-alpha.1 or commit SHA"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public URL or fixture
+      description: Use a public URL or a sanitized fixture name that is safe to discuss.
+      placeholder: "https://example.com or sanitized fixture"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: False positive area
+      options:
+        - Fact
+        - Action
+        - Task result
+        - Recommendation
+        - Missing artifact
+        - CI blocking failure
+        - Score drop
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command used
+      description: Include relevant flags, but remove private paths, tokens, and internal URLs.
+      placeholder:
+        "pnpm agentlayer compare https://example.com --baseline ./agentlayer-baseline.json --fail-on
+        task-regression"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What AgentLayer reported
+      description: Paste or summarize the specific safe output that looks incorrect.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Why this is a false positive
+      description: Explain what AgentLayer should have recognized instead.
+    validations:
+      required: true
+  - type: textarea
+    id: safe_context
+    attributes:
+      label: Safe context
+      description:
+        Add non-sensitive page text, report snippets, or links that help reproduce the issue.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: This report is based on a real scan or sanitized fixture that is safe to discuss.
+          required: true
+        - label:
+            I removed secrets, private URLs, customer data, credentials, internal paths, screenshots
+            with confidential info, and unpublished launch plans.
+          required: true

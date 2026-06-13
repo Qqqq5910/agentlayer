@@ -1,4 +1,9 @@
-import type { AgentLayerComparison, AgentLayerRegression, AgentTaskResult } from "./coreTypes.js";
+import type {
+  AgentLayerComparison,
+  AgentLayerRegression,
+  AgentTaskResult,
+  Recommendation
+} from "./coreTypes.js";
 import { withRequiredJsonArtifacts } from "./artifacts.js";
 import {
   callBuildAgentLayerReport,
@@ -99,7 +104,8 @@ export async function runGenerateCommand(
     [
       `Generated ${written.length} AgentLayer artifacts in ${outDir}`,
       `Overall score: ${Math.round(report.scores.overall)}/100`,
-      `Tasks evaluated: ${report.tasks.length}`
+      `Tasks evaluated: ${report.tasks.length}`,
+      ...formatRecommendationSummary(report.recommendations)
     ].join("\n")
   );
 }
@@ -344,11 +350,15 @@ function formatComparisonSummary(comparison: AgentLayerComparison): string {
     `Actionability: ${formatScore(comparison.scores.actionability)}`,
     `Task success: ${formatScore(comparison.scores.taskSuccess)}`,
     "",
+    "Policy:",
+    `Fail on: ${comparison.policy.failOn.length > 0 ? comparison.policy.failOn.join(", ") : "none"}`,
+    `Minimum score drop: ${comparison.policy.minScoreDelta}`,
+    "",
     "Regressions:",
     ...formatRegressionList(comparison.regressions),
     "",
     "Blocking failures:",
-    ...formatRegressionList(comparison.blockingFailures),
+    ...formatRegressionList(comparison.blockingFailures, "blocking"),
     "",
     "Recommendations:",
     ...formatRecommendations(comparison.recommendations),
@@ -370,15 +380,18 @@ function formatDelta(delta: number): string {
   return delta > 0 ? `+${Math.round(delta)}` : `${Math.round(delta)}`;
 }
 
-function formatRegressionList(regressions: readonly AgentLayerRegression[]): string[] {
+function formatRegressionList(
+  regressions: readonly AgentLayerRegression[],
+  labelOverride?: string
+): string[] {
   if (regressions.length === 0) {
     return ["- none"];
   }
 
   return regressions.map((regression) =>
     regression.type === "task-regression"
-      ? `- ${regression.id}: ${regression.baseline} -> ${regression.current}`
-      : `- ${regression.message}`
+      ? `- [${labelOverride ?? regression.severity}] ${regression.id}: ${regression.baseline} -> ${regression.current}`
+      : `- [${labelOverride ?? regression.severity}] ${regression.message}`
   );
 }
 
@@ -388,6 +401,20 @@ function formatRecommendations(recommendations: readonly string[]): string[] {
   }
 
   return recommendations.map((recommendation, index) => `${index + 1}. ${recommendation}`);
+}
+
+function formatRecommendationSummary(recommendations: readonly Recommendation[]): string[] {
+  const critical = recommendations.filter((recommendation) => recommendation.severity === "high");
+  const warning = recommendations.filter((recommendation) => recommendation.severity === "medium");
+  const suggestion = recommendations.filter((recommendation) => recommendation.severity === "low");
+  const priorityTitles = [...critical, ...warning]
+    .slice(0, 3)
+    .map((recommendation, index) => `${index + 1}. ${recommendation.title}`);
+
+  return [
+    `Recommendations: ${critical.length} critical, ${warning.length} warning, ${suggestion.length} suggestion`,
+    ...(priorityTitles.length > 0 ? ["Priority fixes:", ...priorityTitles] : [])
+  ];
 }
 
 async function runCliStep<T>(failurePrefix: string, action: () => Promise<T>): Promise<T> {

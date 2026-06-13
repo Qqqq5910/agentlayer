@@ -13,6 +13,16 @@ That hosted demo uses the fictional AcmeFlow fixture so people can inspect the r
 running anything. For your own site, run the AgentLayer CLI locally and share the results from that
 real scan.
 
+## Where To Share
+
+Use the GitHub issue template that best matches the scan:
+
+- [Share a real scan](../.github/ISSUE_TEMPLATE/share-scan.yml) for general scan feedback.
+- [False positive](../.github/ISSUE_TEMPLATE/false-positive.yml) when a fact, action, task result,
+  recommendation, or CI regression looks wrong.
+- [Confusing recommendation](../.github/ISSUE_TEMPLATE/confusing-recommendation.yml) when the report
+  does not make the next fix clear.
+
 ## What To Share
 
 Please include these fields:
@@ -27,8 +37,8 @@ Please include these fields:
 ## Notes
 
 - Share public-site scans only.
-- Do not include private tokens, internal URLs, unpublished pricing, customer data, or other
-  sensitive information.
+- Do not include private tokens, credentials, internal URLs, unpublished pricing, customer data,
+  confidential screenshots, unpublished launch plans, or other sensitive information.
 - Generated artifacts are review drafts. Please say which ones you would publish as-is, edit first,
   or avoid publishing.
 - If a recommendation is confusing, include the source page or output file that made it unclear.

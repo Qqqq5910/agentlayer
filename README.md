@@ -289,6 +289,9 @@ Overall Agent Operability Score is a weighted average:
 The evaluator is deterministic. It uses discovered pages, headings, links, forms, extracted facts,
 actions, and text snippets. It does not require an LLM by default.
 
+See [docs/scoring.md](./docs/scoring.md) for the public alpha scoring guide, task-check behavior,
+recommendation severities, limitations, and rerun workflow.
+
 ## v0.2 Alpha Limitations
 
 - Extraction is heuristic and conservative.
@@ -351,6 +354,7 @@ GitHub Actions runs the same lint, typecheck, test, and build commands on pushes
 
 ## Documentation
 
+- [Scoring guide](./docs/scoring.md)
 - [Standards](./docs/standards.md)
 - [AgentLayer CI alpha](./docs/ci.md)
 - [Feedback guide](./docs/feedback.md)

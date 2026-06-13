@@ -1,0 +1,58 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-001",
+  "siteType": "API platform / developer tool",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 57,
+    "readability": 53,
+    "trustability": 61,
+    "actionability": 75,
+    "taskSuccess": 31.67
+  },
+  "tasks": {
+    "pass": ["Find documentation", "Identify target customer"],
+    "partial": ["Book demo or contact sales", "Find support"],
+    "fail": [
+      "Find pricing",
+      "Compare plans",
+      "Find security and trust information",
+      "Find policies",
+      "Find integrations"
+    ],
+    "unavailable": []
+  },
+  "wrongFactsOrActionsObserved": [
+    "Multiple same-host candidate paths hit too-many-redirects errors, which can hide otherwise public pricing, policy, or support evidence.",
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl."
+  ],
+  "confusingRecommendations": [
+    "Add /llms.txt",
+    "Improve task: Find pricing",
+    "Improve task: Compare plans",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find security and trust information",
+    "Find pricing: Create a pricing page or add a clear pricing/contact-sales link.",
+    "Compare plans: Add pricing plan names and comparison details.",
+    "Book demo or contact sales: Expose field labels and purpose for the relevant form.",
+    "Find security and trust information: Create a stable, discoverable page for this journey.",
+    "Find policies: Add visible policy links and machine-readable summaries."
+  ],
+  "artifactsWouldPublish": [
+    "scan summary",
+    "task-status summary",
+    "heuristic issue notes",
+    "doctor score snapshot",
+    "page inventory without raw text",
+    "pass/partial/fail task table"
+  ],
+  "safeEvidenceNotes": [
+    "Multiple same-host candidate paths hit too-many-redirects errors, which can hide otherwise public pricing, policy, or support evidence.",
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

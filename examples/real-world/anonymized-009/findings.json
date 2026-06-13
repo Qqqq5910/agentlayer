@@ -1,0 +1,60 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-009",
+  "siteType": "Search, observability, and security platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 71,
+    "readability": 68,
+    "trustability": 96,
+    "actionability": 50,
+    "taskSuccess": 72.78
+  },
+  "tasks": {
+    "pass": [
+      "Find pricing",
+      "Compare plans",
+      "Find security and trust information",
+      "Find integrations",
+      "Identify target customer"
+    ],
+    "partial": [
+      "Book demo or contact sales",
+      "Find documentation",
+      "Find policies",
+      "Find support"
+    ],
+    "fail": [],
+    "unavailable": []
+  },
+  "wrongFactsOrActionsObserved": [
+    "Several blog article URLs were classified as pricing, security, or integrations pages based on path/title keywords; this is likely a classifier false positive candidate.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl."
+  ],
+  "confusingRecommendations": [
+    "Add /llms.txt",
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find documentation",
+    "Improve task: Find policies",
+    "Improve task: Find support",
+    "Book demo or contact sales: Expose field labels and purpose for the relevant form.",
+    "Find documentation: Add clearer page titles, headings, and stable links for this journey.",
+    "Find policies: Expose privacy, terms, cancellation, and refund policies from stable URLs.",
+    "Find support: Expose field labels and purpose for the relevant form."
+  ],
+  "artifactsWouldPublish": [
+    "scan summary",
+    "task-status summary",
+    "heuristic issue notes",
+    "doctor score snapshot",
+    "page inventory without raw text",
+    "pass/partial/fail task table"
+  ],
+  "safeEvidenceNotes": [
+    "Several blog article URLs were classified as pricing, security, or integrations pages based on path/title keywords; this is likely a classifier false positive candidate.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

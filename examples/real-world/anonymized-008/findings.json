@@ -1,0 +1,55 @@
+{
+  "schema": "agentlayer-real-world-findings/v1",
+  "sampleId": "anonymized-008",
+  "siteType": "Database and backend developer platform",
+  "publicPagesOnly": true,
+  "noFormsSubmitted": true,
+  "scores": {
+    "overall": 72,
+    "readability": 83,
+    "trustability": 72,
+    "actionability": 72,
+    "taskSuccess": 57.78
+  },
+  "tasks": {
+    "pass": ["Find pricing", "Compare plans", "Find documentation", "Identify target customer"],
+    "partial": [
+      "Book demo or contact sales",
+      "Find security and trust information",
+      "Find support"
+    ],
+    "fail": ["Find policies", "Find integrations"],
+    "unavailable": []
+  },
+  "wrongFactsOrActionsObserved": [
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl."
+  ],
+  "confusingRecommendations": [
+    "Improve task: Book demo or contact sales",
+    "Improve task: Find security and trust information",
+    "Improve task: Find policies",
+    "Improve task: Find integrations",
+    "Improve task: Find support",
+    "Book demo or contact sales: Expose field labels and purpose for the relevant form.",
+    "Find security and trust information: Add clearer page titles, headings, and stable links for this journey.",
+    "Find policies: Add visible policy links and machine-readable summaries.",
+    "Find integrations: Add a discoverable page and structured content for this topic.",
+    "Find support: Expose field labels and purpose for the relevant form."
+  ],
+  "artifactsWouldPublish": [
+    "scan summary",
+    "task-status summary",
+    "heuristic issue notes",
+    "doctor score snapshot",
+    "page inventory without raw text",
+    "pass/partial/fail task table"
+  ],
+  "safeEvidenceNotes": [
+    "Policy task failed in a bounded 5-page scan even though many public SaaS sites expose policy links outside the first pages selected.",
+    "Demo/contact-sales was often partial because the scanner found navigation but did not detect an actionable form in the bounded public crawl.",
+    "llms.txt was detected as a page type in the bounded crawl."
+  ],
+  "rawContentIncluded": false,
+  "privateDataIncluded": false
+}

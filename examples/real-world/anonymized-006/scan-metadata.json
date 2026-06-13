@@ -1,0 +1,74 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-006",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Frontend cloud and developer platform",
+  "scannedAt": "2026-06-13T00:27:28.305Z",
+  "generatedAt": "2026-06-13T00:27:34.641Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": 0,
+    "test": 0,
+    "doctor": 0
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": "pnpm agentlayer test <public-root-url> --out <tmp>/tasks.json --max-pages 5 --timeout-ms 5000 --json",
+    "doctor": "pnpm agentlayer doctor <public-root-url> --out <tmp>/doctor.json --max-pages 5 --timeout-ms 5000 --json"
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 7026
+  },
+  "pagesScanned": 5,
+  "pageInventory": [
+    {
+      "path": "/",
+      "status": 200,
+      "pageType": "home",
+      "sameHost": true
+    },
+    {
+      "path": "/changelog/checks-api-support-added-for-marketplace-integration-providers",
+      "status": 200,
+      "pageType": "support",
+      "sameHost": true
+    },
+    {
+      "path": "/changelog/enhanced-security-with-new-api-scopes-for-integrations",
+      "status": 200,
+      "pageType": "integrations",
+      "sameHost": true
+    },
+    {
+      "path": "/contact/sales/demo",
+      "status": 200,
+      "pageType": "demo",
+      "sameHost": true
+    },
+    {
+      "path": "/contact/sales/pricing",
+      "status": 200,
+      "pageType": "pricing",
+      "sameHost": true
+    }
+  ],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

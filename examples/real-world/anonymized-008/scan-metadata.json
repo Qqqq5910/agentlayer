@@ -1,0 +1,74 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-008",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Database and backend developer platform",
+  "scannedAt": "2026-06-13T00:27:58.765Z",
+  "generatedAt": "2026-06-13T00:28:06.185Z",
+  "scanStatus": "completed",
+  "commandExitCodes": {
+    "scan": 0,
+    "test": 0,
+    "doctor": 0
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": "pnpm agentlayer test <public-root-url> --out <tmp>/tasks.json --max-pages 5 --timeout-ms 5000 --json",
+    "doctor": "pnpm agentlayer doctor <public-root-url> --out <tmp>/doctor.json --max-pages 5 --timeout-ms 5000 --json"
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": true,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 2
+  },
+  "pagesScanned": 5,
+  "pageInventory": [
+    {
+      "path": "/",
+      "status": 200,
+      "pageType": "home",
+      "sameHost": true
+    },
+    {
+      "path": "/customers",
+      "status": 200,
+      "pageType": "customers",
+      "sameHost": true
+    },
+    {
+      "path": "/docs",
+      "status": 200,
+      "pageType": "docs",
+      "sameHost": true
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200,
+      "pageType": "llms",
+      "sameHost": true
+    },
+    {
+      "path": "/pricing",
+      "status": 200,
+      "pageType": "pricing",
+      "sameHost": true
+    }
+  ],
+  "crawlErrorCounts": {},
+  "crawlErrorExamples": []
+}

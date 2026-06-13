@@ -1,0 +1,68 @@
+{
+  "schema": "agentlayer-real-world-scan-metadata/v1",
+  "sampleId": "anonymized-003",
+  "source": "bounded public root URL scan",
+  "publicRootUrl": "redacted",
+  "rootHost": "redacted",
+  "siteType": "Developer monitoring SaaS",
+  "scannedAt": "2026-06-13T00:26:39.853Z",
+  "generatedAt": null,
+  "scanStatus": "partial_json_after_timed_out_or_interrupted_cli",
+  "commandExitCodes": {
+    "scan": 142,
+    "test": null,
+    "doctor": null
+  },
+  "scanOptions": {
+    "maxPages": 5,
+    "timeoutMs": 5000,
+    "respectRobotsTxt": true,
+    "allowLocal": false,
+    "crawler": "local",
+    "submittedForms": false,
+    "publicRootUrlOnly": true
+  },
+  "commandsRun": {
+    "scan": "pnpm agentlayer scan <public-root-url> --out <tmp>/scan.json --max-pages 5 --timeout-ms 5000 --json",
+    "test": null,
+    "doctor": null
+  },
+  "robotsTxt": {
+    "found": true,
+    "urlPath": "/robots.txt"
+  },
+  "sitemap": {
+    "found": false,
+    "urlPath": "/sitemap.xml",
+    "urlCount": 0
+  },
+  "pagesScanned": 0,
+  "pageInventory": [],
+  "crawlErrorCounts": {
+    "too_many_redirects": 18,
+    "robots_disallowed": 1,
+    "outside_allowed_scope_redirect": 1
+  },
+  "crawlErrorExamples": [
+    {
+      "path": "/",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/api",
+      "type": "robots_disallowed"
+    },
+    {
+      "path": "/case-studies",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/contact",
+      "type": "too_many_redirects"
+    },
+    {
+      "path": "/customers",
+      "type": "too_many_redirects"
+    }
+  ]
+}
