@@ -53,6 +53,17 @@ pnpm --filter @agentlayer/core publish --access public --tag alpha
 pnpm --filter @agentlayer/cli publish --access public --tag alpha
 ```
 
+If npm returns `E403` and says two-factor authentication is required, publish with a current 6-digit
+OTP from the npm account:
+
+```bash
+pnpm --filter @agentlayer/core publish --access public --tag alpha --otp=<current-otp>
+pnpm --filter @agentlayer/cli publish --access public --tag alpha --otp=<current-otp>
+```
+
+If the OTP expires between commands, use a fresh OTP for the CLI package. Do not paste long-lived
+npm tokens into issues, docs, commits, or chat logs.
+
 Verify the registry:
 
 ```bash
