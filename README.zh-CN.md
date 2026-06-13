@@ -57,7 +57,7 @@ pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-outpu
 
 [打开 AgentLayer 只读 demo](https://agentlayer-readonly-demo.vercel.app)
 
-Hosted demo uses the AcmeFlow fixture. Run the CLI locally for real sites.
+这个在线 demo 只读且只使用 AcmeFlow fixture。扫描真实站点时，请在本地运行 CLI。
 
 如果想在本地打开 demo report：
 

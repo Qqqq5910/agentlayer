@@ -2,8 +2,8 @@
 
 All notable changes to AgentLayer will be documented in this file.
 
-The format follows the spirit of Keep a Changelog, and this project uses semantic versioning once
-packages are published.
+The format follows the spirit of Keep a Changelog, and published packages use semantic-versioned
+releases.
 
 ## [0.2.0-alpha.1] - 2026-06-11
 
@@ -46,9 +46,9 @@ packages are published.
 ### Notes
 
 - This is a local-first alpha, not a hosted CI service.
-- The workspace packages `@agentlayer/core` and `@agentlayer/cli` are prepared for scoped npm alpha
-  publication. If the npm registry still returns 404, use repo-local `pnpm agentlayer` commands
-  until the scoped packages are published.
+- Use the scoped npm alpha CLI for quickstarts:
+  `pnpm dlx @agentlayer/cli generate https://your-site.com --out ./agentlayer-output --max-pages 20`.
+  Repo-local `pnpm agentlayer` commands are for repository checkouts and fixture development.
 - Do not use the unscoped `agentlayer` package name.
 
 ## [0.1.1] - 2026-06-11

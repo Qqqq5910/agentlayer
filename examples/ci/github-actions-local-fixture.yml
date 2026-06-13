@@ -51,16 +51,14 @@ jobs:
       - name: Create current local baseline artifact
         run: |
           mkdir -p "$AGENTLAYER_ARTIFACT_DIR"
-          # After @agentlayer/cli is published, replace "pnpm agentlayer" with
-          # "pnpm dlx @agentlayer/cli".
-          pnpm agentlayer baseline "$AGENTLAYER_LOCAL_URL" \
+          pnpm dlx @agentlayer/cli baseline "$AGENTLAYER_LOCAL_URL" \
             --out "$AGENTLAYER_ARTIFACT_DIR/current-local-baseline.json" \
             --max-pages 20 \
             --allow-local
 
       - name: Compare local fixture against committed baseline
         run: |
-          pnpm agentlayer compare "$AGENTLAYER_LOCAL_URL" \
+          pnpm dlx @agentlayer/cli compare "$AGENTLAYER_LOCAL_URL" \
             --baseline "$AGENTLAYER_COMMITTED_BASELINE" \
             --out "$AGENTLAYER_ARTIFACT_DIR/local-compare.json" \
             --fail-on task-regression \

@@ -8,34 +8,36 @@ This is not a hosted CI service, not a production compliance claim, and not an a
 flow. The hosted demo remains read-only and uses the AcmeFlow fixture. Use local scans or owned
 public URLs for CI.
 
-## Local Usage
+## Published CLI Usage
 
-Install dependencies and build the workspace:
-
-```bash
-pnpm install
-pnpm build
-```
-
-For the local fixture, start AcmeFlow in another terminal:
+Create a baseline for a public site you own:
 
 ```bash
-pnpm dev:example
-```
-
-Create a baseline for a known target:
-
-```bash
-pnpm agentlayer baseline http://localhost:3001 \
+pnpm dlx @agentlayer/cli baseline https://example.com \
   --out ./agentlayer-baseline.json \
-  --max-pages 20 \
-  --allow-local
+  --max-pages 20
 ```
 
 Compare a later scan of the same target against that baseline:
 
 ```bash
-pnpm agentlayer compare http://localhost:3001 \
+pnpm dlx @agentlayer/cli compare https://example.com \
+  --baseline ./agentlayer-baseline.json \
+  --out ./agentlayer-compare.json \
+  --fail-on task-regression \
+  --fail-on missing-artifact \
+  --max-pages 20
+```
+
+For a local app or fixture, start the app in another terminal and include `--allow-local`:
+
+```bash
+pnpm dlx @agentlayer/cli baseline http://localhost:3001 \
+  --out ./agentlayer-baseline.json \
+  --max-pages 20 \
+  --allow-local
+
+pnpm dlx @agentlayer/cli compare http://localhost:3001 \
   --baseline ./agentlayer-baseline.json \
   --out ./agentlayer-compare.json \
   --fail-on task-regression \
@@ -44,18 +46,31 @@ pnpm agentlayer compare http://localhost:3001 \
   --allow-local
 ```
 
-For a public site you own, omit `--allow-local`:
+## Repository Development Usage
+
+When developing from this repository checkout, install dependencies, build the workspace, and start
+the AcmeFlow fixture:
 
 ```bash
-pnpm agentlayer baseline https://example.com \
-  --out ./agentlayer-baseline.json \
-  --max-pages 20
+pnpm install
+pnpm build
+pnpm dev:example
+```
 
-pnpm agentlayer compare https://example.com \
+Then the repo-local alias is available:
+
+```bash
+pnpm agentlayer baseline http://localhost:3001 \
+  --out ./agentlayer-baseline.json \
+  --max-pages 20 \
+  --allow-local
+
+pnpm agentlayer compare http://localhost:3001 \
   --baseline ./agentlayer-baseline.json \
   --out ./agentlayer-compare.json \
   --fail-on task-regression \
-  --max-pages 20
+  --max-pages 20 \
+  --allow-local
 ```
 
 Keep committed baselines small, reviewable, and safe to share. Do not commit reports that contain
@@ -71,9 +86,9 @@ Copyable GitHub Actions snippets live in [examples/ci](../examples/ci/README.md)
 - [local fixture scan](../examples/ci/github-actions-local-fixture.yml) for a local app using
   `--allow-local`
 
-After the npm alpha packages are published, maintainers can manually run
-[`published-cli-smoke.yml`](../.github/workflows/published-cli-smoke.yml) to verify that the
-published CLI starts, runs `doctor`, and runs `generate` from `pnpm dlx`.
+Maintainers can manually run
+[`published-cli-smoke.yml`](../.github/workflows/published-cli-smoke.yml) after each npm publish to
+verify that the published CLI starts, runs `doctor`, and runs `generate` from `pnpm dlx`.
 
 ## Baseline Reports
 
@@ -111,7 +126,7 @@ Blocking is opt-in through repeated `--fail-on` flags:
 Example score-drop policy:
 
 ```bash
-pnpm agentlayer compare https://example.com \
+pnpm dlx @agentlayer/cli compare https://example.com \
   --baseline ./agentlayer-baseline.json \
   --out ./agentlayer-compare.json \
   --fail-on task-regression \
@@ -157,13 +172,11 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
       - run: >
-          pnpm agentlayer compare http://localhost:3001 --baseline ./agentlayer-baseline.json
-          --fail-on task-regression --allow-local
+          pnpm dlx @agentlayer/cli compare https://example.com --baseline ./agentlayer-baseline.json
+          --fail-on task-regression
 ```
 
 Replace `./agentlayer-baseline.json` with the committed baseline path for your project. Make sure
-the target is reachable before the compare step runs. For real public targets, replace
-`http://localhost:3001` with the owned URL and remove `--allow-local`.
+the target is reachable before the compare step runs. For local targets, start the app before the
+compare step and add `--allow-local`.
