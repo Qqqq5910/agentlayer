@@ -15,6 +15,10 @@ real scan.
 
 ## Where To Share
 
+The fastest path is to comment on the pinned feedback issue:
+
+- [Share your AgentLayer scan result](https://github.com/Qqqq5910/agentlayer/issues/1)
+
 Use the GitHub issue template that best matches the scan:
 
 - [Share a real scan](../.github/ISSUE_TEMPLATE/share-scan.yml) for general scan feedback.

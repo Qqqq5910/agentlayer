@@ -386,6 +386,7 @@ GitHub Actions 会在 push 和 pull request 上运行同样的 lint、typecheck�
 - [AgentLayer CI alpha](./docs/ci.md)
 - [Release checklist](./docs/release-checklist.md)
 - [Feedback guide](./docs/feedback.md)
+- [Pinned scan feedback issue](https://github.com/Qqqq5910/agentlayer/issues/1)
 - [Launch posts](./docs/launch/launch-posts.md)
 - [GitHub metadata](./docs/launch/github-metadata.md)
 - [Share-your-scan issue template](./docs/launch/share-your-scan.md)
