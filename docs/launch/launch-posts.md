@@ -4,9 +4,6 @@ Use these drafts after the scoped npm packages are published and the `pnpm dlx` 
 Do not post them while `@junyi5910/agentlayer-core` or `@junyi5910/agentlayer-cli` still returns
 `404` from the npm registry.
 
-For China-specific launch formats, use [Xiaohongshu](./xiaohongshu-post.md) and
-[Douyin](./douyin-post.md).
-
 ## English Short
 
 ```text

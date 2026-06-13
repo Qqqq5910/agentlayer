@@ -18,8 +18,6 @@ For quick DMs or public posts, use:
 
 - [Outreach message pack](./outreach-message-pack.md)
 - [General launch posts](./launch-posts.md)
-- [Xiaohongshu launch post](./xiaohongshu-post.md)
-- [Douyin launch post](./douyin-post.md)
 
 ## What Testers Should Do
 
